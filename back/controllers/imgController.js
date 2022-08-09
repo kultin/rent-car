@@ -1,6 +1,18 @@
+const { User } = require('../db/models');
 
-exports.uploadSingle = async (req, res) => {
-  console.log('multer');
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
+const Error = (res, err) => res.status(401).json({ err });
+
+exports.uploadAvatar = async (req, res) => {
+  try {
+    // записать path в базу нужен id
+    if (req.file) {
+      await User.create({
+        img_url: req.file.path,
+      });
+    }
+    res.json(req.file);
+  } catch (error) {
+    console.log('DB Upload URL Error:', error.message);
+    Error(res, error.message);
+  }
 };
