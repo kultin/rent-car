@@ -2,6 +2,7 @@ import { legacy_createStore as createStore, combineReducers} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { userReducer } from './reducers';
+import { carsReducer } from './carsReducer';
 import { privateReducer } from './reducers';
 
 // import { authReducer } from "./auth/reducers";
@@ -14,7 +15,7 @@ const reducers = combineReducers({
     user: userReducer,
     private: privateReducer,
     // auth: authReducer, // по этим ключам, потом обращаемся в подредьюсеры
-    // car: cardReducer,
+     cars: carsReducer,
     // topicsCombine: cardReducer,
     // modal: modalReducer,
   });
