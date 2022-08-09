@@ -1,7 +1,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Lessors', [{
-      name: 'LessorAndrey',
+    await queryInterface.bulkInsert('Users', [{
+      name: 'Andrey',
       email: 'andrey@bk.ru',
       tel: '79997777777',
       password: '123',
@@ -10,7 +10,7 @@ module.exports = {
       updatedAt: new Date(),
     },
     {
-      name: 'LessorAlexander',
+      name: 'Alexander',
       email: 'alexander@bk.ru',
       tel: '79997777771',
       password: '123',
@@ -19,7 +19,7 @@ module.exports = {
       updatedAt: new Date(),
     },
     {
-      name: 'LessorOlya',
+      name: 'Olya',
       email: 'olya@bk.ru',
       tel: '79997777772',
       password: '123',
@@ -28,7 +28,7 @@ module.exports = {
       updatedAt: new Date(),
     },
     {
-      name: 'LessorKolya',
+      name: 'Kolya',
       email: 'kolya@bk.ru',
       tel: '79997777773',
       password: '123',
@@ -40,6 +40,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Lessors', null, {});
+    await queryInterface.bulkDelete('Users', null, {});
   },
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import '../NotFound/notfound.modules.scss';
+import { Link } from 'react-router-dom';
 
 export default function NotFound() {
   return (
@@ -18,7 +19,7 @@ export default function NotFound() {
           Возможно, запрашиваемая Вами страница была перенесена или удалена.
           Вы можете позвонить нам и получить квалифицированную помощь наших специалистов»
         </p>
-        <a className="NotFound__block-btn" href="/">На главную</a>
+        <Link className="NotFound__block-btn" to="/">На главную</Link>
       </div>
     </div>
   )

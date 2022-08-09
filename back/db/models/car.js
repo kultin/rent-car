@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsToMany(models.Lessee, {
+      this.belongsToMany(models.User, {
         through: models.Booking,
         foreignKey: 'car_id',
       }),
@@ -18,8 +18,8 @@ module.exports = (sequelize, DataTypes) => {
         through: models.CarTent,
         foreignKey: 'car_id',
       }),
-      this.belongsTo(models.Lessor, {
-        foreignKey: 'lessor_id',
+      this.hasMany(models.Image, {
+        foreignKey: 'car_id',
       }),
     }
   }
@@ -31,10 +31,11 @@ module.exports = (sequelize, DataTypes) => {
     engine: DataTypes.STRING,
     gear: DataTypes.STRING,
     power: DataTypes.INTEGER,
-    img_url: DataTypes.STRING,
-    img_url: DataTypes.STRING,
     seats: DataTypes.STRING,
-    lessor_id: DataTypes.INTEGER,
+    photo: DataTypes.STRING,
+    price: DataTypes.INTEGER,
+    capacity: DataTypes.INTEGER,
+    car_id: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Car',

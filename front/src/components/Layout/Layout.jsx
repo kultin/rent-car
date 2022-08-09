@@ -1,4 +1,4 @@
-import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ACTypes from '../../store/types';
@@ -7,8 +7,8 @@ import '../Layout/layout.modules.scss';
 
 
 function Layout() {
-  const [user, setUser] = useState({ name: 'Валера' })
-  // const {user} = useSelector((store) => store.user);
+  
+  const {user} = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

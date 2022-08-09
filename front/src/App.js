@@ -6,8 +6,6 @@ import Layout from './components/Layout/Layout';
 import Home from './components/Home/Home';
 import NotFound from './components/NotFound/NotFound'
 import Private from './components/Private/Private'
-
-
 import Catalogue from './pages/Catalogue/Catalogue';
 
 function App() {

@@ -16,4 +16,9 @@ const ACTypes = {
   
 };
 
+export const UTypes = {
+  EDIT_USER: "EDIT_USER",
+  GETBOOKINGS_USER: 'GETBOOKINGS_USER',
+};
+
 export default ACTypes;
