@@ -3,6 +3,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { userReducer } from './reducers';
 import { carsReducer } from './carsReducer';
+import { privateReducer } from './reducers';
+
 // import { authReducer } from "./auth/reducers";
 // import { cardReducer } from "./cards/reducers";
 // import { modalReducer} from './cards/modal.reducer';
@@ -11,6 +13,7 @@ const composeEnhancers = composeWithDevTools(); // импорт reduxDevTools
 
 const reducers = combineReducers({
     user: userReducer,
+    private: privateReducer,
     // auth: authReducer, // по этим ключам, потом обращаемся в подредьюсеры
      cars: carsReducer,
     // topicsCombine: cardReducer,
