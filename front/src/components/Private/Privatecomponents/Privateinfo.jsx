@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import {editUserThunk} from '../../../store/userActions'
 import '../private.modules.scss';
 
+import ImgLoader from '../../ImgLoader/ImgLoader'
+
 
 
 export default function Privateinfo() {
@@ -36,6 +38,7 @@ export default function Privateinfo() {
       <div className="info">
         <img className='info_photo' src={`./imagesPrivate/${user.img_url}`} alt="av" />
         <div className='info_text'>
+          <ImgLoader />
           <input type='text' name='name' value={changes.name} onChange={inputHandler} />
           <input type='text' name='email' value={changes.email} onChange={inputHandler} />
           <button onClick={applyHandler}>Применить</button>
