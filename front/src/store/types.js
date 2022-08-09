@@ -8,6 +8,14 @@ const ACTypes = {
   LOGIN: 'LOGIN',
   LOGUP: 'LOGUP',
   LOGOUT: 'LOGOUT',
+
+  FILTER: 'FILTER',
+  SET_FILTER: 'SET_FILTER'
+};
+
+export const UTypes = {
+  EDIT_USER: "EDIT_USER",
+  GETBOOKINGS_USER: 'GETBOOKINGS_USER',
 };
 
 export default ACTypes;

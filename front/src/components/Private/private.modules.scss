@@ -1,0 +1,18 @@
+.info {
+  padding: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  &_text {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+  }
+
+  &_photo {
+    width: 300px;
+  }
+
+}
