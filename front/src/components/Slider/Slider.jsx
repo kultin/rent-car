@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Slider from "react-slick";
 import './slider.modules.scss';
@@ -165,7 +165,6 @@ export default class SimpleSlider extends Component {
             </div>
           </div>
         </Slider>
-        <Outlet />
       </div>
     );
   }
