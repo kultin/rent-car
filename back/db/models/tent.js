@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Tent extends Model {
     /**
@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsToMany(models.Car, {
         through: models.CarTent,
-        foreignKey: "tent_id"
-      }),
+        foreignKey: 'tent_id',
+      });
     }
   }
   Tent.init({
