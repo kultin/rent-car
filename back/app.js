@@ -1,19 +1,15 @@
-const express = require('express');
 require('dotenv').config();
 require('@babel/register');
+const express = require('express');
+const path = require('path');
 const morgan = require('morgan');
 const cors = require('cors');
-
-// const multer = require('multer');
-
-// const upload = multer({ dest: 'uploads/' });
 
 const sessions = require('express-session');
 const FileStore = require('session-file-store')(sessions);
 
 const editUserRoute = require('./routes/editUserRoute');
 const authRoute = require('./routes/authRoute');
-const imgRouter = require('./routes/imgRoute');
 
 const app = express();
 const PORT = process.env.PORT ?? 3005;
@@ -43,12 +39,12 @@ app.use(cors(corsOptions));
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', async (req, res) => {
   res.send('Hello');
 });
 
-app.use('/images', imgRouter);
 app.use('/editUser', editUserRoute);
 app.use('/auth', authRoute);
 
