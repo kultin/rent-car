@@ -1,0 +1,29 @@
+.navbar {
+  &__logo {
+    width: 150px;
+  }
+  &__inner {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  &__list {
+    margin: 0;
+    padding: 0;
+  }
+  &__list-item {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    & + & {
+      margin-left: 30px;
+    }
+  }
+  &__list-link {
+    text-decoration: none;
+    color: #262626;
+  }
+}
