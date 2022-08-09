@@ -4,15 +4,15 @@ require('@babel/register');
 const morgan = require('morgan');
 const cors = require('cors');
 
-const multer = require('multer');
+// const multer = require('multer');
 
-const upload = multer({ dest: 'uploads/' });
+// const upload = multer({ dest: 'uploads/' });
 
 const sessions = require('express-session');
 const FileStore = require('session-file-store')(sessions);
 
-// const authRoute = require('./routes/authRoute');
-// const gameRoute = require('./routes/gameRoute');
+const editUserRoute = require('./routes/editUserRoute');
+const authRoute = require('./routes/authRoute');
 const imgRouter = require('./routes/imgRoute');
 
 const app = express();
@@ -48,14 +48,9 @@ app.get('/', async (req, res) => {
   res.send('Hello');
 });
 
-app.post('/profile', upload.single('avatar'), function (req, res, next) {
-  console.log('multer')
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
-})
 app.use('/images', imgRouter);
-// app.use('/auth', authRoute);
-// app.use('/game', gameRoute);
+app.use('/editUser', editUserRoute);
+app.use('/auth', authRoute);
 
 app.listen(PORT, () => {
   console.log(`Server started on ${PORT}`);
