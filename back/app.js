@@ -4,11 +4,16 @@ require('@babel/register');
 const morgan = require('morgan');
 const cors = require('cors');
 
+const multer = require('multer');
+
+const upload = multer({ dest: 'uploads/' });
+
 const sessions = require('express-session');
 const FileStore = require('session-file-store')(sessions);
 
 // const authRoute = require('./routes/authRoute');
 // const gameRoute = require('./routes/gameRoute');
+const imgRouter = require('./routes/imgRoute');
 
 const app = express();
 const PORT = process.env.PORT ?? 3005;
@@ -39,10 +44,16 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   res.send('Hello');
 });
 
+app.post('/profile', upload.single('avatar'), function (req, res, next) {
+  console.log('multer')
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+})
+app.use('/images', imgRouter);
 // app.use('/auth', authRoute);
 // app.use('/game', gameRoute);
 
