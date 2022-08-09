@@ -24,6 +24,8 @@ export const UTypes = {
 export const UTypes = {
   EDIT_USER: "EDIT_USER",
   GETBOOKINGS_USER: 'GETBOOKINGS_USER',
+  LOGIN_USER: 'LOGIN_USER',
+  REGISTRATION_USER: 'REGISTRATION_USER',
 };
 
 export default ACTypes;

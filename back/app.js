@@ -9,6 +9,8 @@ const FileStore = require('session-file-store')(sessions);
 
 // const authRoute = require('./routes/authRoute');
 // const gameRoute = require('./routes/gameRoute');
+const editUserRoute = require('./routes/editUserRoute');
+const authRoute = require('./routes/authRoute');
 
 const app = express();
 const PORT = process.env.PORT ?? 3005;
@@ -42,6 +44,11 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/', (req, res) => {
   res.send('Hello');
 });
+
+app.use('/editUser', editUserRoute);
+app.use('/auth', authRoute);
+
+
 
 // app.use('/auth', authRoute);
 // app.use('/game', gameRoute);

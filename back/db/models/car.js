@@ -13,14 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsToMany(models.User, {
         through: models.Booking,
         foreignKey: 'car_id',
-      }),
+      });
       this.belongsToMany(models.Tent, {
         through: models.CarTent,
         foreignKey: 'car_id',
-      }),
+      });
       this.hasMany(models.Image, {
         foreignKey: 'car_id',
-      }),
+      });
     }
   }
   Car.init({
