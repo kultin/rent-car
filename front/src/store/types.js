@@ -10,4 +10,9 @@ const ACTypes = {
   LOGOUT: 'LOGOUT',
 };
 
+export const PTypes = {
+  LOADING: "LOADING",
+  
+};
+
 export default ACTypes;

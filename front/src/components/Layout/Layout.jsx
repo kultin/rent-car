@@ -45,7 +45,7 @@ function Layout() {
               {!user.name &&
                 <>
                   <li className="navbar__list-item">
-                    <NavLink className="navbar__list-link" to="/">Главная</NavLink>
+                    <NavLink className="navbar__list-link" to="/home">Главная</NavLink>
                   </li>
                   <li className="navbar__list-item">
                     <NavLink className="navbar__list-link" to="/cars">Каталог</NavLink>
