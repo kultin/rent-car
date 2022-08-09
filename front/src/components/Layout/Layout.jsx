@@ -70,7 +70,6 @@ function Layout() {
                   </li>
                   <li className="navbar__list-item">
                     <NavLink className="nav-link" onClick={logoutHandler} to="/">Выйти</NavLink>
-                    {/* <button className="logout" onClick={logoutHandler}>Выйти</button> */}
                   </li>
                 </>}
             </ul>

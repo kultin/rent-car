@@ -1,16 +1,63 @@
 import React, { Component } from "react";
+import { Link, Outlet } from 'react-router-dom';
+
 import Slider from "react-slick";
 import './slider.modules.scss';
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "block",
+        background: "#CA0100",
+        top: '-60px',
+        right: '20px',
+        height: '48px',
+        width: '48px',
+        boxShadow: '0px 0px 8px rgba(182, 182, 182, 0.25)',
+        borderRadius: '6px',
+      }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "block",
+        background: "#fff",
+        top: '-60px',
+        left: '1270px',
+        height: '48px',
+        width: '48px',
+        boxShadow: '0px 0px 8px rgba(182, 182, 182, 0.25)',
+        borderRadius: '6px',
+      }}
+      onClick={onClick}
+    />
+  );
+}
 
 export default class SimpleSlider extends Component {
   render() {
     var settings = {
-      dots: true,
-      infinite: false,
+      dots: false,
+      infinite: true,
       speed: 500,
-      slidesToShow: 5,
+      slidesToShow: 4,
       slidesToScroll: 1,
       initialSlide: 0,
+      variableWidth: true,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />,
       responsive: [
         {
           breakpoint: 1024,
@@ -42,38 +89,83 @@ export default class SimpleSlider extends Component {
       <div className="slider">
         <div className="slider__inner">
           <h2 className="slider__title"> Наши авто </h2>
-          <a className="slider__btn" href="/cars">Все авто</a>
+          <Link className="slider__btn" to="/cars">Все авто</Link>
         </div>
         <Slider {...settings}>
-          <div>
-            <img src={'../'} alt="slider-img" />
-            <h3>Название авто</h3>
-            <p>Описание</p>
-            <p>цена</p>
-            <a href="/car/:id">Подробнее</a>
+          <div className="slider__item">
+            <img className="slider__item-img" src={'slider/slider_img.png'} alt="slider-img" />
+            <h3 className="slider__item-title">Название авто</h3>
+            <p className="slider__item-text">Палатка рассчитана для комфортной ночёвки двух взрослых и маленького ребёнка.</p>
+            <div className="slider__item-block">
+              <p className="slider__item-price">5000 р/сутки</p>
+              <Link className="slider__item-btn" to="/car/:id">Подробнее</Link>
+            </div>
           </div>
-          <div>
-            <h3>2</h3>
+          <div className="slider__item">
+            <img className="slider__item-img" src={'slider/slider_img.png'} alt="slider-img" />
+            <h3 className="slider__item-title">Название авто</h3>
+            <p className="slider__item-text">Палатка рассчитана для комфортной ночёвки двух взрослых и маленького ребёнка.</p>
+            <div className="slider__item-block">
+              <p className="slider__item-price">5000 р/сутки</p>
+              <Link className="slider__item-btn" to="/car/:id">Подробнее</Link>
+            </div>
           </div>
-          <div>
-            <h3>3</h3>
+          <div className="slider__item">
+            <img className="slider__item-img" src={'slider/slider_img.png'} alt="slider-img" />
+            <h3 className="slider__item-title">Название авто</h3>
+            <p className="slider__item-text">Палатка рассчитана для комфортной ночёвки двух взрослых и маленького ребёнка.</p>
+            <div className="slider__item-block">
+              <p className="slider__item-price">5000 р/сутки</p>
+              <Link className="slider__item-btn" to="/car/:id">Подробнее</Link>
+            </div>
           </div>
-          <div>
-            <h3>4</h3>
+          <div className="slider__item">
+            <img className="slider__item-img" src={'slider/slider_img.png'} alt="slider-img" />
+            <h3 className="slider__item-title">Название авто</h3>
+            <p className="slider__item-text">Палатка рассчитана для комфортной ночёвки двух взрослых и маленького ребёнка.</p>
+            <div className="slider__item-block">
+              <p className="slider__item-price">5000 р/сутки</p>
+              <Link className="slider__item-btn" to="/car/:id">Подробнее</Link>
+            </div>
           </div>
-          <div>
-            <h3>5</h3>
+          <div className="slider__item">
+            <img className="slider__item-img" src={'slider/slider_img.png'} alt="slider-img" />
+            <h3 className="slider__item-title">Название авто</h3>
+            <p className="slider__item-text">Палатка рассчитана для комфортной ночёвки двух взрослых и маленького ребёнка.</p>
+            <div className="slider__item-block">
+              <p className="slider__item-price">5000 р/сутки</p>
+              <Link className="slider__item-btn" to="/car/:id">Подробнее</Link>
+            </div>
           </div>
-          <div>
-            <h3>6</h3>
+          <div className="slider__item">
+            <img className="slider__item-img" src={'slider/slider_img.png'} alt="slider-img" />
+            <h3 className="slider__item-title">Название авто</h3>
+            <p className="slider__item-text">Палатка рассчитана для комфортной ночёвки двух взрослых и маленького ребёнка.</p>
+            <div className="slider__item-block">
+              <p className="slider__item-price">5000 р/сутки</p>
+              <Link className="slider__item-btn" to="/car/:id">Подробнее</Link>
+            </div>
           </div>
-          <div>
-            <h3>7</h3>
+          <div className="slider__item">
+            <img className="slider__item-img" src={'slider/slider_img.png'} alt="slider-img" />
+            <h3 className="slider__item-title">Название авто</h3>
+            <p className="slider__item-text">Палатка рассчитана для комфортной ночёвки двух взрослых и маленького ребёнка.</p>
+            <div className="slider__item-block">
+              <p className="slider__item-price">5000 р/сутки</p>
+              <Link className="slider__item-btn" to="/car/:id">Подробнее</Link>
+            </div>
           </div>
-          <div>
-            <h3>8</h3>
+          <div className="slider__item">
+            <img className="slider__item-img" src={'slider/slider_img.png'} alt="slider-img" />
+            <h3 className="slider__item-title">Название авто</h3>
+            <p className="slider__item-text">Палатка рассчитана для комфортной ночёвки двух взрослых и маленького ребёнка.</p>
+            <div className="slider__item-block">
+              <p className="slider__item-price">5000 р/сутки</p>
+              <Link className="slider__item-btn" to="/car/:id">Подробнее</Link>
+            </div>
           </div>
         </Slider>
+        <Outlet />
       </div>
     );
   }
