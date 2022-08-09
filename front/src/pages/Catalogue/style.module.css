@@ -1,0 +1,11 @@
+.cars {
+  max-width:1400px;
+  margin: 40px auto;
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+

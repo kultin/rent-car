@@ -8,6 +8,8 @@ import NotFound from './components/NotFound/NotFound'
 import Private from './components/Private/Private'
 
 
+import Catalogue from './pages/Catalogue/Catalogue';
+
 function App() {
   return (
     <Routes>
@@ -15,8 +17,8 @@ function App() {
         <Route index element={<Home />} />
         <Route path="logup" element={<LogUp />} />
         <Route path="login" element={<LogIn />} />
-        <Route path="private" element={<Private />}/>
-        {/* <Route path="cars" element={<Cars/>}></Route> */}
+        <Route path="private" element={<Private />}/>        
+        <Route path="cars" element={<Catalogue/>}></Route>
       </Route>
       <Route path='*' element={<NotFound />} />
     </Routes>
