@@ -3,7 +3,8 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { useDispatch } from 'react-redux';
 import { filterAC,setFilterAC } from '../../store/action';
-const options = ["Volkswagen Polo", "Skoda Rapid", "Nissan Quashqai", "BMV 520", "KIA K5"];
+import style from "./style.module.css"
+const options = ["Volkswagen", "Skoda", "Nissan", "Renault"];
 
 export default function Filter() {
   const [value, setValue] = React.useState(options[0]);
@@ -13,6 +14,20 @@ export default function Filter() {
   return (
     <div>
 
+      <div className={style.carbody}>
+        <div className="carbody_type">
+          <a href="#">
+            <img src="/images/sedan.svg" alt="" />
+            <h5>Седан</h5>
+          </a>
+        </div>
+        <div className="carbody_type">
+          <a href="#">
+            <img src="/images/crossover.svg" alt="" />
+            <h5>Кроссовер</h5>
+          </a>
+        </div>
+      </div>
       <br />
       <Autocomplete
         value={value}

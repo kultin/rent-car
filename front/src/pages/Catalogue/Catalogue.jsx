@@ -28,14 +28,12 @@ export default function Catalogue() {
       <Filter />
       <br />
       <br />
-      <div className={style.inner}>
-        {/* { cars.map((car) => < ImgMediaCard key={car.id} car={car} />)   } */}
+      <div className={style.inner}>        
         {!filter ?
          cars.map((car) => < ImgMediaCard key={car.id} car={car} />)          
           :
           filteredCars.map((car) => < ImgMediaCard key={car.id} car={car} />)
         }
-
       </div>
     </section>
   )
