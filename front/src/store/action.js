@@ -10,13 +10,24 @@ export const sendWrongAnswer = (answer, id, topicId) => ({
   payload: { answer, id, status: 'wrong', topicId}
 });
 
-export const filterAC =(newValue) => ({
-  type:ACTypes.FILTER,
+export const brandFilterAC =(newValue) => ({
+  type:ACTypes.BRAND_FILTER,
   payload: {brand:newValue}
 })
 
-export const setFilterAC =(boolean) => ({
-  
-  type:ACTypes.SET_FILTER,
-  payload: boolean
+
+export const bodyFilterAC =(value) => ({
+  type:ACTypes.BODY_FILTER,
+  payload: {body:value}
 })
+
+export const classFilterAC =(value) => ({
+  type:ACTypes.CLASS_FILTER,
+  payload: {class:value}
+})
+
+export const priceSortAC =(value) => ({
+  type:ACTypes.PRICE_FILTER,
+  payload: {price:value}
+})
+

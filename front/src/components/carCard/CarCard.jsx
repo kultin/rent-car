@@ -7,10 +7,10 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import style from "./style.module.css"
 
-export default function ImgMediaCard({car}) {
+export default function CarCard({car}) {
   
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} className= {style.card}>
       <CardMedia
         component="img"
         alt="green iguana"
@@ -19,7 +19,7 @@ export default function ImgMediaCard({car}) {
       />
             <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {car.brand}
+          {car.brand} {car.id}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           <ul className ={style.data}>
@@ -28,6 +28,7 @@ export default function ImgMediaCard({car}) {
             <li>КПП: { car.gear }</li>
             <li>ОбЪем двигателя: { car.engine }</li>
             <li>Салон: { car.seats }</li>
+            <li>Стоимость: { car.price } р/сут.</li>
           </ul>
         </Typography>
       </CardContent>
