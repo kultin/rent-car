@@ -12,7 +12,7 @@ export default function NotFound() {
         </ul>
       </nav>
       <div className="NotFound__block">
-        <h1 className="NotFound__block-title">404</h1>
+        <img className="NotFound__block-img" src={'notfound/404.png'} alt="404" />
         <p className="NotFound__block-text">Страница не найдена!</p>
         <p className="NotFound__block-desc">«Мы запустили новый сайт, сделав его удобным и информативным.
           Возможно, запрашиваемая Вами страница была перенесена или удалена.

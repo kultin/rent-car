@@ -47,24 +47,10 @@
     align-items: center;
     flex-direction: column;
   }
-  &__block-title {
-   text-align: center;
-   font-weight: 700;
-   font-size: 381px;
-   margin: 0;
-   display: block;
-   position: relative;
-   z-index: 10;
-   &::after {
-    content: "";
-    width: 202px;
-    height: 171px;
-    position: absolute;
-    top: 147px;
-    left: 284px;
-    background: url(../NotFound/images/notfound_car.png) no-repeat 0 0;
-    z-index: 9;
-   }
+  &__block-img {
+    position: relative;
+    z-index: 8;
+    margin-bottom: 20px;
   }
   &__block-text {
     position: relative;
@@ -83,6 +69,8 @@
     width: 1160px;
     text-align: center;
     margin: 25px 0 0 0;
+    position: relative;
+    z-index: 8;
   }
   &__block-btn {
     border: none;
@@ -97,6 +85,8 @@
     margin-top: 50px;
     cursor: pointer;
     text-decoration: none;
+    position: relative;
+    z-index: 8;
   }
 }
 
