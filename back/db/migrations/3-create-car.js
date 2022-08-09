@@ -40,10 +40,10 @@ module.exports = {
       capacity: {
         type: Sequelize.INTEGER,
       },
-      lessor_id: {
+      user_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Lessors',
+          model: 'Users',
           key: 'id',
         },
       },
