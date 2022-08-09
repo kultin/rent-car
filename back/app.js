@@ -10,7 +10,7 @@ const FileStore = require('session-file-store')(sessions);
 // const authRoute = require('./routes/authRoute');
 // const gameRoute = require('./routes/gameRoute');
 const editUserRoute = require('./routes/editUserRoute');
-const authRoute = require('./routes/authRoute.js');
+const authRoute = require('./routes/authRoute');
 
 const app = express();
 const PORT = process.env.PORT ?? 3005;
