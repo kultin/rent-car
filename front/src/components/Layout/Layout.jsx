@@ -7,8 +7,8 @@ import '../Layout/layout.modules.scss';
 
 
 function Layout() {
-  const [user, setUser] = useState({ name: 'Валера' })
-  // const {user} = useSelector((store) => store.user);
+  
+  const {user} = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
