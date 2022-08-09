@@ -30,7 +30,7 @@ export default function Catalogue() {
         {!filter ?
           currentCars.map((car) => < CarCard key={car.id} car={car} />)
           :
-          currentFilteredCars.map((car) => < CarCard key={car.id} car={car} />)
+          filteredCars.map((car) => < CarCard key={car.id} car={car} />)
         }
 
         {/* {!filter ?
