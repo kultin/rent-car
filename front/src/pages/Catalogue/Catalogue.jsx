@@ -12,7 +12,7 @@ export default function Catalogue() {
   const filteredCars = useSelector((store) => store.cars.filteredCars)
   const filter = useSelector((store) => store.cars.filter)
   const dispatch = useDispatch();
-  console.log(cars);
+  //console.log(cars);
   const [currentPage, setCurrentPage] = useState(1);
   const [carsPerPage, setCarsPerPage] = useState(9);
   const lastCarIndex = currentPage * carsPerPage;
