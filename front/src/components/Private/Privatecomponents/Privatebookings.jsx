@@ -21,12 +21,10 @@ export default function Privatebookings() {
   return (
     <>
       <div className="allBookings">
-        {bookings.map((booking) => {
-          return <div className="booking" key={booking.id}>
-            <p>{booking.id}</p>
-          </div>
-        })}
+        {bookings.map((booking) => <p key={booking.id}>{booking.date_start}</p> )}
       </div>
     </>
+
+
   )
 }
