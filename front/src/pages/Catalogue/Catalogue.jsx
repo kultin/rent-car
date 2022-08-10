@@ -7,9 +7,16 @@ import { setFilterAC } from '../../store/action';
 import Pagination from '../../components/Pagination/Pagination';
 import CarCard from '../../components/carCard/CarCard';
 import CalendarComponent from '../../components/Calendar/Calendar';
-
+import axios from 'axios';
 
 export default function Catalogue() {
+
+  useEffect(()=>{
+
+    axios.get('http://localhost:3005/cars')
+      .then((res)=> console.log(res.data))
+  }, [])
+
   const { cars } = useSelector((store) => store.cars)
   const filteredCars = useSelector((store) => store.cars.filteredCars)
   const filter = useSelector((store) => store.cars.filter)
