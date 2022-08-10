@@ -9,6 +9,7 @@ import CarSlider from './CarSlider/CarSlider';
 import CarContent from './CarContent/CarContent';
 // import MoreCar from './MoreCar/MoreCar';
 import MyMap from '../Map/Map'
+import CarCalendar from '../Calendar/CarCalendar';
 
 export default function Car() {
   const { cars } = useSelector((store) => store.cars)
@@ -29,6 +30,7 @@ export default function Car() {
           <p className="carslider__content-text">Возможность добавить в избранное</p>
           <p className="carslider__content-text">Карта где находиться авто</p>
         </div>
+        <CarCalendar car={car}/>
       </div>
       <MyMap />
     </>
