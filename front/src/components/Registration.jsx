@@ -7,7 +7,7 @@ import {registrationThunk} from '../store/userActions'
 
 
 
-const LogUp = () => {
+const Registration = () => {
   const initState = {
     name: '',
     email: '',
@@ -27,21 +27,8 @@ const LogUp = () => {
   
   const submitHandler = (e) => {
     e.preventDefault();
-    // const res = await axios.post("http://localhost:3005/auth/reg", values);
-    // const response = await res.json();
-    // console.log(response);
-  //   axios.post("http://localhost:3005/auth/reg", values)
-  //     .then((res) => {
-  //       if (res.data === 'Такой пользовательь уже существует!') {
-  //         setResponse(true);
-  //         setValues(initState);
-  //       } else {
-  //         setResponse(false);
-  //         dispatch({type:ACTypes.LOGIN, payload: values});
-  //         navigate('/game')
-  //       }
-  //     });
   dispatch(registrationThunk(values))
+  navigate('/')
   }
   
   
@@ -74,4 +61,4 @@ const LogUp = () => {
   )
 }
 
-export default LogUp;
+export default Registration;
