@@ -40,12 +40,12 @@ function Layout() {
       <nav className="navbar">
         <div className="container">
           <div className='navbar__inner'>
-            <img className="navbar__logo" src={'./logo.svg'} alt="logo" />
+            <img className="navbar__logo" src={'/logo.svg'} alt="logo" />
             <ul className="navbar__list">
               {!user.name &&
                 <>
                   <li className="navbar__list-item">
-                    <NavLink className="navbar__list-link" to="/home">Главная</NavLink>
+                    <NavLink className="navbar__list-link" to="/">Главная</NavLink>
                   </li>
                   <li className="navbar__list-item">
                     <NavLink className="navbar__list-link" to="/cars">Каталог</NavLink>

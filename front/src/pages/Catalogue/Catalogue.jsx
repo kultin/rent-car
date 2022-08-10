@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
-import ImgMediaCard from '../../components/carCard/CarCard'
+import ImgMediaCard from '../../components/CardCar/CardCar'
 import Filter from '../../components/Filter/Filter'
 import style from "./style.module.css"
 import {setFilterAC } from '../../store/action';

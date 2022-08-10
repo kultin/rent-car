@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import style from "./style.module.css"
+import cardstyle from "./cardcar.modules.scss"
 
 export default function ImgMediaCard({car}) {
   
@@ -22,7 +22,7 @@ export default function ImgMediaCard({car}) {
           {car.brand}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <ul className ={style.data}>
+          <ul className ={cardstyle.data}>
             <li> Год выпуска: { car.year }</li>
             <li>Мощность: { car.power }</li>
             <li>КПП: { car.gear }</li>
@@ -32,8 +32,7 @@ export default function ImgMediaCard({car}) {
         </Typography>
       </CardContent>
       <CardActions>        
-        <Button size="small">Подробнее</Button>
-        <Button size="small">Забронировать</Button>
+        <Link to="/car/:id">Подробнее</Link>
       </CardActions>
     </Card>
   );

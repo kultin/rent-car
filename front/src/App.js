@@ -7,6 +7,7 @@ import Home from './components/Home/Home';
 import NotFound from './components/NotFound/NotFound'
 import Private from './components/Private/Private'
 import Catalogue from './pages/Catalogue/Catalogue';
+import Car from './components/Car/Car'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="login" element={<LogIn />} />
         <Route path="private" element={<Private />}/>        
         <Route path="cars" element={<Catalogue/>}></Route>
+        <Route path="car/:id" element={<Car/>}></Route>
       </Route>
       <Route path='*' element={<NotFound />} />
     </Routes>
