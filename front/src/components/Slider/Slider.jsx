@@ -97,7 +97,7 @@ export default class SimpleSlider extends Component {
           </div>
           <Slider {...settings}>
             <div className="slider__item">
-              <img className="slider__item-img" src={'http://localhost:3005/images/cars/toyota.jpg'} alt="slider-img" />
+              <img className="slider__item-img" src={'http://localhost:3005/cars/toyota.jpg'} alt="slider-img" />
               <h3 className="slider__item-title">Название авто</h3>
               <p className="slider__item-text">Палатка рассчитана для комфортной ночёвки двух взрослых и маленького ребёнка.</p>
               <div className="slider__item-block">

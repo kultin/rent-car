@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 import  "./car.modules.scss";
 import  "./CarSlider/carslider.modules.scss";
 import  "./CarContent/carcontent.modules.scss";
@@ -28,7 +28,7 @@ export default function Car() {
         {/* <MoreCar/> */}
         <h2 className='mapcar__title'>Местонахождение вашего автомобиля</h2>
       </div>
-      <MyMap />
+      <MyMap car={car}/>
     </>
   )
 }
