@@ -1,34 +1,39 @@
-import {UTypes} from "./types"
+import { UTypes } from "./types"
 
 const initialState = {
-  user: {
-      id: 1,
-      name: 'testname',
-      email: 'aa@aa.ru',
-      tel: '12345',
-      img_url: 'avpic.jpeg',
-      role: 'lessor'
-  },
-  bookings: {
-    id:1,
-    
-  }
+  user: {},
+  bookings: {}
 }
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
 
-      case UTypes.EDIT_USER:
-          // const user = 
-          console.log('test');
-          return { ...state  };
+    case UTypes.LOGOUT_USER:
+   
+      return { ...state, user: {} };
 
-          case UTypes.GETBOOKINGS_USER:
-          const bookings = action.payload.bookings
-          console.log('test');
-          return { ...state  };
+    case UTypes.GETUSER_USER:
+   
+      return { ...state, user: action.payload.user };
 
-      default:
-          return state;
+    case UTypes.REGISTRATION_USER:
+   
+      return { ...state, user: action.payload.user };
+
+    case UTypes.EDIT_USER:
+   
+      return { ...state, user: action.payload.user };
+
+    case UTypes.LOGIN_USER:
+     
+      return { ...state, user: action.payload.user };
+
+    case UTypes.GETBOOKINGS_USER:
+     
+      console.log('test');
+      return { ...state };
+
+    default:
+      return state;
   }
 }

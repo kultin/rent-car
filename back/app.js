@@ -1,14 +1,15 @@
-const express = require('express');
 require('dotenv').config();
 require('@babel/register');
+const express = require('express');
+const path = require('path');
 const morgan = require('morgan');
 const cors = require('cors');
 
 const sessions = require('express-session');
 const FileStore = require('session-file-store')(sessions);
 
-// const authRoute = require('./routes/authRoute');
-// const gameRoute = require('./routes/gameRoute');
+const editUserRoute = require('./routes/editUserRoute');
+const authRoute = require('./routes/authRoute');
 
 const app = express();
 const PORT = process.env.PORT ?? 3005;
@@ -38,13 +39,14 @@ app.use(cors(corsOptions));
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   res.send('Hello');
 });
 
-// app.use('/auth', authRoute);
-// app.use('/game', gameRoute);
+app.use('/editUser', editUserRoute);
+app.use('/auth', authRoute);
 
 app.listen(PORT, () => {
   console.log(`Server started on ${PORT}`);

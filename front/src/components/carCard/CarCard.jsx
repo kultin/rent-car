@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import style from "./style.module.css"
 
@@ -33,8 +33,7 @@ export default function CarCard({car}) {
         </Typography>
       </CardContent>
       <CardActions>        
-        <Button size="small">Подробнее</Button>
-        <Button size="small">Забронировать</Button>
+        <Link to="/car/:id">Подробнее</Link>
       </CardActions>
     </Card>
   );

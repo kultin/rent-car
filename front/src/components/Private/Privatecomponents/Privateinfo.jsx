@@ -1,7 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import {editUserThunk} from '../../../store/userActions'
+import { editUserThunk } from '../../../store/userActions'
 import '../private.modules.scss';
+
+import ImgLoader from '../../ImgLoader/ImgLoader'
 
 
 
@@ -16,14 +18,18 @@ export default function Privateinfo() {
   const [changes, setChanges] = React.useState(user)
 
 
+
   const editHandler = () => {
     setCondotion(true);
   }
+
+
 
   const applyHandler = () => {
     setCondotion(false);
     dispatch(editUserThunk(user.id, changes))
   }
+
 
   const inputHandler = (e) => {
     setChanges((prev) => {
@@ -36,6 +42,8 @@ export default function Privateinfo() {
       <div className="info">
         <img className='info_photo' src={`./imagesPrivate/${user.img_url}`} alt="av" />
         <div className='info_text'>
+          <ImgLoader />
+
           <input type='text' name='name' value={changes.name} onChange={inputHandler} />
           <input type='text' name='email' value={changes.email} onChange={inputHandler} />
           <button onClick={applyHandler}>Применить</button>
@@ -54,5 +62,6 @@ export default function Privateinfo() {
       </div>
     </>
   )
-
 }
+
+
