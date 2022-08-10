@@ -1,0 +1,23 @@
+
+
+.pagination{
+  max-width: 1400px;
+  display: flex; 
+  flex-direction:row;
+  justify-content: flex-start;
+  text-align: center;
+  margin: 0 40px 0 0 ;
+  list-style: none;
+}
+
+.page {
+  width:25px;
+  height: 25px;
+  border: 1px solid black ;
+  line-height: 25px;
+}
+
+.link {
+  text-decoration: none;
+  color:#666;
+}

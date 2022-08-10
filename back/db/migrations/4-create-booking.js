@@ -26,10 +26,10 @@ module.exports = {
           key: 'id',
         },
       },
-      lessee_id: {
+      user_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Lesses',
+          model: 'Users',
           key: 'id',
         },
       },
