@@ -41,18 +41,16 @@
     background: #CA0100;
     padding: 5px 20px;
   }
+  .slick-slider {
+    position: relative;
+    height: 450px;
+  }
+  .slick-list {
+    height: 450px;
+  }
+  .slick-slide {
+    width: 328px;
+    margin-left: 25px;
+  }
 }
 
-.slick-slider {
-  position: relative;
-  height: 450px;
-}
-
-.slick-list {
-  height: 450px;
-}
-
-.slick-slide {
-  width: 328px;
-  margin-left: 25px;
-}

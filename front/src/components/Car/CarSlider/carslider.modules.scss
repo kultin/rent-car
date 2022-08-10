@@ -1,0 +1,15 @@
+.carslider {
+  display: flex;
+  margin-top: 40px;
+  &__inner {
+    width: 800px;
+    margin-right: 34px;
+  }
+  &__content-title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 66px;
+    color: #262626;
+  }
+}
