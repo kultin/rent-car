@@ -14,7 +14,6 @@ import { initCars } from "./initCars"
 // ]
 
 const initialState = {
-  
   cars: initCars,
   filteredCars: [],
   filter: false,

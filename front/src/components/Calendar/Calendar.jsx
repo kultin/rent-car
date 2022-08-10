@@ -9,10 +9,8 @@ export default function CalendarComponent() {
   return (
    
     <div>
-      Calendar
       <Calendar value ={date} onChange={setDate}
       next2Label={null} prev2Label={null}/>
-      <button></button>
       </div>
   )
 }
