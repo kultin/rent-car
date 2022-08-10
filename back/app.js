@@ -10,6 +10,8 @@ const FileStore = require('session-file-store')(sessions);
 
 const editUserRoute = require('./routes/editUserRoute');
 const authRoute = require('./routes/authRoute');
+const carsRoute = require('./routes/carsRoute');
+const bookingsRoute = require('./routes/bookingsRoute');
 
 const app = express();
 const PORT = process.env.PORT ?? 3005;
@@ -47,6 +49,8 @@ app.get('/', async (req, res) => {
 
 app.use('/editUser', editUserRoute);
 app.use('/auth', authRoute);
+app.use('/cars', carsRoute);
+app.use('/bookings', bookingsRoute);
 
 app.listen(PORT, () => {
   console.log(`Server started on ${PORT}`);

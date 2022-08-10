@@ -25,8 +25,8 @@ const initialState = {
 export const carsReducer = (state = initialState, action) => {
   switch (action.type) {
     
-    case ACTypes.SET_CARS:
-      
+    case ACTypes.SET_CARS:     
+    console.log( action.payload)
       return {...state, cars: action.payload};
 
     case ACTypes.PAGINATE:
