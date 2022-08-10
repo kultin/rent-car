@@ -78,14 +78,7 @@ export default class CustomArrows extends Component {
             </div>
           </Slider>
         </div>
-        <div className="carslider__content">
-          <h2 className="carslider__content-title">Toyota Camry 2013</h2>
-          <p className="carslider__content-text">Информация о машине</p>
-          <p className="carslider__content-text">Форма брони с календарем</p>
-          <p className="carslider__content-text">Отзывы</p>
-          <p className="carslider__content-text">Возможность добавить в избранное</p>
-          <p className="carslider__content-text">Карта где находиться авто</p>
-        </div>
+        
       </div>
     );
   }

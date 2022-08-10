@@ -25,5 +25,9 @@
   &__list-link {
     text-decoration: none;
     color: #262626;
+    &:hover  {
+      text-decoration: underline;
+      color: #CA0100;
+    }
   }
 }
