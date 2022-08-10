@@ -31,3 +31,7 @@ export const priceSortAC =(value) => ({
   payload: {price:value}
 })
 
+export const paginateAC =(value) => ({
+  type:ACTypes.PAGINATE,
+  payload: {page:value}
+})
