@@ -8,6 +8,46 @@ export const registrationUserUA = (user) => ({type: UTypes.REGISTRATION_USER,  p
 
 export const getBookingsUA = (bookings) => ({type: UTypes.GETBOOKINGS_USER,  payload: {  bookings }});
 
+export const getUserUA = (user) => ({type: UTypes.GETUSER_USER,  payload: {  user }});
+
+export const logoutUA = () => ({type: UTypes.LOGOUT_USER});
+
+
+export const logoutThunk = () => async(dispatch) => {
+    try {
+        const response = await fetch("http://localhost:3005/auth/logout", {
+            method: "get",
+            credentials: 'include',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+         if (response.status == 200) { dispatch(logoutUA()) }
+            
+    } catch (err) {
+        console.error('err', err);
+    }
+}
+
+export const getUserThunk = () => async(dispatch) => {
+    try {
+        const response = await fetch("http://localhost:3005/auth/getuser", {
+            method: "get",
+            credentials: 'include',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        if (response.status === 401) {console.log('401');}
+        const user = await response.json()
+         dispatch(getUserUA( user ))
+       
+        
+    } catch (err) {
+        console.error('err', err);
+    }
+}
+
 export const registrationThunk = (values) => async(dispatch) => {
     try {
         const response = await fetch("http://localhost:3005/auth/registration", {
@@ -27,7 +67,6 @@ export const registrationThunk = (values) => async(dispatch) => {
         console.error('err', err);
     }
 }
-
 
 export const logInThunk = (values) => async(dispatch) => {
     try {

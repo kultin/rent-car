@@ -1,10 +1,9 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ACTypes from '../../store/types';
-import axios from 'axios';
 import '../Layout/layout.modules.scss';
-
+import { getUserThunk } from '../../store/userActions'
+import { logoutThunk } from '../../store/userActions'
 
 function Layout() {
   
@@ -12,28 +11,15 @@ function Layout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [name, setName] = useState('');
-
-  useEffect(() => {
-    // axios.get("http://localhost:3005/auth/name")
-    //   .then((res) => {
-    //     if (res.data) {
-    //       console.log(res.data);
-    //       // setName(res.data);
-    //     }
-    //   })
-    axios.get("http://localhost:3005/auth/name", { withCredentials: true })
-      .then((res) => {
-        dispatch({ type: ACTypes.SET_USER, payload: res.data });
-      })
-  }, [])
-
   const logoutHandler = (e) => {
     e.preventDefault();
-    axios.get("http://localhost:3005/auth/quit", { withCredentials: true });
-    dispatch({ type: ACTypes.LOGOUT });
+    dispatch(logoutThunk());
     navigate('/');
   }
+
+useEffect(() => {
+  dispatch(getUserThunk())
+},[])
 
   return (
     <>
@@ -51,10 +37,10 @@ function Layout() {
                     <NavLink className="navbar__list-link" to="/cars">Каталог</NavLink>
                   </li>
                   <li className="navbar__list-item">
-                    <NavLink className="navbar__list-link" to="/logup">Войти</NavLink>
+                    <NavLink className="navbar__list-link" to="/login">Войти</NavLink>
                   </li>
                   <li className="navbar__list-item">
-                    <NavLink className="navbar__list-link" to="/login">Регистрация</NavLink>
+                    <NavLink className="navbar__list-link" to="/registration">Регистрация</NavLink>
                   </li>
                 </>}
               {user.name &&

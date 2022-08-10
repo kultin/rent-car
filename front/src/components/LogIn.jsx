@@ -25,22 +25,9 @@ const LogIn = () => {
   
   const submitHandler = (e) => {
     e.preventDefault();
-        // await axios.post("http://localhost:3005/auth/log", values);
-    // dispatch({type:ACTypes.LOGUP, payload: values});
-    // axios.post("http://localhost:3005/auth/log", values, {withCredentials: true})
-    //   .then((res) => {
-    //     // console.log(res.data);
-    //     if (res.data === 'Неверное имя или пароль!') {
-    //       setResponse(true);
-    //       setValues(initState);
-    //     } else {
-    //       setResponse(false);
-    //       dispatch({type:ACTypes.LOGUP, payload: res.data});
-    //       // console.log(user, 'logup')
-    //       navigate('/game')
-    //     }
-    //   });
-    dispatch(logInThunk(values))
+    const resp = dispatch(logInThunk(values))
+    console.log(resp);
+    navigate('/')
   }
 
   return (
