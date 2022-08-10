@@ -12,6 +12,7 @@ const editUserRoute = require('./routes/editUserRoute');
 const authRoute = require('./routes/authRoute');
 const carsRoute = require('./routes/carsRoute');
 const bookingsRoute = require('./routes/bookingsRoute');
+const tentsRoute = require('./routes/tentsRoute');
 
 const app = express();
 const PORT = process.env.PORT ?? 3005;
@@ -51,6 +52,7 @@ app.use('/editUser', editUserRoute);
 app.use('/auth', authRoute);
 app.use('/cars', carsRoute);
 app.use('/bookings', bookingsRoute);
+app.use('/tents', tentsRoute);
 
 app.listen(PORT, () => {
   console.log(`Server started on ${PORT}`);

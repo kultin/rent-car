@@ -40,6 +40,9 @@ module.exports = {
       capacity: {
         type: Sequelize.INTEGER,
       },
+      location: {
+        type: Sequelize.STRING,
+      },
       user_id: {
         type: Sequelize.INTEGER,
         references: {
