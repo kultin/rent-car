@@ -35,3 +35,9 @@ export const paginateAC =(value) => ({
   type:ACTypes.PAGINATE,
   payload: {page:value}
 })
+
+export const setCarsAC =(cars) => ({
+  type:ACTypes.SET_CARS,
+  payload: cars
+})
+
