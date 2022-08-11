@@ -103,6 +103,7 @@ export default function HomeSlider() {
   };
 
   const { cars } = useSelector((store) => store.cars)
+  console.log(cars[0].Images[2].img_url)
 
   return (
     <div className="slider">
@@ -113,8 +114,8 @@ export default function HomeSlider() {
         </div>
         <Slider {...settings}>
           {cars.map((car) => {
-            return <div className="slider__item">
-              <img className="slider__item-img" src={'http://localhost:3005/cars/toyota.jpg'} alt="slider-img" />
+            return <div className="slider__item" key={car.id}>
+              <img className="slider__item-img" src={cars[0].Images[2].img_url} alt="slider-img" />
               {/* <img className="slider__item-img" src={car.photo} alt="slider-img" /> */}
               <h3 className="slider__item-title">{car.brand}</h3>
               <h4 className="slider__item-title2">{car.model}</h4>
