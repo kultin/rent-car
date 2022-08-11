@@ -8,7 +8,6 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBookingsThunk } from '../../../store/userActions'
 import '../private.modules.scss';
 
 
@@ -17,13 +16,7 @@ function createData(start, finish, location, auto, coast, status, contact) {
   return { start, finish, location, auto, coast, status, contact };
 }
 
-
-
 export default function Privatebookings() {
-
-
-
-
 
   const dispatch = useDispatch()
 
@@ -38,28 +31,18 @@ export default function Privatebookings() {
   const bookings = useSelector((store) => store.user.bookings);
 
   React.useEffect(() => {
-    console.log('effect 1')
-    dispatch(getBookingsThunk())
-  }, [])
-
-  React.useEffect(() => {
-
-      
-      const abc = tableRows()
-      console.log('effect 2',abc)
-      setRows(abc)
-    
+    const abc = tableRows()
+    setRows(abc)
   }, [bookings.length])
 
   const tableRows = () => {
     const rows2 = []
     for (let i = 0; i < bookings.length; i++) {
-      rows2.push(createData(bookings[i].date_start, bookings[i].date_end, bookings[i].pick_up, bookings[i].car_id, 'Стоимость', bookings[i].status, 'Связь с арендодателем'))
+      rows2.push(createData(bookings[i].date_start, bookings[i].date_end, bookings[i].pick_up, `${bookings[i]['Car.brand']} ${bookings[i]['Car.model']}`, 'Стоимость', bookings[i].status, 'Связь с арендодателем'))
     }
     return rows2
   }
 
-  console.log('rows', rows);
 
   const columns = [
     { id: 'start', label: 'Начало аренды', minWidth: 150 },
