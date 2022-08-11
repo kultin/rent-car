@@ -1,0 +1,48 @@
+.carform {
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__title {
+    align-self: flex-start;
+    margin: 0;
+    margin-bottom: 30px;
+    font-size: 40px;
+    line-height: 47px;
+  }
+  &__box {
+    display: flex;
+  }
+  &__content {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  &__content-price-label,
+  &__content-days-label {
+    margin: 0;
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 24px;
+    color: #737373;
+    text-align: right;
+  }
+  &__content-price-output,
+  &__content-days-output {
+    font-size: 35px;
+    border-radius: 6px;
+    font-weight: 700;
+    color: #262626;
+    text-align: right;
+  }
+  .car__desc-btn {
+    margin: 0;
+  }
+}
+
+// .react-calendar {
+//   border: none;
+// }
+

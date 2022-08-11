@@ -12,7 +12,7 @@ export default function Private() {
     <>
      <Privateinfo />
 
-     {/* <Privatebookings /> */}
+     <Privatebookings />
 
      <Privatefavorites/>
     </>

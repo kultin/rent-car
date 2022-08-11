@@ -13,7 +13,6 @@ import CarCalendar from '../../components/Calendar/CarCalendar';
 export default function Catalogue() {
  const dispatch = useDispatch()
   useEffect(()=>{
-
     axios.get('http://localhost:3005/cars')
       .then((res)=> dispatch(setCarsAC(res.data)))
   }, [])
@@ -34,7 +33,7 @@ export default function Catalogue() {
       <Filter />
       <br />      
       <CarCalendar/>
-      {/* <Calendar/> */}
+      <Calendar/> 
       <br />
       <div className={style.inner}>
         {!filter ?
