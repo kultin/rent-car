@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-
+// import { useSelector } from 'react-redux'
 import Slider from "react-slick";
 import './slider.modules.scss';
 
@@ -47,6 +47,9 @@ function SamplePrevArrow(props) {
 }
 
 export default class SimpleSlider extends Component {
+  
+  //const { cars } = useSelector((store) => store.cars)
+  
   render() {
     var settings = {
       dots: false,
@@ -94,7 +97,7 @@ export default class SimpleSlider extends Component {
           </div>
           <Slider {...settings}>
             <div className="slider__item">
-              <img className="slider__item-img" src={'slider/slider_img.png'} alt="slider-img" />
+              <img className="slider__item-img" src={'http://localhost:3005/cars/toyota.jpg'} alt="slider-img" />
               <h3 className="slider__item-title">Название авто</h3>
               <p className="slider__item-text">Палатка рассчитана для комфортной ночёвки двух взрослых и маленького ребёнка.</p>
               <div className="slider__item-block">

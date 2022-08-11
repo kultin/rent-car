@@ -22,6 +22,12 @@ export default function Calendar() {
   }
   return (
     <div>
+
+      <Calendar value ={date} onChange={setDate}
+      next2Label={null} prev2Label={null}/>
+      </div>
+  )
+
       <DatePicker
         selected={startDate}
         onChange={onChange}
@@ -37,6 +43,7 @@ export default function Calendar() {
     </div>
 
   );
+
 }
 
 //Подходящий формат данных для postgres 1999-01-08 (04:05:06) типов timestamp 

@@ -1,9 +1,13 @@
 import React from "react";
 import './map.modules.scss';
 import { YMaps, Map, Placemark, ZoomControl, TrafficControl } from "react-yandex-maps";
-
+import { useSelector } from 'react-redux';
 
 export default function MyMap() {
+
+  const { cars } = useSelector((store) => store.cars)
+  console.log(cars)
+
   return (
     <>
       <YMaps>

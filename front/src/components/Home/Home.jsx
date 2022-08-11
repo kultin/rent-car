@@ -9,7 +9,10 @@ export default function Home() {
     <>
       <HomeBanner />
       <SimpleSlider />
-      <MyMap/>
+      <div className="container">
+        <h2 className='mapcar__title'>Наши автомобили на карте</h2>
+      </div>
+      <MyMap />
     </>
   )
 }
