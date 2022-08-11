@@ -32,9 +32,6 @@ export default function Catalogue() {
     <section className={style.cars}>
       <Filter />
       <br />      
-      <CarCalendar/>
-      <Calendar/> 
-      <br />
       <div className={style.inner}>
         {!filter ?
           currentCars.map((car) => < CarCard key={car.id} car={car} />)

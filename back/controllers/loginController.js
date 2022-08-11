@@ -13,6 +13,8 @@ exports.login = async (req, res) => {
 
     req.session.user = { id: user.id, name: user.name };
     
+console.log(req.session.user);
+
     res.json(user)
 
   } catch (error) {

@@ -3,8 +3,16 @@ import DatePicker from "react-datepicker"
 import { addDays, subDays, format } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css'
 import axios from 'axios';
+import {useSelector} from 'react-redux';
+import{ useNavigate} from 'react-router-dom';
+import { userReducer } from '../../store/userReducer';
 
 export default function CarCalendar({car}) {
+
+  const navigate = useNavigate();
+
+  const user = useSelector((store) => (store.user.user))
+
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   //при выборе 2 дат формируется массив из 2 элементов - этих дат
@@ -15,6 +23,11 @@ export default function CarCalendar({car}) {
   };
   //по клику "Забронировать" создаем новый букинг формата  ['2022-08-24', '2022-08-29']
   const onClick = () => {
+    console.log(user)
+if (user.name == undefined) {
+  navigate('/login')
+}
+
     const start=format(startDate, "yyyy-MM-dd")
     const finish=format(endDate, "yyyy-MM-dd")
     //const newBooking=[start,finish];
@@ -26,8 +39,8 @@ export default function CarCalendar({car}) {
       carId: car.id,      
     }
     console.log(newBooking )
-    axios.post('http://localhost:3005/bookings',newBooking)
-    
+    axios.post('http://localhost:3005/bookings',newBooking, {withCredentials: true})
+    .then((res) => console.log(res.data))
   }
   //получаем из базы или стейта все брони на машину, добавляем в массив интервалов и в функцию excludeDateIntervals
   //которая делает даты недопустимыми к бронированию

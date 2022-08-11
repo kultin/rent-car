@@ -2,7 +2,7 @@ import React from 'react';
 import carcontent from "./carcontent.modules.scss";
 
 export default function CarContent({ car }) {
-  console.log(car)
+  
   return (
     <>
       <div className="car__desc">
