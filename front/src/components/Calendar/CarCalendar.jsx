@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker"
 import { addDays, subDays, format } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css'
 import axios from 'axios';
+import "./style.module.scss";
 
 export default function CarCalendar({car}) {
   const [startDate, setStartDate] = useState(null);
@@ -27,7 +28,6 @@ export default function CarCalendar({car}) {
     }
     console.log(newBooking )
     axios.post('http://localhost:3005/bookings',newBooking)
-    
   }
   //получаем из базы или стейта все брони на машину, добавляем в массив интервалов и в функцию excludeDateIntervals
   //которая делает даты недопустимыми к бронированию
@@ -38,7 +38,7 @@ export default function CarCalendar({car}) {
   }  
 
   return (
-    <div>
+    <div className='calendar'>
       <DatePicker
         dateFormat="yyyy/MM/dd"
         selected={startDate}

@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {logInThunk} from '../../../store/userActions'
+import './login.modules.scss';
 
 
 
@@ -39,7 +40,8 @@ const LogIn = () => {
 
   return (
     <>
-            <ThemeProvider theme={theme}>
+    <div className='login'></div>
+      <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -98,6 +100,8 @@ const LogIn = () => {
         </Box>
              </Container>
     </ThemeProvider>
+
+
 
     </>
   )
