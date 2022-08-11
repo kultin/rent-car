@@ -15,7 +15,7 @@ export default function MyMap() {
             {cars.map((car) => {
               return <Placemark
                 key={car.id}
-                geometry={car.location.split(',')}
+                geometry={(car.location != null) ? (car.location.split(',')) : (null)}
                 options={{ preset: 'islands#redAutoIcon' }}
               />
             })}

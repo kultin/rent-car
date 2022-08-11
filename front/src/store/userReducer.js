@@ -31,7 +31,6 @@ export const userReducer = (state = initialState, action) => {
       return { ...state, user: action.payload.user };
 
     case UTypes.EDIT_USER:
-
       return { ...state, user: action.payload.user };
 
     case UTypes.LOGIN_USER:
@@ -41,6 +40,10 @@ export const userReducer = (state = initialState, action) => {
     case UTypes.GETBOOKINGS_USER:
 
       return { ...state, bookings: action.payload.bookings };
+
+    case UTypes.EDIT_AVATAR:
+      const img_url = action.payload.url.substr(6)
+      return {...state, user: {...state.user, img_url }}
 
     default:
       return state;
