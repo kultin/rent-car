@@ -32,7 +32,6 @@ export default function Catalogue() {
     <section className={style.cars}>
       <Filter />
       <br />      
-      <CarCalendar/>
       <br />
       <div className={style.inner}>
         {!filter ?

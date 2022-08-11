@@ -33,8 +33,8 @@ module.exports = {
           key: 'id',
         },
       },
-      closed: {
-        type: Sequelize.BOOLEAN,
+      status: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

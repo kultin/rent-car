@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     return_place: DataTypes.STRING,
     car_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
-    closed: DataTypes.BOOLEAN,
+    status: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Booking',
