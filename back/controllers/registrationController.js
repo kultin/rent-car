@@ -12,7 +12,7 @@ exports.registration = async (req, res) => {
       email,
       tel: 79997777771,
       password: hashedPassword,
-      img_url: '/img.png',
+      img_url: null,
       role: null,
     });
 
@@ -22,7 +22,7 @@ exports.registration = async (req, res) => {
       name,
       email,
       tel: 79997777771,
-      img_url: '/img.png',
+      img_url: null,
       role: null,
     })
 
