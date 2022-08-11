@@ -52,7 +52,6 @@ export const getUserThunk = () => async (dispatch) => {
             },
         });
         const user = await response.json()
-        console.log(user);
         dispatch(getUserUA(user))
 
     } catch (err) {
