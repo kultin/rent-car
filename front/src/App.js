@@ -1,7 +1,7 @@
 import './css/App.scss';
 import { Routes, Route } from 'react-router-dom';
-import LogIn from './components/LogIn';
-import Registration from './components/Registration';
+import LogIn from './components/Auth/Login/LogIn';
+import Registration from './components/Auth/Registration/Registration';
 import Layout from './components/Layout/Layout';
 import Home from './components/Home/Home';
 import NotFound from './components/NotFound/NotFound'
