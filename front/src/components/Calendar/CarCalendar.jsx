@@ -6,6 +6,7 @@ import axios from 'axios';
 import {useSelector} from 'react-redux';
 import{ useNavigate} from 'react-router-dom';
 import { userReducer } from '../../store/userReducer';
+import "./style.module.scss";
 
 export default function CarCalendar({car}) {
 
@@ -41,6 +42,7 @@ if (user.name == undefined) {
     console.log(newBooking )
     axios.post('http://localhost:3005/bookings',newBooking, {withCredentials: true})
     .then((res) => console.log(res.data))
+
   }
   //получаем из базы или стейта все брони на машину, добавляем в массив интервалов и в функцию excludeDateIntervals
   //которая делает даты недопустимыми к бронированию
@@ -51,7 +53,7 @@ if (user.name == undefined) {
   }  
 
   return (
-    <div>
+    <div className='calendar'>
       <DatePicker
         dateFormat="yyyy/MM/dd"
         selected={startDate}

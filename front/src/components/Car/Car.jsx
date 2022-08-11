@@ -8,64 +8,32 @@ import CarSlider from './CarSlider/CarSlider';
 import CarContent from './CarContent/CarContent';
 import CarForm from './CarForm/CarForm';
 import MapCar from '../MapCar/MapCar'
-import { setCarsAC } from '../../store/action';
-import axios from 'axios';
-
-
-// import "../morecar.modules.scss";
-// import MoreCar from './MoreCar/MoreCar';
-import CarCalendar from '../Calendar/CarCalendar';
 
 
 export default function Car() {
-  const [car, setCar] = React.useState({})
-  const { cars } = useSelector((store) => store.cars)
+
   const { id } = useParams();
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    axios.get('http://localhost:3005/cars')
-      .then((res) => dispatch(setCarsAC(res.data)))
-      if (cars.length) {
-        setCar(cars.filter(car => car.id == id)[0])
-      }
-  }, [])
-
-
- 
-
-  console.log(id);
-  console.log(cars);
-  console.log(car);
+  const { cars } = useSelector((store) => store.cars)
+  const car = cars.filter(car => car.id == id)[0];
 
   return (
     <>
-      <div className="container">
-        <div className='car__inner'>
-          <CarSlider cars={cars} />
-          <CarContent car={car} />
-        </div>
-        <CarForm />
-        {/* <MoreCar/> */}
-
-        <h2 className='mapcar__title'>Местонахождение вашего автомобиля</h2>
-
-        <div className="carslider__content">
-          <p className="carslider__content-text">Информация о машине</p>
-          <p className="carslider__content-text">Форма брони с календарем</p>
-          <p className="carslider__content-text">Отзывы</p>
-          <p className="carslider__content-text">Возможность добавить в избранное</p>
-          <p className="carslider__content-text">Карта где находиться авто</p>
-        </div>
-        <CarCalendar car={car} />
-
-      </div>
-      <MapCar car={car} />
+      {car &&
+        <>
+          <div className="container">
+            <div className='car__inner'>
+              <CarSlider car={car} />
+              <CarContent  car={car}/>
+            </div>
+            <CarForm />
+            <CarCalendar car={car} />
+            {/* <MoreCar/> */}
+            <h2 className='mapcar__title'>Местонахождение вашего автомобиля</h2>
+          </div>
+          <MapCar car={car} />
+        </>
+      }
     </>
   )
 }
 
-{/* 
-<p className="carslider__content-text">Отзывы</p>
-<p className="carslider__content-text">Возможность добавить в избранное</p>
-*/}

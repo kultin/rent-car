@@ -16,20 +16,21 @@ export default function CarCard({ car }) {
         alt="green iguana"
         height="200"
         image="/images/car.jpg"
+        // image={car.Images.length ? car.Images[0].img_url : "/images/car.jpg"}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {car.brand} {car.id}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <ul className={style.data}>
+          {/* <ul className={style.data}>
             <li> Год выпуска: {car.year}</li>
             <li>Мощность: {car.power}</li>
             <li>КПП: {car.gear}</li>
             <li>ОбЪем двигателя: {car.engine}</li>
             <li>Салон: {car.seats}</li>
             <li>Стоимость: {car.price} р/сут.</li>
-          </ul>
+          </ul> */}
         </Typography>
       </CardContent>
       <CardActions>

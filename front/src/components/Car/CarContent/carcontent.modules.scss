@@ -75,3 +75,32 @@
 }
 }
 
+@media (max-width: 1300px) {
+  .car__desc .item__price {
+    font-size: 30px;
+  }
+  .car__desc .item__price span {
+    font-size: 30px;
+}
+}
+
+@media (max-width: 1200px) {
+  .car__desc-title {
+    font-size: 45px;
+    line-height: 52px;
+    margin-bottom: 10px;
+    display: flex;
+}
+.car__desc-title span{
+  margin-left: 20px;
+}
+.car__desc .item__price {
+  font-size: 30px;
+  margin-bottom: 0;
+}
+
+.car__desc .item__param {
+  font-size: 20px;
+  margin-bottom: 0; 
+}
+}

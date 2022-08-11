@@ -5,7 +5,6 @@ import style from "./style.module.css"
 import { setCarsAC } from '../../store/action';
 import Pagination from '../../components/Pagination/Pagination';
 import CarCard from '../../components/carCard/CarCard';
-import Calendar from '../../components/Calendar/Calendar';
 import axios from 'axios';
 import CarCalendar from '../../components/Calendar/CarCalendar';
 
@@ -18,6 +17,7 @@ export default function Catalogue() {
   }, [])
 
   const { cars } = useSelector((store) => store.cars)
+  
   const filteredCars = useSelector((store) => store.cars.filteredCars)
   const filter = useSelector((store) => store.cars.filter)
   const currentPage=useSelector((store)=>store.cars.currentPage)
@@ -32,6 +32,7 @@ export default function Catalogue() {
     <section className={style.cars}>
       <Filter />
       <br />      
+      <br />
       <div className={style.inner}>
         {!filter ?
           currentCars.map((car) => < CarCard key={car.id} car={car} />)

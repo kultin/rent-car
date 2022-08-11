@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { editUserThunk } from '../../../store/userActions'
 import '../private.modules.scss';
 
-import ImgLoader from '../../ImgLoader/ImgLoader'
+import ImgLoader from '../../ImgLoader/ImgLoader';
+import AddCar from './AddCar';
+import Avatar from '@mui/material/Avatar';
 
 
 
@@ -13,20 +15,20 @@ export default function Privateinfo() {
 
   const user = useSelector((store) => (store.user.user))
 
-  const [condition, setCondotion] = React.useState(false)
+  const [condition, setCondition] = React.useState(false)
 
   const [changes, setChanges] = React.useState(user)
 
 
 
   const editHandler = () => {
-    setCondotion(true);
+    setCondition(true);
   }
 
 
 
   const applyHandler = () => {
-    setCondotion(false);
+    setCondition(false);
     dispatch(editUserThunk(user.id, changes))
   }
 
@@ -37,31 +39,42 @@ export default function Privateinfo() {
     });
   }
 
-  return (condition) ? (
-    <>
-      <div className="info">
-        <img className='info_photo' src={`./imagesPrivate/${user.img_url}`} alt="av" />
-        <div className='info_text'>
-          <ImgLoader />
+  console.log(user.img_url)
 
-          <input type='text' name='name' value={changes.name} onChange={inputHandler} />
-          <input type='text' name='email' value={changes.email} onChange={inputHandler} />
-          <button onClick={applyHandler}>Применить</button>
-        </div>
-      </div>
-    </>
-  ) : (
+  return (
     <>
       <div className="info">
-        <img className='info_photo' src={`./imagesPrivate/${user.img_url}`} alt="av" />
-        <div className='info_text'>
-          <p>{user.name}</p>
-          <p>{user.email}</p>
-          <button onClick={editHandler}>Редактировать</button>
-        </div>
+        {user.img_url ? 
+          <Avatar sx={{ width: 56, height: 56 }} src={user.img_url} />
+          : <Avatar sx={{ width: 56, height: 56 }} />
+        }
+
+        <ImgLoader />
+
+      {condition ? 
+        (
+          <>
+            <div className='info_text'>
+              <input type='text' name='name' value={changes.name} onChange={inputHandler} />
+              <input type='text' name='email' value={changes.email} onChange={inputHandler} />
+              <button onClick={applyHandler}>Применить</button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className='info_text'>
+              <p>{user.name}</p>
+              <p>{user.email}</p>
+              <button onClick={editHandler}>Редактировать</button>
+            </div>
+          </>
+        )
+      }  
       </div>
+
+      <AddCar />
     </>
-  )
+  )  
 }
 
 

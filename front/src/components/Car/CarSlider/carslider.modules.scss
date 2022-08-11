@@ -2,6 +2,7 @@
   &__inner {
     width: 800px;
     margin-right: 34px;
+    border-radius: 25px;
   }
   .slick-prev:before {
     content: 'ᐸ';
@@ -14,5 +15,21 @@
     font-size: 20px;
     opacity: 1;
     color: #fff;
+  }
+  &__img {
+    object-fit: cover;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .carslider__inner {
+    width: 600px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .carslider__inner {
+    width: 100%;
   }
 }
