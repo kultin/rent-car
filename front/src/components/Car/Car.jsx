@@ -8,6 +8,7 @@ import CarSlider from './CarSlider/CarSlider';
 import CarContent from './CarContent/CarContent';
 import CarForm from './CarForm/CarForm';
 import MapCar from '../MapCar/MapCar'
+import CarCalendar from '../Calendar/CarCalendar';
 
 
 export default function Car() {
@@ -25,8 +26,7 @@ export default function Car() {
               <CarSlider car={car} />
               <CarContent  car={car}/>
             </div>
-            <CarForm />
-            <CarCalendar car={car} />
+            <CarForm car={car} />
             {/* <MoreCar/> */}
             <h2 className='mapcar__title'>Местонахождение вашего автомобиля</h2>
           </div>

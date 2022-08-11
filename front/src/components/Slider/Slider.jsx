@@ -103,32 +103,37 @@ export default function HomeSlider() {
   };
 
   const { cars } = useSelector((store) => store.cars)
-  console.log(cars[0].Images[2].img_url)
+
+  // console.log(cars[0].Images[2].img_url)
 
   return (
-    <div className="slider">
-      <div className="container">
-        <div className="slider__inner">
-          <h2 className="slider__title"> Наши авто </h2>
-          <Link className="slider__btn" to="/cars">Все авто</Link>
-        </div>
-        <Slider {...settings}>
-          {cars.map((car) => {
-            return <div className="slider__item" key={car.id}>
-              <img className="slider__item-img" src={cars[0].Images[2].img_url} alt="slider-img" />
-              {/* <img className="slider__item-img" src={car.photo} alt="slider-img" /> */}
-              <h3 className="slider__item-title">{car.brand}</h3>
-              <h4 className="slider__item-title2">{car.model}</h4>
-              <p className="slider__item-text">Палатка рассчитана для комфортной ночёвки двух взрослых и маленького ребёнка.</p>
-              <div className="slider__item-block">
-                <p className="slider__item-price">{car.price} р./сутки</p>
-                <Link className="slider__item-btn" to={`/car/${car.id}`}>Подробнее</Link>
+    <>
+    {cars && 
+      <div className="slider">
+        <div className="container">
+          <div className="slider__inner">
+            <h2 className="slider__title"> Наши авто </h2>
+            <Link className="slider__btn" to="/cars">Все авто</Link>
+          </div>
+          <Slider {...settings}>
+            {cars.map((car) => {
+              return <div className="slider__item" key={car.id}>
+                {/* <img className="slider__item-img" src={cars[0].Images[2].img_url} alt="slider-img" /> */}
+                {/* <img className="slider__item-img" src={car.photo} alt="slider-img" /> */}
+                <h3 className="slider__item-title">{car.brand}</h3>
+                <h4 className="slider__item-title2">{car.model}</h4>
+                <p className="slider__item-text">Палатка рассчитана для комфортной ночёвки двух взрослых и маленького ребёнка.</p>
+                <div className="slider__item-block">
+                  <p className="slider__item-price">{car.price} р./сутки</p>
+                  <Link className="slider__item-btn" to={`/car/${car.id}`}>Подробнее</Link>
+                </div>
               </div>
-            </div>
-          })}
-        </Slider>
+            })}
+          </Slider>
+        </div>
       </div>
-    </div>
+    }
+    </>
   );
 }
 
