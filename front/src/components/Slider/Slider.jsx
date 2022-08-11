@@ -35,7 +35,8 @@ function SamplePrevArrow(props) {
         display: "block",
         background: "#fff",
         top: '-60px',
-        left: '1270px',
+        left: 'auto',
+        right: '80px',
         height: '48px',
         width: '48px',
         boxShadow: '0px 0px 8px rgba(182, 182, 182, 0.25)',
@@ -46,9 +47,9 @@ function SamplePrevArrow(props) {
   );
 }
 
-export default function SimpleSlider() {
+export default function HomeSlider() {
 
-  var settings = {
+  const settings = {
     dots: false,
     infinite: true,
     speed: 500,
@@ -57,14 +58,24 @@ export default function SimpleSlider() {
     initialSlide: 0,
     variableWidth: true,
     adaptiveHeight: true,
+    // centerMode: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 1,
           infinite: true,
           dots: true
         }
@@ -73,15 +84,19 @@ export default function SimpleSlider() {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
+          slidesToScroll: 1,
+          initialSlide: 2,
+          arrows: false
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          // centerMode: true,
+          arrows: false
+
         }
       }
     ]

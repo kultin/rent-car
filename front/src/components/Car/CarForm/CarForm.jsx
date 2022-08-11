@@ -1,6 +1,6 @@
 import React from "react";
-import CalendarComponent from "../../Calendar/Calendar";
-import "../CarForm/carform.modules.scss";
+import CarCalendar from '../../Calendar/CarCalendar';
+import "./carform.modules.scss";
 
 export default function CarForm() {
   return (
@@ -8,7 +8,7 @@ export default function CarForm() {
       <div className="carform">
         <h1 className="carform__title">Форма брони автомобиля</h1>
         <div className="carform__box">
-          <CalendarComponent />
+          <CarCalendar />
           <div className="carform__content">
             <div className="carform__content-price">
               <p className="carform__content-price-label">Cтоимость вашей поездки</p>

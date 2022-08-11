@@ -1,3 +1,9 @@
 .car__inner {
   display: flex;
 }
+
+@media (max-width: 1000px) {
+  .car__inner {
+    flex-direction: column;
+  }
+}
