@@ -39,11 +39,13 @@ export default function Privateinfo() {
     });
   }
 
+  console.log(user.img_url)
+
   return (
     <>
       <div className="info">
         {user.img_url ? 
-          <Avatar sx={{ width: 56, height: 56 }} src={`${user.img_url}`} />
+          <Avatar sx={{ width: 56, height: 56 }} src={user.img_url} />
           : <Avatar sx={{ width: 56, height: 56 }} />
         }
 

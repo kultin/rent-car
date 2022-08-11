@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
-import { useSelector,   } from 'react-redux';
 import  "./car.modules.scss";
 import  "./CarSlider/carslider.modules.scss";
 import  "./CarContent/carcontent.modules.scss";
@@ -8,6 +8,8 @@ import CarSlider from './CarSlider/CarSlider';
 import CarContent from './CarContent/CarContent';
 import CarForm from './CarForm/CarForm';
 import MapCar from '../MapCar/MapCar'
+
+import axios from 'axios';
 
 
 // import "../morecar.modules.scss";
@@ -19,14 +21,14 @@ export default function Car() {
 
   const { cars } = useSelector((store) => store.cars)
   const { id } = useParams();
-  const car = cars.filter(car => car.id == id)[0] ;
+  const car = cars.filter(car => car.id == id)[0]
 
 
   return (
     <>
       <div className="container">
         <div className='car__inner'>
-          <CarSlider cars={cars}/>
+          <CarSlider car={car}/>
           <CarContent car={car} />
         </div>
         <CarForm/>

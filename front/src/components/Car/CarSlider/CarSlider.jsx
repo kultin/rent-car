@@ -45,6 +45,12 @@ function SamplePrevArrow(props) {
 }
 
 export default class CustomArrows extends Component {
+  constructor(props) {
+    super(props)
+    this.props = props;
+    this.Images = props.car.Images
+  }
+
   render() {
     const settings = {
       dots: false,
@@ -52,15 +58,14 @@ export default class CustomArrows extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />
+      prevArrow: <SamplePrevArrow />,
     };
+    console.log(this.Images)
+
     return (
       <div className="carslider">
         <div className="carslider__inner">
           <Slider {...settings}>
-            <div>
-              <img src={'../carslider/car_slide.jpg'} alt="slider-img" />
-            </div>
             <div>
               <img src={'../carslider/car_slide.jpg'} alt="slider-img" />
             </div>

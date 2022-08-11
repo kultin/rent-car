@@ -23,14 +23,14 @@ export default function CarCard({ car }) {
           {car.brand} {car.id}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <ul className={style.data}>
+          {/* <ul className={style.data}>
             <li> Год выпуска: {car.year}</li>
             <li>Мощность: {car.power}</li>
             <li>КПП: {car.gear}</li>
             <li>ОбЪем двигателя: {car.engine}</li>
             <li>Салон: {car.seats}</li>
             <li>Стоимость: {car.price} р/сут.</li>
-          </ul>
+          </ul> */}
         </Typography>
       </CardContent>
       <CardActions>
