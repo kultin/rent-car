@@ -7,7 +7,6 @@
     line-height: 66px;
     color: #262626;
     margin-bottom: 20px;
-    // border-bottom: 1px solid #464646;
     & span {
       display: block;
       font-size: 45px;
@@ -18,7 +17,6 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    // padding-left: 20px;
   }
   .item__price {
     display: flex;
@@ -32,20 +30,30 @@
     & span {
       font-size: 40px;
       margin-left: auto;
+      color: #fff;
     }
   }
   .item__param {
     font-size: 25px;
     color: #262626;
     margin-bottom: 25px;
+    border-bottom: none;
+    & span {
+      margin-left: 0;
+    }
   }
   &-item {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     color: #737373;
+    border-bottom: 1px solid #e5e5e5 ;
+    display: flex;
   & span {
     font-weight: 700;
+    color: #262626;
+    display: inline-block;
+    margin-left: auto;
   }
   & + & {
     margin-top: 10px;

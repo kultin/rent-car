@@ -1,9 +1,13 @@
 .home {
+  padding:  0 15px;
   &__banner {
     margin: 0 auto;
-    background: url(../Home/images/home_bg.jpg) no-repeat 0 0;
-    width: 1870px;
-    height: 775px;
+    background: url(../Home/images/2017-Mini-Cooper-S-Countryman-ALL4-113_waifu2x_photo_noise2_scale_tta_1.png) no-repeat 0 0;
+    object-fit: cover;
+    max-width: 1870px;
+    height: auto;
+    border-radius: 25px;
+    filter: brightness(75%);
   }
   &__inner {
     width: 100%;
@@ -13,7 +17,7 @@
     align-items: center;
   }
   &__content{
-    width: 930px;
+    max-width: 930px;
   }
   &__content-title {
     width: 100%;
@@ -40,9 +44,12 @@
     padding: 20px 50px;
     margin-left: auto;
     margin-top: 50px;
+    transition: all 0.3s;
+    &:hover {
+      background: #ee0101;
+    }
   }
 }
-
 .mapcar__title {
   font-size: 40px;
   line-height: 47px;

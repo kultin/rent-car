@@ -11,37 +11,30 @@ export default function Calendar() {
     console.log(dates)
     const [start, end] = dates;
     setStartDate(start);
-    setEndDate(end);    
+    setEndDate(end);
   };
 
   //по клику "Забронировать" получаем желаемые даты брони ['2022-08-24', '2022-08-29']
   const onClick = () => {
-    const start=format(startDate, "yyyy-MM-dd")
-    const finish=format(endDate, "yyyy-MM-dd")
-    console.log( [start,finish])
+    const start = format(startDate, "yyyy-MM-dd")
+    const finish = format(endDate, "yyyy-MM-dd")
+    console.log([start, finish])
   }
   return (
-    <div>
-
-      <Calendar value ={date} onChange={setDate}
-      next2Label={null} prev2Label={null}/>
-      </div>
-  )
-
-      <DatePicker
+    <>
+     <DatePicker
         selected={startDate}
         onChange={onChange}
         startDate={startDate}
-        endDate={endDate}     
+        endDate={endDate}
         //исключаем последние 150 дней из поиска вплоть до сегодня   
-        excludeDateIntervals={[{ start: subDays(new Date(), 150), end: subDays(new Date(), 1)}]}        
+        excludeDateIntervals={[{ start: subDays(new Date(), 150), end: subDays(new Date(), 1) }]}
         selectsRange
         selectsDisabledDaysInRange
         inline
       />
       <button onClick={onClick}> Проверить даты </button>
-    </div>
-
+    </>
   );
 
 }

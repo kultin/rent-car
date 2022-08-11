@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import carslider from "./carslider.modules.scss";
+import "./carslider.modules.scss";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
+    <button
       className={className}
       style={{
         ...style,
@@ -26,7 +26,7 @@ function SampleNextArrow(props) {
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
+    <button
       className={className}
       style={{
         ...style,

@@ -1,5 +1,5 @@
 .slider {
-  margin-top: 50px;
+  margin: 70px 0;
   &__inner {
     display: flex;
     align-items: center;
@@ -22,14 +22,29 @@
     border-radius: 11px;
     background: #CA0100;
     padding: 5px 30px;
+    transition: all 0.3s;
+    &:hover {
+      background: #ee0101;
+    }
   }
   &__item-block {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+  &__item-title {
+    font-size: 23px;
+    margin: 5px 0;
+  }
+  &__item-title2 {
+    margin: 0;
+    color: #747474;
+
+  }
   &__item-price {
+    font-size: 22px;
     font-weight: 700;
+    margin: 0;
   }
   &__item-btn {
     text-decoration: none;
@@ -40,6 +55,10 @@
     border-radius: 6px;
     background: #CA0100;
     padding: 5px 20px;
+    transition: all 0.3s;
+    &:hover {
+      background: #ee0101;
+    }
   }
   &__item-img {
     width: 328px;
@@ -48,14 +67,25 @@
   }
   .slick-slider {
     position: relative;
-    height: 450px;
-  }
-  .slick-list {
-    height: 450px;
   }
   .slick-slide {
     width: 328px;
     margin-left: 25px;
   }
+
+  .slick-prev:before {
+    content: 'ᐸ';
+    font-size: 20px;
+    opacity: 1;
+    color: #000;
+  }
+  .slick-next:before {
+    content: 'ᐳ';
+    font-size: 20px;
+    opacity: 1;
+    color: #fff;
+  }
 }
+
+
 
