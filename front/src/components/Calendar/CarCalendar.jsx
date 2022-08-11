@@ -2,17 +2,19 @@ import React, { useState } from 'react'
 import DatePicker from "react-datepicker"
 import { addDays, subDays } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css'
-export default function Calendar() {
+export default function CarCalendar() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const onChange = (dates) => {
     console.log(dates)
     const [start, end] = dates;
     setStartDate(start);
-    setEndDate(end);    
+    setEndDate(end);
+    // console.log(startDate)
+    // console.log(endDate)  
   };
   const onClick = () => {
-    console.log([startDate.toDateString(), endDate])
+    console.log([startDate.toString(), endDate])
   }
   return (
     <div>
@@ -20,8 +22,10 @@ export default function Calendar() {
         selected={startDate}
         onChange={onChange}
         startDate={startDate}
-        endDate={endDate}        
-        excludeDateIntervals={[{ start: subDays(new Date(), 150), end: subDays(new Date(), 1)}]}        
+        endDate={endDate}
+        //excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
+        //excludeDateIntervals={[{ start: subDays(new Date(), 5), end: addDays(new Date(), 5) }]}
+        excludeDateIntervals={[{ start: subDays(new Date("2022-08-12"),1), end: (new Date("2022-08-15")) }]}
         selectsRange
         selectsDisabledDaysInRange
         inline
@@ -32,4 +36,3 @@ export default function Calendar() {
   );
 }
 
-//Подходящий формат данных для postgres 1999-01-08 (04:05:06) типов timestamp 

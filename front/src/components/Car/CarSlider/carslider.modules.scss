@@ -3,4 +3,16 @@
     width: 800px;
     margin-right: 34px;
   }
+  .slick-prev:before {
+    content: 'ᐸ';
+    font-size: 20px;
+    opacity: 1;
+    color: #fff;
+  }
+  .slick-next:before {
+    content: 'ᐳ';
+    font-size: 20px;
+    opacity: 1;
+    color: #fff;
+  }
 }
