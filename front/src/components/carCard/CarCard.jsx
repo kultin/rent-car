@@ -16,6 +16,7 @@ export default function CarCard({ car }) {
         alt="green iguana"
         height="200"
         image="/images/car.jpg"
+        // image={car.Images.length ? car.Images[0].img_url : "/images/car.jpg"}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

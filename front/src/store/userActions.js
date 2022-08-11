@@ -16,6 +16,8 @@ export const getUserUA = (user) => ({ type: UTypes.GETUSER_USER, payload: { user
 
 export const logoutUA = () => ({ type: UTypes.LOGOUT_USER });
 
+export const editAvatar = (url) => ({type: UTypes.EDIT_AVATAR,  payload: { url } })
+
 
 export const logoutThunk = () => async (dispatch) => {
     dispatch(setLoadingUA(true));

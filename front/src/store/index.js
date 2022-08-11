@@ -14,7 +14,7 @@ const composeEnhancers = composeWithDevTools(applyMiddleware(thunkMiddleware)); 
 const reducers = combineReducers({
     user: userReducer,
        // auth: authReducer, // по этим ключам, потом обращаемся в подредьюсеры
-     cars: carsReducer,
+    cars: carsReducer,
     // topicsCombine: cardReducer,
     // modal: modalReducer,
   });
