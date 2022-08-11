@@ -33,7 +33,7 @@ export default function Catalogue() {
       <Filter />
       <br />      
       <CarCalendar/>
-      {/* <Calendar/> */}
+      <Calendar/> 
       <br />
       <div className={style.inner}>
         {!filter ?

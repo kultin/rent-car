@@ -4,9 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import '../Layout/layout.modules.scss';
 import { getUserThunk } from '../../store/userActions'
 import { logoutThunk } from '../../store/userActions'
+import Error from '../Error/Error'
+import AppLoader from '../Loader/Loader.jsx'
 
 function Layout() {
   
+  const isLoading = useSelector((state) => state.user.isLoading);
+
   const {user} = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,6 +27,7 @@ useEffect(() => {
 
   return (
     <>
+    <Error />
       <nav className="navbar">
         <div className="container">
           <div className='navbar__inner'>
@@ -62,7 +67,12 @@ useEffect(() => {
           </div>
         </div>
       </nav>
+      {(isLoading) ? (
+            <AppLoader />
+        ) : (
       <Outlet />
+        )}
+      
     </>
   );
 }

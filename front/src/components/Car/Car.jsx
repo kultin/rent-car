@@ -12,6 +12,8 @@ import MapCar from '../MapCar/MapCar'
 
 // import "../morecar.modules.scss";
 // import MoreCar from './MoreCar/MoreCar';
+import CarCalendar from '../Calendar/CarCalendar';
+
 
 export default function Car() {
 
@@ -29,7 +31,18 @@ export default function Car() {
         </div>
         <CarForm/>
         {/* <MoreCar/> */}
+
         <h2 className='mapcar__title'>Местонахождение вашего автомобиля</h2>
+
+        <div className="carslider__content">
+          <p className="carslider__content-text">Информация о машине</p>
+          <p className="carslider__content-text">Форма брони с календарем</p>
+          <p className="carslider__content-text">Отзывы</p>
+          <p className="carslider__content-text">Возможность добавить в избранное</p>
+          <p className="carslider__content-text">Карта где находиться авто</p>
+        </div>
+        <CarCalendar car={car}/>
+
       </div>
       <MapCar car={car}/>
     </>
