@@ -1,150 +1,72 @@
 import React, { useState } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import ACTypes from '../../../store/types';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { registrationThunk } from '../../../store/userActions'
+import "./registration.modules.scss";
 
 
-
-const Registration = () => {
-
-  
-  const [checkBox, setCheckBox] = useState(false);
-
+export default function Registration() {
+  const initState = {
+    name: '',
+    email: '',
+    password: '',
+    role: '',
+    tel: '',
+  }
+  const [values, setValues] = useState(initState);
+  const [response, setResponse] = useState(false);
   const dispatch = useDispatch();
- 
+  const navigate = useNavigate();
+  const { user } = useSelector((store) => store.user);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-  data.append('role', checkBox)
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-      name: data.get('name'),
-      tel: data.get('tel'),
-      role: data.get('role'),
-    });
-    dispatch(registrationThunk({
-      email: data.get('email'),
-      password: data.get('password'),
-      tel: data.get('tel'),
-      name: data.get('name'),
-      role: data.get('role'),
-    }))
-
-  };
-
-  
-  const checkBoxHandler = (e) => {
-    setCheckBox(e.target.checked)
+  const inputHandler = (e) => {
+    setValues((prevState) => {
+      return { ...prevState, [e.target.name]: e.target.value }
+    })
   }
 
-  const theme = createTheme();
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(registrationThunk(values))
+    navigate('/')
+  }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Регистрация
-          </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={12}>
-                <TextField
-                  autoComplete="given-name"
-                  name="name"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="Имя"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="tel"
-                  label="Телефон"
-                  name="tel"
-                  autoComplete="tel"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Пароль"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="lesser" color="primary" onChange={checkBoxHandler}/>}
-                  label="Я хочу предложить аренду автомобиля"
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Зарегистрироваться
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  У вас уже есть аккаунт? Войдите
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+    <>
+      <div className="registration">
+          {/* <div className={response ? "alert alert-danger" : "none"} role="alert">
+            Такой пользователь уже существует!
+          </div> */}
+          {/* <p id={response ? "block" : "none"}>Такой пользователь уже существует!</p> */}
+          <form onSubmit={submitHandler} className="registration__form">
+            <h1 className='registration__form-title'>Регистрация</h1>
+            <div className="registration__form-box">
+              <label for="staticEmail" className="registration__form-label">Вы хотите</label>
+              <select name='role' onChange={inputHandler} className="registration__form-select">
+                <option value='lessee'>Арендовать</option>
+                <option value='lessor'>Сдать в аренду</option>
+              </select>
+            </div>
+            <div className="registration__form-box">
+              <label for="staticEmail" className="registration__form-label">Имя</label>
+              <input type="text" className="registration__form-input" name="name" id="staticEmail" value={values.name} required onChange={inputHandler} />
+            </div>
+            <div className="registration__form-box">
+              <label for="staticEmail" className="registration__form-label">Email</label>
+              <input type="text" className="registration__form-input" name="email" id="staticEmail" value={values.email} required pattern='^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$' onChange={inputHandler} />
+            </div>
+            <div className="registration__form-box">
+              <label for="staticEmail" className="registration__form-label">Телефон</label>
+              <input type="text" className="registration__form-input" name="tel" id="staticEmail" value={values.tel} required onChange={inputHandler} />
+            </div>
+            <div className="registration__form-box">
+              <label for="inputPassword" className="registration__form-label">Придумайте пароль</label>
+              <input type="password" className="registration__form-input" name="password" id="inputPassword" value={values.password} required onChange={inputHandler} />
+            </div>
+            <button className="registration__form-btn" type="registration__form" >Зарегистрироваться</button>
+          </form>
+      </div>
+    </>
   );
 }
 
-export default Registration;

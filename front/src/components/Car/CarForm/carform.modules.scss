@@ -42,7 +42,44 @@
   }
 }
 
-// .react-calendar {
-//   border: none;
-// }
+@media (max-width: 1200px) {
+  .carform {
+    margin: 30px auto;
+}
+.carform__title {
+  font-size: 35px;
+  line-height: 40px;
+}
 
+.mapcar__title {
+  font-size: 25px;
+  line-height: 35px;
+}
+}
+
+@media (max-width: 600px) {
+  .carform__content {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.carform__content-price-output, .carform__content-days-output {
+  font-size: 25px;
+  text-align: center;
+}
+.carform .car__desc-btn {
+  margin-top: 10px;
+}
+}
+
+@media (max-width: 480px) {
+  .carform__box {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .carform__title {
+    font-size: 25px;
+  }
+}

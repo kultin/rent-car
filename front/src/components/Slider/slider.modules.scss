@@ -63,6 +63,11 @@
     width: 328px;
     height: 202px;
     border-radius: 25px;
+    filter: brightness(80%);
+    transition: all 0.3s;
+  }
+  &__item:hover &__item-img{
+    filter: brightness(100%);
   }
   .slick-slider {
     position: relative;
@@ -83,5 +88,8 @@
     font-size: 20px;
     opacity: 1;
     color: #fff;
+  }
+  &__item-title3 {
+    text-align: center;
   }
 }
