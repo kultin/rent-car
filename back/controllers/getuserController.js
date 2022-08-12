@@ -2,7 +2,7 @@ const { User } = require('../db/models');
 
 exports.getuser = async (req, res) => {
   try {
-    if (req.session === undefined) { res.sendStatus(401) }
+    if (req.session?.user === undefined) { return res.sendStatus(201) }
 
     const user = await User.findOne({ where: { id: req.session.user.id } })
     res.json({
@@ -12,10 +12,9 @@ exports.getuser = async (req, res) => {
       tel: user.tel,
       img_url: user.img_url,
       role: user.role,
-    })
-
+    });
   } catch (error) {
     console.log('Login User Error ', error.message);
-    res.sendStatus(404)
+    res.sendStatus(404);
   }
 };

@@ -115,7 +115,6 @@ export default function HomeSlider() {
           {cars &&
             cars.map((car) =>
               car.Images.length ? (
-                <>
                   <div className="slider__item" key={car.id}>
                     <img className="slider__item-img" src={car.Images[0].img_url} alt="slider-img" />
                     <h3 className="slider__item-title">{car.brand}</h3>
@@ -125,21 +124,22 @@ export default function HomeSlider() {
                       <p className="slider__item-price">{car.price} р./сутки</p>
                       <Link className="slider__item-btn" to={`/car/${car.id}`}>Подробнее</Link>
                     </div>
-                  </div>
-                </>
+
               ) : (
-                <>
-                  <div className="slider__item" key={car.id}>
-                    <img className="slider__item-img" src={'http://localhost:3005/cars/toyota.jpg'} alt="slider-img" />
-                    <h4 className="slider__item-title3">💔 Что-то пошло не так...</h4>
-                  </div>
-                </>
+
+
+                <div className="slider__item" key={car.id}>
+                  <img className="slider__item-img" src={'http://localhost:3005/cars/toyota.jpg'} alt="slider-img" />
+                  <h4 className="slider__item-title3">💔 Что-то пошло не так...</h4>
+                </div>
+
               )
             )
           }
         </Slider>
       </div>
     </div>
+
   );
 }
 
