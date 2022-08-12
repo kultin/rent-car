@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Image, {
         foreignKey: 'car_id',
       });
+      this.hasMany(models.Booking, {
+        foreignKey: 'car_id',
+      })
     }
   }
   Car.init({

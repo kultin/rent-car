@@ -9,6 +9,7 @@ import Private from './components/Private/Private'
 import Catalogue from './pages/Catalogue/Catalogue';
 import Car from './components/Car/Car'
 import Footer from './components/Footer/Footer'
+import { getBookingsThunk } from './store/userActions'
 
 import { useDispatch } from 'react-redux'
 import axios from 'axios';
@@ -24,6 +25,10 @@ function App() {
     axios.get('http://localhost:3005/cars')
       .then((res)=> dispatch(setCarsAC(res.data)))
   }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getBookingsThunk())
+  }, [])
 
   return (
     <>
