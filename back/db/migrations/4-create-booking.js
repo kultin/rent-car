@@ -7,6 +7,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      booking_id: {
+        allowNull: false,
+        autoIncrement: true,
+        type: Sequelize.INTEGER,
+      },
       date_start: {
         type: Sequelize.STRING,
       },

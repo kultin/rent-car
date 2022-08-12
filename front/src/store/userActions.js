@@ -166,3 +166,27 @@ export const getBookingsThunk = (id, changes) => async (dispatch) => {
         dispatch(setErrorUA(err.message));
     } 
 }
+
+
+export const applyBookingThunk = (id) => async (dispatch) => {
+    dispatch(setErrorUA(false));
+    try {
+        const response = await fetch("http://localhost:3005/bookings/applyBooking", {
+            method: "post",
+            credentials: 'include',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: id}),
+        });
+
+        if (response.status == 201) { return dispatch(setErrorUA('Не удалось изменить статус заказа!'));}
+
+        // const bookings = await response.json()
+        // dispatch(getBookingsThunk())
+
+    } catch (err) {
+        console.error('err', err);
+        dispatch(setErrorUA(err.message));
+    } 
+}
