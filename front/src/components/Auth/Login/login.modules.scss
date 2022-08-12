@@ -1,9 +1,110 @@
-// .login {
-//   margin: 0 auto;
-//   background: url(../../Home/images/2017-Mini-Cooper-S-Countryman-ALL4-113_waifu2x_photo_noise2_scale_tta_1.png) no-repeat 0 0;
-//   object-fit: cover;
-//   max-width: 1870px;
-//   height: 570px;
-//   border-radius: 25px;
-//   filter: brightness(75%);
-// }
+.login {
+  margin: 0 auto;
+  background: url(./login_waifu2x_photo_noise2_scale_tta_1.png) no-repeat 0 20%;
+  object-fit: cover;
+  max-width: 1870px;
+  height: 775px;
+  border-radius: 25px;
+  filter: brightness(80%);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  margin-bottom: 100px;
+  &__form {
+    width: 400px;
+    height: 400px;
+    background: rgba(187, 187, 187, 0.7);
+    border: 1px solid rgba(150, 148, 148, 0.3);
+    border-radius: 25px;
+    padding: 40px;
+  }
+  &__form-title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 30px;
+    color: #262626;
+  }
+  &__form-box {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__form-label {
+    font-size: 16px;
+    color: rgb(29, 29, 29);
+    margin-bottom: 3px;
+  }
+  &__form-btn {
+    cursor: pointer;
+    border: none;
+    background: #CA0100;  
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-align: center;
+    width: 100%;
+    padding: 19px 80px;
+    display: block;
+    margin: 30px auto 0;
+    transition: all 0.3s;
+  &:hover {
+    background: #ee0101;
+  }
+  }
+  &__form-input {
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    padding: 18px ;
+    font-size: 17px;
+    background: #fff;
+    
+  }
+  &__form-accept {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 130%;
+  color: #000000;
+  opacity: 0.34;
+  margin: 0;
+  margin-top: 30px;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .login {
+    background-position: 40% 20%;
+    margin-bottom: 60px;
+}
+}
+
+@media (max-width: 768px) {
+  .login {
+    background-position: 40% 20%;
+    margin-bottom: 60px;
+}
+}
+
+@media (max-width: 568px) {
+    .login__form-title {
+      font-size: 30px;
+}
+.login__form {
+  width: 300px;
+  height: 400px;
+  padding: 25px;
+}
+}
+
+@media (max-width: 414px) {
+.login__form {
+width: 80%;
+}
+}

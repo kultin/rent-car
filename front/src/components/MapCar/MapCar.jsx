@@ -11,7 +11,7 @@ export default function MapCar({ car }) {
           <div className="mapcar__box">
             <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} width="100%" height="100%">
               <Placemark
-                geometry={car.location.split(',')}
+                geometry={(car.location != null) ? (car.location.split(',')) : (null)}
                 options={{ preset: 'islands#redAutoIcon' }}
               />
               <ZoomControl />

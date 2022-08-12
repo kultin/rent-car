@@ -1,4 +1,4 @@
-import { Outlet, NavLink, useNavigate } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../Layout/layout.modules.scss';
@@ -31,7 +31,7 @@ useEffect(() => {
       <nav className="navbar">
         <div className="container">
           <div className='navbar__inner'>
-            <img className="navbar__logo" src={'/logo.svg'} alt="logo" />
+            <Link to="/"><img className="navbar__logo" src={'/logo.svg'} alt="logo" /><p className='navbar__logo-text'>на крыше</p></Link>
             <ul className="navbar__list">
               {!user.name &&
                 <>
