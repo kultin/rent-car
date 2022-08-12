@@ -27,7 +27,7 @@ export default function CarCalendar({ car }) {
   const onClick = () => {
     console.log(user)
     if (user.name == undefined) {
-      navigate('/login')
+      return navigate('/login')
     }
 
     const start = format(startDate, "yyyy-MM-dd")
@@ -43,6 +43,8 @@ export default function CarCalendar({ car }) {
     console.log(newBooking)
     axios.post('http://localhost:3005/bookings', newBooking, { withCredentials: true })
       .then((res) => console.log(res.data))
+
+    navigate('/private')
   }
 
   const bookingsDates = []

@@ -91,7 +91,7 @@ export default function CarSlider({ car }) {
       }
     ]
   };
-  console.log(car)
+
   return (
     <div className="carslider">
       <div className="carslider__inner">

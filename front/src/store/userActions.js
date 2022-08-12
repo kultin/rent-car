@@ -51,6 +51,7 @@ export const getUserThunk = () => async (dispatch) => {
                 "Content-Type": "application/json",
             },
         });
+        if (response.status == 201) { return }
         const user = await response.json()
         dispatch(getUserUA(user))
 
@@ -151,6 +152,7 @@ export const getBookingsThunk = (id, changes) => async (dispatch) => {
                 "Content-Type": "application/json",
             },
         });
+        if (response.status == 201) { return }
         const bookings = await response.json()
         dispatch(getBookingsUA(bookings))
 
