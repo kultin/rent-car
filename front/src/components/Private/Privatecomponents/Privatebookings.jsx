@@ -8,12 +8,13 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { useSelector, useDispatch } from 'react-redux';
+import { applyBookingThunk } from '../../../store/userActions'
 import '../private.modules.scss';
 
 
-function createData(start, finish, location, auto, coast, status, contact) {
+function createData(id, start, finish, location, auto, coast, status, contact) {
 
-  return { start, finish, location, auto, coast, status, contact };
+  return { id, start, finish, location, auto, coast, status, contact };
 }
 
 export default function Privatebookings() {
@@ -37,8 +38,20 @@ export default function Privatebookings() {
 
   const tableRows = () => {
     const rows2 = []
+
     for (let i = 0; i < bookings.length; i++) {
-      rows2.push(createData(bookings[i].date_start, bookings[i].date_end, bookings[i].pick_up, `${bookings[i]['Car.brand']} ${bookings[i]['Car.model']}`, 'Стоимость', bookings[i].status, 'Связь с арендодателем'))
+      let status
+      if (user.role == 'lessee') {
+        status = bookings[i].status
+      }
+      if (user.role == 'lessor') {
+        if (bookings[i].status == 'pre-booking') {
+          status = 'Подтвердить'
+        } else {
+          status = bookings[i].status
+        }
+      }
+      rows2.push(createData(bookings[i].booking_id, bookings[i].date_start, bookings[i].date_end, bookings[i].pick_up, `${bookings[i]['Car.brand']} ${bookings[i]['Car.model']}`, `${bookings[i].price} р`, status, 'Связь с арендодателем'))
     }
     return rows2
   }
@@ -79,7 +92,9 @@ export default function Privatebookings() {
     },
   ];
 
-
+  const onApplyHandler = (id) => {
+    dispatch(applyBookingThunk(id))
+  };
 
 
 
@@ -98,7 +113,7 @@ export default function Privatebookings() {
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
-              <TableRow>Each child in a list should have a unique "key" prop.
+              <TableRow>
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
@@ -115,15 +130,22 @@ export default function Privatebookings() {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                       {columns.map((column) => {
                         const value = row[column.id];
-                        return (
+                        return ((value == 'Подтвердить') ? (
+                          <TableCell key={column.id} align={column.align} onClick={() => onApplyHandler(row.id)}>
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        ) : (
                           <TableCell key={column.id} align={column.align}>
                             {column.format && typeof value === 'number'
                               ? column.format(value)
                               : value}
                           </TableCell>
+                        )
                         );
                       })}
                     </TableRow>

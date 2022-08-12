@@ -21,17 +21,7 @@ export default function CarCalendar({ car }) {
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(0);
 
-  // let carsNum= 15
-  // let arr=[]
-  // for (let i=0; i<carsNum; i++) {
-    
-  //     arr.push([bookings[i].car_id, bookings[i].date_start, bookings[i].date_end])
-    
-    
-  // }
-  // console.log(arr)
-
-  useEffect (()=> {
+  React.useEffect (()=> {
     if (endDate) {
       let differenceTime = endDate.getTime() - startDate.getTime();
       let differenceDays = differenceTime / (1000 * 3600 * 24);
@@ -57,7 +47,9 @@ export default function CarCalendar({ car }) {
 
     const start = format(startDate, "yyyy-MM-dd")
     const finish = format(endDate, "yyyy-MM-dd")
-    // расчет количества дней и суммы поездки 
+
+    // расчет количества дней и суммы поездки
+  
     const newBooking = {
       start: start,
       finish: finish,

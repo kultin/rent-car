@@ -5,7 +5,6 @@ import HomeSlider from "../Slider/Slider";
 import MyMap from '../Map/Map'
 
 export default function Home() {
-
   return (
     <>
       <HomeBanner />
