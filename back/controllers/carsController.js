@@ -1,4 +1,4 @@
-const { Car, Image } = require('../db/models');
+const { Car, Image, Tent} = require('../db/models');
 
 exports.getAllCars = async (req, res) => {
   try {

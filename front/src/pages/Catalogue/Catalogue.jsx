@@ -16,7 +16,7 @@ export default function Catalogue() {
   }, [])
 
   const { cars } = useSelector((store) => store.cars)
-  console.log(cars)
+  //console.log(cars)
   const filteredCars = useSelector((store) => store.cars.filteredCars)
   const filter = useSelector((store) => store.cars.filter)
   const currentPage=useSelector((store)=>store.cars.currentPage)

@@ -28,9 +28,9 @@ function App() {
   }, [dispatch])
 
   useEffect(() => {
-    if (user.name != undefined) {
+    // if (user.name != undefined) {
     dispatch(getBookingsThunk())
-  }
+  // }
   }, [])
 
   return (
