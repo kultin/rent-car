@@ -2,13 +2,13 @@ import React from "react";
 import CarCalendar from '../../Calendar/CarCalendar';
 import "./carform.modules.scss";
 
-export default function CarForm() {
+export default function CarForm({car}) {
   return (
     <>
       <div className="carform">
         <h1 className="carform__title">Форма брони автомобиля</h1>
         <div className="carform__box">
-          <CarCalendar />
+          <CarCalendar car={car}/>
           <div className="carform__content">
             <div className="carform__content-price">
               <p className="carform__content-price-label">Cтоимость вашей поездки</p>

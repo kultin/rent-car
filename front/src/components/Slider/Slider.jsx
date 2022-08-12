@@ -106,6 +106,8 @@ export default function HomeSlider() {
   console.log('cars: ', cars);
 
 
+  // console.log(cars[0].Images[2].img_url)
+
   return (
     <div className="slider">
       <div className="container">
@@ -141,7 +143,8 @@ export default function HomeSlider() {
           }
         </Slider>
       </div>
-    </div>
+    }
+    </>
   );
 }
 
