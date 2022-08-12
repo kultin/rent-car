@@ -103,10 +103,6 @@ export default function HomeSlider() {
   };
 
   const { cars } = useSelector((store) => store.cars)
-  console.log('cars: ', cars);
-
-
-  // console.log(cars[0].Images[2].img_url)
 
   return (
     <div className="slider">
@@ -120,7 +116,7 @@ export default function HomeSlider() {
             cars.map((car) =>
               car.Images.length ? (
                 <>
-                  <div className="slider__item">
+                  <div className="slider__item" key={car.id}>
                     <img className="slider__item-img" src={car.Images[0].img_url} alt="slider-img" />
                     <h3 className="slider__item-title">{car.brand}</h3>
                     <h4 className="slider__item-title2">{car.model}</h4>
@@ -133,7 +129,7 @@ export default function HomeSlider() {
                 </>
               ) : (
                 <>
-                  <div className="slider__item">
+                  <div className="slider__item" key={car.id}>
                     <img className="slider__item-img" src={'http://localhost:3005/cars/toyota.jpg'} alt="slider-img" />
                     <h4 className="slider__item-title3">💔 Что-то пошло не так...</h4>
                   </div>
@@ -143,8 +139,7 @@ export default function HomeSlider() {
           }
         </Slider>
       </div>
-    }
-    </>
+    </div>
   );
 }
 

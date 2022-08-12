@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userReducer } from '../../store/userReducer';
-import "./style.module.scss";
+import "./calendar.modules.scss";
 
 export default function CarCalendar({ car }) {
 
@@ -17,6 +17,10 @@ export default function CarCalendar({ car }) {
   const carBookings = bookings.filter((booking) => booking.car_id == car.id)
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
+  const [days, setDays] = useState(0);
+  const [price, setPrice] = useState(0);
+
   //при выборе 2 дат формируется массив из 2 элементов - этих дат
   const onChange = (dates) => {
     const [start, end] = dates;
@@ -25,25 +29,35 @@ export default function CarCalendar({ car }) {
   };
   //по клику "Забронировать" создаем новый букинг формата  ['2022-08-24', '2022-08-29']
   const onClick = () => {
-    console.log(user)
+    // console.log(user)
     if (user.name == undefined) {
       navigate('/login')
     }
 
     const start = format(startDate, "yyyy-MM-dd")
     const finish = format(endDate, "yyyy-MM-dd")
-    //const newBooking=[start,finish];
+
+    // расчет количества дней и суммы поездки
+    let differenceTime = endDate.getTime() - startDate.getTime();
+    let differenceDays = differenceTime / (1000 * 3600 * 24);
+    let totalPrice = differenceDays * car.price;
+    console.log(differenceDays)
+    setDays(differenceDays);
+    setPrice(totalPrice);
+
 
     const newBooking = {
       start: start,
       finish: finish,
       location: car.location,
       carId: car.id,
+      days: differenceDays,
+      price: totalPrice,
     }
-    console.log(newBooking)
     axios.post('http://localhost:3005/bookings', newBooking, { withCredentials: true })
       .then((res) => console.log(res.data))
   }
+
 
   const bookingsDates = []
 
@@ -60,20 +74,36 @@ export default function CarCalendar({ car }) {
   }
 
   return (
-    <div className='calendar'>
-      <DatePicker
-        dateFormat="yyyy/MM/dd"
-        selected={startDate}
-        onChange={onChange}
-        startDate={startDate}
-        endDate={endDate}
-        //excludeDateIntervals={[{ start: subDays(new Date("2022-08-12"),1), end: (new Date("2022-08-15")) }]}
-        excludeDateIntervals={intervals}
-        selectsRange
-        selectsDisabledDaysInRange
-        inline
-      />
-      <button onClick={onClick}> Забронировать </button>
+    <div className="carform">
+      <h1 className="carform__title">Форма брони автомобиля</h1>
+      <div className="carform__box">
+        <div className='calendar'>
+          <DatePicker
+            dateFormat="yyyy/MM/dd"
+            selected={startDate}
+            onChange={onChange}
+            startDate={startDate}
+            endDate={endDate}
+            //excludeDateIntervals={[{ start: subDays(new Date("2022-08-12"),1), end: (new Date("2022-08-15")) }]}
+            excludeDateIntervals={intervals}
+            selectsRange
+            selectsDisabledDaysInRange
+            inline
+          />
+          {/* <button onClick={onClick}> Забронировать </button> */}
+        </div>
+        <div className="carform__content">
+          <div className="carform__content-price">
+            <p className="carform__content-price-label">Cтоимость вашей поездки</p>
+            <div className="carform__content-price-output">{price} р.</div>
+          </div>
+          <div className="carform__content-days">
+            <p className="carform__content-days-label">Время поездки</p>
+            <div className="carform__content-days-output">{days} дней</div>
+          </div>
+          <button className='car__desc-btn' onClick={onClick}>Забронировать</button>
+        </div>
+      </div>
     </div>
 
   );
