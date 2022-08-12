@@ -31,7 +31,7 @@ useEffect(() => {
       <nav className="navbar">
         <div className="container">
           <div className='navbar__inner'>
-            <Link to="/"><img className="navbar__logo" src={'/logo.svg'} alt="logo" /><p className='navbar__logo-text'>на крыше</p></Link>
+            <Link to="/"><img className="navbar__logo" src={'/logo.svg'} alt="logo" /></Link>
             <ul className="navbar__list">
               {!user.name &&
                 <>

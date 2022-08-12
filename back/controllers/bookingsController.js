@@ -5,9 +5,12 @@ const { Car } = require('../db/models');
 exports.getAllBookings = async (req, res) => {
   const id = req.session?.user?.id;
   console.log(id);
-  const user = await User.findOne({ where: { id } })
+  if (id === undefined) { return res.sendStatus(201) }
   try {
+
+    const user = await User.findOne({ where: { id } })
     if (user.role == 'lessee') {
+
       const bookings = await Booking.findAll({
         raw: true,
         where: { user_id: id },
@@ -47,11 +50,13 @@ exports.getAllBookings = async (req, res) => {
 exports.createBooking = async (req, res) => {
   const id = req.session?.user?.id;
   console.log(id)
-  const { start, finish, location, carId } = req.body
+  const { start, finish, location, carId, days, price } = req.body
   try {
     const booking = {
       date_start: start,
       date_end: finish,
+      days: days,
+      price: price,
       pick_up: location,
       return_place: location,
       car_id: carId,
