@@ -91,7 +91,7 @@ export default function CarSlider({ car }) {
       }
     ]
   };
-  console.log(car)
+
   return (
     <div className="carslider">
       <div className="carslider__inner">
@@ -99,11 +99,11 @@ export default function CarSlider({ car }) {
           {car &&
             car.Images.map((carImg) =>
               car.Images.length ? (
-                <div>
+                <div key={car.id}>
                   <img className="carslider__img" src={carImg.img_url} alt="slider-img" />
                 </div>
               ) : (
-                <div>
+                <div key={car.id}>
                   <h4 className="carslider__item-title3">💔 Что-то пошло не так...</h4>
                 </div>
               )

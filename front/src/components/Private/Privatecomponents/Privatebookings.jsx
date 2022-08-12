@@ -98,7 +98,7 @@ export default function Privatebookings() {
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
-              <TableRow>
+              <TableRow>Each child in a list should have a unique "key" prop.
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}

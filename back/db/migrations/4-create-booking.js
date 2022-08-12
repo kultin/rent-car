@@ -13,6 +13,12 @@ module.exports = {
       date_end: {
         type: Sequelize.STRING,
       },
+      days: {
+        type: Sequelize.INTEGER,
+      },
+      price: {
+        type: Sequelize.INTEGER,
+      },
       pick_up: {
         type: Sequelize.STRING,
       },

@@ -22,7 +22,7 @@ export default function CarCard({ car }) {
         <Typography gutterBottom variant="h5" component="div">
           {car.brand} {car.id}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        
           <ul className={style.data}>
             <li> Год выпуска: {car.year}</li>
             <li>Мощность: {car.power}</li>
@@ -31,7 +31,7 @@ export default function CarCard({ car }) {
             <li>Салон: {car.seats}</li>
             <li>Стоимость: {car.price} р/сут.</li>
           </ul>
-        </Typography>
+        
       </CardContent>
       <CardActions>
         <Link to={`/car/${car.id}`}>Подробнее</Link>
