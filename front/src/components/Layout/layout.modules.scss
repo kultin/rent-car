@@ -25,9 +25,11 @@
   &__list-link {
     text-decoration: none;
     color: #262626;
-    &:hover  {
-      text-decoration: underline;
-      color: #CA0100;
-    }
+  }
+  &__list-link.active {
+    color: #fff;
+    background-color: #CA0100;
+    padding: 5px 7px;
+    border-radius: 6px;
   }
 }

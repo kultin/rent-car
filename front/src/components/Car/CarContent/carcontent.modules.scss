@@ -86,17 +86,22 @@
 
 @media (max-width: 1200px) {
   .car__desc-title {
-    font-size: 45px;
+    font-size: 35px;
     line-height: 52px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     display: flex;
 }
+.car__desc .item__price span {
+    font-size: 25px;
+}
 .car__desc-title span{
-  margin-left: 20px;
+  font-size: 35px;
+  margin-left: 10px;
 }
 .car__desc .item__price {
-  font-size: 30px;
+  font-size: 25px;
   margin-bottom: 0;
+  padding: 10px;
 }
 
 .car__desc .item__param {
@@ -104,3 +109,29 @@
   margin-bottom: 0; 
 }
 }
+
+@media (max-width: 480px) {
+  .car__desc-title {
+    font-size: 25px;
+    line-height: 35px;
+}
+.car__desc-title span {
+  font-size: 25px;
+}
+  .slick-dots {
+    bottom: 10px;
+}
+.slick-dots li button:before {
+  font-size: 13px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  opacity: .35;
+  color: #fff;
+}
+.slick-dots li.slick-active button:before {
+  opacity: .85;
+  color: #fff;
+}
+}
+

@@ -44,82 +44,74 @@ function SamplePrevArrow(props) {
   );
 }
 
-export default function CarSlider({car}) {
+export default function CarSlider({ car }) {
 
-    const settings = {
-      dots: false,
-      infinite: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />,
-      responsive: [
-        {
-          breakpoint: 1200,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: false
-          }
-        },
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            initialSlide: 2,
-            arrows: false
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            // centerMode: true,
-            arrows: false
-  
-          }
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
         }
-      ]
-    };
-
-    return (
-      <div className="carslider">
-        <div className="carslider__inner">
-          <Slider {...settings}>
-            <div>
-              <img className="carslider__img" src={'../carslider/car_slide.jpg'} alt="slider-img" />
-            </div>
-            <div>
-              <img className="carslider__img"  src={'../carslider/car_slide.jpg'} alt="slider-img" />
-            </div>
-            <div>
-              <img className="carslider__img"  src={'../carslider/car_slide.jpg'} alt="slider-img" />
-            </div>
-            <div>
-              <img className="carslider__img"  src={'../carslider/car_slide.jpg'} alt="slider-img" />
-            </div>
-            <div>
-              <img className="carslider__img"  src={'../carslider/car_slide.jpg'} alt="slider-img" />
-            </div>
-            <div>
-              <img className="carslider__img"  src={'../carslider/car_slide.jpg'} alt="slider-img" />
-            </div>
-          </Slider>
-        </div>
-        
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          dots: true
+        }
+      }
+    ]
+  };
+  console.log(car)
+  return (
+    <div className="carslider">
+      <div className="carslider__inner">
+        <Slider {...settings}>
+          {car &&
+            car.Images.map((carImg) =>
+              car.Images.length ? (
+                <div>
+                  <img className="carslider__img" src={carImg.img_url} alt="slider-img" />
+                </div>
+              ) : (
+                <div>
+                  <h4 className="carslider__item-title3">💔 Что-то пошло не так...</h4>
+                </div>
+              )
+            )
+          }
+        </Slider>
       </div>
-    );
-  
+    </div>
+  );
+
 }
