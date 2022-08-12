@@ -38,12 +38,11 @@ exports.getAllBookings = async (req, res) => {
         }
       }
 
-      console.log(bookings);
       res.json(bookings)
     }
   } catch (error) {
     console.log('Get Booking DB Err ', error.message);
-    res.status(400).json('Get Booking DB Err');
+    res.status(201)
   }
 };
 

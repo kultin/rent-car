@@ -7,13 +7,7 @@ exports.registration = async (req, res) => {
   const { name, email, password, tel } = req.body;
   let { role } = req.body
 
-  console.log(role);
-
-  // if (role == '') {
-  //   role = 'lessee'
-  // }
   const checkUser = await User.findOne({ where: { email } })
-
 
   try {
     if (checkUser == undefined) {
@@ -37,7 +31,7 @@ exports.registration = async (req, res) => {
         role,
       })
     } else {
-      res.sendStatus(409)
+      res.sendStatus(201)
     }
 
   } catch (error) {

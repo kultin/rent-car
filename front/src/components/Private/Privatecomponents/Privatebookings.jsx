@@ -38,7 +38,7 @@ export default function Privatebookings() {
   const tableRows = () => {
     const rows2 = []
     for (let i = 0; i < bookings.length; i++) {
-      rows2.push(createData(bookings[i].date_start, bookings[i].date_end, bookings[i].pick_up, `${bookings[i]['Car.brand']} ${bookings[i]['Car.model']}`, 'Стоимость', bookings[i].status, 'Связь с арендодателем'))
+      rows2.push(createData(bookings[i].date_start, bookings[i].date_end, bookings[i].pick_up, `${bookings[i]['Car.brand']} ${bookings[i]['Car.model']}`, `${bookings[i].price} р`, bookings[i].status, 'Связь с арендодателем'))
     }
     return rows2
   }
@@ -98,7 +98,7 @@ export default function Privatebookings() {
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
-              <TableRow>Each child in a list should have a unique "key" prop.
+              <TableRow>
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
@@ -113,9 +113,9 @@ export default function Privatebookings() {
             <TableBody>
               {rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
+                .map((row, index) => {
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                       {columns.map((column) => {
                         const value = row[column.id];
                         return (
