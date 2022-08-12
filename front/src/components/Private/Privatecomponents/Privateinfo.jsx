@@ -3,11 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { editUserThunk } from '../../../store/userActions'
 import '../private.modules.scss';
 
-import ImgLoader from '../../ImgLoader/ImgLoader';
-import AddCar from './CarImgLoader';
+import AvatarLoader from '../../AvatarLoader/AvatarLoader';
 import Avatar from '@mui/material/Avatar';
-import UseAutocomplete from './AutocompleteMui';
-import YandexSuggester from "./YandexSuggester";
+import AddCarModal from "./AddCarModal";
+// import YandexSuggester from "./YandexSuggester";
 
 
 
@@ -41,8 +40,6 @@ export default function Privateinfo() {
     });
   }
 
-  console.log(user.img_url)
-
   return (
     <>
       <div className="info">
@@ -51,9 +48,11 @@ export default function Privateinfo() {
           : <Avatar sx={{ width: 56, height: 56 }} />
         }
 
-        <ImgLoader />
-        <UseAutocomplete />
-        <YandexSuggester />
+        <AvatarLoader />
+        <AddCarModal />
+
+        {/* <YandexSuggester /> */}
+        
 
       {condition ? 
         (
@@ -76,7 +75,6 @@ export default function Privateinfo() {
       }  
       </div>
 
-      <AddCar />
     </>
   )  
 }

@@ -143,8 +143,7 @@ export default function HomeSlider() {
           }
         </Slider>
       </div>
-    }
-    </>
-  );
+    </div>
+  )
 }
 

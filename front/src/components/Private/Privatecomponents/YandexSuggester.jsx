@@ -1,52 +1,41 @@
 import React from "react";
 import { YMaps, withYMaps } from "react-yandex-maps";
+import TextField from '@mui/material/TextField';
 
 function MapSuggestComponent(props) {
-  const { ymaps } = props;
+
+  const { ymaps } = props
+  const {setCoordinates} = props
 
   const [addressInput, setAddressInput] = React.useState('')
-  const [coords, setCoords] = React.useState([])
-
-  console.log('COOORDS', coords)
 
   React.useEffect(() => {
     const suggestView = new ymaps.SuggestView("suggest");
+    suggestView.events.add("select", (e) => {
+      getCoords(e.get("item").value)
+      setAddressInput(e.get("item").value)
+    });
   }, [ymaps.SuggestView]);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    console.log(addressInput)
-  }
-
-  const getCoords = (e, addres) => {
-    if(e.key === 'Enter') console.log('enter')
-
+  const getCoords = (addres) => {
     ymaps.geocode(`${addres}`)
           .then((result) => {
-            setCoords(result.geoObjects.get(0).geometry.getCoordinates())
+            setCoordinates(result.geoObjects.get(0).geometry.getCoordinates())
           })
   }
 
-  
-
   return (
-    <form
-        onSubmit={submitHandler}>
-          <input 
-            id="suggest"
-            type="text" 
-            placeholder='Введите адрес'
+          <TextField 
+            id="suggest" 
+            label="Введите адрес"
+            variant="outlined"
             value={addressInput}
-            onChange={(e) => setAddressInput(e.target.value)}
-            onClick={(e) => getCoords(e, e.target.value)}
-            // onBlur={getCoords(addressInput)}
-              />
-            <button type="submit">Загрузить адрес</button>
-        </form>
+            onChange={(e) => setAddressInput(e.target.value)} />
   )  
 }
 
-export default function YandexSuggester() {
+export default function YandexSuggester(props) {
+  const {setCoordinates} = props
   const SuggestComponent = React.useMemo(() => {
     return withYMaps(MapSuggestComponent, true, [
       "SuggestView",
@@ -61,7 +50,7 @@ export default function YandexSuggester() {
         enterprise
         query={{ apikey: "8702bcb9-70ec-40c4-8640-a7bafb10f01d" }}
       >
-        <SuggestComponent />
+        <SuggestComponent setCoordinates={setCoordinates} />
       </YMaps>
     </div>
   );
