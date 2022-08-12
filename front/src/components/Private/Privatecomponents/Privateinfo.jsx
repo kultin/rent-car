@@ -4,8 +4,10 @@ import { editUserThunk } from '../../../store/userActions'
 import '../private.modules.scss';
 
 import ImgLoader from '../../ImgLoader/ImgLoader';
-import AddCar from './AddCar';
+import AddCar from './CarImgLoader';
 import Avatar from '@mui/material/Avatar';
+import UseAutocomplete from './AddCarForm';
+import YandexSuggester from "./YandexSuggester";
 
 
 
@@ -50,6 +52,8 @@ export default function Privateinfo() {
         }
 
         <ImgLoader />
+        <UseAutocomplete />
+        <YandexSuggester />
 
       {condition ? 
         (
