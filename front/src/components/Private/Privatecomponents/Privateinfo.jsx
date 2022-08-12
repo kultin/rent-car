@@ -6,7 +6,7 @@ import '../private.modules.scss';
 import ImgLoader from '../../ImgLoader/ImgLoader';
 import AddCar from './CarImgLoader';
 import Avatar from '@mui/material/Avatar';
-import UseAutocomplete from './AddCarForm';
+import UseAutocomplete from './AutocompleteMui';
 import YandexSuggester from "./YandexSuggester";
 
 
