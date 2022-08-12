@@ -1,5 +1,6 @@
 .data {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between;
   padding-left: 20px;

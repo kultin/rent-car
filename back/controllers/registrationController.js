@@ -9,12 +9,9 @@ exports.registration = async (req, res) => {
 
   console.log(role);
 
-  if (role == 'true') {
-    role = 'lessor'
-  }
-  if (role == 'false') {
-    role = 'lessee'
-  }
+  // if (role == '') {
+  //   role = 'lessee'
+  // }
   const checkUser = await User.findOne({ where: { email } })
 
 

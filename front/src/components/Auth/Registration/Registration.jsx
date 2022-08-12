@@ -10,9 +10,10 @@ export default function Registration() {
     name: '',
     email: '',
     password: '',
-    role: '',
+    role: 'lessee',
     tel: '',
   }
+  
   const [values, setValues] = useState(initState);
   const [response, setResponse] = useState(false);
   const dispatch = useDispatch();
@@ -41,26 +42,26 @@ export default function Registration() {
           <form onSubmit={submitHandler} className="registration__form">
             <h1 className='registration__form-title'>Регистрация</h1>
             <div className="registration__form-box">
-              <label for="staticEmail" className="registration__form-label">Вы хотите</label>
+              <label htmlFor="staticEmail" className="registration__form-label">Вы хотите</label>
               <select name='role' onChange={inputHandler} className="registration__form-select">
                 <option value='lessee'>Арендовать</option>
                 <option value='lessor'>Сдать в аренду</option>
               </select>
             </div>
             <div className="registration__form-box">
-              <label for="staticEmail" className="registration__form-label">Имя</label>
-              <input type="text" className="registration__form-input" name="name" id="staticEmail" value={values.name} required onChange={inputHandler} />
+              <label htmlFor="staticEmail" className="registration__form-label">Имя</label>
+              <input type="text" className="registration__form-input" name="name" value={values.name} required onChange={inputHandler} />
             </div>
             <div className="registration__form-box">
-              <label for="staticEmail" className="registration__form-label">Email</label>
-              <input type="text" className="registration__form-input" name="email" id="staticEmail" value={values.email} required pattern='^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$' onChange={inputHandler} />
+              <label htmlFor="staticEmail" className="registration__form-label">Email</label>
+              <input type="text" className="registration__form-input" name="email" value={values.email} required pattern='^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$' onChange={inputHandler} />
             </div>
             <div className="registration__form-box">
-              <label for="staticEmail" className="registration__form-label">Телефон</label>
-              <input type="text" className="registration__form-input" name="tel" id="staticEmail" value={values.tel} required onChange={inputHandler} />
+              <label htmlFor="staticEmail" className="registration__form-label">Телефон</label>
+              <input type="text" className="registration__form-input" name="tel" value={values.tel} required onChange={inputHandler} />
             </div>
             <div className="registration__form-box">
-              <label for="inputPassword" className="registration__form-label">Придумайте пароль</label>
+              <label htmlFor="inputPassword" className="registration__form-label">Придумайте пароль</label>
               <input type="password" className="registration__form-input" name="password" id="inputPassword" value={values.password} required onChange={inputHandler} />
             </div>
             <button className="registration__form-btn" type="registration__form" >Зарегистрироваться</button>
