@@ -21,6 +21,17 @@ export default function CarCalendar({ car }) {
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(0);
 
+  React.useEffect (()=> {
+    if (endDate) {
+      let differenceTime = endDate.getTime() - startDate.getTime();
+      let differenceDays = differenceTime / (1000 * 3600 * 24);
+      let totalPrice = differenceDays * car.price;
+      console.log(differenceDays)
+      setDays(differenceDays);
+      setPrice(totalPrice);      
+    }  
+  },[endDate])
+
   //при выборе 2 дат формируется массив из 2 элементов - этих дат
   const onChange = (dates) => {
     const [start, end] = dates;
@@ -38,21 +49,14 @@ export default function CarCalendar({ car }) {
     const finish = format(endDate, "yyyy-MM-dd")
 
     // расчет количества дней и суммы поездки
-    let differenceTime = endDate.getTime() - startDate.getTime();
-    let differenceDays = differenceTime / (1000 * 3600 * 24);
-    let totalPrice = differenceDays * car.price;
-    console.log(differenceDays)
-    setDays(differenceDays);
-    setPrice(totalPrice);
-
-
+  
     const newBooking = {
       start: start,
       finish: finish,
       location: car.location,
       carId: car.id,
-      days: differenceDays,
-      price: totalPrice,
+      days: days,
+      price: price,
     }
     axios.post('http://localhost:3005/bookings', newBooking, { withCredentials: true })
       .then((res) => console.log(res.data))

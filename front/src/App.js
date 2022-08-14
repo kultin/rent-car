@@ -10,8 +10,7 @@ import Catalogue from './pages/Catalogue/Catalogue';
 import Car from './components/Car/Car'
 import Footer from './components/Footer/Footer'
 import { getBookingsThunk } from './store/userActions'
-
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { setCarsAC } from './store/action';
 import { useEffect } from 'react'
@@ -21,13 +20,17 @@ function App() {
 
   const dispatch = useDispatch()
 
+  const user = useSelector((store) => (store.user.user))
+
   useEffect(()=>{
     axios.get('http://localhost:3005/cars')
       .then((res)=> dispatch(setCarsAC(res.data)))
   }, [dispatch])
 
   useEffect(() => {
+    if (user.name != undefined) {
     dispatch(getBookingsThunk())
+  }
   }, [])
 
   return (

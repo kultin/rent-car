@@ -16,7 +16,7 @@ export const getUserUA = (user) => ({ type: UTypes.GETUSER_USER, payload: { user
 
 export const logoutUA = () => ({ type: UTypes.LOGOUT_USER });
 
-export const editAvatar = (url) => ({type: UTypes.EDIT_AVATAR,  payload: { url } })
+export const editAvatar = (url) => ({ type: UTypes.EDIT_AVATAR, payload: { url } })
 
 
 export const logoutThunk = () => async (dispatch) => {
@@ -82,7 +82,9 @@ export const registrationThunk = (values) => async (dispatch) => {
                     tel: values.tel
                 }),
         });
-if (response.status === 409) { dispatch(setErrorUA('Email занят!'))}
+
+        if (response.status === 201) { return dispatch(setErrorUA('Такой пользователь уже существует!')) }
+
         const user = await response.json()
         dispatch(registrationUserUA(user))
 
@@ -106,6 +108,8 @@ export const logInThunk = (values) => async (dispatch) => {
             },
             body: JSON.stringify({ email: values.email, password: values.password }),
         });
+
+        if (response.status == 201) { return dispatch(setErrorUA('Неверное имя пользователя или пароль!')) }
 
         const user = await response.json()
         dispatch(loginUserUA(user))
@@ -142,7 +146,6 @@ export const editUserThunk = (id, changes) => async (dispatch) => {
 }
 
 export const getBookingsThunk = (id, changes) => async (dispatch) => {
-    
     dispatch(setErrorUA(false));
     try {
         const response = await fetch("http://localhost:3005/bookings", {
@@ -152,14 +155,38 @@ export const getBookingsThunk = (id, changes) => async (dispatch) => {
                 "Content-Type": "application/json",
             },
         });
-        if (response.status == 201) { return }
+
+        if (response.status == 201) { return dispatch(setErrorUA('Не удалось получить список заказов!'));}
+
         const bookings = await response.json()
         dispatch(getBookingsUA(bookings))
 
     } catch (err) {
         console.error('err', err);
         dispatch(setErrorUA(err.message));
-    } finally {
-        
-    }
+    } 
+}
+
+
+export const applyBookingThunk = (id) => async (dispatch) => {
+    dispatch(setErrorUA(false));
+    try {
+        const response = await fetch("http://localhost:3005/bookings/applyBooking", {
+            method: "post",
+            credentials: 'include',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: id}),
+        });
+
+        if (response.status == 201) { return dispatch(setErrorUA('Не удалось изменить статус заказа!'));}
+
+        // const bookings = await response.json()
+        // dispatch(getBookingsThunk())
+
+    } catch (err) {
+        console.error('err', err);
+        dispatch(setErrorUA(err.message));
+    } 
 }
