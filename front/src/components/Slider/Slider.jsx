@@ -127,7 +127,6 @@ export default function HomeSlider() {
                 </div>
               ) : (
 
-
                 <div className="slider__item" key={car.id}>
                   <img className="slider__item-img" src={'http://localhost:3005/cars/toyota.jpg'} alt="slider-img" />
                   <h4 className="slider__item-title3">💔 Что-то пошло не так...</h4>
@@ -139,7 +138,6 @@ export default function HomeSlider() {
         </Slider>
       </div>
     </div>
-
-  );
+  )
 }
 
