@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react'
 import DatePicker from "react-datepicker"
 import { subDays, format } from 'date-fns';
@@ -13,6 +14,7 @@ registerLocale('ru', ru)
 
 export default function CarCalendar({ car }) {
 
+  
   const navigate = useNavigate();
 
   const user = useSelector((store) => (store.user.user))
@@ -27,6 +29,7 @@ export default function CarCalendar({ car }) {
   const [tentprice, setTentprice] = useState('');
   const [capacity, setCapacity] = useState('');
   const [tentphoto, setTentphoto] = useState('');
+
 
 
   useEffect(() => {
@@ -45,7 +48,7 @@ export default function CarCalendar({ car }) {
   const onChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
-    setEndDate(end);
+    setEndDate(end);      
   };
   //по клику "Забронировать" создаем новый букинг формата  ['2022-08-24', '2022-08-29']
   const onClick = () => {
