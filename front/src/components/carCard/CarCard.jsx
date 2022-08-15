@@ -6,7 +6,7 @@ export default function CarCard({ car }) {
 
   return (
     <div className="slider__item" key={car.id}>
-      <img className="slider__item-img" src={car.Images.length ? car.Images[0].img_url : "/images/car.jpg"} alt="slider-img" />
+      <img className="slider__item-img" src={car.Images.length ? car.Images[0].img_url : "/img.png"} alt="slider-img" />
       <div className='catalog__box'>
         <h3 className="slider__item-title">{car.brand}</h3>
         <h3 className="slider__item-title2">{car.model}</h3>

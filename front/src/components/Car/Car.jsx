@@ -14,7 +14,7 @@ export default function Car() {
 
   const { id } = useParams();
   const { cars } = useSelector((store) => store.cars)
-  console.log(cars)
+  // console.log(cars)
   const car = cars.filter(car => car.id == id)[0];
 
   return (
