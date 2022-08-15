@@ -54,8 +54,8 @@ exports.getAllBookings = async (req, res) => {
 
 exports.createBooking = async (req, res) => {
   const id = req.session?.user?.id;
-  console.log(id)
-  const { start, finish, location, carId, days, price } = req.body
+  console.log(req.body)
+  const { start, finish, location, carId, days, price, tentId } = req.body
   try {
     const booking = {
       date_start: start,
@@ -66,6 +66,7 @@ exports.createBooking = async (req, res) => {
       return_place: location,
       car_id: carId,
       user_id: id,
+      tent_id: tentId,
       status: 'pre-booking',
     };
     const test = await Booking.create(booking)

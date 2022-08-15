@@ -25,10 +25,11 @@ export default function CarCalendar({ car }) {
 
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(0);
-  const [tent, setTent] = useState(false);
-  const [tentprice, setTentprice] = useState('');
-  const [capacity, setCapacity] = useState('');
-  const [tentphoto, setTentphoto] = useState('');
+  const [mountTent, setMountTent] = useState(false);
+  const [tent, setTent] = useState({});
+  // const [tentprice, setTentprice] = useState('');
+  // const [capacity, setCapacity] = useState('');
+  // const [tentphoto, setTentphoto] = useState('');
 
 
 
@@ -36,12 +37,13 @@ export default function CarCalendar({ car }) {
     if (endDate) {
       let differenceTime = endDate.getTime() - startDate.getTime();
       let differenceDays = differenceTime / (1000 * 3600 * 24);
-      let totalPrice = differenceDays * (car.price + tentprice);
+      let totalPrice;
+      tent.price? totalPrice = differenceDays * (car.price + tent.price):totalPrice = differenceDays * car.price 
       console.log(differenceDays)
       setDays(differenceDays);
       setPrice(totalPrice);
     }
-  }, [endDate,tentprice])
+  }, [endDate,tent])
 
 
   //при выборе 2 дат формируется массив из 2 элементов - этих дат
@@ -69,6 +71,8 @@ export default function CarCalendar({ car }) {
       carId: car.id,
       days: days,
       price: price,
+      tentId: tent.id
+
     }
     axios.post('http://localhost:3005/bookings', newBooking, { withCredentials: true })
       .then((res) => console.log(res.data))
@@ -93,10 +97,11 @@ export default function CarCalendar({ car }) {
   const selectHandler = (e) => {
     e.preventDefault();
     const tent = car.Tents.filter((tent) => tent.name === e.target.value)[0];
-    setTentprice(tent.price);
-    setCapacity(tent.capacity);
-    setTentphoto(tent.img_url)
-    setTent(true);
+    // setTentprice(tent.price);
+    // setCapacity(tent.capacity);
+    // setTentphoto(tent.img_url)
+    setTent({id: tent.id, price:tent.price, capacity:tent.capacity, photo:tent.img_url})
+    setMountTent(true);
   }
 
 
@@ -139,11 +144,11 @@ export default function CarCalendar({ car }) {
             car.Tents.map((tent) => (<option className="carform__tent-option" value={tent.name} key={tent.id}>{tent.name}</option>)
             )}
         </select>
-        {tent &&
+        {mountTent &&
           <>
-            <p className='carform__tent-capacity'>Вместимость:{capacity}</p>
-            <p className='carform__tent-price'>Цена за сутки:{tentprice}</p>
-            <img className='carform__tent-img' src={tentphoto} alt='img'/>
+            <p className='carform__tent-capacity'>Вместимость: <span>{tent.capacity} чел.</span></p>
+            <p className='carform__tent-price'>Цена за сутки: <span>{tent.price} р.</span></p>
+            <img className='carform__tent-img' src={tent.photo} alt='img'/>
           </>
         }
       </div>

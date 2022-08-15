@@ -114,6 +114,7 @@ export default function CarSlider({ car }) {
 
   return (
     <div className="carslider">
+
       <Slider {...settings}>
         {car.Images.length ? (
           car.Images.map((carImg) => (
@@ -131,6 +132,7 @@ export default function CarSlider({ car }) {
         }
       </Slider >
     </div >
+
   );
 
 }
