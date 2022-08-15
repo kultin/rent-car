@@ -106,7 +106,7 @@ export default function CarCalendar({ car }) {
 
 
 
-  console.log(tent.img_url)
+  // console.log(tent.img_url)
   
 
   return (

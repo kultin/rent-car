@@ -1,5 +1,5 @@
 .car__desc {
-  width: 100%;
+  width: 50%;
   &-title {
     margin: 0;
     font-weight: 700;
@@ -107,6 +107,12 @@
   font-size: 20px;
   margin-bottom: 0; 
 }
+}
+@media (max-width: 1039px) {
+  .car__desc{
+    width: 100%;
+}
+
 }
 
 @media (max-width: 768px) {
