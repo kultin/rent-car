@@ -50,7 +50,7 @@ export default function CarSlider({ car }) {
     dots: false,
     infinite: true,
     slidesToShow: 1,
-    slidesToScroll: 1,  
+    slidesToScroll: 1,
     // adaptiveHeight: true,
     // variableWidth: true,
     nextArrow: <SampleNextArrow />,
@@ -103,21 +103,19 @@ export default function CarSlider({ car }) {
   return (
     <div className="carslider">
       {/* <div className="carslider__inner"> */}
-        <Slider {...settings}>
-          {car &&
-            car.Images.map((carImg) =>
-              car.Images.length ? (
-                <div key={car.id}>
-                  <img className="carslider__img" src={carImg.img_url} alt="slider-img" />
-                </div>
-              ) : (
-                <div key={car.id}>
-                  <h4 className="carslider__item-title3">💔 Что-то пошло не так...</h4>
-                </div>
-              )
-            )
-          }
-        </Slider>
+      <Slider {...settings}>
+        {car.Images.length ? (
+          car.Images.map((carImg) =>(
+            <div key={car.id}>
+              <img className="carslider__img" src={carImg.img_url} alt="slider-img" />
+            </div>
+          ))
+             ): (
+            <div key={car.id}>
+              <img className="carslider__img" src="/carslider/car_slide.jpg"alt="slider-img" />
+            </div>
+          ) }
+      </Slider>
       {/* </div> */}
     </div>
   );

@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Booking, {
         foreignKey: 'car_id',
       });
+      this.belongsToMany(models.User, {
+        through: models.Like,
+        foreignKey: 'car_id',
+      });
     }
   }
   Car.init({
