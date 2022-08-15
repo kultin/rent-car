@@ -22,6 +22,7 @@ export default function CarCalendar({ car }) {
   const carBookings = bookings.filter((booking) => booking.car_id == car.id)
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  console.log(bookings)
 
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(0);
