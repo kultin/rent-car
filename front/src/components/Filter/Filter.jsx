@@ -15,12 +15,9 @@ export default function Filter() {
 
   return (
     <div className={style.filter}>
-
       <div className={style.carbody}>
         <div className="carbody_type">
-
           <button onClick={() => dispatch(bodyFilterAC("sedan"))} >
-
             <img src="/images/sedan.svg" alt="" />
             <h5>Седан</h5>
           </button>
@@ -33,9 +30,6 @@ export default function Filter() {
           </button>
         </div>
       </div>
-
-
-      <br />
       <Autocomplete
         value={value}
         onChange={(e, newValue) => {

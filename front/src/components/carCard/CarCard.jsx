@@ -10,6 +10,7 @@ export default function CarCard({ car }) {
       <div className='catalog__box'>
         <h3 className="slider__item-title">{car.brand}</h3>
         <h3 className="slider__item-title2">{car.model}</h3>
+        <h3 className="slider__item-title2">{car.id}</h3>
       </div>
       <ul className="slider__item-list">
         <li className='slider__item-param'>

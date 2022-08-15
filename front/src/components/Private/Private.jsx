@@ -6,6 +6,7 @@ import Privatefavorites from './Privatecomponents/Privatefavorites'
 import { getBookingsThunk } from '../../store/userActions'
 import { useDispatch } from 'react-redux';
 import AddCArForm from "./Privatecomponents/AddCarForm";
+import PrivateCars from "./Privatecomponents/PrivateCars";
 
 
 export default function Private() {
@@ -25,6 +26,7 @@ export default function Private() {
             <Privatebookings />
             <Privatefavorites />
             <AddCArForm/>
+            <PrivateCars/>
           </div>
         </div>
       </div>

@@ -9,12 +9,10 @@ import axios from 'axios';
 import "./catalog.modules.scss"
 
 
-
-
 export default function Catalogue() {
- const dispatch = useDispatch()
- 
-  useEffect(()=>{
+  const dispatch = useDispatch()
+
+  useEffect(() => {
     axios.get('http://localhost:3005/cars')
       .then((res) => dispatch(setCarsAC(res.data)))
   }, [])
@@ -34,6 +32,7 @@ export default function Catalogue() {
   return (
     <div className='catalog'>
       <div className='container'>
+        <h2 className="title catalog__title">Каталог</h2>
         <Filter />
         {/* <DateFilter cars={cars} /> */}
         <br />

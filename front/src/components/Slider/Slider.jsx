@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Slider from "react-slick";
 import './slider.modules.scss';
+import CarCard from "../carCard/CarCard";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -116,43 +117,9 @@ export default function HomeSlider() {
         <Slider {...settings}>
           {cars &&
             cars.map((car) =>
-              car?.Images?.length ? (
-                <div className="slider__item" key={car.id}>
-                  <div className="slider__item-box">
-                    <img className="slider__item-img" src={car.Images[0].img_url} alt="slider-img" />
-                  </div>
-                  <h3 className="slider__item-title">{car.brand}</h3>
-                  <h4 className="slider__item-title2">{car.model}</h4>
-                  <p className="slider__item-text">Палатка рассчитана для комфортной ночёвки двух взрослых и маленького ребёнка.</p>
-                  {/* <ul className="slider__item-list">
-                    <li className='slider__item-param'>
-                      <p className='slider__item-param-text'>Год выпуска:</p>
-                      <p className='slider__item-param-value'>{car.year}</p>
-                    </li>
-                    <li className='slider__item-param'>
-                      <p className='slider__item-param-text'>Мощность:</p>
-                      <p className='slider__item-param-value'>{car.power}</p>
-                    </li>
-                    <li className='slider__item-param'>
-                      <p className='slider__item-param-text'>КПП:</p>
-                      <p className='slider__item-param-value'>{car.gear}</p>
-                    </li>
-                    <li className='slider__item-param'>
-                      <p className='slider__item-param-text'>ОбЪем двигателя:</p>
-                      <p className='slider__item-param-value'>{car.engine}</p>
-                    </li>
-                    <li className='slider__item-param'>
-                      <p className='slider__item-param-text'>Салон:</p>
-                      <p className='slider__item-param-value'>{car.seats}</p>
-                    </li>
-                  </ul> */}
-                </div>
-              ) : (
-                <div className="slider__item" key={car.id}>
-                  <img className="slider__item-img" src={'http://localhost:3005/cars/toyota.jpg'} alt="slider-img" />
-                  <h4 className="slider__item-title3">💔 Что-то пошло не так...</h4>
-                </div>
-              )
+              // car?.Images?.length && (
+                < CarCard key={car.id} car={car} />
+              // ) 
             )
           }
         </Slider>

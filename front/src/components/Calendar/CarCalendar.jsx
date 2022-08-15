@@ -23,18 +23,22 @@ export default function CarCalendar({ car }) {
 
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(0);
+  const [tent, setTent] = useState(false);
+  const [tentprice, setTentprice] = useState('');
+  const [capacity, setCapacity] = useState('');
+  const [tentphoto, setTentphoto] = useState('');
 
 
   useEffect(() => {
     if (endDate) {
       let differenceTime = endDate.getTime() - startDate.getTime();
       let differenceDays = differenceTime / (1000 * 3600 * 24);
-      let totalPrice = differenceDays * car.price;
+      let totalPrice = differenceDays * (car.price + tentprice);
       console.log(differenceDays)
       setDays(differenceDays);
       setPrice(totalPrice);
     }
-  }, [endDate])
+  }, [endDate,tentprice])
 
 
   //при выборе 2 дат формируется массив из 2 элементов - этих дат
@@ -42,8 +46,6 @@ export default function CarCalendar({ car }) {
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
-
-
   };
   //по клику "Забронировать" создаем новый букинг формата  ['2022-08-24', '2022-08-29']
   const onClick = () => {
@@ -71,7 +73,6 @@ export default function CarCalendar({ car }) {
     navigate('/private')
   }
 
-
   const bookingsDates = []
 
   for (let i = 0; i < carBookings.length; i++) {
@@ -86,10 +87,23 @@ export default function CarCalendar({ car }) {
     intervals.push({ start: subDays(new Date(bookingsDates[i][0]), 1), end: (new Date(bookingsDates[i][1])) })
   }
 
+  const selectHandler = (e) => {
+    e.preventDefault();
+    const tent = car.Tents.filter((tent) => tent.name === e.target.value)[0];
+    setTentprice(tent.price);
+    setCapacity(tent.capacity);
+    setTentphoto(tent.img_url)
+    setTent(true);
+  }
+
+
+
+  console.log(tent.img_url)
+  
+
   return (
- 
+
     <div className="carform">
-      {/* <h1 className="carform__title">Форма брони автомобиля</h1> */}
       <div className='calendar'>
         <DatePicker
           locale="ru"
@@ -103,7 +117,6 @@ export default function CarCalendar({ car }) {
           selectsDisabledDaysInRange
           inline
         />
-        {/* <button onClick={onClick}> Забронировать </button> */}
       </div>
       <div className="carform__content">
         <div className="carform__content-price">
@@ -115,6 +128,21 @@ export default function CarCalendar({ car }) {
           <div className="carform__content-days-output">{days} дней</div>
         </div>
         <button className='car__desc-btn' onClick={onClick}>Забронировать</button>
+      </div>
+      <div className='carform__tent'>
+        <p className="carform__content-tent-label">Выбрать палатку</p>
+        <select className="carform__tent-select" name="tent" id="tent" onChange={selectHandler}>
+          {car?.Tents?.length &&
+            car.Tents.map((tent) => (<option className="carform__tent-option" value={tent.name} key={tent.id}>{tent.name}</option>)
+            )}
+        </select>
+        {tent &&
+          <>
+            <p className='carform__tent-capacity'>Вместимость:{capacity}</p>
+            <p className='carform__tent-price'>Цена за сутки:{tentprice}</p>
+            <img className='carform__tent-img' src={tentphoto} alt='img'/>
+          </>
+        }
       </div>
     </div>
   );

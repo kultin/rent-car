@@ -1,8 +1,8 @@
 .carform {
   margin: 60px auto;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  // align-items: center;
+  justify-content: space-around;
   padding: 50px;
   background-color: #EFF0F0;
   border-radius: 25px;
@@ -15,11 +15,14 @@
   &__content {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    order: 2;
   }
   &__content-days,
   &__content-price {
     margin-bottom: 40px;
   }
+  &__content-tent-label,
   &__content-price-label,
   &__content-days-label {
     margin: 0;
@@ -30,6 +33,9 @@
     color: #737373;
     text-align: center;
   }
+  &__content-tent-label {
+    text-align: left;
+  }
   &__content-price-output,
   &__content-days-output {
     font-size: 35px;
@@ -37,6 +43,25 @@
     font-weight: 700;
     color: #262626;
     text-align: center;
+  }
+  &__tent {
+    width: 200px;
+  }
+  &__tent-select {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #CA0100;
+    background-color: #fff;
+    border-radius: 6px;
+    outline: none;
+    margin-bottom: 10px;
+  }
+  &__tent-capacity,
+  &__tent-price {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 24px;
+    color: #262626;
   }
   .car__desc-btn {
     margin: 0;
@@ -72,6 +97,13 @@
   width: 2rem;
   line-height: 1.8rem;
   margin: 8px;
+}
+&__tent-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-top: 10px;
+  border-radius: 25px;
 }
 }
 .mapcar__title {
