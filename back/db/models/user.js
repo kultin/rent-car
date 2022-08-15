@@ -20,6 +20,12 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Booking, {
         foreignKey: 'user_id',
       });
+      this.hasMany(models.Message, {
+        as: 'recipient', foreignKey: 'recipient_id',
+      });
+      this.hasMany(models.Message, {
+        as: 'sender', foreignKey: 'sender_id',
+      });
       this.belongsToMany(models.Car, {
         through: models.Like,
         foreignKey: 'user_id',

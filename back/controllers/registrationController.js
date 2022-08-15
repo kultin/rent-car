@@ -21,7 +21,7 @@ exports.registration = async (req, res) => {
         role,
       });
 
-      req.session.user = { id: user.id, name: user.name };
+      req.session.user = { id: user.id, name: user.name, role: user.role };
 
       res.json({
         name,

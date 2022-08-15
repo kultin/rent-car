@@ -8,8 +8,15 @@ import React from "react";
 // import TablePagination from '@mui/material/TablePagination';
 // import TableRow from '@mui/material/TableRow';
 import { useSelector, useDispatch } from 'react-redux';
-import { applyBookingThunk } from '../../../store/userActions'
+import { applyBookingThunk, sendMessegeThunk, getMessagesThunk, readMessagesThunk } from '../../../store/userActions'
 import '../private.modules.scss';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 
 function createData(id, start, finish, location, auto, coast, status, contact) {
@@ -21,6 +28,10 @@ export default function Privatebookings() {
 
   const dispatch = useDispatch()
 
+  const [sendValues, setSendValues] = React.useState({})
+
+  const [open, setOpen] = React.useState(false)
+
   const [rows, setRows] = React.useState([])
 
   const [page, setPage] = React.useState(0);
@@ -31,10 +42,18 @@ export default function Privatebookings() {
 
   const bookings = useSelector((store) => store.user.bookings);
 
+  const messages = useSelector((store) => store.user.messages);
+
   React.useEffect(() => {
     const abc = tableRows()
     setRows(abc)
   }, [bookings.length])
+
+  React.useEffect(() => {
+    if (sendValues.id != undefined) {
+      dispatch(getMessagesThunk(sendValues.id))
+    }
+  }, [open])
 
   const tableRows = () => {
     const rows2 = []
@@ -51,7 +70,7 @@ export default function Privatebookings() {
           status = bookings[i].status
         }
       }
-      rows2.push(createData(bookings[i].booking_id, bookings[i].date_start, bookings[i].date_end, bookings[i].pick_up, `${bookings[i]['Car.brand']} ${bookings[i]['Car.model']}`, `${bookings[i].price} р`, status, 'Связь с арендодателем'))
+      rows2.push(createData(bookings[i].booking_id, bookings[i].date_start, bookings[i].date_end, bookings[i].pick_up, `${bookings[i]['Car.brand']} ${bookings[i]['Car.model']}`, `${bookings[i].price} р`, status, 'Чат'))
     }
     return rows2
   }
@@ -106,8 +125,63 @@ export default function Privatebookings() {
     setPage(0);
   };
 
+  const inputHandler = (e) => {
+    console.log(sendValues);
+    setSendValues((prev) => {
+      return { ...prev, [e.target.name]: e.target.value }
+    });
+  }
+
+  const handleClickOpen = (id) => {
+    setSendValues((prev) => {
+      return { ...prev, ['id']: id }
+    });
+
+    dispatch(readMessagesThunk(id))
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const sendHandler = () => {
+    dispatch(sendMessegeThunk(sendValues))
+    setSendValues((prev) => {
+      return { ...prev, text: '' }
+    });
+  }
+
   return (
     <>
+
+      <div>
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Чат</DialogTitle>
+          <DialogContent>
+            {messages.map((message) => (<DialogContentText key={message.id}>{`${message.sender?.name} : ${message.text}`}</DialogContentText>))}
+
+            <TextField
+              autoFocus
+              margin="dense"
+              id="text"
+              name="text"
+              label="Введите сообщение"
+              type="text"
+              value={sendValues.text}
+              fullWidth
+              variant="standard"
+              onChange={inputHandler}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Закрыть</Button>
+            <Button onClick={() => sendHandler()}>Отправить</Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+
     <div className="bookings">
     <h2 className="title bookings__title">Мои заказы</h2>
     <div className="bookings__inner">
@@ -136,6 +210,7 @@ export default function Privatebookings() {
     </div>
     </div>
       {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}>  
+
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
@@ -165,6 +240,12 @@ export default function Privatebookings() {
                               ? column.format(value)
                               : value}
                           </TableCell>
+                        ) : (value == 'Чат') ? (
+                          <TableCell key={column.id} align={column.align} onClick={() => handleClickOpen(row.id)}>
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
                         ) : (
                           <TableCell key={column.id} align={column.align}>
                             {column.format && typeof value === 'number'
@@ -172,6 +253,7 @@ export default function Privatebookings() {
                               : value}
                           </TableCell>
                         )
+
                         );
                       })}
                     </TableRow>

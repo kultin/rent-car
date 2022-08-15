@@ -11,7 +11,7 @@ exports.login = async (req, res) => {
     const isValidPassword = await bcrypt.compare(password, user.password); // сравниваем пароли
     if (!isValidPassword) return res.sendStatus(201);
 
-    req.session.user = { id: user.id, name: user.name };
+    req.session.user = { id: user.id, name: user.name, role: user.role };
     
 console.log(req.session.user);
 
