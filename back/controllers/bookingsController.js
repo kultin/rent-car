@@ -72,4 +72,3 @@ exports.createBooking = async (req, res) => {
     res.status(400).json('Get Booking DB Err');
   }
 };
-

@@ -21,19 +21,14 @@ export default function Privateinfo() {
 
   const [changes, setChanges] = React.useState(user)
 
-
-
   const editHandler = () => {
     setCondition(true);
   }
-
-
 
   const applyHandler = () => {
     setCondition(false);
     dispatch(editUserThunk(user.id, changes))
   }
-
 
   const inputHandler = (e) => {
     setChanges((prev) => {
@@ -41,44 +36,47 @@ export default function Privateinfo() {
     });
   }
 
-  console.log(user.img_url)
-
   return (
     <>
       <div className="info">
-        {user.img_url ? 
-          <Avatar sx={{ width: 56, height: 56 }} src={user.img_url} />
-          : <Avatar sx={{ width: 56, height: 56 }} />
-        }
-
-        <ImgLoader />
-        <UseAutocomplete />
-        <YandexSuggester />
-
-      {condition ? 
-        (
-          <>
-            <div className='info_text'>
-              <input type='text' name='name' value={changes.name} onChange={inputHandler} />
-              <input type='text' name='email' value={changes.email} onChange={inputHandler} />
-              <button onClick={applyHandler}>Применить</button>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className='info_text'>
-              <p>{user.name}</p>
-              <p>{user.email}</p>
-              <button onClick={editHandler}>Редактировать</button>
-            </div>
-          </>
-        )
-      }  
+        <div className="info__inner">
+          {user.img_url ?
+            <img className="info__photo" src={user.img_url} />
+            : <img className="info__photo" src={'http://localhost:3005/images/user-avatar/avatar.jpg'} />
+          }
+          <div className="info__content">
+            <p className="info__content-name">{user.name}</p>
+            <p className="info__content-role">{user.role}</p>
+            <p className="info__content-email">{user.email}</p>
+            <p className="info__content-tel">{user.tel}</p>
+            <button className="btn info__content-btn" onClick={editHandler}>Редактировать</button>
+          </div>
+          {/* <ImgLoader />
+          <UseAutocomplete />
+          <YandexSuggester />
+          {condition ?
+            (
+              <>
+                <div className='info__text'>
+                  <input type='text' name='name' value={changes.name} onChange={inputHandler} />
+                  <input type='text' name='email' value={changes.email} onChange={inputHandler} />
+                  <button onClick={applyHandler}>Применить</button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className='info__text'>
+                  <p>{user.name}</p>
+                  <p>{user.email}</p>
+                  <button onClick={editHandler}>Редактировать</button>
+                </div>
+              </>
+            )
+          } */}
+        </div>
       </div>
-
-      <AddCar />
     </>
-  )  
+  )
 }
 
 

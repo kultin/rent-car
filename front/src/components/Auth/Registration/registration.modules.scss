@@ -75,3 +75,25 @@
     }
 
 }
+
+@media (max-width: 1024px) {
+  .registration {
+    background-position: 60% 70%;
+    margin-bottom: 60px;
+}
+}
+
+@media (max-width: 568px) {
+    .registration__form-title {
+      font-size: 30px;
+}
+.registration__form {
+  width: 80%;
+  height: 590px;
+  padding: 25px;
+}
+.registration__form-btn {
+  height: 53px;
+  padding: 0;
+}
+}

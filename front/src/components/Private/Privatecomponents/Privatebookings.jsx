@@ -1,12 +1,12 @@
 import React from "react";
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
+// import Paper from '@mui/material/Paper';
+// import Table from '@mui/material/Table';
+// import TableBody from '@mui/material/TableBody';
+// import TableCell from '@mui/material/TableCell';
+// import TableContainer from '@mui/material/TableContainer';
+// import TableHead from '@mui/material/TableHead';
+// import TablePagination from '@mui/material/TablePagination';
+// import TableRow from '@mui/material/TableRow';
 import { useSelector, useDispatch } from 'react-redux';
 import '../private.modules.scss';
 
@@ -43,7 +43,6 @@ export default function Privatebookings() {
     return rows2
   }
 
-
   const columns = [
     { id: 'start', label: 'Начало аренды', minWidth: 150 },
     { id: 'finish', label: 'Завершение аренды', minWidth: 150 },
@@ -79,10 +78,6 @@ export default function Privatebookings() {
     },
   ];
 
-
-
-
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -94,11 +89,38 @@ export default function Privatebookings() {
 
   return (
     <>
-      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <div className="bookings">
+    <h2 className="title bookings__title">Мои заказы</h2>
+    <div className="bookings__inner">
+      <div className="bookings__item">
+        <div className="bookings__item-start bookings__box">
+          <p className="bookings__item-start-title bookings__box-title">Начало аренды</p>
+          <p className="bookings__item-start-value bookings__box-value">2022-10-16</p>
+        </div>
+        <div className="bookings__item-finish bookings__box">
+          <p className="bookings__item-finish-title bookings__box-title">Завершение аренды</p>
+          <p className="bookings__item-finish-value bookings__box-value">2022-10-26</p>
+        </div>
+        <div className="bookings__item-auto bookings__box">
+          <p className="bookings__item-auto-title bookings__box-title">Автомобиль</p>
+          <p className="bookings__item-auto-value bookings__box-value">Land Rover Discovery</p>
+        </div>
+        <div className="bookings__item-price bookings__box">
+          <p className="bookings__item-price-title bookings__box-title">Стоимость аренды</p>
+          <p className="bookings__item-price-value bookings__box-value">20 000 р.</p>
+        </div>
+        <div className="bookings__item-status bookings__box">
+          <p className="bookings__item-status-title bookings__box-title">Статус</p>
+          <p className="bookings__item-status-value bookings__box-value">Завершено</p>
+        </div>
+      </div>
+    </div>
+    </div>
+      {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}>  
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
-              <TableRow>Each child in a list should have a unique "key" prop.
+              <TableRow>
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
@@ -141,7 +163,7 @@ export default function Privatebookings() {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
-      </Paper>
+      </Paper> */}
     </>
   )
 }

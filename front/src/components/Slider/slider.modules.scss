@@ -36,10 +36,10 @@
     font-size: 23px;
     margin: 5px 0;
   }
-  &__item-title2 {
-    margin: 0;
-    color: #747474;
-  }
+  // &__item-title2 {
+  //   margin: 0;
+  //   color: #747474;
+  // }
   &__item-price {
     font-size: 22px;
     font-weight: 700;
@@ -60,10 +60,11 @@
     }
   }
   &__item-img {
+    object-fit: cover;
     width: 328px;
     height: 202px;
     border-radius: 25px;
-    filter: brightness(80%);
+    filter: brightness(70%);
     transition: all 0.3s;
   }
   &__item:hover &__item-img{
@@ -76,7 +77,6 @@
     width: 328px;
     margin-left: 25px;
   }
-  
   .slick-prev:before {
     content: 'ᐸ';
     font-size: 20px;

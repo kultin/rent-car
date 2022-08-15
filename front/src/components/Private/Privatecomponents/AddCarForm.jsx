@@ -37,7 +37,7 @@ const Listbox = styled('ul')(({ theme }) => ({
   },
 }));
 
-export default function UseAutocomplete() {
+export default function AddCArForm() {
 
   const { cars } = useSelector((store) => store.cars)
 
@@ -55,20 +55,50 @@ export default function UseAutocomplete() {
     options: cars,
     getOptionLabel: (option) => option.brand,
   });
-  
+
   return (
-    <div>
-      <div {...getRootProps()}>
-        <Label {...getInputLabelProps()}>useAutocomplete</Label>
-        <Input {...getInputProps()} />
-      </div>
-      {groupedOptions.length > 0 ? (
-        <Listbox {...getListboxProps()}>
-          {groupedOptions.map((option, index) => (
-            <li {...getOptionProps({ option, index })}>{option.brand}</li>
+    <div className='addcar'>
+      <h2 className="title addcar__title">Загрузить новое авто</h2>
+      <div className='addcar__inner'>
+        <div className='addcar__item'>
+          <input className="addcar__item-input" type="text" placeholder='Марка' />
+          <input className="addcar__item-input" type="text" placeholder='Модель' />
+        </div>
+        <div className='addcar__item'>
+          <input className="addcar__item-input" type="text" placeholder='Тип кузов' />
+          <input className="addcar__item-input" type="text" placeholder='Год выпуска' />
+        </div>
+        <div className='addcar__item'>
+          <input className="addcar__item-input" type="text" placeholder='Объем двигателя' />
+          <input className="addcar__item-input" type="text" placeholder='КПП' />
+        </div>
+        <div className='addcar__item'>
+          <input className="addcar__item-input" type="text" placeholder='Мощность' />
+          <input className="addcar__item-input" type="text" placeholder='Салон' />
+        </div>
+        <div className='addcar__item'>
+          <input className="addcar__item-input" type="text" placeholder='Цена' />
+          <input className="addcar__item-input" type="text" placeholder='Локация авто' />
+        </div>
+        <div className='addcar__item'>
+          <input className="addcar__item-input" type="text" placeholder='Емкость' />
+          <input className="addcar__item-input" type="text" placeholder='Загрузить фото' />
+        </div>
+        <button className="btn addcar__btn">Загрузить</button>
+
+        {/* <div {...getRootProps()}>
+          <Label {...getInputLabelProps()}>useAutocomplete</Label>
+          <Input {...getInputProps()} />
+        </div>
+        {groupedOptions.length > 0 ? (
+          <Listbox {...getListboxProps()}>
+            {groupedOptions.map((option, index) => (
+              <li {...getOptionProps({ option, index })}>{option.brand}</li>
             ))}
-        </Listbox>
-      ) : null}
+          </Listbox>
+        ) : null} */}
+      </div>
+
     </div>
   );
 }

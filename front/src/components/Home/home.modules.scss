@@ -50,7 +50,45 @@
     }
   }
 }
-.mapcar__title {
-  font-size: 40px;
-  line-height: 47px;
+
+@media (max-width: 1440px) {
+  .home__banner {
+    background-position: 10% 30%;
+}
+  .home__inner {
+    height: 660px;
+}
+}
+
+@media (max-width: 1200px) {
+  .home__inner {
+    height: 560px;
+}
+.home__content-title {
+  width: 700px;
+  font-size: 60px;
+}
+.home__content-btn {
+  width: 200px;
+}
+}
+
+@media (max-width: 768px) {
+  .home__inner {
+    height: 460px;
+    justify-content: center;
+}
+.home__banner {
+  background-position: 15% 25%;
+}
+.home__content-title {
+  width: 100%;
+  font-size: 45px;
+  text-align: center;
+}
+.home__content-btn {
+  font-size: 16px;
+  margin: 50px auto 0;
+}
+
 }

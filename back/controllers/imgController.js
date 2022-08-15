@@ -28,7 +28,7 @@ exports.uploadCarPhotos = async (req, res) => {
   const userId = req.session?.user?.id;
   // const carId = req.params.id;
 
-  const carId = 1 // убрать хардкод!!!! нужно выбрать id машины к которой будет привязана фотка
+  const carId = 3 // убрать хардкод!!!! нужно выбрать id машины к которой будет привязана фотка
 
 
   if (userId) {

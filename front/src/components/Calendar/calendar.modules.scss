@@ -1,23 +1,24 @@
 .carform {
-  margin: 50px auto;
+  margin: 60px auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
+  padding: 50px;
+  background-color: #EFF0F0;
+  border-radius: 25px;
   &__title {
     align-self: flex-start;
     margin: 0;
-    margin-bottom: 30px;
     font-size: 40px;
     line-height: 47px;
   }
-  &__box {
-    display: flex;
-  }
   &__content {
-    margin-left: 50px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+  }
+  &__content-days,
+  &__content-price {
+    margin-bottom: 40px;
   }
   &__content-price-label,
   &__content-days-label {
@@ -27,7 +28,7 @@
     font-size: 17px;
     line-height: 24px;
     color: #737373;
-    text-align: right;
+    text-align: center;
   }
   &__content-price-output,
   &__content-days-output {
@@ -35,35 +36,79 @@
     border-radius: 6px;
     font-weight: 700;
     color: #262626;
-    text-align: right;
+    text-align: center;
   }
   .car__desc-btn {
     margin: 0;
   }
+  .react-datepicker {
+    color: #262626;
+    border: 1px solid #CA0100;
+    font-size: 15px;
+  }
+  .react-datepicker__navigation-icon::before {
+    border-color: #CA0100;
+  top: 15px;
 }
-
+.react-datepicker__header {
+  background-color: transparent;
+  border-bottom: 1px solid #CA0100;
+  padding: 20px;
+}
+.react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {
+  border-radius: 0.3rem;
+  background-color: #CA0100;
+  color: #fff;
+}
+.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range), .react-datepicker__month-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range), .react-datepicker__quarter-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range), .react-datepicker__year-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range) {
+  background-color: rgba(236, 17, 17, 0.5);
+}
+.react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range, .react-datepicker__month-text--selected, .react-datepicker__month-text--in-selecting-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--selected, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--selected, .react-datepicker__year-text--in-selecting-range, .react-datepicker__year-text--in-range {
+  border-radius: 0.3rem;
+  background-color: #CA0100;
+  color: #fff;
+}
+.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+  width: 2rem;
+  line-height: 1.8rem;
+  margin: 8px;
+}
+}
+.mapcar__title {
+  font-size: 40px;
+  line-height: 47px;
+  margin-bottom: 30px;
+}
 @media (max-width: 1200px) {
   .carform {
     margin: 30px auto;
 }
+.mapcar__title,
 .carform__title {
   font-size: 35px;
   line-height: 40px;
 }
-
-.mapcar__title {
+}
+@media (max-width: 768px) {
+.mapcar__title,
+.carform__title {
   font-size: 25px;
   line-height: 35px;
+  text-align: center;
+}
+.carform {
+  flex-direction: column;
+}
+.carform__content {
+  order: -1;
+  margin-bottom: 30px;
+}
+.carform__content-days, .carform__content-price {
+  margin-bottom: 20px;
 }
 }
 
-@media (max-width: 600px) {
-  .carform__content {
-    margin-left: 0;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
+@media (max-width: 690px) {
 .carform__content-price-output, .carform__content-days-output {
   font-size: 25px;
   text-align: center;
@@ -74,12 +119,12 @@
 }
 
 @media (max-width: 480px) {
-  .carform__box {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
   .carform__title {
     font-size: 25px;
+  }
+  .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name{
+    width: 1.4rem !important;
+    line-height: 1.4rem !important;
+    margin: 8px;
   }
 }
