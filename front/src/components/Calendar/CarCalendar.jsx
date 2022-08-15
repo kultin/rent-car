@@ -22,16 +22,7 @@ export default function CarCalendar({ car }) {
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(0);
 
-
-  // let carsNum= 15
-  // let arr=[]
-  // for (let i=0; i<carsNum; i++) {
-    
-  //     arr.push([bookings[i].car_id, bookings[i].date_start, bookings[i].date_end])
-    
-    
-  // }
-  console.log(bookings)
+  //console.log(bookings)
 
   React.useEffect (()=> {
     if (endDate) {
