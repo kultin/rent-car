@@ -1,9 +1,9 @@
-const { Car, Image } = require('../db/models');
+const { Car, Image, Tent} = require('../db/models');
 
 exports.getAllCars = async (req, res) => {
   try {
     const cars = await Car.findAll({
-      include: { model: Image },
+      include: [{ model: Image },{ model: Tent },]
     });
     console.log(cars);
     res.status(200).json(cars);
