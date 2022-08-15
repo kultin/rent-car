@@ -1,5 +1,5 @@
 import { Outlet, NavLink, useNavigate, Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../Layout/layout.modules.scss';
 import { getUserThunk } from '../../store/userActions'
@@ -60,7 +60,7 @@ useEffect(() => {
                     <NavLink className="navbar__list-link" to="/private">Привет, {user.name}</NavLink>
                   </li>
                   <li className="navbar__list-item">
-                    <NavLink className="nav-link" onClick={logoutHandler} to="/">Выйти</NavLink>
+                    <NavLink className="navbar__list-link" onClick={logoutHandler} to="/">Выйти</NavLink>
                   </li>
                 </>}
             </ul>

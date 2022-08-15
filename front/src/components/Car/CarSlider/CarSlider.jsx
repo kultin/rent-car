@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
 import "./carslider.modules.scss";
 
@@ -50,7 +50,9 @@ export default function CarSlider({ car }) {
     dots: false,
     infinite: true,
     slidesToShow: 1,
-    slidesToScroll: 1,
+    slidesToScroll: 1,  
+    // adaptiveHeight: true,
+    // variableWidth: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -60,7 +62,10 @@ export default function CarSlider({ car }) {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: false
+          dots: false,
+          // adaptiveHeight: true,
+          // variableWidth: true,
+          // centerMode: true,
         }
       },
       {
@@ -69,7 +74,10 @@ export default function CarSlider({ car }) {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: false
+          dots: false,
+          // adaptiveHeight: true,
+          // variableWidth: true,
+          // centerMode: true,
         }
       },
       {
@@ -94,7 +102,7 @@ export default function CarSlider({ car }) {
 
   return (
     <div className="carslider">
-      <div className="carslider__inner">
+      {/* <div className="carslider__inner"> */}
         <Slider {...settings}>
           {car &&
             car.Images.map((carImg) =>
@@ -110,7 +118,7 @@ export default function CarSlider({ car }) {
             )
           }
         </Slider>
-      </div>
+      {/* </div> */}
     </div>
   );
 

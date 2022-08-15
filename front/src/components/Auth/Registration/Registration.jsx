@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { registrationThunk } from '../../../store/userActions'
 import "./registration.modules.scss";
+import { XyzTransition } from '@animxyz/react'
 
 export default function Registration() {
   const initState = {
@@ -41,9 +42,9 @@ export default function Registration() {
         <h1 className='registration__form-title'>Регистрация</h1>
         <div className="registration__form-box">
           <label htmlFor="staticEmail" className="registration__form-label">Вы хотите</label>
-          <select name='role' onChange={inputHandler} className="registration__form-select">
-            <option value='lessee'>Арендовать</option>
-            <option value='lessor'>Сдать в аренду</option>
+          <select className="registration__form-select" name='role' onChange={inputHandler}>
+            <option className="registration__form-option" value='lessee'>Арендовать</option>
+            <option className="registration__form-option" value='lessor'>Сдать в аренду</option>
           </select>
         </div>
         <div className="registration__form-box">

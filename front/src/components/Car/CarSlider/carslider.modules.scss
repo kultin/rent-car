@@ -1,8 +1,8 @@
 .carslider {
-  &__inner {
     width: 800px;
+    border-radius: 25px;
     margin-right: 34px;
-  }
+
   .slick-prev:before {
     content: 'ᐸ';
     font-size: 20px;
@@ -18,22 +18,25 @@
   &__img {
     border-radius: 25px;
     max-width: 100%;
-    object-fit: cover;
-    height: 100%;
-  }
-  &__item-title3 {
-    text-align: center;
   }
 }
-
 @media (max-width: 1200px) {
-  .carslider__inner {
-    width: 550px;
+  .carslider {
+    width: 600px;
+  }
+  .carslider__img {
+    height: 400px;
   }
 }
 
-@media (max-width: 1000px) {
-  .carslider__inner {
+@media (max-width: 1040px) {
+  .carslider {
     width: 100%;
+    margin-right: 0;
+  }
+  .carslider__img {
+    width: 100%;
+    object-fit: cover;
+    height: auto;
   }
 }

@@ -1,12 +1,12 @@
-
 .mapcar__box {
   border-radius: 25px;
-  margin: 0 auto;
   max-width: 1870px;
-  height: 570px;
+  height: 400px;
   border: 1px solid rgb(228, 228, 228);
   overflow: hidden;
   object-fit: cover;
+  order: -1;
+  margin: 0 auto;
 }
 
 // @media (max-width: 1600px) {
