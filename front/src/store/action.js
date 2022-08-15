@@ -41,3 +41,7 @@ export const setCarsAC =(cars) => ({
   payload: {cars}
 })
 
+export const sortAllAC =(body,brand,price) => ({
+  type:ACTypes.FILTER,
+  payload: {body,brand,price}
+})
