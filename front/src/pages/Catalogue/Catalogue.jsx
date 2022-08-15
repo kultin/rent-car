@@ -9,11 +9,12 @@ import axios from 'axios';
 import "./catalog.modules.scss"
 
 
-export default function Catalogue() {
 
-  const dispatch = useDispatch()
-  
-  useEffect(() => {
+
+export default function Catalogue() {
+ const dispatch = useDispatch()
+ 
+  useEffect(()=>{
     axios.get('http://localhost:3005/cars')
       .then((res) => dispatch(setCarsAC(res.data)))
   }, [])

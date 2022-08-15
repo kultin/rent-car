@@ -24,6 +24,7 @@ export default function CarCalendar({ car }) {
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(0);
 
+
   useEffect(() => {
     if (endDate) {
       let differenceTime = endDate.getTime() - startDate.getTime();
@@ -34,6 +35,7 @@ export default function CarCalendar({ car }) {
       setPrice(totalPrice);
     }
   }, [endDate])
+
 
   //при выборе 2 дат формируется массив из 2 элементов - этих дат
   const onChange = (dates) => {
@@ -53,6 +55,8 @@ export default function CarCalendar({ car }) {
     const start = format(startDate, "yyyy-MM-dd")
     const finish = format(endDate, "yyyy-MM-dd")
 
+
+    // расчет количества дней и суммы поездки
     const newBooking = {
       start: start,
       finish: finish,

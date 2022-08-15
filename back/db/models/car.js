@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.hasMany(models.Booking, {
         foreignKey: 'car_id',
-      })
+      });
     }
   }
   Car.init({

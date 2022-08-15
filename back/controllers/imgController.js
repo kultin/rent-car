@@ -4,7 +4,6 @@ const Error = (res, err) => res.status(401).json({ err });
 
 exports.uploadAvatar = async (req, res) => {
   const id = req.session?.user?.id;
-  // console.log(req.file)
   if (id) {
     try {
       if (req.file) {
@@ -26,28 +25,36 @@ exports.uploadAvatar = async (req, res) => {
 
 exports.uploadCarPhotos = async (req, res) => {
   const userId = req.session?.user?.id;
-  // const carId = req.params.id;
-
-  const carId = 3 // убрать хардкод!!!! нужно выбрать id машины к которой будет привязана фотка
-
 
   if (userId) {
-    if (carId) {
-      try {
-        for (let i = 0; i < req.files.length; i++) {
-          await Image.create({
-            car_id: carId,
-            img_url: req.files[i].path.substr(6),
-          });
+    try {
+      const newCar = await Car.create({
+        brand: req.body.brand,
+        model: req.body.model,
+        body: req.body.body,
+        location: req.body.coordinates,
+        user_id: userId,
+      });
+      if (newCar.id) {
+        try {
+          for (let i = 0; i < req.files.length; i++) {
+            await Image.create({
+              car_id: newCar.id,
+              img_url: req.files[i].path.substr(6),
+            });
+          }
+          res.status(200).json('ImagesLoaded');
+        } catch (error) {
+          console.log('DB Upload URL Error:', error.message);
+          Error(res, error.message);
         }
-        res.status(200).json('ImagesLoaded');
-      } catch (error) {
-        console.log('DB Upload URL Error:', error.message);
-        Error(res, error.message);
+      } else {
+        console.log('No CarID err');
+        Error(res, 'No CarID err');
       }
-    } else {
-      console.log('No CarID err');
-      Error(res, 'No CarID err');
+    } catch (error) {
+      console.log('Create Car DB Err', error.message);
+      Error(res, error.message);
     }
   } else {
     console.log('Session id err');

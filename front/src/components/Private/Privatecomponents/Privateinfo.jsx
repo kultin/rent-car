@@ -3,11 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { editUserThunk } from '../../../store/userActions'
 import '../private.modules.scss';
 
-import ImgLoader from '../../ImgLoader/ImgLoader';
-import AddCar from './CarImgLoader';
+import AvatarLoader from '../../AvatarLoader/AvatarLoader';
 import Avatar from '@mui/material/Avatar';
-import UseAutocomplete from './AddCarForm';
-import YandexSuggester from "./YandexSuggester";
+import AddCarModal from "./AddCarModal";
+// import YandexSuggester from "./YandexSuggester";
 
 
 

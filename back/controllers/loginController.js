@@ -6,10 +6,10 @@ exports.login = async (req, res) => {
   try {
 
     const user = await User.findOne({ where: { email } });
-    if (!user) return res.sendStatus(404);
+    if (!user) return res.sendStatus(201);
 
     const isValidPassword = await bcrypt.compare(password, user.password); // сравниваем пароли
-    if (!isValidPassword) return res.sendStatus(404);
+    if (!isValidPassword) return res.sendStatus(201);
 
     req.session.user = { id: user.id, name: user.name };
     

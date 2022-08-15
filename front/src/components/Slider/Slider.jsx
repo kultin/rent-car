@@ -146,10 +146,6 @@ export default function HomeSlider() {
                       <p className='slider__item-param-value'>{car.seats}</p>
                     </li>
                   </ul> */}
-                  <div className="slider__item-block">
-                    <p className="slider__item-price">{car.price} р./сутки</p>
-                    <Link className="slider__item-btn" to={`/car/${car.id}`}>Подробнее</Link>
-                  </div>
                 </div>
               ) : (
                 <div className="slider__item" key={car.id}>
@@ -162,6 +158,6 @@ export default function HomeSlider() {
         </Slider>
       </div>
     </div>
-  );
+  )
 }
 

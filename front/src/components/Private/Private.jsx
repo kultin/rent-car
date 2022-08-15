@@ -8,11 +8,9 @@ import { useDispatch } from 'react-redux';
 import AddCArForm from "./Privatecomponents/AddCarForm";
 
 
-
 export default function Private() {
 
   const dispatch = useDispatch()
-
 
   React.useEffect(() => {
     dispatch(getBookingsThunk())

@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 
-const AddCar = () => {
+const AddCarImage = () => {
   const dispatch = useDispatch()
 
   const [images, setImages] = React.useState(null)
@@ -31,4 +31,4 @@ const AddCar = () => {
   )
 }
 
-export default AddCar
+export default AddCarImage

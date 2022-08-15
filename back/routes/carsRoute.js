@@ -9,7 +9,7 @@ const uploadCarsPhotoMiddleware = require('../middlewares/uploadCarsPhotoMiddlew
 router.get('/', getAllCars);
 
 router.get('/:id', getCarById);
-router.post('/upload-photos', uploadCarsPhotoMiddleware.any('photos'), uploadCarPhotos);
+router.post('/upload-photos', uploadCarsPhotoMiddleware.array('file', 10), uploadCarPhotos);
 
 router.get('/mycars', getLessorCars);
 
