@@ -37,6 +37,13 @@ module.exports = {
           key: 'id',
         },
       },
+      tent_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Tents',
+          key: 'id',
+        },
+      },
       user_id: {
         type: Sequelize.INTEGER,
         references: {

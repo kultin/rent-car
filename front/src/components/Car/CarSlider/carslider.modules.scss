@@ -1,8 +1,23 @@
 .carslider {
-  &__inner {
     width: 800px;
+    border-radius: 25px;
     margin-right: 34px;
-  }
+    position: relative;
+    &__heart {
+      border: none;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      background: url("./images/heart.svg") no-repeat 0 0 / cover;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      transition: all 0.3s;
+      &.active {
+      background: url("./images/heart-active.svg") no-repeat 0 0 / cover;
+      }
+    }
   .slick-prev:before {
     content: 'ᐸ';
     font-size: 20px;
@@ -18,22 +33,25 @@
   &__img {
     border-radius: 25px;
     max-width: 100%;
-    object-fit: cover;
-    height: 100%;
-  }
-  &__item-title3 {
-    text-align: center;
   }
 }
-
 @media (max-width: 1200px) {
-  .carslider__inner {
-    width: 550px;
+  .carslider {
+    width: 600px;
+  }
+  .carslider__img {
+    height: 400px;
   }
 }
 
-@media (max-width: 1000px) {
-  .carslider__inner {
+@media (max-width: 1040px) {
+  .carslider {
     width: 100%;
+    margin-right: 0;
+  }
+  .carslider__img {
+    width: 100%;
+    object-fit: cover;
+    height: auto;
   }
 }

@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     pick_up: DataTypes.STRING,
     return_place: DataTypes.STRING,
     car_id: DataTypes.INTEGER,
+    tent_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
     status: DataTypes.STRING,
   }, {
