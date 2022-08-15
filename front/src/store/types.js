@@ -30,7 +30,8 @@ export const UTypes = {
   EDIT_AVATAR: 'EDIT_AVATAR',
   ERROR: 'ERROR',
   SET_LOADING: 'SET_LOADING',
-
+  GETMESSAGES_USER: 'GETMESSAGES_USER',
+  
 };
 
 export default ACTypes;

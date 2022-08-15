@@ -78,21 +78,20 @@ exports.createBooking = async (req, res) => {
 };
 
 exports.applyBooking = async (req, res) => {
-  const id = req.body.id;
-  console.log(id)
-
+  const { id } = req.body;
+ 
   try {
     const applyBooking = await Booking.update(
       {
         status: 'booked',
       },
       {
-        where: { id: req.body.id }
+        where: { id }
       })
 
     res.status(200);
   } catch (error) {
     console.log('Apply Booking DB Err ', error.message);
-    res.status(400).json('Apply Booking DB Err');
+    res.status(201)
   }
 };
