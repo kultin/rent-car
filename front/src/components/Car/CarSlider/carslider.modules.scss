@@ -2,7 +2,22 @@
     width: 800px;
     border-radius: 25px;
     margin-right: 34px;
-
+    position: relative;
+    &__heart {
+      border: none;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      background: url("./images/heart.svg") no-repeat 0 0 / cover;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      transition: all 0.3s;
+      &.active {
+      background: url("./images/heart-active.svg") no-repeat 0 0 / cover;
+      }
+    }
   .slick-prev:before {
     content: 'ᐸ';
     font-size: 20px;
