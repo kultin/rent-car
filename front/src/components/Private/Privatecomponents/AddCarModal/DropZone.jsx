@@ -22,11 +22,6 @@ function MyDropzone(props) {
       }))
       if(acc.length > 1) setFiles(...files, acc)
       else setFiles([...files, acc[0]])
-      //   acceptedFiles.map(file => Object.assign(file, {
-      //     preview: URL.createObjectURL(file)
-      //   }))
-      // )
-      // console.log('ACCEPTED FILES', acceptedFiles)
     }})
 
 

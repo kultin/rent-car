@@ -1,6 +1,5 @@
 .dnd {
-  display: grid;
-  place-items: center;
+  margin: 0 auto 20px;
   background-color: aquamarine;
   height: 100px;
   width: 300px;

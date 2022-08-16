@@ -2,6 +2,13 @@ import React from "react";
 import { YMaps, withYMaps } from "react-yandex-maps";
 import TextField from '@mui/material/TextField';
 
+const addressStyles ={
+
+  maxWidth: '100%',
+  backgroundColor: '#fff',
+  borderRadius: '3px'
+}
+
 function MapSuggestComponent(props) {
 
   const { ymaps } = props
@@ -25,10 +32,17 @@ function MapSuggestComponent(props) {
   }
 
   return (
-          <TextField 
+          <input 
             id="suggest" 
+            // sx={addressStyles}
             label="Введите адрес"
-            variant="outlined"
+            style={{
+              width: '100%',
+              height: '55px',
+              border: 'none',
+              marginBottom: '20px'
+            }}
+            // variant="outlined"
             value={addressInput}
             onChange={(e) => setAddressInput(e.target.value)} />
   )  
@@ -45,13 +59,13 @@ export default function YandexSuggester(props) {
   }, []);
 
   return (
-    <div className="App">
+    <>
       <YMaps
         enterprise
         query={{ apikey: "8702bcb9-70ec-40c4-8640-a7bafb10f01d" }}
       >
         <SuggestComponent setCoordinates={setCoordinates} />
       </YMaps>
-    </div>
+    </>
   );
 }
