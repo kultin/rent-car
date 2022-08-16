@@ -1,36 +1,45 @@
-import React, { useState } from 'react'
+
+import React, { useState, useEffect } from 'react'
 import DatePicker from "react-datepicker"
-import { addDays, subDays, format } from 'date-fns';
+import { subDays, format } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { userReducer } from '../../store/userReducer';
 import "./calendar.modules.scss";
+
+import { registerLocale } from "react-datepicker";
+import ru from 'date-fns/locale/ru';
+registerLocale('ru', ru)
 
 export default function CarCalendar({ car }) {
 
   const navigate = useNavigate();
-
   const user = useSelector((store) => (store.user.user))
   const bookings = useSelector((store) => store.user.bookings);
   const carBookings = bookings.filter((booking) => booking.car_id == car.id)
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  console.log(bookings)
 
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(0);
+  const [mountTent, setMountTent] = useState(false);
+  const [tent, setTent] = useState({});
 
-  React.useEffect (()=> {
+
+  useEffect(() => {
     if (endDate) {
       let differenceTime = endDate.getTime() - startDate.getTime();
       let differenceDays = differenceTime / (1000 * 3600 * 24);
-      let totalPrice = differenceDays * car.price;
+      let totalPrice;
+      tent.price ? totalPrice = differenceDays * (car.price + tent.price) : totalPrice = differenceDays * car.price
       console.log(differenceDays)
       setDays(differenceDays);
-      setPrice(totalPrice);      
-    }  
-  },[endDate])
+      setPrice(totalPrice);
+    }
+  }, [endDate, tent])
+
 
   //при выборе 2 дат формируется массив из 2 элементов - этих дат
   const onChange = (dates) => {
@@ -48,8 +57,8 @@ export default function CarCalendar({ car }) {
     const start = format(startDate, "yyyy-MM-dd")
     const finish = format(endDate, "yyyy-MM-dd")
 
+
     // расчет количества дней и суммы поездки
-  
     const newBooking = {
       start: start,
       finish: finish,
@@ -57,13 +66,14 @@ export default function CarCalendar({ car }) {
       carId: car.id,
       days: days,
       price: price,
+      tentId: tent.id
+
     }
     axios.post('http://localhost:3005/bookings', newBooking, { withCredentials: true })
       .then((res) => console.log(res.data))
 
     navigate('/private')
   }
-
 
   const bookingsDates = []
 
@@ -79,39 +89,71 @@ export default function CarCalendar({ car }) {
     intervals.push({ start: subDays(new Date(bookingsDates[i][0]), 1), end: (new Date(bookingsDates[i][1])) })
   }
 
+  const selectHandler = (e) => {
+    e.preventDefault();
+    const tent = car.Tents.filter((tent) => tent.name === e.target.value)[0];
+    // setTentprice(tent.price);
+    // setCapacity(tent.capacity);
+    // setTentphoto(tent.img_url)
+    setTent({ id: tent.id, price: tent.price, capacity: tent.capacity, photo: tent.img_url })
+    setMountTent(true);
+  }
+
+
+
+  // console.log(tent.img_url)
+
+
   return (
+
     <div className="carform">
-      <h1 className="carform__title">Форма брони автомобиля</h1>
-      <div className="carform__box">
-        <div className='calendar'>
-          <DatePicker
-            dateFormat="yyyy/MM/dd"
-            selected={startDate}
-            onChange={onChange}
-            startDate={startDate}
-            endDate={endDate}
-            //excludeDateIntervals={[{ start: subDays(new Date("2022-08-12"),1), end: (new Date("2022-08-15")) }]}
-            excludeDateIntervals={intervals}
-            selectsRange
-            selectsDisabledDaysInRange
-            inline
-          />
-          {/* <button onClick={onClick}> Забронировать </button> */}
+      <div className='calendar'>
+        <DatePicker
+          locale="ru"
+          dateFormat="yyyy/MM/dd"
+          selected={startDate}
+          onChange={onChange}
+          startDate={startDate}
+          endDate={endDate}
+          excludeDateIntervals={intervals}
+          selectsRange
+          selectsDisabledDaysInRange
+          inline
+        />
+      </div>
+      <div className="carform__content">
+        <div className="carform__content-price">
+          <p className="carform__content-price-label">Cтоимость вашей поездки</p>
+          <div className="carform__content-price-output">{price} р.</div>
         </div>
-        <div className="carform__content">
-          <div className="carform__content-price">
-            <p className="carform__content-price-label">Cтоимость вашей поездки</p>
-            <div className="carform__content-price-output">{price} р.</div>
-          </div>
-          <div className="carform__content-days">
-            <p className="carform__content-days-label">Время поездки</p>
-            <div className="carform__content-days-output">{days} дней</div>
-          </div>
-          <button className='car__desc-btn' onClick={onClick}>Забронировать</button>
+        <div className="carform__content-days">
+          <p className="carform__content-days-label">Время поездки</p>
+          <div className="carform__content-days-output">{days} дней</div>
         </div>
+        <button className='car__desc-btn' onClick={onClick}>Забронировать</button>
+      </div>
+      <div className='carform__tent'>
+        <p className="carform__content-tent-label">Выбрать палатку</p>
+        <select className="carform__tent-select" name="tent" id="tent" onChange={selectHandler}>
+          {car?.Tents?.length &&
+            car.Tents.map((tent) => (<option className="carform__tent-option" value={tent.name} key={tent.id}>{tent.name}</option>)
+            )}
+        </select>
+        {mountTent &&
+          <>
+            <div className='carform__tent-box'>
+              <p className='carform__tent-capacity'>Вместимость:</p>
+              <span>{tent.capacity} чел.</span>
+            </div>
+            <div className='carform__tent-box'>
+              <p className='carform__tent-price'>Цена за сутки:</p>
+              <span>{tent.price} р.</span>
+            </div>
+            <img className='carform__tent-img' src={tent.photo} alt='img' />
+          </>
+        }
       </div>
     </div>
-
   );
 }
 

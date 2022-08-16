@@ -1,24 +1,27 @@
 .carform {
-  margin: 50px auto;
+  margin: 60px auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-around;
+  padding: 50px;
+  background-color: #EFF0F0;
+  border-radius: 25px;
   &__title {
     align-self: flex-start;
     margin: 0;
-    margin-bottom: 30px;
     font-size: 40px;
     line-height: 47px;
   }
-  &__box {
-    display: flex;
-  }
   &__content {
-    margin-left: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    order: 2;
   }
+  &__content-days,
+  &__content-price {
+    margin-bottom: 40px;
+  }
+  &__content-tent-label,
   &__content-price-label,
   &__content-days-label {
     margin: 0;
@@ -27,7 +30,10 @@
     font-size: 17px;
     line-height: 24px;
     color: #737373;
-    text-align: right;
+    text-align: center;
+  }
+  &__content-tent-label {
+    text-align: left;
   }
   &__content-price-output,
   &__content-days-output {
@@ -35,35 +41,136 @@
     border-radius: 6px;
     font-weight: 700;
     color: #262626;
-    text-align: right;
+    text-align: center;
+  }
+  &__tent {
+    width: 250px;
+  }
+  &__tent-select {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    background-color: #fff;
+    border-radius: 6px;
+    outline: none;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 15px 1px rgba(160, 160, 160, 0.82);
+    padding-left: 5px;
+  }
+  &__tent-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      display: block;
+      width: 100%;
+      text-align: right;
+      font-weight: 700;
+    }
+  }
+  &__tent-capacity,
+  &__tent-price {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 24px;
+    color: #737373;
+    width: 100%;
   }
   .car__desc-btn {
     margin: 0;
   }
+  .react-datepicker {
+    color: #262626;
+    border: 1px solid #e5e5e5;
+    font-size: 15px;
+    box-shadow: 0px 0px 15px 1px rgba(160, 160, 160, 0.82);
+
+  }
+  .react-datepicker__navigation-icon::before {
+    border-color: #262626;
+  top: 15px;
+}
+.react-datepicker__header {
+  background-color: transparent;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 20px;
+}
+.react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {
+  border-radius: 0.3rem;
+  background-color: #CA0100;
+  color: #fff;
+}
+.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range), .react-datepicker__month-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range), .react-datepicker__quarter-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range), .react-datepicker__year-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range) {
+  background-color: rgba(236, 17, 17, 0.5);
+}
+.react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range, .react-datepicker__month-text--selected, .react-datepicker__month-text--in-selecting-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--selected, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--selected, .react-datepicker__year-text--in-selecting-range, .react-datepicker__year-text--in-range {
+  border-radius: 0.3rem;
+  background-color: #CA0100;
+  color: #fff;
+}
+.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+  width: 2rem;
+  line-height: 1.8rem;
+  margin: 8px;
+}
+&__tent-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin-top: 10px;
+  border-radius: 25px;
+  box-shadow: 0px 0px 15px 1px rgba(160, 160, 160, 0.82);
+}
+}
+.mapcar__title {
+  font-size: 40px;
+  line-height: 47px;
+  margin-bottom: 30px;
 }
 
 @media (max-width: 1200px) {
   .carform {
     margin: 30px auto;
 }
+.car__desc-title {
+  align-items: center;
+}
+.mapcar__title,
 .carform__title {
   font-size: 35px;
   line-height: 40px;
 }
+}
 
-.mapcar__title {
+@media (max-width: 1039px) {
+  .carform {
+    flex-direction: column;
+    align-items: center;
+  }
+  .carform__content-tent-label {
+    text-align: center;
+  }
+  .carform__tent {
+    order: -1;
+    margin-bottom: 30px;
+  }
+  .carform__content-price,
+  .carform__content-days {
+    margin: 20px 0;
+  }
+}
+
+
+@media (max-width: 768px) {
+.mapcar__title,
+.carform__title {
   font-size: 25px;
   line-height: 35px;
+  text-align: center;
 }
 }
 
-@media (max-width: 600px) {
-  .carform__content {
-    margin-left: 0;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
+@media (max-width: 690px) {
 .carform__content-price-output, .carform__content-days-output {
   font-size: 25px;
   text-align: center;
@@ -74,12 +181,19 @@
 }
 
 @media (max-width: 480px) {
-  .carform__box {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
   .carform__title {
     font-size: 25px;
   }
+  .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name{
+    width: 1.1rem !important;
+    line-height: 1.1rem !important;
+    margin: 8px;
+  }
+}
+
+@media (max-width: 414px) {
+  .carslider__heart {
+    width: 20px;
+    height: 20px;
+}
 }

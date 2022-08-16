@@ -54,8 +54,8 @@ exports.getAllBookings = async (req, res) => {
 
 exports.createBooking = async (req, res) => {
   const id = req.session?.user?.id;
-  console.log(id)
-  const { start, finish, location, carId, days, price } = req.body
+  console.log(req.body)
+  const { start, finish, location, carId, days, price, tentId } = req.body
   try {
     const booking = {
       date_start: start,
@@ -66,8 +66,10 @@ exports.createBooking = async (req, res) => {
       return_place: location,
       car_id: carId,
       user_id: id,
+      tent_id: tentId,
       status: 'pre-booking',
     };
+    console.log(booking)
     const test = await Booking.create(booking)
 
     res.status(200);
@@ -78,21 +80,21 @@ exports.createBooking = async (req, res) => {
 };
 
 exports.applyBooking = async (req, res) => {
-  const id = req.body.id;
-  console.log(id)
-
+  const { id } = req.body;
+ 
   try {
     const applyBooking = await Booking.update(
       {
         status: 'booked',
       },
       {
-        where: { id: req.body.id }
+        where: { id }
       })
 
     res.status(200);
   } catch (error) {
     console.log('Apply Booking DB Err ', error.message);
-    res.status(400).json('Apply Booking DB Err');
+    res.status(201)
   }
 };
+

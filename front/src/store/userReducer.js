@@ -3,12 +3,18 @@ import { UTypes } from "./types"
 const initialState = {
   user: {},
   bookings: [],
+  messages: [],
   error: false,
   isLoading: false,
 }
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
+
+
+    case UTypes.GETMESSAGES_USER:
+
+      return { ...state, messages: action.payload.messages }
 
     case UTypes.SET_LOADING:
 
@@ -34,7 +40,7 @@ export const userReducer = (state = initialState, action) => {
       return { ...state, user: action.payload.user };
 
     case UTypes.LOGIN_USER:
-     
+
       return { ...state, user: action.payload.user };
 
     case UTypes.GETBOOKINGS_USER:

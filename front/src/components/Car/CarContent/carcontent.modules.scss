@@ -1,15 +1,14 @@
 .car__desc {
-  width: 100%;
+  width: 50%;
   &-title {
     margin: 0;
     font-weight: 700;
-    font-size: 55px;
-    line-height: 66px;
+    font-size: 40px;
+    line-height: 55px;
     color: #262626;
-    margin-bottom: 20px;
     & span {
       display: block;
-      font-size: 45px;
+      font-size: 40px;
       color: #737373;
     }
   }
@@ -22,7 +21,7 @@
     display: flex;
     background-color: #CA0100;
     padding: 20px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     font-size: 40px;
     border-radius: 6px;
     color: #fff;
@@ -109,6 +108,21 @@
   margin-bottom: 0; 
 }
 }
+@media (max-width: 1039px) {
+  .car__desc{
+    width: 100%;
+}
+
+}
+
+@media (max-width: 768px) {
+  .car__desc-title span,
+  .car__desc-title {
+    font-size: 30px;
+    line-height: 40px;
+}
+  }
+
 
 @media (max-width: 480px) {
   .car__desc-title {

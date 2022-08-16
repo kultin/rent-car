@@ -15,6 +15,7 @@ const ACTypes = {
   BODY_FILTER: 'BODY_FILTER',
   CLASS_FILTER: 'CLASS_FILTER',
   PRICE_FILTER : 'PRICE_FILTER',
+  FILTER:'FILTER',
 
   PAGINATE: 'PAGINATE'
   
@@ -29,7 +30,8 @@ export const UTypes = {
   EDIT_AVATAR: 'EDIT_AVATAR',
   ERROR: 'ERROR',
   SET_LOADING: 'SET_LOADING',
-
+  GETMESSAGES_USER: 'GETMESSAGES_USER',
+  
 };
 
 export default ACTypes;

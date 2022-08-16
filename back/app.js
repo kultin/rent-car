@@ -13,6 +13,9 @@ const authRoute = require('./routes/authRoute');
 const carsRoute = require('./routes/carsRoute');
 const bookingsRoute = require('./routes/bookingsRoute');
 const tentsRoute = require('./routes/tentsRoute');
+const messagesRoute = require('./routes/messagesRoute');
+const likesRoute = require('./routes/likesRoute');
+
 
 const app = express();
 const PORT = process.env.PORT ?? 3005;
@@ -53,6 +56,8 @@ app.use('/auth', authRoute);
 app.use('/cars', carsRoute);
 app.use('/bookings', bookingsRoute);
 app.use('/tents', tentsRoute);
+app.use('/messages', messagesRoute);
+app.use('/likes', likesRoute);
 
 app.listen(PORT, () => {
   console.log(`Server started on ${PORT}`);

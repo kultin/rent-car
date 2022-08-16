@@ -18,6 +18,9 @@ export const logoutUA = () => ({ type: UTypes.LOGOUT_USER });
 
 export const editAvatar = (url) => ({ type: UTypes.EDIT_AVATAR, payload: { url } })
 
+export const getMessagesUA = (messages) => ({ type: UTypes.GETMESSAGES_USER, payload: { messages } });
+
+
 
 export const logoutThunk = () => async (dispatch) => {
     dispatch(setLoadingUA(true));
@@ -156,7 +159,7 @@ export const getBookingsThunk = (id, changes) => async (dispatch) => {
             },
         });
 
-        if (response.status == 201) { return dispatch(setErrorUA('Не удалось получить список заказов!'));}
+        if (response.status == 201) { return dispatch(setErrorUA('Не удалось получить список заказов!')); }
 
         const bookings = await response.json()
         dispatch(getBookingsUA(bookings))
@@ -164,7 +167,7 @@ export const getBookingsThunk = (id, changes) => async (dispatch) => {
     } catch (err) {
         console.error('err', err);
         dispatch(setErrorUA(err.message));
-    } 
+    }
 }
 
 
@@ -177,16 +180,79 @@ export const applyBookingThunk = (id) => async (dispatch) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ id: id}),
+            body: JSON.stringify({ id: id }),
         });
 
-        if (response.status == 201) { return dispatch(setErrorUA('Не удалось изменить статус заказа!'));}
+        if (response.status == 201) { return dispatch(setErrorUA('Не удалось изменить статус заказа!')); }
 
-        // const bookings = await response.json()
-        // dispatch(getBookingsThunk())
+        if (response.status == 200) { return dispatch(getBookingsThunk()) }
 
     } catch (err) {
         console.error('err', err);
         dispatch(setErrorUA(err.message));
-    } 
+    }
+}
+
+export const getMessagesThunk = (id) => async (dispatch) => {
+
+    try {
+        const response = await fetch("http://localhost:3005/messages/getmessages", {
+            method: "post",
+            credentials: 'include',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: id }),
+        });
+
+        const messages = await response.json()
+        dispatch(getMessagesUA(messages))
+
+
+    } catch (err) {
+        console.error('err', err);
+    }
+}
+
+
+export const sendMessegeThunk = (values) => async (dispatch) => {
+    console.log('sendThunk', values);
+    try {
+        const response = await fetch("http://localhost:3005/messages/sendmessage", {
+            method: "post",
+            credentials: 'include',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ values }),
+        });
+
+        const message = await response.json()
+
+    } catch (err) {
+        console.error('err', err);
+    }
+}
+
+
+export const readMessagesThunk = (id) => async (dispatch) => {
+    try {
+
+        const response = await fetch("http://localhost:3005/messages/readmessages", {
+            method: "post",
+            credentials: 'include',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id }),
+        });
+
+        if (response.status == 200) {
+
+            dispatch(getMessagesThunk(id))
+        }
+
+    } catch (err) {
+        console.error('err', err);
+    }
 }

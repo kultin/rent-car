@@ -1,3 +1,12 @@
+@keyframes fade-login-translateX{
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .login {
   margin: 0 auto;
   background: url(./login_waifu2x_photo_noise2_scale_tta_1.png) no-repeat 0 20%;
@@ -12,6 +21,7 @@
   align-items: center;  
   margin-bottom: 100px;
   &__form {
+    animation: fade-login-translateX 1.2s forwards ease;
     width: 400px;
     height: 400px;
     background: rgba(187, 187, 187, 0.7);
@@ -77,7 +87,6 @@
   }
 }
 
-
 @media (max-width: 1024px) {
   .login {
     background-position: 40% 20%;
@@ -88,7 +97,6 @@
 @media (max-width: 768px) {
   .login {
     background-position: 40% 20%;
-    margin-bottom: 60px;
 }
 }
 
@@ -97,14 +105,30 @@
       font-size: 30px;
 }
 .login__form {
-  width: 300px;
+  width: 80%;
   height: 400px;
   padding: 25px;
 }
 }
 
 @media (max-width: 414px) {
-.login__form {
-width: 80%;
+  .login {
+    align-items: flex-start;
+  }
+  .login__form {
+    margin-top: 120px;
+  }
 }
+
+@media (max-width: 375px) {
+
+  .login__form {
+    margin-top: 70px;
+  }
+}
+
+@media (max-width: 320px) {
+  .login__form {
+    margin-top: 20px;
+  }
 }

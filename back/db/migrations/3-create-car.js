@@ -32,7 +32,7 @@ module.exports = {
       },
       seats: {
         type: Sequelize.STRING,
-      },
+      },    
       photo: {
         type: Sequelize.STRING,
       },
@@ -40,6 +40,9 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       capacity: {
+        type: Sequelize.INTEGER,
+      },
+      likes: {
         type: Sequelize.INTEGER,
       },
       location: {

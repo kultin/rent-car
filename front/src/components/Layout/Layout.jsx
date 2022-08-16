@@ -1,17 +1,22 @@
 import { Outlet, NavLink, useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import '../Layout/layout.modules.scss';
+import style from './layout.modules.scss';
 import { getUserThunk } from '../../store/userActions'
 import { logoutThunk } from '../../store/userActions'
 import Error from '../Error/Error'
 import AppLoader from '../Loader/Loader.jsx'
+// import { CSSTransition } from 'react-transition-group';
+
 
 function Layout() {
-  
+
+  const [inProp, setInProp] = useState(false);
+  const [burger, setBurger] = useState(false);
+
   const isLoading = useSelector((state) => state.user.isLoading);
 
-  const {user} = useSelector((store) => store.user);
+  const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,13 +26,20 @@ function Layout() {
     navigate('/');
   }
 
-useEffect(() => {
-  dispatch(getUserThunk())
-},[])
+  const burgerHandler = (e) => {
+    e.preventDefault();
+    if (burger) setBurger(false)
+    if (!burger) setBurger(true)
+    console.log('click')
+  }
+
+  useEffect(() => {
+    dispatch(getUserThunk())
+  }, [])
 
   return (
     <>
-    <Error />
+      <Error />
       <nav className="navbar">
         <div className="container">
           <div className='navbar__inner'>
@@ -60,18 +72,23 @@ useEffect(() => {
                     <NavLink className="navbar__list-link" to="/private">Привет, {user.name}</NavLink>
                   </li>
                   <li className="navbar__list-item">
-                    <NavLink className="nav-link" onClick={logoutHandler} to="/">Выйти</NavLink>
+                    <NavLink className="navbar__list-link" onClick={logoutHandler} to="/">Выйти</NavLink>
                   </li>
                 </>}
             </ul>
+            <button className={burger ? "navbar__burger active" : "navbar__burger"} onClick={burgerHandler}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
           </div>
         </div>
       </nav>
       {(isLoading) ? (
-            <AppLoader />
-        ) : (
-      <Outlet />
-        )}
+        <AppLoader />
+      ) : (
+        <Outlet />
+      )}
     </>
   );
 }

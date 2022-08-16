@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "./carslider.modules.scss";
 
@@ -46,11 +46,21 @@ function SamplePrevArrow(props) {
 
 export default function CarSlider({ car }) {
 
+  const [like, setLike] = useState(false);
+
+  const likeHandler = (e) => {
+    e.preventDefault();
+    if (like) setLike(false)
+    if (!like) setLike(true)
+  }
+
   const settings = {
     dots: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
+    // adaptiveHeight: true,
+    // variableWidth: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -60,7 +70,10 @@ export default function CarSlider({ car }) {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: false
+          dots: false,
+          // adaptiveHeight: true,
+          // variableWidth: true,
+          // centerMode: true,
         }
       },
       {
@@ -69,7 +82,10 @@ export default function CarSlider({ car }) {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: false
+          dots: false,
+          // adaptiveHeight: true,
+          // variableWidth: true,
+          // centerMode: true,
         }
       },
       {
@@ -92,26 +108,30 @@ export default function CarSlider({ car }) {
     ]
   };
 
+  console.log(car)
+
   return (
     <div className="carslider">
-      <div className="carslider__inner">
-        <Slider {...settings}>
-          {car &&
-            car.Images.map((carImg) =>
-              car.Images.length ? (
-                <div key={car.id}>
-                  <img className="carslider__img" src={carImg.img_url} alt="slider-img" />
-                </div>
-              ) : (
-                <div key={car.id}>
-                  <h4 className="carslider__item-title3">💔 Что-то пошло не так...</h4>
-                </div>
-              )
-            )
-          }
-        </Slider>
-      </div>
-    </div>
+
+      <Slider {...settings}>
+        {car.Images.length ? (
+          car.Images.map((carImg) => (
+            <div key={car.id}>
+              <img className="carslider__img" src={carImg.img_url} alt="slider-img" />
+              <button className="carslider__heart" onClick={likeHandler}></button>
+            </div>
+          ))
+        ) : (
+          <div key={car.id}>
+            <img className="carslider__img" src={"/img.png"} alt="slider-img" />
+            <button className={like ? "carslider__heart active" : "carslider__heart"} onClick={likeHandler}></button>
+          </div>
+        )
+        }
+      </Slider >
+    </div >
+
   );
 
 }
+

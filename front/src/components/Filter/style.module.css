@@ -1,5 +1,3 @@
-
-
 .carbody {
   width: 260px;
   display: flex;
@@ -14,7 +12,8 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  /* background-color: #FFFAFA; */
+  background: #F7F7F7;
+  border-radius: 25px;
 }
 
 .rate {
@@ -22,4 +21,8 @@
 }
 .rate button{
   width: 90px;
+}
+
+.sort {
+  margin: 20px;
 }

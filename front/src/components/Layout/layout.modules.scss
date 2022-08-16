@@ -1,7 +1,30 @@
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
 .navbar {
   &__logo {
     width: 130px;
-    // background-color: #fff;
+    animation: fade-in 1s forwards;
   }
   &__inner {
     width: 100%;
@@ -13,6 +36,7 @@
   &__list {
     margin: 0;
     padding: 0;
+    animation: fade 1s forwards;
   }
   &__list-item {
     list-style: none;
@@ -33,4 +57,70 @@
     padding: 5px 7px;
     border-radius: 6px;
   }
+  &__burger {
+      width: 30px;
+      height: 24px;
+      position: relative;
+      margin: 30px auto;
+      transform: rotate(0deg);
+      transition: .5s ease-in-out;
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+  & span {
+      display: block;
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      background: #000000;
+      border-radius: 2px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+    & span:nth-child(1) {
+    top: 0px;
+    }
+    & span:nth-child(2) {
+    top: 10px;
+    }
+    & span:nth-child(3) {
+    bottom: 0;
+    } 
+    &.active span:nth-child(1) {
+      transform: rotate(135deg);
+      top:10px;
+    }
+    &.active span:nth-child(2) {
+      opacity: 0;
+      left: 10px;
+    }
+    &.active span:nth-child(3) {
+      transform: rotate(-135deg);
+      bottom: 10px;
+    } 
+  }
+}
+
+
+@media (max-width: 768px) {
+  .navbar__inner {
+    align-items: flex-start;
+  }
+  .navbar__list {
+    padding: 50px 0 0 0;
+}
+  .navbar__list-item {
+    display: block;
+    text-align: right;
+}
+.navbar__list-item + .navbar__list-item {
+  margin-left: 0;
+  margin-top: 30px;
+}
+.navbar__list-link.active {
+  display: block;
+  text-align: center;
+}
 }
