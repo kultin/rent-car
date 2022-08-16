@@ -1,3 +1,14 @@
+@keyframes fade-in-catalog {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .catalog {
   margin-bottom: 50px;
   &__inner {
@@ -5,6 +16,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     row-gap: 40px;
+    animation: fade-in-catalog 1s forwards ease;
   }
   &__box{
     display: flex;

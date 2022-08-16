@@ -30,7 +30,7 @@
     height: auto;
     border-radius: 25px;
     filter: brightness(80%);
-    animation: fade-in 1s forwards ease;
+    animation: fade-in 0.5s forwards ease;
   }
   &__inner {
     width: 100%;
@@ -41,7 +41,7 @@
   }
   &__content{
     max-width: 930px;
-    animation: fade 2s forwards ease;
+    animation: fade 1s forwards ease;
     
   }
   &__content-title {
