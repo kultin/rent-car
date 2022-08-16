@@ -19,6 +19,8 @@ export default function Catalogue() {
 
   const { cars } = useSelector((store) => store.cars)
 
+  console.log('cars store: ', cars);
+
   const filteredCars = useSelector((store) => store.cars.filteredCars)
   const filter = useSelector((store) => store.cars.filter)
   const currentPage = useSelector((store) => store.cars.currentPage)
@@ -28,6 +30,8 @@ export default function Catalogue() {
   const firstCarIndex = lastCarIndex - carsPerPage;
   const currentCars = cars.slice(firstCarIndex, lastCarIndex);
   const currentFilteredCars = filteredCars.slice(firstCarIndex, lastCarIndex);
+
+  console.log(cars)
 
   return (
     <div className='catalog'>

@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllBookings,createBooking, applyBooking } = require('../controllers/bookingsController');
+const { getAllBookings, createBooking, applyBooking, getCarBookings } = require('../controllers/bookingsController');
 
 const router = express.Router();
 
@@ -7,10 +7,9 @@ router.get('/', getAllBookings);
 
 router.post('/', createBooking);
 
+router.get('/all', getCarBookings);
+
 router.post('/applyBooking', applyBooking);
 
-// router.get('/:id', getCarById);
-
-// router.get('/mycars', getLessorCars);
 
 module.exports = router;

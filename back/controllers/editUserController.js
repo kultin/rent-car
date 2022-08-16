@@ -5,7 +5,7 @@ exports.editUser = async (req, res) => {
     const user = User.update(
       {
         name: req.body.name,
-        email: req.body.email,
+        tel: req.body.tel,
       },
       {
         where: { id: req.body.id }
