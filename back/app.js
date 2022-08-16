@@ -14,7 +14,7 @@ const carsRoute = require('./routes/carsRoute');
 const bookingsRoute = require('./routes/bookingsRoute');
 const tentsRoute = require('./routes/tentsRoute');
 const messagesRoute = require('./routes/messagesRoute');
-
+const likesRoute = require('./routes/likesRoute');
 
 
 const app = express();
@@ -57,7 +57,7 @@ app.use('/cars', carsRoute);
 app.use('/bookings', bookingsRoute);
 app.use('/tents', tentsRoute);
 app.use('/messages', messagesRoute);
-
+app.use('/likes', likesRoute);
 
 app.listen(PORT, () => {
   console.log(`Server started on ${PORT}`);

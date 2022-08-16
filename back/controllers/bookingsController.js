@@ -69,6 +69,7 @@ exports.createBooking = async (req, res) => {
       tent_id: tentId,
       status: 'pre-booking',
     };
+    console.log(booking)
     const test = await Booking.create(booking)
 
     res.status(200);
