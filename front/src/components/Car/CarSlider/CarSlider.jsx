@@ -52,9 +52,7 @@ export default function CarSlider({ car }) {
     e.preventDefault();
     if (like) setLike(false)
     if (!like) setLike(true)
-    console.log('click')
   }
-  console.log(like)
 
   const settings = {
     dots: false,

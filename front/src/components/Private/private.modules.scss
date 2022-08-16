@@ -1,3 +1,23 @@
+@keyframes fade-block-translateX{
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-block{
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .user__box {
   display: flex;
   column-gap: 45px;
@@ -39,6 +59,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  animation: fade-block-translateX 1s forwards;
   &__inner {
     margin-top: auto;
     border-radius: 25px;
@@ -128,6 +149,7 @@
 .bookings {
   width: 100%;
   margin-bottom: 50px;
+  animation: fade-block 1.4s forwards;
   &__item {
     border-radius: 25px;
     background: #F7F7F7;
@@ -169,6 +191,7 @@
 }
 
 .favorites {
+  animation: fade-block 1.5s forwards;
   width: 100%;
   margin-bottom: 50px;
   &__inner {
@@ -178,6 +201,7 @@
 }
 
 .addcar {
+  animation: fade-block 1.7s forwards;
   width: 100%;
   &__inner {
     padding: 33px;

@@ -1,3 +1,25 @@
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .home {
   padding:  0 15px;
   &__banner {
@@ -8,6 +30,7 @@
     height: auto;
     border-radius: 25px;
     filter: brightness(80%);
+    animation: fade-in 1s forwards ease;
   }
   &__inner {
     width: 100%;
@@ -18,6 +41,8 @@
   }
   &__content{
     max-width: 930px;
+    animation: fade 2s forwards ease;
+    
   }
   &__content-title {
     width: 100%;
@@ -28,6 +53,7 @@
     color: #fff;
     text-align: right;
     font-family: 'Ubuntu', sans-serif;
+    position: relative; 
   }
   &__content-btn {
     display: block;
