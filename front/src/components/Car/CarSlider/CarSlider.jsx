@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Slider from "react-slick";
 import "./carslider.modules.scss";
 
@@ -109,6 +110,17 @@ export default function CarSlider({ car }) {
   };
 
   console.log(car)
+
+  const user = useSelector((store) => (store.user.user))
+  console.log('user: ', user);
+  const isLike = car.Likes.filter((like) => like.user_id == user.id)[0]
+  console.log('isLike: ', isLike);
+
+  useEffect(() => {
+    if (!isLike) setLike(false)
+    if (isLike) setLike(true)
+  }, [])
+
 
   return (
     <div className="carslider">

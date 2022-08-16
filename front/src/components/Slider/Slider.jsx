@@ -105,7 +105,7 @@ export default function HomeSlider() {
   };
 
   const { cars } = useSelector((store) => store.cars)
-  console.log(cars)
+  // console.log(cars)
 
   return (
     <div className="slider">
