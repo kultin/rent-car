@@ -44,47 +44,55 @@
     text-align: center;
   }
   &__tent {
-    width: 200px;
+    width: 250px;
   }
   &__tent-select {
     width: 100%;
     height: 30px;
-    border: 1px solid #CA0100;
+    border: 1px solid #e5e5e5;
     background-color: #fff;
     border-radius: 6px;
     outline: none;
     margin-bottom: 10px;
+    box-shadow: 0px 0px 15px 1px rgba(160, 160, 160, 0.82);
+    padding-left: 5px;
+  }
+  &__tent-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      display: block;
+      width: 100%;
+      text-align: right;
+      font-weight: 700;
+    }
   }
   &__tent-capacity,
   &__tent-price {
     font-weight: 400;
     font-size: 17px;
     line-height: 24px;
-    color: #262626; 
+    color: #737373;
     width: 100%;
-
-    & span {
-      display: inline-block;
-      font-weight: 700;
-      margin-left: 10px;
-    }
   }
-
   .car__desc-btn {
     margin: 0;
   }
   .react-datepicker {
     color: #262626;
-    border: 1px solid #CA0100;
+    border: 1px solid #e5e5e5;
     font-size: 15px;
+    box-shadow: 0px 0px 15px 1px rgba(160, 160, 160, 0.82);
+
   }
   .react-datepicker__navigation-icon::before {
-    border-color: #CA0100;
+    border-color: #262626;
   top: 15px;
 }
 .react-datepicker__header {
   background-color: transparent;
-  border-bottom: 1px solid #CA0100;
+  border-bottom: 1px solid #e5e5e5;
   padding: 20px;
 }
 .react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {
@@ -106,11 +114,12 @@
   margin: 8px;
 }
 &__tent-img {
-  width: 200px;
+  width: 100%;
   height: 200px;
   object-fit: cover;
   margin-top: 10px;
   border-radius: 25px;
+  box-shadow: 0px 0px 15px 1px rgba(160, 160, 160, 0.82);
 }
 }
 .mapcar__title {
@@ -118,9 +127,13 @@
   line-height: 47px;
   margin-bottom: 30px;
 }
+
 @media (max-width: 1200px) {
   .carform {
     margin: 30px auto;
+}
+.car__desc-title {
+  align-items: center;
 }
 .mapcar__title,
 .carform__title {
@@ -128,22 +141,32 @@
   line-height: 40px;
 }
 }
+
+@media (max-width: 1039px) {
+  .carform {
+    flex-direction: column;
+    align-items: center;
+  }
+  .carform__content-tent-label {
+    text-align: center;
+  }
+  .carform__tent {
+    order: -1;
+    margin-bottom: 30px;
+  }
+  .carform__content-price,
+  .carform__content-days {
+    margin: 20px 0;
+  }
+}
+
+
 @media (max-width: 768px) {
 .mapcar__title,
 .carform__title {
   font-size: 25px;
   line-height: 35px;
   text-align: center;
-}
-.carform {
-  flex-direction: column;
-}
-.carform__content {
-  order: -1;
-  margin-bottom: 30px;
-}
-.carform__content-days, .carform__content-price {
-  margin-bottom: 20px;
 }
 }
 
@@ -162,8 +185,15 @@
     font-size: 25px;
   }
   .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name{
-    width: 1.4rem !important;
-    line-height: 1.4rem !important;
+    width: 1.1rem !important;
+    line-height: 1.1rem !important;
     margin: 8px;
   }
+}
+
+@media (max-width: 414px) {
+  .carslider__heart {
+    width: 20px;
+    height: 20px;
+}
 }

@@ -1,3 +1,12 @@
+@keyframes fade-login-translateX{
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .login {
   margin: 0 auto;
   background: url(./login_waifu2x_photo_noise2_scale_tta_1.png) no-repeat 0 20%;
@@ -12,6 +21,7 @@
   align-items: center;  
   margin-bottom: 100px;
   &__form {
+    animation: fade-login-translateX 1.2s forwards ease;
     width: 400px;
     height: 400px;
     background: rgba(187, 187, 187, 0.7);

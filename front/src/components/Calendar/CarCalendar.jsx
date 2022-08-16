@@ -14,23 +14,18 @@ registerLocale('ru', ru)
 
 export default function CarCalendar({ car }) {
 
-  
   const navigate = useNavigate();
-
   const user = useSelector((store) => (store.user.user))
   const bookings = useSelector((store) => store.user.bookings);
   const carBookings = bookings.filter((booking) => booking.car_id == car.id)
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  console.log(bookings)
 
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(0);
   const [mountTent, setMountTent] = useState(false);
   const [tent, setTent] = useState({});
-  // const [tentprice, setTentprice] = useState('');
-  // const [capacity, setCapacity] = useState('');
-  // const [tentphoto, setTentphoto] = useState('');
-
 
 
   useEffect(() => {
@@ -38,19 +33,19 @@ export default function CarCalendar({ car }) {
       let differenceTime = endDate.getTime() - startDate.getTime();
       let differenceDays = differenceTime / (1000 * 3600 * 24);
       let totalPrice;
-      tent.price? totalPrice = differenceDays * (car.price + tent.price):totalPrice = differenceDays * car.price 
+      tent.price ? totalPrice = differenceDays * (car.price + tent.price) : totalPrice = differenceDays * car.price
       console.log(differenceDays)
       setDays(differenceDays);
       setPrice(totalPrice);
     }
-  }, [endDate,tent])
+  }, [endDate, tent])
 
 
   //при выборе 2 дат формируется массив из 2 элементов - этих дат
   const onChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
-    setEndDate(end);      
+    setEndDate(end);
   };
   //по клику "Забронировать" создаем новый букинг формата  ['2022-08-24', '2022-08-29']
   const onClick = () => {
@@ -100,14 +95,14 @@ export default function CarCalendar({ car }) {
     // setTentprice(tent.price);
     // setCapacity(tent.capacity);
     // setTentphoto(tent.img_url)
-    setTent({id: tent.id, price:tent.price, capacity:tent.capacity, photo:tent.img_url})
+    setTent({ id: tent.id, price: tent.price, capacity: tent.capacity, photo: tent.img_url })
     setMountTent(true);
   }
 
 
 
   // console.log(tent.img_url)
-  
+
 
   return (
 
@@ -146,9 +141,15 @@ export default function CarCalendar({ car }) {
         </select>
         {mountTent &&
           <>
-            <p className='carform__tent-capacity'>Вместимость: <span>{tent.capacity} чел.</span></p>
-            <p className='carform__tent-price'>Цена за сутки: <span>{tent.price} р.</span></p>
-            <img className='carform__tent-img' src={tent.photo} alt='img'/>
+            <div className='carform__tent-box'>
+              <p className='carform__tent-capacity'>Вместимость:</p>
+              <span>{tent.capacity} чел.</span>
+            </div>
+            <div className='carform__tent-box'>
+              <p className='carform__tent-price'>Цена за сутки:</p>
+              <span>{tent.price} р.</span>
+            </div>
+            <img className='carform__tent-img' src={tent.photo} alt='img' />
           </>
         }
       </div>

@@ -24,10 +24,14 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Booking, {
         foreignKey: 'CarId',
       });
+      this.hasMany(models.Like, {
+        foreignKey: 'car_id',
+      });
       this.belongsToMany(models.User, {
         through: models.Like,
         foreignKey: 'car_id',
       });
+     
     }
   }
   Car.init({
@@ -44,6 +48,7 @@ module.exports = (sequelize, DataTypes) => {
     capacity: DataTypes.INTEGER,
     location: DataTypes.STRING,
     user_id: DataTypes.INTEGER,
+    likes: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Car',

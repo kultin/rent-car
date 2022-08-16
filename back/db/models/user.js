@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
         through: models.Like,
         foreignKey: 'user_id',
       });
+      this.hasMany(models.Like, {
+        foreignKey: 'car_id',
+      });
     }
   }
   User.init({

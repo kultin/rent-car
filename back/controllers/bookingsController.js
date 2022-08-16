@@ -70,7 +70,7 @@ exports.createBooking = async (req, res) => {
       tent_id: tentId,
       status: 'pre-booking',
     };
-    console.log('TESTcreate1',booking);
+
     const test = await Booking.create(booking)
     console.log('TESTcreate2',test);
     res.status(200);
