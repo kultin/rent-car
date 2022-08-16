@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { editUserThunk } from '../../../store/userActions'
+import { editUserThunk, getUserThunk } from '../../../store/userActions'
 import '../private.modules.scss';
 
 import AvatarLoader from '../../AvatarLoader/AvatarLoader';
 import Avatar from '@mui/material/Avatar';
 import AddCarModal from "./AddCarModal";
+import { Navigate } from "react-router-dom";
 // import YandexSuggester from "./YandexSuggester";
 
 
@@ -27,6 +28,7 @@ export default function Privateinfo() {
   const applyHandler = () => {
     setCondition(false);
     dispatch(editUserThunk(user.id, changes))
+    window.location.reload();
   }
 
   const inputHandler = (e) => {
@@ -44,34 +46,24 @@ export default function Privateinfo() {
             : <img className="info__photo" src={'http://localhost:3005/images/user-avatar/avatar.jpg'} />
           }
           <div className="info__content">
-            <p className="info__content-name">{user.name}</p>
+            {(condition) ? (
+              <input type='text' name='name' value={changes.name} onChange={inputHandler} />
+            ) : (
+              <p className="info__content-name">{user.name}</p>
+            )}
             <p className="info__content-role">{user.role}</p>
             <p className="info__content-email">{user.email}</p>
-            <p className="info__content-tel">{user.tel}</p>
-            <button className="btn info__content-btn" onClick={editHandler}>Редактировать</button>
-          </div>
-          {/* <ImgLoader />
-          <UseAutocomplete />
-          <YandexSuggester />
-          {condition ?
-            (
-              <>
-                <div className='info__text'>
-                  <input type='text' name='name' value={changes.name} onChange={inputHandler} />
-                  <input type='text' name='email' value={changes.email} onChange={inputHandler} />
-                  <button onClick={applyHandler}>Применить</button>
-                </div>
-              </>
+            {(condition) ? (
+              <input type='text' name='tel' value={changes.tel} onChange={inputHandler} />
             ) : (
-              <>
-                <div className='info__text'>
-                  <p>{user.name}</p>
-                  <p>{user.email}</p>
-                  <button onClick={editHandler}>Редактировать</button>
-                </div>
-              </>
-            )
-          } */}
+              <p className="info__content-tel">{user.tel}</p>
+            )}
+            {(condition) ? (
+              <button className="btn info__content-btn" onClick={applyHandler}>Применить</button>
+            ) : (
+              <button className="btn info__content-btn" onClick={editHandler}>Редактировать</button>
+            )}
+          </div>
         </div>
       </div>
     </>
