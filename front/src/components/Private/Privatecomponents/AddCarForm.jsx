@@ -3,11 +3,8 @@ import * as R from 'ramda';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Radio from '@mui/material/Radio';
-import Modal from '@mui/material/Modal';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
@@ -15,9 +12,10 @@ import axios from 'axios';
 import AddCarImage from './CarImgLoader';
 import YandexSuggester from "./YandexSuggester";
 import { FormControl, FormControlLabel, FormLabel, RadioGroup } from '@mui/material';
-import useLocalStorage from './AddCarModal/localStoragefuncs';
-import MyDropzone from './AddCarModal/DropZone'
+import useLocalStorage from './CarForm/localStoragefuncs';
+import MyDropzone from './CarForm/DropZone'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import Completer from './CarForm/Completer';
 
 const inputStyles ={
   width: '380px',
@@ -32,38 +30,39 @@ const initialValues = {
   year: '',
   engine: '',
   gear: '',
-  power: null,
+  power: '',
   seats: '',
   photo: '',
-  price: null,
-  capacity: null,
+  price: '',
+  capacity: '',
   coordinates: null,
   user_id: null,
   file: null,
 }
 
 export default function AddCArForm() {
-
+  
   const { cars } = useSelector((store) => store.cars)
+  console.log('Cars', cars)
 
+  const [values, setValues] = useLocalStorage('cars', initialValues)
+  console.log('VALUES', values)
+  
   const brands = R.uniq(cars.map((item) => item.brand))
-  const getModels = (brand) => {
-    const filterdCars = cars.filter((item) => item.brand === brand)
+  console.log('BRANDS', brands)
+  const getModels = () => {
+    const filterdCars = cars.filter((item) => item.brand === values.brand)
     return R.uniq(filterdCars.map((item) => item.model))
   }
   // const body = R.uniq(cars.map((item) => item.body))
   const years = R.uniq(cars.map((item) => String(item.year)))
   const engines = R.uniq(cars.map((item) => item.engine))
   
-  const [file, setFile] = useState(null)
-
-  const selectFile = (e) => {
-    console.log('file old version', file)
-    setFile(e.target.files)
-  }
-
   const [files, setFiles] = useState([])
-
+  
+  const selectFiles = (e) => {
+    setFiles(e.target.files)
+  }
   const handleOnDragEnd = (result) => {
     if (!result.destination) return
     const items = files.slice()
@@ -76,14 +75,9 @@ export default function AddCArForm() {
   const [coordinates, setCoordinates] = useState(null)
   console.log('CORDINATES MODAL', coordinates)
   
-  const [values, setValues] = useLocalStorage('cars', initialValues)
-  
-  console.log('VALUES', values)
   
   const [errors, setErrors] = useState({})
-  
   console.log('Errors', errors)
-  
   
   const handleInputChange = (e) => {
     const {name, value } = e.target
@@ -98,6 +92,7 @@ export default function AddCArForm() {
     temp.engine = values.engine ? ('') : ('Введите двигатель')
     temp.power = values.power ? ('') : ('Введите мощность')
     temp.capacity = values.capacity ? ('') : ('Введите вместимость')
+    temp.price = values.price ? ('') : ('введите цену')
     
     setErrors({...temp})
     
@@ -138,7 +133,7 @@ export default function AddCArForm() {
     }
 
     try {
-      await axios.post('cars/upload-photos', formData, {
+      await axios.post('cars/new-car', formData, {
         withCredentials: true,
         headers: {
           'content-type': 'multipart/form-data'
@@ -164,29 +159,31 @@ export default function AddCArForm() {
         <h2 className="title addcar__title">Загрузить новое авто</h2>
         <div className='addcar__inner'>
           <div className='addcar__item'>
-                <Autocomplete
-                className="addcar__item-input"
+
+              <Completer 
                 value={values.brand}
-                required
-                id="brand"
-                freeSolo
                 options={brands}
-                onChange={(e, newValue) => {
-                  setValues({...values, brand: newValue })
-                }}
-                renderInput={(params) => <TextField 
-                  sx={inputStyles}
-                  {...params} 
-                  error={errors.brand ? true : false}
-                  helperText={errors.brand ? "Введите марку" : ''}
-                  name='brand'
-                  value={values.brand}
-                  InputLabelProps={ { required: true }}
-                  onChange={(e, value) => {
-                    handleInputChange(e, value)
-                  }}
-                  label="Выберите марку" />}
-              />
+                id={'brand'} 
+                values={values}
+                setValues={setValues}
+                error={errors.brand}
+                helperText={'Введите бренд'}
+                name={'brand'} 
+                handleInputChange={handleInputChange}
+                label={"Выберите марку"}/>
+              
+              {/* <Completer 
+                value={values.model}
+                options={getModels}
+                id={'model'} 
+                values={values}
+                setValues={setValues}
+                error={errors.brand}
+                helperText={'Введите модель'}
+                name={'model'} 
+                handleInputChange={handleInputChange}
+                label={"Выберите модель"}/> */}
+
               <Autocomplete
                 className="addcar__item-input"  
                 value={values.model}
@@ -211,48 +208,30 @@ export default function AddCArForm() {
 
         </div>
         <div className='addcar__item'>
-          <Autocomplete
-            className="addcar__item-input"
-            value={values.year}
-            required
-            id="year"
-            freeSolo
-            options={years}
-            onChange={(event, newValue) => {
-              setValues({...values, year: newValue })
-            }}
-            renderInput={(params) => <TextField 
-              sx={inputStyles}
-              {...params}
-              error={errors.year ? true : false}
-              helperText={errors.year ? "Введите год" : ''}
-              name='year'
+
+          <Completer 
               value={values.year}
-              InputLabelProps={ { required: true }}
-              onChange={handleInputChange}
-              label="Выберите год" />}
-          />
-          <Autocomplete
-            className="addcar__item-input"
-            value={values.engine}
-            required
-            id="engine"
-            freeSolo
-            options={engines}
-            onChange={(event, newValue) => {
-              setValues({...values, engine: newValue })
-            }}
-            renderInput={(params) => <TextField 
-              sx={inputStyles}
-              {...params}
-              error={errors.engine ? true : false}
-              helperText={errors.engine ? "Введите двигатель" : ''}
-              name='engine'
+              options={years}
+              id={'year'} 
+              values={values}
+              setValues={setValues}
+              error={errors.year}
+              helperText={'Введите год'}
+              name={'year'} 
+              handleInputChange={handleInputChange}
+              label={"Выберите год"}/> 
+
+          <Completer 
               value={values.engine}
-              InputLabelProps={ { required: true }}
-              onChange={handleInputChange}
-              label="Выберите двигатель" />}
-          />
+              options={engines}
+              id={'engine'} 
+              values={values}
+              setValues={setValues}
+              error={errors.engine}
+              helperText={'Введите двигатель'}
+              name={'engine'} 
+              handleInputChange={handleInputChange}
+              label={"Выберите двигатель"}/>   
         </div>  
         <div className='addcar__item'>
           <FormControl>
@@ -319,7 +298,7 @@ export default function AddCArForm() {
               id="raised-button-file"
               multiple
               type="file"
-              onChange={selectFile}
+              onChange={selectFiles}
             />
             <label htmlFor="raised-button-file">
               <Button variant="raised" component="span">
@@ -333,6 +312,19 @@ export default function AddCArForm() {
           <div className='addcar__item-dropzone'>
             <MyDropzone files={files} setFiles={setFiles} />
           </div>
+          
+          <div className='addcar__item'>
+            <TextField 
+                sx={inputStyles}
+                // {...params}
+                error={errors.price ? true : false}
+                helperText={errors.price ? "Введите цену" : ''}
+                name='price'
+                value={values.price}
+                InputLabelProps={ { required: true }}
+                onChange={handleInputChange}
+                label="Какая цена?" />               
+          </div> 
 
             <DragDropContext onDragEnd={handleOnDragEnd}>
               <Droppable droppableId='characters'>

@@ -16,30 +16,38 @@ module.exports = {
         type: Sequelize.STRING,
       },
       body: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       year: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       engine: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       gear: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       power: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       seats: {
+        allowNull: false,
         type: Sequelize.STRING,
-      },    
+      },
       photo: {
         type: Sequelize.STRING,
       },
       price: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       capacity: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       likes: {

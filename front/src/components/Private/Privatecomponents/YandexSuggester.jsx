@@ -44,6 +44,7 @@ function MapSuggestComponent(props) {
             }}
             // variant="outlined"
             value={addressInput}
+            placeholder='Введите адрес'
             onChange={(e) => setAddressInput(e.target.value)} />
   )  
 }
