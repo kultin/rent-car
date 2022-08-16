@@ -25,8 +25,8 @@ export default function Private() {
           <div className="user__box-value">
             <Privatebookings />
             <Privatefavorites />
-            <AddCArForm/>
-            <PrivateCars/>
+            <AddCArForm />
+            <PrivateCars />
           </div>
         </div>
       </div>
