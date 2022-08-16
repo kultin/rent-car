@@ -25,6 +25,7 @@ exports.uploadAvatar = async (req, res) => {
 
 exports.uploadCarPhotos = async (req, res) => {
   const userId = req.session?.user?.id;
+  console.log(req.body);
 
   if (userId) {
     try {

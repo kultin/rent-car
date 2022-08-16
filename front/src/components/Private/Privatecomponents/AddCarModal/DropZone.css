@@ -1,0 +1,7 @@
+.dnd {
+  display: grid;
+  place-items: center;
+  background-color: aquamarine;
+  height: 100px;
+  width: 300px;
+}
