@@ -1,12 +1,12 @@
 import React from "react";
-// import Paper from '@mui/material/Paper';
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell from '@mui/material/TableCell';
-// import TableContainer from '@mui/material/TableContainer';
-// import TableHead from '@mui/material/TableHead';
-// import TablePagination from '@mui/material/TablePagination';
-// import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
 import { useSelector, useDispatch } from 'react-redux';
 import { applyBookingThunk, sendMessegeThunk, getMessagesThunk, readMessagesThunk } from '../../../store/userActions'
 import '../private.modules.scss';
@@ -32,11 +32,11 @@ export default function Privatebookings() {
 
   const [open, setOpen] = React.useState(false)
 
-  const [rows, setRows] = React.useState([])
+  // const [rows, setRows] = React.useState([])
 
-  const [page, setPage] = React.useState(0);
+  // const [page, setPage] = React.useState(0);
 
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  // const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const user = useSelector((store) => (store.user.user))
 
@@ -44,10 +44,10 @@ export default function Privatebookings() {
 
   const messages = useSelector((store) => store.user.messages);
 
-  React.useEffect(() => {
-    const abc = tableRows()
-    setRows(abc)
-  }, [bookings.length])
+  // React.useEffect(() => {
+  //   const abc = tableRows()
+  //   setRows(abc)
+  // }, [bookings.length])
 
   React.useEffect(() => {
     if (sendValues.id != undefined) {
@@ -55,60 +55,57 @@ export default function Privatebookings() {
     }
   }, [open])
 
-  const tableRows = () => {
-    const rows2 = []
+  const statusDisplay = () => {
 
     for (let i = 0; i < bookings.length; i++) {
       let status
-      if (user.role == 'lessee') {
-        status = bookings[i].status
+      if (bookings[i].status == 'booked') {
+        bookings[i].status = 'Подтвержден'
       }
-      if (user.role == 'lessor') {
-        if (bookings[i].status == 'pre-booking') {
-          status = 'Подтвердить'
-        } else {
-          status = bookings[i].status
-        }
+    
+      if (user.role == 'lessor' && bookings[i].status == 'pre-booking') {
+        bookings[i].status = 'Подтвердить'
       }
-      rows2.push(createData(bookings[i].booking_id, bookings[i].date_start, bookings[i].date_end, bookings[i].pick_up, `${bookings[i]['Car.brand']} ${bookings[i]['Car.model']}`, `${bookings[i].price} р`, status, 'Чат'))
+      // rows2.push(createData(bookings[i].booking_id, bookings[i].date_start, bookings[i].date_end, bookings[i].pick_up, `${bookings[i]['Car.brand']} ${bookings[i]['Car.model']}`, `${bookings[i].price} р`, status, 'Чат'))
     }
-    return rows2
+    console.log('Status', bookings);
+    return bookings
   }
-
-  const columns = [
-    { id: 'start', label: 'Начало аренды', minWidth: 150 },
-    { id: 'finish', label: 'Завершение аренды', minWidth: 150 },
-    {
-      id: 'location',
-      label: 'Локация',
-      minWidth: 150,
-      format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-      id: 'auto',
-      label: 'Автомобиль',
-      minWidth: 150,
-      format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-      id: 'coast',
-      label: 'Стоимость аренды',
-      minWidth: 150,
-      format: (value) => value.toFixed(2),
-    },
-    {
-      id: 'status',
-      label: 'Статус',
-      minWidth: 150,
-      format: (value) => value.toFixed(2),
-    },
-    {
-      id: 'contact',
-      label: '',
-      minWidth: 150,
-      format: (value) => value.toFixed(2),
-    },
-  ];
+  statusDisplay()
+  // const columns = [
+  //   { id: 'start', label: 'Начало аренды', minWidth: 150 },
+  //   { id: 'finish', label: 'Завершение аренды', minWidth: 150 },
+  //   {
+  //     id: 'location',
+  //     label: 'Локация',
+  //     minWidth: 150,
+  //     format: (value) => value.toLocaleString('en-US'),
+  //   },
+  //   {
+  //     id: 'auto',
+  //     label: 'Автомобиль',
+  //     minWidth: 150,
+  //     format: (value) => value.toLocaleString('en-US'),
+  //   },
+  //   {
+  //     id: 'coast',
+  //     label: 'Стоимость аренды',
+  //     minWidth: 150,
+  //     format: (value) => value.toFixed(2),
+  //   },
+  //   {
+  //     id: 'status',
+  //     label: 'Статус',
+  //     minWidth: 150,
+  //     format: (value) => value.toFixed(2),
+  //   },
+  //   {
+  //     id: 'contact',
+  //     label: '',
+  //     minWidth: 150,
+  //     format: (value) => value.toFixed(2),
+  //   },
+  // ];
 
 
   const onApplyHandler = (id) => {
@@ -116,14 +113,14 @@ export default function Privatebookings() {
   };
 
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (event, newPage) => {
+  //   setPage(newPage);
+  // };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event) => {
+  //   setRowsPerPage(+event.target.value);
+  //   setPage(0);
+  // };
 
   const inputHandler = (e) => {
     console.log(sendValues);
@@ -151,6 +148,8 @@ export default function Privatebookings() {
       return { ...prev, text: '' }
     });
   }
+
+  console.log('Bookings', bookings);
 
   return (
     <>
@@ -180,35 +179,46 @@ export default function Privatebookings() {
           </DialogActions>
         </Dialog>
       </div>
-     
-        <div className="bookings">
-          <h2 className="title bookings__title">Мои заказы</h2>
-          <div className="bookings__inner">
-            <div className="bookings__item">
+
+      <div className="bookings">
+        <h2 className="title bookings__title">Мои заказы</h2>
+        <div className="bookings__inner">
+          {bookings.map((booking) => (
+            <div className="bookings__item" key={booking.booking_id}>
               <div className="bookings__item-start bookings__box">
                 <p className="bookings__item-start-title bookings__box-title">Начало аренды</p>
-                <p className="bookings__item-start-value bookings__box-value">2022-10-16</p>
+                <p className="bookings__item-start-value bookings__box-value">{booking.date_start}</p>
               </div>
               <div className="bookings__item-finish bookings__box">
                 <p className="bookings__item-finish-title bookings__box-title">Завершение аренды</p>
-                <p className="bookings__item-finish-value bookings__box-value">2022-10-26</p>
+                <p className="bookings__item-finish-value bookings__box-value">{booking.date_end}</p>
               </div>
               <div className="bookings__item-auto bookings__box">
                 <p className="bookings__item-auto-title bookings__box-title">Автомобиль</p>
-                <p className="bookings__item-auto-value bookings__box-value">Land Rover Discovery</p>
+                <p className="bookings__item-auto-value bookings__box-value">{`${booking['Car.brand']} ${booking['Car.model']}`}</p>
               </div>
               <div className="bookings__item-price bookings__box">
                 <p className="bookings__item-price-title bookings__box-title">Стоимость аренды</p>
-                <p className="bookings__item-price-value bookings__box-value">20 000 р.</p>
+                <p className="bookings__item-price-value bookings__box-value">{`${booking.price} р.`}</p>
               </div>
               <div className="bookings__item-status bookings__box">
                 <p className="bookings__item-status-title bookings__box-title">Статус</p>
-                <p className="bookings__item-status-value bookings__box-value">Завершено</p>
+                {(booking.status == 'Подтвердить') ? (
+                <p className="bookings__item-status-value bookings__box-value" onClick={() => onApplyHandler(booking.booking_id)}>{booking.status}</p>
+                ) : (
+                <p className="bookings__item-status-value bookings__box-value">{booking.status}</p>
+                )}
+              </div>
+              <div className="bookings__item-chat bookings__box">
+                <p className="bookings__item-chat-title bookings__box-title">Чат</p>
+                <p className="bookings__item-chat-value bookings__box-value" onClick={() => handleClickOpen(booking.booking_id)}>Кнопка</p>
               </div>
             </div>
-          </div>
+          ))}
+
         </div>
-        {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}>  
+      </div>
+      {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}>
 
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
@@ -271,6 +281,6 @@ export default function Privatebookings() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper> */}
-      </>
-      )
+    </>
+  )
 }

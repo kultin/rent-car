@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'car_id',
       });
       this.hasMany(models.Booking, {
-        foreignKey: 'car_id',
+        foreignKey: 'CarId',
       });
       this.hasMany(models.Like, {
         foreignKey: 'car_id',

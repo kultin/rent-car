@@ -30,7 +30,7 @@ module.exports = {
       return_place: {
         type: Sequelize.STRING,
       },
-      car_id: {
+      CarId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Cars',
