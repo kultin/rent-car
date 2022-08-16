@@ -134,7 +134,7 @@ export const editUserThunk = (id, changes) => async (dispatch) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ id: id, name: changes.name, email: changes.email }),
+            body: JSON.stringify({ id: id, name: changes.name, tel: changes.tel }),
         });
 
         const user = await response.json()
