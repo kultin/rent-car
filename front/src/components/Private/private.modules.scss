@@ -160,6 +160,30 @@
     position: relative;
     transition: all 0.3s;
     box-shadow: 0px 2px 12px 0px rgba(33,33,33,0.2);
+    margin: 2px;
+    &::after {
+      content: "";
+      width: 95%;
+      height: 1px;
+      background-color: #C2C2C4;
+      position: absolute;
+      top: 53px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  &__item-pre-booking {
+    border-radius: 25px;
+    background: #F7F7F7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    position: relative;
+    transition: all 0.3s;
+    box-shadow: 0px 2px 12px 0px rgba(33,33,33,0.2);
+    border: solid #CA0100;
+    margin: 2px;
     &::after {
       content: "";
       width: 95%;
