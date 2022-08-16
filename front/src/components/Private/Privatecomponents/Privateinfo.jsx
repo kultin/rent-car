@@ -50,7 +50,6 @@ export default function Privateinfo() {
             <p className="info__content-tel">{user.tel}</p>
             <button className="btn info__content-btn" onClick={editHandler}>Редактировать</button>
           </div>
-          <AddCarModal/>
           {/* <ImgLoader />
           <UseAutocomplete />
           <YandexSuggester />
