@@ -13,6 +13,7 @@ function Layout() {
 
   const [inProp, setInProp] = useState(false);
   const [burger, setBurger] = useState(false);
+  const [menu, setMenu] = useState(false);
 
   const isLoading = useSelector((state) => state.user.isLoading);
 
@@ -28,8 +29,10 @@ function Layout() {
 
   const burgerHandler = (e) => {
     e.preventDefault();
-    if (burger) setBurger(false)
+    if (burger) setBurger(false)  
+    if (menu) setMenu(false)
     if (!burger) setBurger(true)
+    if (!menu) setMenu(true)
     console.log('click')
   }
 
@@ -44,7 +47,7 @@ function Layout() {
         <div className="container">
           <div className='navbar__inner'>
             <Link to="/"><img className="navbar__logo" src={'/logo.svg'} alt="logo" /></Link>
-            <ul className="navbar__list">
+            <ul className={menu ? "navbar__list active" : "navbar__list"}>
               {!user.name &&
                 <>
                   <li className="navbar__list-item">
