@@ -1,26 +1,29 @@
-
 import React, { useState, useEffect } from 'react'
 import DatePicker from "react-datepicker"
 import { subDays, format } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css'
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import "./calendar.modules.scss";
-
 import { registerLocale } from "react-datepicker";
 import ru from 'date-fns/locale/ru';
+import { construct } from 'ramda';
+import { addBookingAC } from '../../store/action';
 registerLocale('ru', ru)
 
 export default function CarCalendar({ car }) {
 
+  const dispatch = useDispatch()
+
+
   const navigate = useNavigate();
   const user = useSelector((store) => (store.user.user))
-  const bookings = useSelector((store) => store.user.bookings);
-  const carBookings = bookings.filter((booking) => booking.car_id == car.id)
+  const { bookings } = useSelector((store) => (store.bookings))
+  const carBookings = bookings.filter((booking) => booking.CarId == car.id)
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  console.log(bookings)
+
 
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(0);
@@ -34,7 +37,6 @@ export default function CarCalendar({ car }) {
       let differenceDays = differenceTime / (1000 * 3600 * 24);
       let totalPrice;
       tent.price ? totalPrice = differenceDays * (car.price + tent.price) : totalPrice = differenceDays * car.price
-      console.log(differenceDays)
       setDays(differenceDays);
       setPrice(totalPrice);
     }
@@ -57,7 +59,6 @@ export default function CarCalendar({ car }) {
     const start = format(startDate, "yyyy-MM-dd")
     const finish = format(endDate, "yyyy-MM-dd")
 
-
     // расчет количества дней и суммы поездки
     const newBooking = {
       start: start,
@@ -67,20 +68,19 @@ export default function CarCalendar({ car }) {
       days: days,
       price: price,
       tentId: tent.id
-
     }
     axios.post('http://localhost:3005/bookings', newBooking, { withCredentials: true })
-      .then((res) => console.log(res.data))
-
+      .then((res) => dispatch(addBookingAC(res.data)))
     navigate('/private')
   }
 
   const bookingsDates = []
-
-  for (let i = 0; i < carBookings.length; i++) {
-    bookingsDates.push([carBookings[i].date_start, carBookings[i].date_end])
+  if (carBookings.length) {
+    for (let i = 0; i < carBookings.length; i++) {
+      bookingsDates.push([carBookings[i].date_start, carBookings[i].date_end])
+    }
   }
-
+  // console.log('bookingsDates: ', bookingsDates);
   //получаем из базы или стейта все брони на машину, добавляем в массив интервалов и в функцию excludeDateIntervals
   //которая делает даты недопустимыми к бронированию
   // const bookingsDates= [["2022-08-12","2022-08-15"],["2022-08-17","2022-08-21"], ["2022-08-27","2022-08-29"]]  
@@ -92,17 +92,9 @@ export default function CarCalendar({ car }) {
   const selectHandler = (e) => {
     e.preventDefault();
     const tent = car.Tents.filter((tent) => tent.name === e.target.value)[0];
-    // setTentprice(tent.price);
-    // setCapacity(tent.capacity);
-    // setTentphoto(tent.img_url)
     setTent({ id: tent.id, price: tent.price, capacity: tent.capacity, photo: tent.img_url })
     setMountTent(true);
   }
-
-
-
-  // console.log(tent.img_url)
-
 
   return (
 

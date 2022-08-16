@@ -313,7 +313,7 @@ export default function AddCArForm() {
               
           </div> 
 
-            {/* <input
+            <input
               accept="image/*"
               style={{ display: 'none' }}
               id="raised-button-file"
@@ -325,7 +325,7 @@ export default function AddCArForm() {
               <Button variant="raised" component="span">
                 Upload photos
               </Button>
-            </label>  */}
+            </label> 
           <div className='addcar__item-address'>
             <YandexSuggester setCoordinates={setCoordinates}/>
           </div>

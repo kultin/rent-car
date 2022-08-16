@@ -1,5 +1,5 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
+import React from 'react'
 import { useSelector } from 'react-redux';
 import "./car.modules.scss";
 import "./CarSlider/carslider.modules.scss";
@@ -14,7 +14,6 @@ export default function Car() {
 
   const { id } = useParams();
   const { cars } = useSelector((store) => store.cars)
-  // console.log(cars)
   const car = cars.filter(car => car.id == id)[0];
 
   return (
