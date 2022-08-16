@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.Car, {
-        foreignKey: 'car_id',
+        foreignKey: 'CarId',
       });
       this.belongsTo(models.User, {
         foreignKey: 'user_id',
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     price: DataTypes.INTEGER,
     pick_up: DataTypes.STRING,
     return_place: DataTypes.STRING,
-    car_id: DataTypes.INTEGER,
+    CarId: DataTypes.INTEGER,
     tent_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
     status: DataTypes.STRING,

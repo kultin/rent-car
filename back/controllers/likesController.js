@@ -1,11 +1,11 @@
-const { User, Car, Like} = require('../db/models');
+const { User, Car, Like } = require('../db/models');
 
 
 exports.getAllLikes = async (req, res) => {
-  
-  
+
+
   try {
-    const likes =await Like.findAll({raw:true});
+    const likes = await Like.findAll({ raw: true });
     console.log(likes)
 
   } catch (error) {
@@ -16,15 +16,15 @@ exports.getAllLikes = async (req, res) => {
 
 exports.addLike = async (req, res) => {
   const id = req.session?.user?.id;
-  const carId= req.body.carId;
+  const carId = req.body.carId;
   try {
-    const likeExists =await Like.findOne({where:{car_id:carId, user_id: id}});
+    const likeExists = await Like.findOne({ where: { car_id: carId, user_id: id } });
     // if (likeExists) res.json("You can't like it twice")
     if (!likeExists) {
-      await Like.create ({car_id:carId, user_id: id})
+      await Like.create({ car_id: carId, user_id: id })
       res.sendStatus(200);
     }
-  } catch (err){
+  } catch (err) {
     res.json(err.message)
   }
 

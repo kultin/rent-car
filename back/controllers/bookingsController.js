@@ -5,11 +5,12 @@ const booking = require('../db/models/booking');
 
 exports.getAllBookings = async (req, res) => {
   const id = req.session?.user?.id;
-  console.log(id);
+  console.log(req.session.user.role);
   if (id === undefined) { return res.sendStatus(201) }
   try {
 
     const user = await User.findOne({ where: { id } })
+    
     if (user.role == 'lessee') {
 
       const bookings = await Booking.findAll({
@@ -32,7 +33,7 @@ exports.getAllBookings = async (req, res) => {
       for (let i = 0; i < cars.length; i++) {
         let booking = await Booking.findAll({
           raw: true,
-          where: { car_id: cars[i].id },
+          where: { CarId: cars[i].id },
           include:
           {
             model: Car,
@@ -43,7 +44,7 @@ exports.getAllBookings = async (req, res) => {
           bookings.push(booking[p])
         }
       }
-
+console.log('Test get',bookings);
       res.json(bookings)
     }
   } catch (error) {
@@ -64,23 +65,24 @@ exports.createBooking = async (req, res) => {
       price,
       pick_up: location,
       return_place: location,
-      car_id: carId,
+      CarId: carId,
       user_id: id,
       tent_id: tentId,
       status: 'pre-booking',
     };
+    console.log('TESTcreate1',booking);
     const test = await Booking.create(booking)
-
+    console.log('TESTcreate2',test);
     res.status(200);
   } catch (error) {
-    console.log('Get Booking DB Err ', error.message);
-    res.status(400).json('Get Booking DB Err');
+    console.log('create Booking DB Err ', error.message);
+    res.status(400).json('create Booking DB Err');
   }
 };
 
 exports.applyBooking = async (req, res) => {
   const { id } = req.body;
- 
+
   try {
     const applyBooking = await Booking.update(
       {
