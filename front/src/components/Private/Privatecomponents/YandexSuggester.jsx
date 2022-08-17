@@ -13,6 +13,7 @@ function MapSuggestComponent(props) {
 
   const { ymaps } = props
   const {setCoordinates} = props
+  const { clearInput } = props
 
   const [addressInput, setAddressInput] = React.useState('')
 

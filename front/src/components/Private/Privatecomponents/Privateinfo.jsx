@@ -5,9 +5,8 @@ import '../private.modules.scss';
 
 import AvatarLoader from '../../AvatarLoader/AvatarLoader';
 import Avatar from '@mui/material/Avatar';
-import AddCarModal from "./AddCarModal";
+import AddCarModal from "../../carCard/EditCarModal";
 import { Navigate } from "react-router-dom";
-// import YandexSuggester from "./YandexSuggester";
 
 
 

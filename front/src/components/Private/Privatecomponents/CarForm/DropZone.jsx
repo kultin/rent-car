@@ -33,14 +33,10 @@ const rejectStyle = {
 };
 
 
-
 function MyDropzone(props) {
   const { files } = props
   const {setFiles} = props
 
-  const selectFiles = (e) => {
-    setFiles(e.target.files)
-  }
 
   const {getRootProps,
     getInputProps,
@@ -70,12 +66,6 @@ function MyDropzone(props) {
   return (
     <div className='dnd' {...getRootProps({style})}>
       <input {...getInputProps()} />
-      {
-        files.length ?
-        <DraggableImages files={files} setFiles={setFiles} /> :
-          <p>Drag 'n' drop some files here, or <button onClick={selectFiles}>click</button> to select files</p>
-          
-      }
     </div>
   )
 }
