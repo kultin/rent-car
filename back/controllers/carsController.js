@@ -62,6 +62,7 @@ exports.uploadNewCar = async (req, res) => {
         photo: req.files[0].path.substr(6),
         price: Number(req.body.price),
         capacity: Number(req.body.capacity),
+        likes: 0,
         location: req.body.coordinates,
         user_id: userId,
       });
