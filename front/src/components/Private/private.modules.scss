@@ -29,7 +29,6 @@
   }
 }
 
-
 .user__box {
   display: flex;
   column-gap: 45px;
@@ -258,12 +257,37 @@
 }
 
 .addcar {
+
+  -----стили инпутов формы добавления автомобилей----//
+  .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+    border-radius: 10px;
+    background-color: #fff;
+  }
+  .css-wb57ya-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root,
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    width: 380px;
+  }
+  // .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+  //   border-radius: 10px;
+  //   background-color: #fff;
+  // }
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root {
+    background-color: transparent;
+  }
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root,
+  .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border-color: #fff;
+    // width: 380px;
+  }
+  //--------------------------------------------------//
+
   animation: fade-block 1.7s forwards;
   width: 100%;
   &__inner {
     padding: 33px;
     border-radius: 25px;
-    background: #C2C2C4;
+    background: #cccccf;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -275,51 +299,100 @@
     width: 100%;
     margin-bottom: 30px;
   }
-  &__item-input {
-    width: 380px;
-    // border-radius: 6px;
-    // background: #FFFFFF;
-    // outline: none;
-    // border: none;
-    // border: 1px solid #e5e5e5;
-    // transition: all 0.3s;
-    // padding: 16px;
-    // box-shadow: 0px 2px 12px 0px rgba(33,33,33,0.2);
-    // &:focus {
-    //   border: 1px solid #262626;
-    // }
-    // &::placeholder {
-    //   font-size: 17px;
-    //   line-height: 23px;
-    //   color: #939393;
-    // }
-  }
   &__item-buttons,
   &__item-dropzone,
   &__item-address {
     width: 100%;
   }
-  &__item-buttons {
-    display: flex;
-    justify-content: space-around;
-  }
   &__btn {
     background: #CA0100;
     color: #fff;
   }
+  &__item-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    row-gap: 10px;
+    padding: 0;
+  }
+  &__item-list-item {
+    position: relative;
+    list-style: none;
+    width: 120px;
+    height: 120px;
+    box-shadow: 0px 2px 12px 0px rgba(33,33,33,0.2);
+  margin-right: 15px;
+  }
+
+  &__item-list-img {
+    max-width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    height: 100%;
+  }
+  &__item-list-btn {
+    border: none;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    &::after {
+      content: "x";
+      font-size: 18px;
+    }
+  }
+  &__item-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__item-buttons-btn {
+    cursor: pointer;
+    border: none;
+    background: #CA0100;
+    padding: 15px 40px;
+    font-weight: 700;
+    // letter-spacing: 1.2;
+    color: #fff;
+    border-radius: 10px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    &:hover {
+      background: #ee0101;
+    }
+  }
+}
+
+.react-tabs {
+  width: 100%;
+}
+.react-tabs__tab-panel {
+  margin-top: 30px;
+}
+.react-tabs__tab-list {
+  border-bottom: 1px solid #d37d7d !important;
+}
+.react-tabs__tab--selected {
+  border-color: #d37d7d !important;
+  color: #d32f2f !important;
 }
 
 .dnd {
+  margin: 0;
   border: 3px solid #ffffff;
   border-radius: 10px;
-  width: 300px !important;
+  width: 373px !important;
   height: 250px !important;
   background-color: transparent !important;
   position: relative;
   outline: none;
   transition: all 0.3s;
+  border-style: dashed;
   &:hover {
-    background-color: rgba(#fff, 0.1) !important;
+    background-color: rgba(#fff, 0.3) !important;
   }
   &::after {
     content: "";
@@ -336,13 +409,12 @@
     content: "Выберите или перетащите фото";
     position: absolute;
     width: 250px;
-    top: 160px;
+    top: 180px;
     left: 50%;
     transform: translateX(-50%);
     color: #fff;
   }
 }
-
 .dnd p {
   display: none;
 }
