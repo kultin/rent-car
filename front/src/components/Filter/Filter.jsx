@@ -11,6 +11,7 @@ export default function Filter() {
   const [valueBody, setValueBody] = React.useState("all");
   const [valueBrand, setValueBrand] = React.useState(options[0]);
   const [valuePrice, setValuePrice] = React.useState(optionsPrice[0]);
+  // const [select, setSelect] = React.useState(false);
   const dispatch = useDispatch();
 
   const onClick = () => {

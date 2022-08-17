@@ -43,7 +43,7 @@ const initialValues = {
 export default function AddCArForm({car}) {
 
   console.log('CAR FROM ADDCAR FORM', car)
-   
+  
   const { cars } = useSelector((store) => store.cars)
   // console.log('Cars', cars)
   
@@ -69,11 +69,9 @@ export default function AddCArForm({car}) {
 
   const [files, setFiles] = useState([])
 
-  // console.log('FILE ADD CAR FORM',files)
   const [coordinates, setCoordinates] = useState(null)
   // console.log('CORDINATES ADD CAR FORM', coordinates)
   
-
   const [errors, setErrors] = useState({})
   // console.log('Errors', errors)
 

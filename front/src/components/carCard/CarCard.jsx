@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import "./carcard.module.scss"
+import "./carcard.modules.scss"
+// import "../Slider/slider.modules.scss"
 import EditCarModal from './EditCarModal';
+
 
 export default function CarCard({ car, edit=false, delCar=false }) {
 
