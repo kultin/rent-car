@@ -25,7 +25,7 @@ export default function Catalogue() {
   const filter = useSelector((store) => store.cars.filter)
   const currentPage = useSelector((store) => store.cars.currentPage)
 
-  const [carsPerPage] = useState(9);
+  const [carsPerPage] = useState(8);
   const lastCarIndex = currentPage * carsPerPage;
   const firstCarIndex = lastCarIndex - carsPerPage;
   const currentCars = cars.slice(firstCarIndex, lastCarIndex);
