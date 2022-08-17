@@ -5,6 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 
 import AddCArForm from '../Private/Privatecomponents/AddCarForm';
+import "./carcard.modules.scss"
 
 export default function EditCarModal({car}) {
   
