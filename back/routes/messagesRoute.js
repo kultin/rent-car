@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.post('/getmessages', getMessages);
 
+// router.options('/sendmessage', sendMessage);
+
 router.post('/sendmessage', sendMessage);
 
 router.post('/readmessages', readMessages);

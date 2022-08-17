@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { applyBookingThunk, sendMessegeThunk, getMessagesThunk, readMessagesThunk } from '../../../store/userActions'
 import '../private.modules.scss';
+import socketIOClient from "socket.io-client";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -9,12 +10,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { getMessagesUA } from '../../../store/userActions';
+
 
 export default function Privatebookings({ title }) {
 
   const dispatch = useDispatch()
 
-  const [sendValues, setSendValues] = React.useState({ text: ' ' })
+  const [sendValues, setSendValues] = React.useState({ id: 0, text: ' ' })
 
   const [open, setOpen] = React.useState(false)
 
@@ -24,14 +27,31 @@ export default function Privatebookings({ title }) {
 
   const messages = useSelector((store) => store.user.messages);
 
+  const socketRef = useRef();
+
+  useEffect(() => {
+    socketRef.current = socketIOClient("http://localhost:3010", {
+      query: { roomId: sendValues.id },
+    });
+
+    socketRef.current.on("newChatMessage", (message) => {
+      dispatch(getMessagesThunk(sendValues.id))
+    });
+
+    return () => {
+      socketRef.current.disconnect();
+    };
+
+  }, [sendValues.id]);
+
   React.useEffect(() => {
     if (sendValues.id != undefined) {
       dispatch(getMessagesThunk(sendValues.id))
     }
+
   }, [open])
 
   const statusDisplay = () => {
-
     for (let i = 0; i < bookings.length; i++) {
       let status
       if (bookings[i].status == 'booked') {
@@ -44,8 +64,8 @@ export default function Privatebookings({ title }) {
       if (user.role == 'lessee' && bookings[i].status == 'pre-booking') {
         bookings[i].status = 'Ожидает подтверждения'
       }
+
     }
-    console.log('Status', bookings);
     return bookings
   }
 
@@ -63,11 +83,12 @@ export default function Privatebookings({ title }) {
   }
 
   const handleClickOpen = (id) => {
+    dispatch(readMessagesThunk(id))
+
     setSendValues((prev) => {
       return { ...prev, ['id']: id }
     });
 
-    dispatch(readMessagesThunk(id))
     setOpen(true);
   };
 
@@ -77,6 +98,11 @@ export default function Privatebookings({ title }) {
 
   const sendHandler = () => {
     dispatch(sendMessegeThunk(sendValues))
+
+    socketRef.current.emit("newChatMessage", {
+      senderId: socketRef.current.id,
+    });
+
     setSendValues((prev) => {
       return { ...prev, text: '' }
     });
@@ -142,7 +168,7 @@ export default function Privatebookings({ title }) {
                 </div>
                 <div className="bookings__item-chat bookings__box">
                   <p className="bookings__item-chat-title bookings__box-title">Чат</p>
-                  <p className="bookings__item-chat-value bookings__box-value" onClick={() => handleClickOpen(booking.booking_id)}>Кнопка</p>
+                  <button className="bookings__item-chat-value bookings__box-btn" onClick={() => handleClickOpen(booking.booking_id)}>Чат</button>
                 </div>
               </div>
 
@@ -170,15 +196,11 @@ export default function Privatebookings({ title }) {
                 </div>
                 <div className="bookings__item-chat bookings__box">
                   <p className="bookings__item-chat-title bookings__box-title">Чат</p>
-                  <p className="bookings__item-chat-value bookings__box-value" onClick={() => handleClickOpen(booking.booking_id)}>Кнопка</p>
+                  <button className="bookings__item-chat-value bookings__box-btn" onClick={() => handleClickOpen(booking.booking_id)}>Чат</button>
                 </div>
               </div>
-
             )
-
-
           ))}
-
         </div>
       </div>
     </>

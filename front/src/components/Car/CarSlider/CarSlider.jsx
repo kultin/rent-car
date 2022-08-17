@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Slider from "react-slick";
 import "./carslider.modules.scss";
 
@@ -46,12 +48,25 @@ function SamplePrevArrow(props) {
 
 export default function CarSlider({ car }) {
 
-  const [like, setLike] = useState(false);
+  const user = useSelector((store) => (store.user.user))
+  console.log('user: ', user);
+  const like = car.Likes.filter((like) => like.user_id == user.id)[0]
+  // console.log('isLike: ', like);
+
+  const [checked, setChecked] = useState(false);
 
   const likeHandler = (e) => {
     e.preventDefault();
-    if (like) setLike(false)
-    if (!like) setLike(true)
+    if (!checked) {
+      setChecked(true)
+      axios.patch(`http://localhost:3005/likes/${car.id}`, { withCredentials: true })
+        .then((res) => console.log(res.data))
+    }
+    if (checked) {
+      axios.delete(`http://localhost:3005/likes/${car.id}`, { withCredentials: true })
+        .then((res) => console.log(res.data))
+      setChecked(false)
+    }
   }
 
   const settings = {
@@ -108,7 +123,7 @@ export default function CarSlider({ car }) {
     ]
   };
 
-  console.log(car)
+
 
   return (
     <div className="carslider">
@@ -124,7 +139,7 @@ export default function CarSlider({ car }) {
         ) : (
           <div key={car.id}>
             <img className="carslider__img" src={"/img.png"} alt="slider-img" />
-            <button className={like ? "carslider__heart active" : "carslider__heart"} onClick={likeHandler}></button>
+            <button className={checked ? "carslider__heart active" : "carslider__heart"} onClick={likeHandler}></button>
           </div>
         )
         }

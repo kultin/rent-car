@@ -7,6 +7,15 @@ const cors = require('cors');
 
 const sessions = require('express-session');
 const FileStore = require('session-file-store')(sessions);
+const server = require('http').createServer()
+const io = require('socket.io')(server, {
+  cors: {
+    origin: [
+      'http://localhost:3000',
+    ],
+  }
+})
+
 
 const editUserRoute = require('./routes/editUserRoute');
 const authRoute = require('./routes/authRoute');
@@ -24,8 +33,8 @@ const corsOptions = {
   origin: [
     'http://localhost:3000',
   ],
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  credentials: true, // we send cookies
+  optionsSuccessStatus: 200,
+  credentials: true,
 };
 
 app.use(sessions({
@@ -40,12 +49,28 @@ app.use(sessions({
   },
 }));
 
+io.on("connection", (socket) => {
+  const { roomId } = socket.handshake.query;
+  socket.join(roomId);
+  console.log(roomId);
+
+  socket.on("newChatMessage", (data) => {
+    io.in(roomId).emit("newChatMessage", data);
+  });
+
+  socket.on("disconnect", () => {
+    socket.leave(roomId);
+  });
+});
+
+
 app.use(morgan('dev'));
 app.use(cors(corsOptions));
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.get('/', async (req, res) => {
   res.send('Hello');
@@ -58,6 +83,10 @@ app.use('/bookings', bookingsRoute);
 app.use('/tents', tentsRoute);
 app.use('/messages', messagesRoute);
 app.use('/likes', likesRoute);
+
+server.listen(3010, () => {
+  console.log(`Server ready. Port: 3010`)
+})
 
 app.listen(PORT, () => {
   console.log(`Server started on ${PORT}`);

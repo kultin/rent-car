@@ -25,8 +25,8 @@ export default function Private() {
         <Privateinfo />
         <div className="user__box-value">
           <Privatebookings title="Мои заказы" />
-          <AddCArForm />
-          <PrivateCars />
+          {/* <AddCArForm /> */}
+          {/* <PrivateCars /> */}
         </div>
       </div>
     </div>

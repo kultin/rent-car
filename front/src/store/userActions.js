@@ -206,6 +206,7 @@ export const getMessagesThunk = (id) => async (dispatch) => {
         });
 
         const messages = await response.json()
+        console.log(messages);
         dispatch(getMessagesUA(messages))
 
 
@@ -228,6 +229,7 @@ export const sendMessegeThunk = (values) => async (dispatch) => {
         });
 
         const message = await response.json()
+        if (response.status == 200) {console.log(message);}
 
     } catch (err) {
         console.error('err', err);
@@ -249,7 +251,7 @@ export const readMessagesThunk = (id) => async (dispatch) => {
 
         if (response.status == 200) {
 
-            dispatch(getMessagesThunk(id))
+            console.log('READthunk200');
         }
 
     } catch (err) {

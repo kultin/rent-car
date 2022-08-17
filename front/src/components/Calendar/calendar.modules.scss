@@ -16,6 +16,7 @@
     flex-direction: column;
     justify-content: space-between;
     order: 2;
+    width: 250px;
   }
   &__content-days,
   &__content-price {
@@ -44,11 +45,11 @@
     text-align: center;
   }
   &__tent {
-    width: 250px;
+    width: 300px;
   }
   &__tent-select {
     width: 100%;
-    height: 30px;
+    height: 40px;
     border: 1px solid #e5e5e5;
     background-color: #fff;
     border-radius: 6px;
@@ -115,7 +116,7 @@
 }
 &__tent-img {
   width: 100%;
-  height: 200px;
+  height: 190px;
   object-fit: cover;
   margin-top: 10px;
   border-radius: 25px;

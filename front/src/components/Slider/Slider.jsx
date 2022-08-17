@@ -87,7 +87,7 @@ export default function HomeSlider() {
           slidesToShow: 2,
           slidesToScroll: 1,
           initialSlide: 2,
-          dots: false,
+          // dots: true,
           arrows: false
         }
       },
@@ -96,7 +96,7 @@ export default function HomeSlider() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          // centerMode: true,
+          // dots: true,
           arrows: false
 
         }
@@ -105,7 +105,6 @@ export default function HomeSlider() {
   };
 
   const { cars } = useSelector((store) => store.cars)
-  console.log(cars)
 
   return (
     <div className="slider">
@@ -117,9 +116,7 @@ export default function HomeSlider() {
         <Slider {...settings}>
           {cars &&
             cars.map((car) =>
-              // car?.Images?.length && (
                 < CarCard key={car.id} car={car} />
-              // ) 
             )
           }
         </Slider>

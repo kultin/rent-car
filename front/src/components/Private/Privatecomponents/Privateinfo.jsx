@@ -47,19 +47,22 @@ export default function Privateinfo() {
           }
           <div className="info__content">
             {(condition) ? (
-              <input type='text' name='name' value={changes.name} onChange={inputHandler} />
+              <input className="info__content-info" type='text' name='name' value={changes.name} onChange={inputHandler} />
             ) : (
               <p className="info__content-name">{user.name}</p>
             )}
             <p className="info__content-role">{user.role}</p>
             <p className="info__content-email">{user.email}</p>
             {(condition) ? (
-              <input type='text' name='tel' value={changes.tel} onChange={inputHandler} />
+              <input className="info__content-info content__phone" type='text' name='tel' value={changes.tel} onChange={inputHandler} />
             ) : (
               <p className="info__content-tel">{user.tel}</p>
             )}
             {(condition) ? (
-              <button className="btn info__content-btn" onClick={applyHandler}>Применить</button>
+              <>
+                <AvatarLoader />
+                <button className="btn info__content-btn" onClick={applyHandler}>Применить</button>
+              </>
             ) : (
               <button className="btn info__content-btn" onClick={editHandler}>Редактировать</button>
             )}
