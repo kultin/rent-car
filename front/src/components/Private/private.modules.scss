@@ -257,28 +257,22 @@
 }
 
 .addcar {
-
-  -----стили инпутов формы добавления автомобилей----//
+  //-----стили инпутов формы добавления автомобилей и модалки----//
   .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
-    border-radius: 10px;
     background-color: #fff;
   }
-  .css-wb57ya-MuiFormControl-root-MuiTextField-root,
-  .css-16awh2u-MuiAutocomplete-root,
-  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root {
     width: 380px;
-  }
-  // .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
-  //   border-radius: 10px;
-  //   background-color: #fff;
-  // }
-  .css-wp08kf-MuiFormControl-root-MuiTextField-root {
-    background-color: transparent;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 1px 12px 0px rgba(134, 134, 134, 0.2);
+
   }
   .css-wp08kf-MuiFormControl-root-MuiTextField-root,
   .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-    border-color: #fff;
-    // width: 380px;
+    border-color: transparent;
+    border-radius: 10px;
   }
   //--------------------------------------------------//
 

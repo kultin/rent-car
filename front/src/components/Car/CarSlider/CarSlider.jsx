@@ -99,8 +99,6 @@ export default function CarSlider({ car }) {
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // adaptiveHeight: true,
-    // variableWidth: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -111,9 +109,6 @@ export default function CarSlider({ car }) {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          // adaptiveHeight: true,
-          // variableWidth: true,
-          // centerMode: true,
         }
       },
       {
@@ -123,9 +118,6 @@ export default function CarSlider({ car }) {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          // adaptiveHeight: true,
-          // variableWidth: true,
-          // centerMode: true,
         }
       },
       {
@@ -148,7 +140,7 @@ export default function CarSlider({ car }) {
     ]
   };
 
-
+  console.log('front', user)
 
   return (
     <div className="carslider">
@@ -166,9 +158,9 @@ export default function CarSlider({ car }) {
         ) : (
           <div key={car.id}>
             <img className="carslider__img" src={"/img.png"} alt="slider-img" />
-            {user?.name &&
+            {user?.name && 
               <button className={checked ? "carslider__heart active" : "carslider__heart"} onClick={likeHandler}></button>
-            }
+            } 
           </div>
         )
         }
