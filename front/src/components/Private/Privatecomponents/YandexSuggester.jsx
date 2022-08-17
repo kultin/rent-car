@@ -26,7 +26,6 @@ function MapSuggestComponent(props) {
   console.log('CLEAR INPUT', clearInput)
 
   const {setValues} = props
-  
 
   const getAddress = (coords) => {
     ymaps.geocode(`${coords}`)

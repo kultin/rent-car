@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as R from 'ramda';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Radio from '@mui/material/Radio';
@@ -35,6 +35,8 @@ const initialValues = {
 }
 
 export default function AddCArForm({ car }) {
+
+  const dispatch = useDispatch()
 
   console.log('CAR FROM ADDCAR FORM', car)
 
@@ -102,93 +104,98 @@ export default function AddCArForm({ car }) {
   }
 
   const handleReset = () => {
+    setAddressInput(true)
     setValues(initialValues)
     setErrors({})
     setFiles([])
-    setAddressInput(true)
   }
 
   const addCarToDb = async () => {
-    const formData = new FormData()
-    console.log('AADDDCARRR')
-    formData.append('brand', values.brand)
-    formData.append('model', values.model)
-    formData.append('body', values.body)
-    formData.append('year', values.year)
-    formData.append('engine', values.engine)
-    formData.append('gear', values.gear)
-    formData.append('power', values.power)
-    formData.append('seats', values.seats)
-    formData.append('price', values.price)
-    formData.append('capacity', values.capacity)
-    formData.append('coordinates', coordinates)
-    if (files) {
-      for (let el of files) {
-        formData.append('file', el)
+    if(validate()) {
+      setAddressInput(false)
+      const formData = new FormData()
+      formData.append('brand', values.brand)
+      formData.append('model', values.model)
+      formData.append('body', values.body)
+      formData.append('year', values.year)
+      formData.append('engine', values.engine)
+      formData.append('gear', values.gear)
+      formData.append('power', values.power)
+      formData.append('seats', values.seats)
+      formData.append('price', values.price)
+      formData.append('capacity', values.capacity)
+      formData.append('coordinates', coordinates)
+      if (files) {
+        for (let el of files) {
+          formData.append('file', el)
+        }
       }
-    }
-
-    try {
-      await axios.post('cars/new-car', formData, {
-        withCredentials: true,
-        headers: {
-          'content-type': 'multipart/form-data'
-        }
-      }).then(res => {
-        if (res.status == 200) {
-          window.alert('загружено успешно')
-          console.log('AXIOS DATA', res)
-        } else {
-          window.alert('Ошибка загрузки')
-          console.log('AXIOS DATA', res)
-        }
-      })
-      // .then(res => console.log('AXIOS DATA',res.status))
-    } catch (error) {
-      console.log(error.message)
+  
+      try {
+        await axios.post('cars/new-car', formData, {
+          withCredentials: true,
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        }).then(res => {
+          if (res.status == 200) {
+            window.alert('загружено успешно')
+            console.log('AXIOS DATA', res)
+          } else {
+            window.alert('Ошибка загрузки')
+            console.log('AXIOS DATA', res)
+          }
+        })
+        // .then(res => console.log('AXIOS DATA',res.status))
+      } catch (error) {
+        console.log(error.message)
+      }
     }
   }
 
   const editCarToDb = async () => {
-    const formData = new FormData()
-    console.log('VALUES FROM EDIT', values)
+    if (validate()) {
+      setAddressInput(false)
+      const formData = new FormData()
+      // console.log('VALUES FROM EDIT', values)
 
-    formData.append('id', values.id)
-    formData.append('brand', values.brand)
-    formData.append('model', values.model)
-    formData.append('body', values.body)
-    formData.append('year', values.year)
-    formData.append('engine', values.engine)
-    formData.append('gear', values.gear)
-    formData.append('power', values.power)
-    formData.append('seats', values.seats)
-    formData.append('price', values.price)
-    formData.append('capacity', values.capacity)
-    formData.append('coordinates', coordinates)
-    if (files) {
-      for (let el of files) {
-        formData.append('file', el)
+      formData.append('id', values.id)
+      formData.append('brand', values.brand)
+      formData.append('model', values.model)
+      formData.append('body', values.body)
+      formData.append('year', values.year)
+      formData.append('engine', values.engine)
+      formData.append('gear', values.gear)
+      formData.append('power', values.power)
+      formData.append('seats', values.seats)
+      formData.append('price', values.price)
+      formData.append('capacity', values.capacity)
+      formData.append('coordinates', coordinates)
+      if (files) {
+        for (let el of files) {
+          formData.append('file', el)
+        }
       }
-    }
 
-    try {
-      await axios.post('cars/mycars/edit/', formData, {
-        withCredentials: true,
-        headers: {
-          'content-type': 'multipart/form-data'
-        }
-      }).then(res => {
-        if (res.status == 200) {
-          window.alert('загружено успешно')
-          console.log('AXIOS DATA', res)
-        } else {
-          window.alert('Ошибка загрузки')
-          console.log('AXIOS DATA', res)
-        }
-      })
-      // .then(res => console.log('AXIOS DATA',res.status))
-    } catch (error) {
-      console.log(error.message)
+      try {
+        await axios.post('cars/mycars/edit/', formData, {
+          withCredentials: true,
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        }).then(res => {
+          if (res.status == 200) {
+            window.alert('загружено успешно')
+            console.log('AXIOS DATA', res)
+          } else {
+            window.alert('Ошибка загрузки')
+            console.log('AXIOS DATA', res)
+          }
+        })
+        // .then(res => console.log('AXIOS DATA',res.status))
+      } catch (error) {
+        console.log(error.message)
+      }
     }
   }
 
@@ -328,8 +335,6 @@ export default function AddCArForm({ car }) {
               InputLabelProps={{ required: true }}
               onChange={handleInputChange}
               label="Какая цена?" />
-          </div>
-
           <Button
             type='submit'
             onClick={handleSubmit}
@@ -337,6 +342,8 @@ export default function AddCArForm({ car }) {
             style={{ display: 'none' }}
 
           >Тест проверка</Button>
+          </div>
+
 
           <div className='addcar__item-buttons'>
             {car ?

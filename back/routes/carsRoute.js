@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const {
-  getAllCars, getCarById, getLessorCars, uploadNewCar, editCar
+  getAllCars, getCarById, getLessorCars, uploadNewCar, editCar,
 } = require('../controllers/carsController');
 const uploadCarsPhotoMiddleware = require('../middlewares/uploadCarsPhotoMiddleware');
 
