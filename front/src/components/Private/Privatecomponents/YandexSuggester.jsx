@@ -2,17 +2,16 @@ import React from "react";
 import { YMaps, withYMaps } from "react-yandex-maps";
 import TextField from '@mui/material/TextField';
 
-const addressStyles ={
-
-  maxWidth: '100%',
-  backgroundColor: '#fff',
-  borderRadius: '3px'
-}
+// const addressStyles ={
+//   maxWidth: '100%',
+//   backgroundColor: '#fff',
+//   borderRadius: '3px'
+// }
 
 function MapSuggestComponent(props) {
 
   const { ymaps } = props
-  const {setCoordinates} = props
+  const { setCoordinates } = props
   const { clearInput } = props
 
   const [addressInput, setAddressInput] = React.useState('')
@@ -27,32 +26,30 @@ function MapSuggestComponent(props) {
 
   const getCoords = (addres) => {
     ymaps.geocode(`${addres}`)
-          .then((result) => {
-            setCoordinates(result.geoObjects.get(0).geometry.getCoordinates())
-          })
+      .then((result) => {
+        setCoordinates(result.geoObjects.get(0).geometry.getCoordinates())
+      })
   }
 
   return (
-          <TextField 
-            id="suggest" 
-            // sx={addressStyles}
-            label="Введите адрес"
-            style={{
-              width: '100%',
-              height: '55px',
-              border: 'none',
-              marginBottom: '20px',
-              backgroundColor:'#fff'
-            }}
-            // variant="outlined"
-            value={addressInput}
-            placeholder='Введите адрес'
-            onChange={(e) => setAddressInput(e.target.value)} />
-  )  
+    <TextField
+      id="suggest"
+      label="Введите адрес"
+      style={{
+        width: '100%',
+        height: '55px',
+        border: 'none',
+        marginBottom: '30px',
+      }}
+      variant="outlined"
+      value={addressInput}
+      placeholder='Введите адрес'
+      onChange={(e) => setAddressInput(e.target.value)} />
+  )
 }
 
 export default function YandexSuggester(props) {
-  const {setCoordinates} = props
+  const { setCoordinates } = props
   const SuggestComponent = React.useMemo(() => {
     return withYMaps(MapSuggestComponent, true, [
       "SuggestView",
