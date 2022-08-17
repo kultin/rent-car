@@ -309,6 +309,11 @@
   }
 }
 
+.react-tabs {
+  width: 100%;
+}
+
+
 .dnd {
   border: 3px solid #ffffff;
   border-radius: 10px;
@@ -336,13 +341,12 @@
     content: "Выберите или перетащите фото";
     position: absolute;
     width: 250px;
-    top: 160px;
+    top: 180px;
     left: 50%;
     transform: translateX(-50%);
     color: #fff;
   }
 }
-
 .dnd p {
   display: none;
 }

@@ -65,12 +65,10 @@ export default function AddCArForm() {
     setFiles(e.target.files)
   }
 
- 
   console.log('FILE ADD CAR FORM',files)
   const [coordinates, setCoordinates] = useState(null)
   console.log('CORDINATES MODAL', coordinates)
   
-// =======
   const handleOnDragEnd = (result) => {
     if (!result.destination) return
     const items = files.slice()

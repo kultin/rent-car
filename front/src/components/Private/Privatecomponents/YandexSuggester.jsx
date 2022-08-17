@@ -32,7 +32,7 @@ function MapSuggestComponent(props) {
   }
 
   return (
-          <input 
+          <TextField 
             id="suggest" 
             // sx={addressStyles}
             label="Введите адрес"
@@ -40,7 +40,8 @@ function MapSuggestComponent(props) {
               width: '100%',
               height: '55px',
               border: 'none',
-              marginBottom: '20px'
+              marginBottom: '20px',
+              backgroundColor:'#fff'
             }}
             // variant="outlined"
             value={addressInput}
