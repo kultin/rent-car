@@ -16,7 +16,6 @@ export default function CarCalendar({ car }) {
 
   const dispatch = useDispatch()
 
-
   const navigate = useNavigate();
   const user = useSelector((store) => (store.user.user))
   const { bookings } = useSelector((store) => (store.bookings))

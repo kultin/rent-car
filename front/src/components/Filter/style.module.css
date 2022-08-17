@@ -1,13 +1,26 @@
+@keyframes fade-in-filter {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .filter {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
-  background: #F7F7F7;
+  background: #f7f7f7;
   border-radius: 25px;
   padding: 15px;
-  box-shadow: 0px 2px 12px 0px rgba(33,33,33,0.2);
+  box-shadow: 0px 2px 12px 0px rgba(33, 33, 33, 0.2);
+  animation: fade-in-filter 1s forwards ease;
 }
+
 .carbody {
   display: flex;
   justify-content: space-between;
@@ -15,15 +28,33 @@
 }
 .btn {
   cursor: pointer;
-  width: 140px;
-  border: 1px solid #dadada;
+  width: 170px;
+  border: 1px solid #b8b8b8;
   background-color: transparent;
   padding: 15px;
   transition: all 0.3s;
-  border-radius: 12px;
+  border-radius: 6px;
+}
+.btn2 {
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #fff;
+  border-radius: 6px;
+  background: #ca0100;
+  padding: 12px 20px;
+  transition: all 0.3s;
+}
+.btn2:hover {
+  background: #ee0101;
+  box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.2);
 }
 .btn:hover {
-  box-shadow: 0px 1px 20px -2px #c93d3d;
+  box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.2);
+  border-color: rgb(165, 165, 165);
 }
 .btn + .btn {
   margin-left: 20px;
@@ -36,13 +67,4 @@
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-}
-.rate {
-  margin: 20px;
-}
-.rate button{
-  width: 90px;
-}
-.sort {
-  margin: 20px;
 }
