@@ -26,6 +26,7 @@ export default function Privateinfo() {
 
   const applyHandler = () => {
     setCondition(false);
+    console.log('ID FROM PRIVATE INFO',user.id)
     dispatch(editUserThunk(user.id, changes))
     window.location.reload();
   }

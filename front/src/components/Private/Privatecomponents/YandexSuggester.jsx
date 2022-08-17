@@ -6,18 +6,18 @@ import { useSelector } from "react-redux";
 import { set } from "ramda";
 
 
-const addressStyles ={
-
-  maxWidth: '100%',
-  backgroundColor: '#fff',
-  borderRadius: '3px'
-}
+// const addressStyles ={
+//   maxWidth: '100%',
+//   backgroundColor: '#fff',
+//   borderRadius: '3px'
+// }
 
 function MapSuggestComponent(props) {
 
   const values = useSelector((store) => store.form.values)
  
   const { ymaps } = props
+
   const {setCoordinates} = props
   const { car } = props
 
@@ -48,7 +48,6 @@ function MapSuggestComponent(props) {
     const suggestView = new ymaps.SuggestView("suggest");
     suggestView.events.add("select", (e) => {
       getCoords(e.get("item").value)
-      console.log('sadfssfsf')
       setAddressInput(e.get("item").value)
     });
   }, [ymaps.SuggestView]);
@@ -57,7 +56,6 @@ function MapSuggestComponent(props) {
   const getCoords = (addres) => {
     ymaps.geocode(`${addres}`)
           .then((result) => {
-            console.log('aefsfjjgjsrgjg')
             setCoordinates(result.geoObjects.get(0).geometry.getCoordinates())
             // setValues({...values, coo})
           })

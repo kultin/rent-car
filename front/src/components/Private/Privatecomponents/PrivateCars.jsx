@@ -14,9 +14,7 @@ export default function PrivateCars() {
   return (
     <>
       <h2 className="title privatecars__title">Мои машины</h2>
-      
         {userCars.map((car) => < CarCard key={car.id} car={car} edit={edit} delCar={delCar}/>)}
-      
     </>
   )
 }

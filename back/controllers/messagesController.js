@@ -63,7 +63,7 @@ exports.sendMessage = async (req, res) => {
       })
     } 
 
-    res.status(200)
+    res.sendStatus(200)
   } catch (error) {
     console.log('Send Message DB Err ', error.message);
     res.status(400).json('Send Message DB Err');
@@ -83,10 +83,10 @@ exports.readMessages = async (req, res) => {
         where: { recipient_id: req.session.user.id }
       })
 
-    res.status(200)
+    res.sendStatus(200)
 
   } catch (error) {
-    console.log('Send Message DB Err ', error.message);
-    res.status(400).json('Send Message DB Err');
+    console.log('READ Message DB Err ', error.message);
+    res.status(400).json('READ Message DB Err');
   }
 };

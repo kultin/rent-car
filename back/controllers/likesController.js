@@ -19,7 +19,6 @@ exports.deleteLike = async (req, res) => {
 
   try {
     const like = await Like.findOne({ where: { car_id: carId, user_id: id } });
-    console.log('back like: ', like);
     await Like.destroy({ where: { car_id: carId, user_id: id } })
     await Car.decrement('likes', { by: 1 });
     res.status(200).json(like);
@@ -29,12 +28,21 @@ exports.deleteLike = async (req, res) => {
 };
 
 exports.getLikes = async (req, res) => {
-
   try {
     const likes = await Like.findAll();
-    console.log('back likes: ', likes);
     res.status(200).json(likes);
   } catch (err) {
     res.json(err.message)
   }
 };
+
+exports.getUserLikes = async (req, res) => {
+  const id = req.session?.user?.id;
+  try {
+    const likes = await Like.findAll({where: {user_id: id}});
+    res.status(200).json(likes);
+  } catch (err) {
+    res.json(err.message)
+  }
+};
+
