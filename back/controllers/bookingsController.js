@@ -6,7 +6,6 @@ exports.getCarBookings = async (req, res) => {
   const { id } = req.params
   try {
     const bookings = await Booking.findAll({})
-    console.log(bookings)
     res.status(200).json(bookings);
   } catch (error) {
     console.log('Get Bookings DB Err ', error.message);

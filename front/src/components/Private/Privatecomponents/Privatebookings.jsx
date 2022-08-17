@@ -142,7 +142,7 @@ export default function Privatebookings({ title }) {
                 </div>
                 <div className="bookings__item-chat bookings__box">
                   <p className="bookings__item-chat-title bookings__box-title">Чат</p>
-                  <p className="bookings__item-chat-value bookings__box-value" onClick={() => handleClickOpen(booking.booking_id)}>Кнопка</p>
+                  <button className="bookings__item-chat-value bookings__box-btn" onClick={() => handleClickOpen(booking.booking_id)}>Чат</button>
                 </div>
               </div>
 
@@ -170,15 +170,11 @@ export default function Privatebookings({ title }) {
                 </div>
                 <div className="bookings__item-chat bookings__box">
                   <p className="bookings__item-chat-title bookings__box-title">Чат</p>
-                  <p className="bookings__item-chat-value bookings__box-value" onClick={() => handleClickOpen(booking.booking_id)}>Кнопка</p>
+                  <button className="bookings__item-chat-value bookings__box-btn" onClick={() => handleClickOpen(booking.booking_id)}>Чат</button>
                 </div>
               </div>
-
             )
-
-
           ))}
-
         </div>
       </div>
     </>
