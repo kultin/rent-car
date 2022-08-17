@@ -27,49 +27,49 @@
       background: #ee0101;
     }
   }
-  &__item-block {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  &__item-title {
-    font-size: 23px;
-    margin: 5px 0;
-  }
-  // &__item-title2 {
-  //   margin: 0;
-  //   color: #747474;
+  // &__item-block {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   align-items: center;
   // }
-  &__item-price {
-    font-size: 22px;
-    font-weight: 700;
-    margin: 0;
-  }
-  &__item-btn {
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #fff;
-    border-radius: 6px;
-    background: #CA0100;
-    padding: 5px 20px;
-    transition: all 0.3s;
-    &:hover {
-      background: #ee0101;
-    }
-  }
-  &__item-img {
-    object-fit: cover;
-    width: 328px;
-    height: 202px;
-    border-radius: 25px;
-    filter: brightness(70%);
-    transition: all 0.3s;
-  }
-  &__item:hover &__item-img{
-    filter: brightness(100%);
-  }
+  // &__item-title {
+  //   font-size: 23px;
+  //   margin: 5px 0;
+  // }
+  // // &__item-title2 {
+  // //   margin: 0;
+  // //   color: #747474;
+  // // }
+  // &__item-price {
+  //   font-size: 22px;
+  //   font-weight: 700;
+  //   margin: 0;
+  // }
+  // &__item-btn {
+  //   text-decoration: none;
+  //   font-weight: 400;
+  //   font-size: 16px;
+  //   line-height: 24px;
+  //   color: #fff;
+  //   border-radius: 6px;
+  //   background: #CA0100;
+  //   padding: 5px 20px;
+  //   transition: all 0.3s;
+  //   &:hover {
+  //     background: #ee0101;
+  //   }
+  // }
+  // &__item-img {
+  //   object-fit: cover;
+  //   width: 328px;
+  //   height: 202px;
+  //   border-radius: 25px;
+  //   filter: brightness(70%);
+  //   transition: all 0.3s;
+  // }
+  // &__item:hover &__item-img{
+  //   filter: brightness(100%);
+  // }
   .slick-slider {
     position: relative;
   }
@@ -88,9 +88,6 @@
     font-size: 20px;
     opacity: 1;
     color: #fff;
-  }
-  &__item-title3 {
-    text-align: center;
   }
   .slider__item-list {
     padding: 0;
