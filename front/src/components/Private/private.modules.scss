@@ -253,7 +253,10 @@
   &__inner {
     border-radius: 25px;
     background: #F7F7F7;
-  }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
 }
 
 .addcar {
