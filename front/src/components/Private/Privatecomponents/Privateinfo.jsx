@@ -26,6 +26,7 @@ export default function Privateinfo() {
 
   const applyHandler = () => {
     setCondition(false);
+    console.log('ID FROM PRIVATE INFO',user.id)
     dispatch(editUserThunk(user.id, changes))
     window.location.reload();
   }
@@ -42,7 +43,7 @@ export default function Privateinfo() {
         <div className="info__inner">
           {user.img_url ?
             <img className="info__photo" src={user.img_url} />
-            : <img className="info__photo" src={'http://localhost:3005/images/user-avatar/avatar.jpg'} />
+            : <img className="info__photo" src={'http://localhost:3005/images/default-avatar.jpg'} />
           }
           <div className="info__content">
             {(condition) ? (
