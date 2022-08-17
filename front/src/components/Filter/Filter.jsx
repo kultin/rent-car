@@ -24,12 +24,11 @@ export default function Filter() {
           <img className={style.images} src="/images/sedan.png" alt="sedan" />
           <h5 className={style.title}>Седан</h5>
         </button>
-        <button className={style.btn} onClick={() => {setValueBody("SUV")}} >
+        <button className={style.btn} onClick={() => { setValueBody("SUV") }} >
           <img className={style.images} src="/images/cross.png" alt="cross" />
           <h5 className={style.title}>Кроссовер</h5>
         </button>
       </div>
-
       <Autocomplete
         value={valueBrand}
         onChange={(e, brand) => {
@@ -37,7 +36,7 @@ export default function Filter() {
         }}
         id="controllable-states-demo"
         options={options}
-        sx={{ width: 200 }}
+        sx={{ width: 300 }}
         renderInput={(params) => <TextField {...params} label="Марка" />}
       />
       <Autocomplete
@@ -48,11 +47,10 @@ export default function Filter() {
         }}
         id="controllable-states-demo"
         options={optionsPrice}
-        sx={{ width: 250 }}
+        sx={{ width: 300 }}
         renderInput={(params) => <TextField {...params} label="Сортировать по цене" />}
       />
-
-      <button className='car__desc-btn' onClick={onClick}> Сортировать</button>
+      <button className={style.btn2} onClick={onClick}> Сортировать</button>
     </div>
 
   );
