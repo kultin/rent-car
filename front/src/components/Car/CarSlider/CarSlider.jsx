@@ -58,9 +58,9 @@ export default function CarSlider({ car }) {
   const likeHandler = (e) => {
     e.preventDefault();
     if (!checked) {
-      setChecked(true)
       axios.patch(`http://localhost:3005/likes/${car.id}`, { withCredentials: true })
-        .then((res) => console.log(res.data))
+      .then((res) => console.log(res.data))
+      setChecked(true)
     }
     if (checked) {
       axios.delete(`http://localhost:3005/likes/${car.id}`, { withCredentials: true })

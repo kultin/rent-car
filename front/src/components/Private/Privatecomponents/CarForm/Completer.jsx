@@ -25,7 +25,7 @@ const Completer = (props) => {
     getModels
    } = props
 
-   console.log('value from completer', value, name)
+  //  console.log('value from completer', value, name)
 
   return (
     <Autocomplete
