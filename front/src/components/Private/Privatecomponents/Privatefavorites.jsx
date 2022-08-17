@@ -1,8 +1,17 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import CarCard from "../../carCard/CarCard";
 import '../private.modules.scss';
 
 export default function Privatefavorites() {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+      axios.get(`http://localhost:3005/likes/fav`, { withCredentials: true })
+        .then((res) => console.log(res.data))
+  }, [])
 
   return (
     <>
