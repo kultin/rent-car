@@ -5,7 +5,7 @@ const booking = require('../db/models/booking');
 
 exports.getAllBookings = async (req, res) => {
   const id = req.session?.user?.id;
-  console.log(req.session.user.role);
+  console.log(req.session?.user?.role);
   if (id === undefined) { return res.sendStatus(201) }
   try {
 
