@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import AddCarModal from '../Private/Privatecomponents/AddCarModal';
 import "./carcard.modules.scss"
 // import "../Slider/slider.modules.scss"
+import EditCarModal from './EditCarModal';
+
 
 export default function CarCard({ car, edit=false, delCar=false }) {
 
   return (
     <div className="slider__item" key={car.id}>
-      {edit ? <div><AddCarModal car={car}/> или удалить</div> : <></>}
+      {edit ? <div><EditCarModal car={car}/> или удалить</div> : <></>}
 
       <img className="slider__item-img" src={car.Images.length ? car.Images[0].img_url : "/img.png"} alt="slider-img" />
       <div className='catalog__box'>
@@ -40,7 +41,9 @@ export default function CarCard({ car, edit=false, delCar=false }) {
       </ul>
       <div className="slider__item-block">
         <p className="slider__item-price">{car.price} р./сутки</p>
-        <Link className="slider__item-btn" to={`/car/${car.id}`}>Подробнее</Link>
+        {edit ? <></> 
+        : <Link className="slider__item-btn" to={`/car/${car.id}`}>Подробнее</Link>}
+        
       </div>
     </div>
   );

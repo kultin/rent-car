@@ -10,14 +10,13 @@ export default function PrivateCars() {
   const userCars = cars.filter(car => car.user_id === user.id)
   const edit = true
   const delCar = true
-  console.log('cars from my cars', userCars)
 
   return (
     <>
       <h2 className="title privatecars__title">Мои машины</h2>
-      <div>
+      
         {userCars.map((car) => < CarCard key={car.id} car={car} edit={edit} delCar={delCar}/>)}
-      </div>
+      
     </>
   )
 }

@@ -5,6 +5,12 @@ export const DraggableImages = (props) => {
 
   const { files, setFiles } = props
 
+  const removeFile = file => () => {
+    const newFiles = [...files]
+    newFiles.splice(newFiles.indexOf(file), 1)
+    setFiles(newFiles)
+  }
+
   const handleOnDragEnd = (result) => {
     if (!result.destination) return
     const items = files.slice()
@@ -13,6 +19,8 @@ export const DraggableImages = (props) => {
 
     setFiles(items)
   }
+
+  console.log('FILES FROM DRAGGABLE', files)
 
   return (
      <DragDropContext  onDragEnd={handleOnDragEnd}>
@@ -25,7 +33,8 @@ export const DraggableImages = (props) => {
                     <Draggable key={file.name} draggableId={file.name} index={index}>
                       {(provided) => (
                         <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                          <img key={file.name} src={file.preview} alt='car' style={{width: '100px', height: '150px'}}/>
+                          <img key={file.name} src={file.preview ? file.preview : file.img_url} alt='car' style={{width: '100px', height: '150px'}}/>
+                          <button onClick={removeFile(file)}>Удалить</button>
                         </li>
                       )}
                     </Draggable>
