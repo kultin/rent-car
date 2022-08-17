@@ -14,7 +14,6 @@ import YandexSuggester from "./YandexSuggester";
 import { FormControl, FormControlLabel, FormLabel, RadioGroup } from '@mui/material';
 import useLocalStorage from './CarForm/localStoragefuncs';
 import MyDropzone from './CarForm/DropZone'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Completer from './CarForm/Completer';
 
 const inputStyles ={
@@ -55,7 +54,7 @@ export default function AddCArForm() {
     return R.uniq(filterdCars.map((item) => item.model))
   }
   // const body = R.uniq(cars.map((item) => item.body))
-  const years = R.uniq(cars.map((item) => String(item.year)))
+  const years = R.uniq(cars.map((item) => String(item.year)).sort((a, b) => b - a))
   const engines = R.uniq(cars.map((item) => item.engine))
   
   const [files, setFiles] = useState([])
@@ -63,18 +62,10 @@ export default function AddCArForm() {
   const selectFiles = (e) => {
     setFiles(e.target.files)
   }
-  const handleOnDragEnd = (result) => {
-    if (!result.destination) return
-    const items = files.slice()
-    const [reorderedItem] =items.splice(result.source.index, 1)
-    items.splice(result.destination.index, 0, reorderedItem)
-
-    setFiles(items)
-  }
-  console.log('FILE FROM MODAL',files)
+ 
+  console.log('FILE ADD CAR FORM',files)
   const [coordinates, setCoordinates] = useState(null)
   console.log('CORDINATES MODAL', coordinates)
-  
   
   const [errors, setErrors] = useState({})
   console.log('Errors', errors)
@@ -121,8 +112,6 @@ export default function AddCArForm() {
     formData.append('gear', values.gear)
     formData.append('power', values.power)
     formData.append('seats', values.seats)
-    // formData.append('photo',)  Добавить добавление главного фото, по индексу массива
-    // или вытащить его на бэке
     formData.append('price', values.price)
     formData.append('capacity', values.capacity)
     formData.append('coordinates', coordinates)
@@ -172,18 +161,6 @@ export default function AddCArForm() {
                 handleInputChange={handleInputChange}
                 label={"Выберите марку"}/>
               
-              {/* <Completer 
-                value={values.model}
-                options={getModels}
-                id={'model'} 
-                values={values}
-                setValues={setValues}
-                error={errors.brand}
-                helperText={'Введите модель'}
-                name={'model'} 
-                handleInputChange={handleInputChange}
-                label={"Выберите модель"}/> */}
-
               <Autocomplete
                 className="addcar__item-input"  
                 value={values.model}
@@ -271,7 +248,6 @@ export default function AddCArForm() {
           <div className='addcar__item'>
             <TextField 
               sx={inputStyles}
-              // {...params}
               error={errors.power ? true : false}
               helperText={errors.power ? "Введите мощность" : ''}
               name='power'
@@ -281,15 +257,13 @@ export default function AddCArForm() {
               label="Введите мощность" />
             <TextField 
               sx={inputStyles}
-              // {...params}
               error={errors.capacity ? true : false}
               helperText={errors.capacity ? "Введите вместимость" : ''}
               name='capacity'
               value={values.capacity}
               InputLabelProps={ { required: true }}
               onChange={handleInputChange}
-              label="Введите вместимость" />  
-              
+              label="Введите вместимость" />          
           </div> 
 
             <input
@@ -316,7 +290,6 @@ export default function AddCArForm() {
           <div className='addcar__item'>
             <TextField 
                 sx={inputStyles}
-                // {...params}
                 error={errors.price ? true : false}
                 helperText={errors.price ? "Введите цену" : ''}
                 name='price'
@@ -325,30 +298,6 @@ export default function AddCArForm() {
                 onChange={handleInputChange}
                 label="Какая цена?" />               
           </div> 
-
-            <DragDropContext onDragEnd={handleOnDragEnd}>
-              <Droppable droppableId='characters'>
-                {(provided) => (
-                  <ul {...provided.droppableProps} ref={provided.innerRef}>
-                    {files && 
-                      files.map((file, index) => {
-                        return (
-                          <Draggable key={file.name} draggableId={file.name} index={index}>
-                            {(provided) => (
-                              <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                <img key={file.name} src={file.preview} alt='car' style={{width: '50px', height: '50px'}}/>
-                              </li>
-                            )}
-                          </Draggable>
-                        )
-                      }
-                      )
-                    }
-                    {provided.placeholder}
-                  </ul>
-                )}
-              </Droppable>
-            </DragDropContext>
 
             <Button 
               type='submit' 

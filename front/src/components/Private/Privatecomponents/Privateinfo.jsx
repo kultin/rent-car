@@ -59,7 +59,10 @@ export default function Privateinfo() {
               <p className="info__content-tel">{user.tel}</p>
             )}
             {(condition) ? (
-              <button className="btn info__content-btn" onClick={applyHandler}>Применить</button>
+              <>
+                <AvatarLoader />
+                <button className="btn info__content-btn" onClick={applyHandler}>Применить</button>
+              </>
             ) : (
               <button className="btn info__content-btn" onClick={editHandler}>Редактировать</button>
             )}
