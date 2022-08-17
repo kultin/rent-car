@@ -31,6 +31,9 @@ export const carsReducer = (state = initialState, action) => {
         const filteredNSorted = filteredCars.sort((a, b) => b.price - a.price);
         return { ...state, filter: true, currentPage: 1, filteredCars: filteredNSorted };
       }
+
+    case ACTypes.EDIT_CAR:
+      return { ...state, cars: action.payload}  
       
     default:
       return state;

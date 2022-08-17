@@ -15,7 +15,6 @@ const ImgLoader = () => {
     try {
       const data = new FormData()
       data.append('avatar', img)
-  
       await axios.post('/editUser/upload-avatar', data, {
         withCredentials: true,
         headers: {

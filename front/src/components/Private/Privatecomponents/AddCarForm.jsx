@@ -50,10 +50,17 @@ export default function AddCArForm({car}) {
   const [values, setValues] = useLocalStorage('cars', initialValues)
   // console.log('VALUES', values)
 
+  // const valuesFromReducer = useSelector((store) => store.form.values)
+
+  const [coordinates, setCoordinates] = useState(null)
+  // console.log('CORDINATES ADD CAR FORM', coordinates)
+  const [addressInput, setAddressInput] = useState(false)
+
   useEffect(() => {
     if (car) {
       setValues(car)
       setFiles(car.Images)
+      setCoordinates(car.location)
     }
   },[])
 
@@ -69,8 +76,6 @@ export default function AddCArForm({car}) {
 
   const [files, setFiles] = useState([])
 
-  const [coordinates, setCoordinates] = useState(null)
-  // console.log('CORDINATES ADD CAR FORM', coordinates)
   
   const [errors, setErrors] = useState({})
   // console.log('Errors', errors)
@@ -107,6 +112,7 @@ export default function AddCArForm({car}) {
     setValues(initialValues)
     setErrors({})
     setFiles([])
+    setAddressInput(true)
   }
 
   const addCarToDb = async () => {
@@ -315,7 +321,7 @@ export default function AddCArForm({car}) {
           </div> 
 
           <div className='addcar__item-address'>
-            <YandexSuggester setCoordinates={setCoordinates} />
+            <YandexSuggester car={car} setCoordinates={setCoordinates} addressInput={addressInput} values={values} setValues={setValues} />
           </div>
 
           <div className='addcar__item'>
