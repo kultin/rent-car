@@ -28,6 +28,8 @@ const likesRoute = require('./routes/likesRoute');
 
 const app = express();
 const PORT = process.env.PORT ?? 3005;
+const WSPORT = process.env.WSPORT ?? 3010;
+
 
 const corsOptions = {
   origin: [
@@ -84,8 +86,8 @@ app.use('/tents', tentsRoute);
 app.use('/messages', messagesRoute);
 app.use('/likes', likesRoute);
 
-server.listen(3010, () => {
-  console.log(`Server ready. Port: 3010`)
+server.listen(WSPORT, () => {
+  console.log(`Server ready. Port: ${WSPORT}`)
 })
 
 app.listen(PORT, () => {

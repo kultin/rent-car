@@ -193,6 +193,50 @@ export const applyBookingThunk = (id) => async (dispatch) => {
     }
 }
 
+export const cancelBookingThunk = (id) => async (dispatch) => {
+    dispatch(setErrorUA(false));
+    try {
+        const response = await fetch("http://localhost:3005/bookings/cancelBooking", {
+            method: "post",
+            credentials: 'include',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: id }),
+        });
+
+        if (response.status == 201) { return dispatch(setErrorUA('Не удалось изменить статус заказа!')); }
+
+        if (response.status == 200) { return dispatch(getBookingsThunk()) }
+
+    } catch (err) {
+        console.error('err', err);
+        dispatch(setErrorUA(err.message));
+    }
+}
+
+export const closedBookingThunk = (id) => async (dispatch) => {
+    dispatch(setErrorUA(false));
+    try {
+        const response = await fetch("http://localhost:3005/bookings/closedBooking", {
+            method: "post",
+            credentials: 'include',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: id }),
+        });
+
+        if (response.status == 201) { return dispatch(setErrorUA('Не удалось изменить статус заказа!')); }
+
+        if (response.status == 200) { return dispatch(getBookingsThunk()) }
+
+    } catch (err) {
+        console.error('err', err);
+        dispatch(setErrorUA(err.message));
+    }
+}
+
 export const getMessagesThunk = (id) => async (dispatch) => {
 
     try {
@@ -206,7 +250,6 @@ export const getMessagesThunk = (id) => async (dispatch) => {
         });
 
         const messages = await response.json()
-        console.log(messages);
         dispatch(getMessagesUA(messages))
 
 
@@ -217,7 +260,7 @@ export const getMessagesThunk = (id) => async (dispatch) => {
 
 
 export const sendMessegeThunk = (values) => async (dispatch) => {
-    console.log('sendThunk', values);
+    
     try {
         const response = await fetch("http://localhost:3005/messages/sendmessage", {
             method: "post",
@@ -227,9 +270,6 @@ export const sendMessegeThunk = (values) => async (dispatch) => {
             },
             body: JSON.stringify({ values }),
         });
-
-        const message = await response.json()
-        if (response.status == 200) {console.log(message);}
 
     } catch (err) {
         console.error('err', err);
@@ -248,11 +288,6 @@ export const readMessagesThunk = (id) => async (dispatch) => {
             },
             body: JSON.stringify({ id }),
         });
-
-        if (response.status == 200) {
-
-            console.log('READthunk200');
-        }
 
     } catch (err) {
         console.error('err', err);

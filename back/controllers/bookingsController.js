@@ -9,7 +9,7 @@ exports.getCarBookings = async (req, res) => {
     res.status(200).json(bookings);
   } catch (error) {
     console.log('Get Bookings DB Err ', error.message);
-    res.status(201)
+    res.sendStatus(201)
   }
 }
 
@@ -52,7 +52,7 @@ exports.getAllBookings = async (req, res) => {
     }
   } catch (error) {
     console.log('Get Booking DB Err ', error.message);
-    res.status(201)
+    res.sendStatus(201)
   }
 };
 
@@ -95,10 +95,47 @@ exports.applyBooking = async (req, res) => {
         where: { id }
       })
 
-    res.status(200);
+    res.sendStatus(200);
   } catch (error) {
     console.log('Apply Booking DB Err ', error.message);
-    res.status(201)
+    res.sendStatus(201)
   }
 };
 
+exports.cancelBooking = async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    const applyBooking = await Booking.update(
+      {
+        status: 'canceled',
+      },
+      {
+        where: { id }
+      })
+
+    res.sendStatus(200);
+  } catch (error) {
+    console.log('Cancel Booking DB Err ', error.message);
+    res.sendStatus(201)
+  }
+};
+
+exports.closedBooking = async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    const applyBooking = await Booking.update(
+      {
+        status: 'closed',
+      },
+      {
+        where: { id }
+      })
+
+    res.sendStatus(200);
+  } catch (error) {
+    console.log('Closed Booking DB Err ', error.message);
+    res.sendStatus(201)
+  }
+};

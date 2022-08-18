@@ -11,7 +11,6 @@ const initialState = {
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
 
-
     case UTypes.GETMESSAGES_USER:
 
       return { ...state, messages: action.payload.messages }

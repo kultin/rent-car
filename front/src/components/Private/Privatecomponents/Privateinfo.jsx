@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { editUserThunk, getUserThunk } from '../../../store/userActions'
 import '../private.modules.scss';
 
-import AvatarLoader from '../../AvatarLoader/AvatarLoader';
+import AvatarLoader from './AvatarLoader';
 import Avatar from '@mui/material/Avatar';
 import AddCarModal from "../../carCard/EditCarModal";
 import { Navigate } from "react-router-dom";
@@ -19,6 +19,8 @@ export default function Privateinfo() {
   const [condition, setCondition] = React.useState(false)
 
   const [changes, setChanges] = React.useState(user)
+
+  let role = ''
 
   const editHandler = () => {
     setCondition(true);
@@ -36,6 +38,16 @@ export default function Privateinfo() {
     });
   }
 
+  const roleDisplay = () => {
+    if (user.role == 'lessor') {
+      role = 'Арендодатель'
+    } else if (user.role == 'lessor') {
+      role = 'Арендатор'
+    }
+  }
+
+  roleDisplay()
+
   return (
     <>
       <div className="info">
@@ -44,10 +56,12 @@ export default function Privateinfo() {
 
             <div className="info__box-foto">
               <img className="info__photo" src={user.img_url} />
+              <AvatarLoader />
             </div>
-            :
-            <div className="info__box-foto">
-              <img className="info__photo-icon" src={'http://localhost:3005/images/default-avatar.png'} />
+
+            : <div className="info__box-foto">
+              <img className="info__photo-icon" src={'http://localhost:3005/images/default-avatar.jpg'} />
+              <AvatarLoader />
             </div>
 
           }
@@ -57,7 +71,7 @@ export default function Privateinfo() {
             ) : (
               <p className="info__content-name">{user.name}</p>
             )}
-            <p className="info__content-role">{user.role}</p>
+            <p className="info__content-role">{role}</p>
             <p className="info__content-email">{user.email}</p>
             {(condition) ? (
               <input className="info__content-info content__phone" type='text' name='tel' value={changes.tel} onChange={inputHandler} />
@@ -66,7 +80,7 @@ export default function Privateinfo() {
             )}
             {(condition) ? (
               <>
-                <AvatarLoader />
+
                 <button className="btn info__content-btn" onClick={applyHandler}>Применить</button>
               </>
             ) : (
