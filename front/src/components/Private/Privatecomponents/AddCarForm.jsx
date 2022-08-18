@@ -34,7 +34,7 @@ const initialValues = {
   file: null,
 }
 
-export default function AddCArForm({ car, edit, setTabIndex }) {
+export default function AddCArForm({ car, edit, setTabIndex, setOpen }) {
 
   const dispatch = useDispatch()
 
@@ -50,7 +50,7 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
 
   const [coordinates, setCoordinates] = useState(null)
   // console.log('CORDINATES ADD CAR FORM', coordinates)
-  const [addressInput, setAddressInput] = useState(false)
+  const [enableAddressInput, setEnableAddressInput] = useState(false)
 
   useEffect(() => {
     if (car) {
@@ -73,7 +73,6 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
   const [files, setFiles] = useState([])
 
   const [errors, setErrors] = useState({})
-  // console.log('Errors', errors)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -104,7 +103,7 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
   }
 
   const handleReset = () => {
-    setAddressInput(true)
+    setEnableAddressInput(true)
     setValues(initialValues)
     setErrors({})
     setFiles([])
@@ -113,7 +112,7 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
   const addCarToDb = async () => {
 
     if(validate()) {
-      setAddressInput(false)
+      setEnableAddressInput(false)
       const formData = new FormData()
       formData.append('brand', values.brand)
       formData.append('model', values.model)
@@ -142,7 +141,8 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
           if (res.status == 200) {
             window.alert('загружено успешно')
             console.log('AXIOS DATA', res)  
-            setTabIndex(2)          
+            // window.location.reload();          
+            setTabIndex(2)
           } else {
             window.alert('Ошибка загрузки')
             console.log('AXIOS DATA', res)
@@ -157,7 +157,7 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
 
   const editCarToDb = async () => {
     if (validate()) {
-      setAddressInput(false)
+      setEnableAddressInput(false)
       const formData = new FormData()
 
       formData.append('id', values.id)
@@ -186,9 +186,10 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
           }
         }).then(res => {
           if (res.status == 200) {
-            window.alert('загружено успешно')
+            window.alert('Изменено успешно')
             console.log('AXIOS DATA', res)
-            setTabIndex(2) 
+            window.location.reload();
+            setOpen(false)
           } else {
             window.alert('Ошибка загрузки')
             console.log('AXIOS DATA', res)
@@ -320,7 +321,13 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
           </div>
 
           <div className='addcar__item-address'>
-            <YandexSuggester car={car} setCoordinates={setCoordinates} addressInput={addressInput} values={values} setValues={setValues} />
+            <YandexSuggester 
+              car={car}
+              setCoordinates={setCoordinates} 
+              enableAddressInput={enableAddressInput}
+              setEnableAddressInput={setEnableAddressInput}
+              values={values}
+              setValues={setValues} />
           </div>
 
           <div className='addcar__item'>

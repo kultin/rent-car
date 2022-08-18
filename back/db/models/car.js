@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     brand: DataTypes.STRING,
     model: DataTypes.STRING,
     body: DataTypes.STRING,
-    year: DataTypes.INTEGER,
+    year: DataTypes.STRING,
     engine: DataTypes.STRING,
     gear: DataTypes.STRING,
     power: DataTypes.INTEGER,

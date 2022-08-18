@@ -12,20 +12,16 @@ import { set } from "ramda";
 //   borderRadius: '3px'
 // }
 
-function MapSuggestComponent(props) {
-
-  const values = useSelector((store) => store.form.values)
- 
+function MapSuggestComponent(props) { 
   const { ymaps } = props
-
   const {setCoordinates} = props
   const { car } = props
 
-  const clearInput = props.addressInput
+  const clearInput = props.enableAddressInput
+  const {setEnableAddressInput} = props
 
   console.log('CLEAR INPUT', clearInput)
 
-  const {setValues} = props
 
   const getAddress = (coords) => {
     ymaps.geocode(`${coords}`)
@@ -75,15 +71,17 @@ function MapSuggestComponent(props) {
             // variant="outlined"
             value={clearInput ? '' : addressInput}
             placeholder={addressInput ? '' : 'Введите адрес' }
+            onClick={() => setEnableAddressInput(false)}
             onChange={(e) => setAddressInput(e.target.value)} />
   )  
 }
 
 export default function YandexSuggester(props) {
-  const {setCoordinates} = props
-  const { setValues } = props
   const { car } = props
-  const {addressInput} = props
+  const { setCoordinates } = props
+  const { setValues } = props
+  const { enableAddressInput } = props
+  const { setEnableAddressInput } = props
 
   const SuggestComponent = React.useMemo(() => {
     return withYMaps(MapSuggestComponent, true, [
@@ -99,7 +97,12 @@ export default function YandexSuggester(props) {
         enterprise
         query={{ apikey: "8702bcb9-70ec-40c4-8640-a7bafb10f01d" }}
       >
-        <SuggestComponent car={car} setCoordinates={setCoordinates} setValues={setValues} addressInput={addressInput} />
+        <SuggestComponent 
+          car={car} 
+          setCoordinates={setCoordinates}
+          setValues={setValues}
+          enableAddressInput={enableAddressInput}
+          setEnableAddressInput={setEnableAddressInput} />
       </YMaps>
     </>
   );

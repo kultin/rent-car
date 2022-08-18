@@ -111,7 +111,7 @@ exports.editCar = async (req, res) => {
         gear: req.body.gear,
         power: req.body.power,
         seats: req.body.seats,
-        photo: req.files[0].path.substr(6),
+        photo: req.files[0]?.path.substr(6),
         price: Number(req.body.price),
         capacity: Number(req.body.capacity),
         location: req.body.coordinates,
@@ -121,7 +121,7 @@ exports.editCar = async (req, res) => {
         for (let i = 0; i < req.files.length; i++) {
           await Image.update({
             img_url: req.files[i].path.substr(6),
-          }, {where: { car_id: req.body.id }});
+          }, { where: { car_id: req.body.id } });
         }
         res.status(200).json('ImagesLoaded');
       } catch (error) {
@@ -135,5 +135,27 @@ exports.editCar = async (req, res) => {
   } else {
     console.log('Session id err');
     Error(res, 'Session id err');
+  }
+};
+
+exports.deleteCar = async (req, res) => {
+  const { id } = req.body;
+  const userId = req.session?.user?.id;
+
+  try {
+    const delCar = await Car.findOne({ where: id });
+    try {
+      if (userId === delCar.user_id) {
+        await Image.destroy({ where: { car_id: id } });
+        await Car.destroy({ where: { id } });
+        res.status(200).json('Удалено');
+      }
+    } catch (error) {
+      console.log('Delete Car DB err', error.message);
+      Error(res, 'Delete Car DB err');
+    }
+  } catch (error) {
+    console.log('Find Car DB err');
+    Error(res, 'Find Car DB err');
   }
 };
