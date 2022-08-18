@@ -32,6 +32,10 @@ export const carsReducer = (state = initialState, action) => {
         return { ...state, filter: true, currentPage: 1, filteredCars: filteredNSorted };
       }
 
+    case ACTypes.DELETE_CAR:
+      const unDeletedCars = state.cars.filter((car) => (car.id !== action.payload.id))
+      return {...state, cars: unDeletedCars};
+
     case ACTypes.EDIT_CAR:
       return { ...state, cars: action.payload}  
       

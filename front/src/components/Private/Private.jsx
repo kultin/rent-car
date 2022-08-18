@@ -23,7 +23,7 @@ export default function Private() {
     dispatch(getBookingsThunk())
   }, [])
 
-  const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(2);
 
   return ((user.role == 'lessor') ? (
     <>
@@ -44,7 +44,7 @@ export default function Private() {
               <AddCArForm setTabIndex={setTabIndex}/>
             </TabPanel>
             <TabPanel>
-              <PrivateCars />
+              <PrivateCars setTabIndex={setTabIndex}/>
             </TabPanel>
             <TabPanel>
               <Privatefavorites />

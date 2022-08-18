@@ -9,12 +9,18 @@ import "./calendar.modules.scss";
 import { registerLocale } from "react-datepicker";
 import ru from 'date-fns/locale/ru';
 import { construct } from 'ramda';
-import { addBookingAC } from '../../store/action';
+import { addBookingAC, setCarsAC} from '../../store/action';
+
 registerLocale('ru', ru)
 
 export default function CarCalendar({ car }) {
 
   const dispatch = useDispatch()
+
+  useEffect(()=>{
+    axios.get('http://localhost:3005/cars')
+      .then((res)=> dispatch(setCarsAC(res.data)))
+  }, [dispatch])
 
   const navigate = useNavigate();
   const user = useSelector((store) => (store.user.user))

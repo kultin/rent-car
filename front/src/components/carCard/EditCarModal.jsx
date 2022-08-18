@@ -7,7 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import AddCArForm from '../Private/Privatecomponents/AddCarForm';
 import "./carcard.modules.scss"
 
-export default function EditCarModal({car}) {
+export default function EditCarModal({car, setTabIndex}) {
   
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
@@ -19,7 +19,10 @@ export default function EditCarModal({car}) {
     setEdit(true)
   };
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setTabIndex(2)
+  } 
   
   return (
     <div>
@@ -33,7 +36,7 @@ export default function EditCarModal({car}) {
       >
         <DialogContent dividers={scroll === 'paper'}>
 
-          <AddCArForm edit={edit} car={car}/> 
+          <AddCArForm edit={edit} setOpen={setOpen} car={car}/> 
           
         </DialogContent>
       </Dialog>  
