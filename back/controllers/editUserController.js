@@ -1,6 +1,7 @@
 const { User } = require('../db/models');
 
 exports.editUser = async (req, res) => {
+  
   try {
     const user = User.update(
       {

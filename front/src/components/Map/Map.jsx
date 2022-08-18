@@ -11,7 +11,7 @@ export default function MyMap() {
     <>
       <YMaps>
         <div className="map__box">
-          <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} width="100%" height='570px'>
+          <Map defaultState={{ center: [55.75, 37.57], zoom: 8 }} width="100%" height='570px'>
             {cars.map((car) => {
               return <Placemark
                 key={car.id}

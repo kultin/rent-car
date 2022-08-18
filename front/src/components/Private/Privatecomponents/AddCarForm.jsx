@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as R from 'ramda';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Radio from '@mui/material/Radio';
@@ -9,20 +9,13 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 
-import AddCarImage from './CarImgLoader';
 import YandexSuggester from "./YandexSuggester";
 import { FormControl, FormControlLabel, FormLabel, RadioGroup } from '@mui/material';
 import useLocalStorage from './CarForm/localStoragefuncs';
 import MyDropzone from './CarForm/DropZone'
 import Completer from './CarForm/Completer';
 
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
-const inputStyles = {
-  width: '380px',
-  backgroundColor: '#fff',
-  borderRadius: '3px'
-}
+import { DraggableImages } from './CarForm/DraggableImages';
 
 const initialValues = {
   brand: '',
@@ -41,16 +34,34 @@ const initialValues = {
   file: null,
 }
 
-export default function AddCArForm() {
+export default function AddCArForm({ car, edit, setTabIndex }) {
+
+  const dispatch = useDispatch()
+
+  console.log('CAR FROM ADDCAR FORM', car)
 
   const { cars } = useSelector((store) => store.cars)
-  console.log('Cars', cars)
+  // console.log('Cars', cars)
 
   const [values, setValues] = useLocalStorage('cars', initialValues)
-  console.log('VALUES', values)
+  // console.log('VALUES', values)
+
+  // const valuesFromReducer = useSelector((store) => store.form.values)
+
+  const [coordinates, setCoordinates] = useState(null)
+  // console.log('CORDINATES ADD CAR FORM', coordinates)
+  const [addressInput, setAddressInput] = useState(false)
+
+  useEffect(() => {
+    if (car) {
+      setValues(car)
+      setFiles(car.Images)
+      setCoordinates(car.location)
+    }
+  }, [])
 
   const brands = R.uniq(cars.map((item) => item.brand))
-  console.log('BRANDS', brands)
+  // console.log('BRANDS', brands)
   const getModels = () => {
     const filterdCars = cars.filter((item) => item.brand === values.brand)
     return R.uniq(filterdCars.map((item) => item.model))
@@ -61,27 +72,8 @@ export default function AddCArForm() {
 
   const [files, setFiles] = useState([])
 
-  const selectFiles = (e) => {
-    setFiles(e.target.files)
-  }
-
- 
-  console.log('FILE ADD CAR FORM',files)
-  const [coordinates, setCoordinates] = useState(null)
-  console.log('CORDINATES MODAL', coordinates)
-  
-// =======
-  const handleOnDragEnd = (result) => {
-    if (!result.destination) return
-    const items = files.slice()
-    const [reorderedItem] = items.splice(result.source.index, 1)
-    items.splice(result.destination.index, 0, reorderedItem)
-
-    setFiles(items)
-  }
-
   const [errors, setErrors] = useState({})
-  console.log('Errors', errors)
+  // console.log('Errors', errors)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -106,109 +98,149 @@ export default function AddCArForm() {
   const handleSubmit = () => {
     if (validate()) {
       console.log('SUBMIT')
+      editCarToDb()
+      handleReset()
     }
   }
 
   const handleReset = () => {
+    setAddressInput(true)
     setValues(initialValues)
     setErrors({})
+    setFiles([])
   }
 
   const addCarToDb = async () => {
-    const formData = new FormData()
 
-    formData.append('brand', values.brand)
-    formData.append('model', values.model)
-    formData.append('body', values.body)
-    formData.append('year', values.year)
-    formData.append('engine', values.engine)
-    formData.append('gear', values.gear)
-    formData.append('power', values.power)
-    formData.append('seats', values.seats)
-    formData.append('price', values.price)
-    formData.append('capacity', values.capacity)
-    formData.append('coordinates', coordinates)
-    if (files) {
-      for (let el of files) {
-        formData.append('file', el)
+    if(validate()) {
+      setAddressInput(false)
+      const formData = new FormData()
+      formData.append('brand', values.brand)
+      formData.append('model', values.model)
+      formData.append('body', values.body)
+      formData.append('year', values.year)
+      formData.append('engine', values.engine)
+      formData.append('gear', values.gear)
+      formData.append('power', values.power)
+      formData.append('seats', values.seats)
+      formData.append('price', values.price)
+      formData.append('capacity', values.capacity)
+      formData.append('coordinates', coordinates)
+      if (files) {
+        for (let el of files) {
+          formData.append('file', el)
+        }
+      }
+  
+      try {
+        await axios.post('cars/new-car', formData, {
+          withCredentials: true,
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        }).then(res => {
+          if (res.status == 200) {
+            window.alert('загружено успешно')
+            console.log('AXIOS DATA', res)  
+            setTabIndex(2)          
+          } else {
+            window.alert('Ошибка загрузки')
+            console.log('AXIOS DATA', res)
+          }
+        })
+      } catch (error) {
+        console.log(error.message)
+        window.alert(`Ошибка загрузки: ${error.message}`)
       }
     }
+  }
 
-    try {
-      await axios.post('cars/new-car', formData, {
-        withCredentials: true,
-        headers: {
-          'content-type': 'multipart/form-data'
+  const editCarToDb = async () => {
+    if (validate()) {
+      setAddressInput(false)
+      const formData = new FormData()
+
+      formData.append('id', values.id)
+      formData.append('brand', values.brand)
+      formData.append('model', values.model)
+      formData.append('body', values.body)
+      formData.append('year', values.year)
+      formData.append('engine', values.engine)
+      formData.append('gear', values.gear)
+      formData.append('power', values.power)
+      formData.append('seats', values.seats)
+      formData.append('price', values.price)
+      formData.append('capacity', values.capacity)
+      formData.append('coordinates', coordinates)
+      if (files) {
+        for (let el of files) {
+          formData.append('file', el)
         }
-      }).then(res => {
-        if (res.status == 200) {
-          window.alert('загружено успешно')
-          console.log('AXIOS DATA', res)
-        } else {
-          window.alert('Ошибка загрузки')
-          console.log('AXIOS DATA', res)
-        }
-      })
-      // .then(res => console.log('AXIOS DATA',res.status))
-    } catch (error) {
-      console.log(error.message)
+      }
+
+      try {
+        await axios.post('cars/mycars/edit/', formData, {
+          withCredentials: true,
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        }).then(res => {
+          if (res.status == 200) {
+            window.alert('загружено успешно')
+            console.log('AXIOS DATA', res)
+            setTabIndex(2) 
+          } else {
+            window.alert('Ошибка загрузки')
+            console.log('AXIOS DATA', res)
+          }
+        })
+        // .then(res => console.log('AXIOS DATA',res.status))
+      } catch (error) {
+        console.log(error.message)
+        window.alert(`Ошибка загрузки: ${error.message}`)
+      }
     }
   }
+
 
   return (
     <div>
       <div className='addcar'>
-        <h2 className="title addcar__title">Загрузить новое авто</h2>
+        {edit ? <h2 className="title addcar__title">Изменить авто</h2>
+        : <h2 className="title addcar__title">Загрузить новое авто</h2>}
         <div className='addcar__inner'>
           <div className='addcar__item'>
-              <Completer 
-                value={values.brand}
-                options={brands}
-                id={'brand'} 
-                values={values}
-                setValues={setValues}
-                error={errors.brand}
-                helperText={'Введите бренд'}
-                name={'brand'} 
-                handleInputChange={handleInputChange}
-                label={"Выберите марку"}/>
-              
-
-            {/* <Completer 
+            <Completer
+              value={values.brand}
+              options={brands}
+              id={'brand'}
+              values={values}
+              setValues={setValues}
+              error={errors.brand}
+              helperText={'Введите бренд'}
+              name={'brand'}
+              handleInputChange={handleInputChange}
+              label={"Выберите марку"} />
+            <Autocomplete
+              value={values.model}
+              required
+              id="model"
+              freeSolo
+              options={getModels(values.brand)}
+              onChange={(event, newValue) => {
+                setValues({ ...values, model: newValue })
+              }}
+              renderInput={(params) => <TextField
+                {...params}
+                error={errors.model ? true : false}
+                helperText={errors.model ? "Введите модель" : ''}
+                name='model'
                 value={values.model}
-                options={getModels}
-                id={'model'} 
-                values={values}
-                setValues={setValues}
-                error={errors.brand}
-                helperText={'Введите модель'}
-                name={'model'} 
-                handleInputChange={handleInputChange}
-                label={"Выберите модель"}/> */}
-
-                <Autocomplete
-                  className="addcar__item-input"
-                  value={values.model}
-                  required
-                  id="model"
-                  freeSolo
-                  options={getModels(values.brand)}
-                  onChange={(event, newValue) => {
-                    setValues({ ...values, model: newValue })
-                  }}
-                  renderInput={(params) => <TextField
-                    sx={inputStyles}
-                    {...params}
-                    error={errors.model ? true : false}
-                    helperText={errors.model ? "Введите модель" : ''}
-                    name='model'
-                    value={values.model}
-                    InputLabelProps={{ required: true }}
-                    onChange={handleInputChange}
-                    label="Выберите модель" />}/>
+                InputLabelProps={{ required: true }}
+                onChange={handleInputChange}
+                label="Выберите модель" />} />
           </div>
           <div className='addcar__item'>
-
             <Completer
               value={values.year}
               options={years}
@@ -220,7 +252,6 @@ export default function AddCArForm() {
               name={'year'}
               handleInputChange={handleInputChange}
               label={"Выберите год"} />
-
             <Completer
               value={values.engine}
               options={engines}
@@ -268,9 +299,9 @@ export default function AddCArForm() {
               </RadioGroup>
             </FormControl>
           </div>
+
           <div className='addcar__item'>
             <TextField
-              sx={inputStyles}
               error={errors.power ? true : false}
               helperText={errors.power ? "Введите мощность" : ''}
               name='power'
@@ -279,95 +310,57 @@ export default function AddCArForm() {
               onChange={handleInputChange}
               label="Введите мощность" />
             <TextField
-              sx={inputStyles}
               error={errors.capacity ? true : false}
               helperText={errors.capacity ? "Введите вместимость" : ''}
               name='capacity'
               value={values.capacity}
               InputLabelProps={{ required: true }}
               onChange={handleInputChange}
-              label="Введите вместимость" />          
-          </div> 
-
-          
-
-          {/* <input
-            accept="image/*"
-            style={{ display: 'none' }}
-            id="raised-button-file"
-            multiple
-            type="file"
-            onChange={selectFiles}
-          /> */}
-          {/* <label htmlFor="raised-button-file">
-            <Button variant="raised" component="span">
-              Upload photos
-            </Button>
-          </label> */}
-          <div className='addcar__item-address'>
-            <YandexSuggester setCoordinates={setCoordinates} />
+              label="Введите вместимость" />
           </div>
 
-          <div className='addcar__item-dropzone'>
-            <MyDropzone files={files} setFiles={setFiles} />
+          <div className='addcar__item-address'>
+            <YandexSuggester car={car} setCoordinates={setCoordinates} addressInput={addressInput} values={values} setValues={setValues} />
           </div>
 
           <div className='addcar__item'>
-                      <TextField
-                        sx={inputStyles}
-                        // {...params}
-                        error={errors.price ? true : false}
-                        helperText={errors.price ? "Введите цену" : ''}
-                        name='price'
-                        value={values.price}
-                        InputLabelProps={{ required: true }}
-                        onChange={handleInputChange}
-                        label="Какая цена?" />
-                    </div>
+            <div className='addcar__item-dropzone'>
+              <MyDropzone files={files} setFiles={setFiles} />
+            </div>
+            <DraggableImages files={files} setFiles={setFiles} />
+          </div>
 
-          <DragDropContext onDragEnd={handleOnDragEnd}>
-            <Droppable droppableId='characters'>
-              {(provided) => (
-                <ul className='addcar__item-list'{...provided.droppableProps} ref={provided.innerRef}>
-                  {files &&
-                    files.map((file, index) => {
-                      return (
-                        <Draggable key={file.name} draggableId={file.name} index={index}>
-                          {(provided) => (
-                            <li className='addcar__item-list-item'{...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                              <img className="addcar__item-list-img" key={file.name} src={file.preview} alt='car' style={{ width: '70px', height: '70px' }} />
-                            </li>
-                          )}
-                        </Draggable>
-                      )
-                    }
-                    )
-                  }
-                  {provided.placeholder}
-                </ul>
-              )}
-            </Droppable>
-          </DragDropContext>
-
+          <div className='addcar__item'>
+            <TextField
+              // {...params}
+              error={errors.price ? true : false}
+              helperText={errors.price ? "Введите цену" : ''}
+              name='price'
+              value={values.price}
+              InputLabelProps={{ required: true }}
+              onChange={handleInputChange}
+              label="Какая цена?" />
           <Button
             type='submit'
             onClick={handleSubmit}
+
+            style={{ display: 'none' }}
+
           >Тест проверка</Button>
+          </div>
+
 
           <div className='addcar__item-buttons'>
-            <Button
-              type='submit'
-              onClick={addCarToDb}>Загрузить в базу</Button>
-
-            <Button
-              onClick={handleReset}
-            >Сбросить</Button>
+            {car ?
+              <button className="addcar__item-buttons-btn" type='submit' onClick={editCarToDb}>Изменить</button>
+              : <button className="addcar__item-buttons-btn" type='submit' onClick={addCarToDb}>Загрузить</button>
+            }
+            <button className="addcar__item-buttons-btn" onClick={handleReset}>Очистить</button>
           </div>
 
         </div>
       </div>
     </div>
-    // </div>
   );
 }
 

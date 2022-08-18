@@ -2,7 +2,9 @@
     width: 800px;
     border-radius: 25px;
     margin-right: 34px;
-    position: relative;
+    &__img-box {
+      position: relative;
+    }
     &__heart {
       border: none;
       cursor: pointer;

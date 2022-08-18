@@ -56,4 +56,21 @@ export const addBookingAC = (booking) => ({
   payload: { booking }
 })
 
+export const addLikeAC = ({carId, userId}) => ({
+  type: ACTypes.ADD_LIKE,
+  payload: { carId, userId }
+})
+
+export const deleteLikeAC = ({carID, userID}) => ({
+  type: ACTypes.DELETE_LIKE,
+  payload: { carID, userID}
+})
+
+export const setLikesAC = (likes) => ({
+  type: ACTypes.SET_LIKES,
+  payload: { likes }
+})
+
+
+
 

@@ -5,9 +5,8 @@ import '../private.modules.scss';
 
 import AvatarLoader from '../../AvatarLoader/AvatarLoader';
 import Avatar from '@mui/material/Avatar';
-import AddCarModal from "./AddCarModal";
+import AddCarModal from "../../carCard/EditCarModal";
 import { Navigate } from "react-router-dom";
-// import YandexSuggester from "./YandexSuggester";
 
 
 
@@ -43,7 +42,7 @@ export default function Privateinfo() {
         <div className="info__inner">
           {user.img_url ?
             <img className="info__photo" src={user.img_url} />
-            : <img className="info__photo" src={'http://localhost:3005/images/user-avatar/avatar.jpg'} />
+            : <img className="info__photo" src={'http://localhost:3005/images/default-avatar.jpg'} />
           }
           <div className="info__content">
             {(condition) ? (

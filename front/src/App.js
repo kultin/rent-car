@@ -12,7 +12,7 @@ import Footer from './components/Footer/Footer'
 import { getBookingsThunk } from './store/userActions'
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import { getAllBookingsAC, setCarsAC } from './store/action';
+import { getAllBookingsAC, setCarsAC, setLikesAC } from './store/action';
 import { useEffect } from 'react'
 
 
@@ -36,6 +36,11 @@ function App() {
   useEffect(()=>{
     axios.get('http://localhost:3005/bookings/all')
       .then((res)=> dispatch(getAllBookingsAC(res.data)))
+  }, [])
+
+  useEffect(()=>{
+    axios.get('http://localhost:3005/likes')
+      .then((res)=> dispatch(setLikesAC(res.data)))
   }, [])
 
   return (

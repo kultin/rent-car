@@ -2,6 +2,8 @@ const {
   Car, Image, Tent, Like,
 } = require('../db/models');
 
+const Error = (res, err) => res.status(401).json({ err });
+
 exports.getAllCars = async (req, res) => {
   try {
     const cars = await Car.findAll({
@@ -62,6 +64,7 @@ exports.uploadNewCar = async (req, res) => {
         photo: req.files[0].path.substr(6),
         price: Number(req.body.price),
         capacity: Number(req.body.capacity),
+        likes: 0,
         location: req.body.coordinates,
         user_id: userId,
       });
@@ -81,6 +84,49 @@ exports.uploadNewCar = async (req, res) => {
       } else {
         console.log('No CarID err');
         Error(res, 'No CarID err');
+      }
+    } catch (error) {
+      console.log('Create Car DB Err', error.message);
+      Error(res, error.message);
+    }
+  } else {
+    console.log('Session id err');
+    Error(res, 'Session id err');
+  }
+};
+
+exports.editCar = async (req, res) => {
+  const userId = req.session?.user?.id;
+  console.log('EDIT CAR', req.body);
+  console.log('EDIT CAR', req.files);
+
+  if (userId) {
+    try {
+      await Car.update({
+        brand: req.body.brand,
+        model: req.body.model,
+        body: req.body.body,
+        year: Number(req.body.year),
+        engine: req.body.engine,
+        gear: req.body.gear,
+        power: req.body.power,
+        seats: req.body.seats,
+        photo: req.files[0].path.substr(6),
+        price: Number(req.body.price),
+        capacity: Number(req.body.capacity),
+        location: req.body.coordinates,
+      }, { where: { id: req.body.id } });
+
+      try {
+        for (let i = 0; i < req.files.length; i++) {
+          await Image.update({
+            img_url: req.files[i].path.substr(6),
+          }, {where: { car_id: req.body.id }});
+        }
+        res.status(200).json('ImagesLoaded');
+      } catch (error) {
+        console.log('DB Upload URL Error:', error.message);
+        Error(res, error.message);
       }
     } catch (error) {
       console.log('Create Car DB Err', error.message);

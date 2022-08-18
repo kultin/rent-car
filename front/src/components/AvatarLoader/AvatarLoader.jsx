@@ -15,7 +15,6 @@ const ImgLoader = () => {
     try {
       const data = new FormData()
       data.append('avatar', img)
-  
       await axios.post('/editUser/upload-avatar', data, {
         withCredentials: true,
         headers: {
@@ -31,7 +30,10 @@ const ImgLoader = () => {
 
   return (
     <>
-      <input type='file' onChange={e => setImg(e.target.files[0])} />
+      <input type='file' onChange={e => {
+        setImg(e.target.files[0])
+        sendFile()}
+      } />
       <button className='btn' onClick={sendFile}>Change photo</button>
     </>
   )

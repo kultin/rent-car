@@ -4,22 +4,6 @@ import './DropZone.css'
 
 import { DraggableImages } from './DraggableImages';
 
-const baseStyle = {
-  flex: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  padding: '20px',
-  borderWidth: 2,
-  borderRadius: 2,
-  borderColor: '#eeeeee',
-  borderStyle: 'dashed',
-  backgroundColor: '#fafafa',
-  color: '#bdbdbd',
-  outline: 'none',
-  transition: 'border .24s ease-in-out'
-};
-
 const focusedStyle = {
   borderColor: '#2196f3'
 };
@@ -33,14 +17,10 @@ const rejectStyle = {
 };
 
 
-
 function MyDropzone(props) {
   const { files } = props
   const {setFiles} = props
 
-  const selectFiles = (e) => {
-    setFiles(e.target.files)
-  }
 
   const {getRootProps,
     getInputProps,
@@ -56,7 +36,6 @@ function MyDropzone(props) {
     }})
 
     const style = useMemo(() => ({
-      ...baseStyle,
       ...(isFocused ? focusedStyle : {}),
       ...(isDragAccept ? acceptStyle : {}),
       ...(isDragReject ? rejectStyle : {})
@@ -70,12 +49,6 @@ function MyDropzone(props) {
   return (
     <div className='dnd' {...getRootProps({style})}>
       <input {...getInputProps()} />
-      {
-        files.length ?
-        <DraggableImages files={files} setFiles={setFiles} /> :
-          <p>Drag 'n' drop some files here, or <button onClick={selectFiles}>click</button> to select files</p>
-          
-      }
     </div>
   )
 }
