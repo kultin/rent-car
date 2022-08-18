@@ -34,23 +34,21 @@ const initialValues = {
   file: null,
 }
 
-export default function AddCArForm({ car, edit, setTabIndex }) {
+export default function AddCArForm({ car, edit, setTabIndex, setOpen }) {
 
   const dispatch = useDispatch()
 
   console.log('CAR FROM ADDCAR FORM', car)
 
   const { cars } = useSelector((store) => store.cars)
-  // console.log('Cars', cars)
 
   const [values, setValues] = useLocalStorage('cars', initialValues)
-  // console.log('VALUES', values)
-
-  // const valuesFromReducer = useSelector((store) => store.form.values)
 
   const [coordinates, setCoordinates] = useState(null)
+
   // console.log('CORDINATES ADD CAR FORM', coordinates)
-  const [addressInput, setAddressInput] = useState(false)
+  const [enableAddressInput, setEnableAddressInput] = useState(false)
+
 
   useEffect(() => {
     if (car) {
@@ -61,19 +59,18 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
   }, [])
 
   const brands = R.uniq(cars.map((item) => item.brand))
-  // console.log('BRANDS', brands)
+
   const getModels = () => {
     const filterdCars = cars.filter((item) => item.brand === values.brand)
     return R.uniq(filterdCars.map((item) => item.model))
   }
-  // const body = R.uniq(cars.map((item) => item.body))
+
   const years = R.uniq(cars.map((item) => String(item.year)).sort((a, b) => b - a))
   const engines = R.uniq(cars.map((item) => item.engine))
 
   const [files, setFiles] = useState([])
 
   const [errors, setErrors] = useState({})
-  // console.log('Errors', errors)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -104,7 +101,7 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
   }
 
   const handleReset = () => {
-    setAddressInput(true)
+    setEnableAddressInput(true)
     setValues(initialValues)
     setErrors({})
     setFiles([])
@@ -113,7 +110,7 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
   const addCarToDb = async () => {
 
     if(validate()) {
-      setAddressInput(false)
+      setEnableAddressInput(false)
       const formData = new FormData()
       formData.append('brand', values.brand)
       formData.append('model', values.model)
@@ -142,7 +139,8 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
           if (res.status == 200) {
             window.alert('загружено успешно')
             console.log('AXIOS DATA', res)  
-            setTabIndex(2)          
+            // window.location.reload();          
+            setTabIndex(2)
           } else {
             window.alert('Ошибка загрузки')
             console.log('AXIOS DATA', res)
@@ -157,7 +155,7 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
 
   const editCarToDb = async () => {
     if (validate()) {
-      setAddressInput(false)
+      setEnableAddressInput(false)
       const formData = new FormData()
 
       formData.append('id', values.id)
@@ -186,9 +184,10 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
           }
         }).then(res => {
           if (res.status == 200) {
-            window.alert('загружено успешно')
+            window.alert('Изменено успешно')
             console.log('AXIOS DATA', res)
-            setTabIndex(2) 
+            window.location.reload();
+            setOpen(false)
           } else {
             window.alert('Ошибка загрузки')
             console.log('AXIOS DATA', res)
@@ -264,7 +263,7 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
               handleInputChange={handleInputChange}
               label={"Выберите двигатель"} />
           </div>
-          <div className='addcar__item'>
+          <div className='addcar__item addcar__item-radio'>
             <FormControl>
               <FormLabel>Кузов</FormLabel>
               <RadioGroup row
@@ -320,19 +319,22 @@ export default function AddCArForm({ car, edit, setTabIndex }) {
           </div>
 
           <div className='addcar__item-address'>
-            <YandexSuggester car={car} setCoordinates={setCoordinates} addressInput={addressInput} values={values} setValues={setValues} />
+            <YandexSuggester 
+              car={car}
+              setCoordinates={setCoordinates} 
+              enableAddressInput={enableAddressInput}
+              setEnableAddressInput={setEnableAddressInput}
+              values={values}
+              setValues={setValues} />
           </div>
 
-          <div className='addcar__item'>
             <div className='addcar__item-dropzone'>
               <MyDropzone files={files} setFiles={setFiles} />
             </div>
             <DraggableImages files={files} setFiles={setFiles} />
-          </div>
 
           <div className='addcar__item'>
             <TextField
-              // {...params}
               error={errors.price ? true : false}
               helperText={errors.price ? "Введите цену" : ''}
               name='price'

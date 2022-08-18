@@ -1,15 +1,21 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import DeleteCarModal from '../Private/Privatecomponents/DeleteCarModal';
 import "./carcard.modules.scss"
 // import "../Slider/slider.modules.scss"
 import EditCarModal from './EditCarModal';
 
 
-export default function CarCard({ car, edit = false, delCar = false }) {
+export default function CarCard({ car, edit=false, setTabIndex }) {
+
 
   return (
     <div className="slider__item" key={car.id}>
-      {edit ? <div><EditCarModal car={car} /> или удалить</div> : <></>}
+
+      {edit && 
+        <div><EditCarModal car={car} setTabIndex={setTabIndex}/>
+        <DeleteCarModal car={car} />
+        </div>}
 
       <img className="slider__item-img" src={car.Images.length ? car.Images[0].img_url : "/img.png"} alt="slider-img" />
       <div className='catalog__box'>

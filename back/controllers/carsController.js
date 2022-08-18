@@ -1,5 +1,5 @@
 const {
-  Car, Image, Tent, Like,
+  Car, Image, Tent, Like, CarTent
 } = require('../db/models');
 
 const Error = (res, err) => res.status(401).json({ err });
@@ -8,9 +8,9 @@ exports.getAllCars = async (req, res) => {
   try {
     const cars = await Car.findAll({
       include: [{ model: Image }, { model: Tent }, { model: Like }],
-
     });
-    // console.log('cars back', cars.map((el)=> el.Bookings.length))
+    console.log('car.Tents.length', cars.map((car)=> car.Tents.length))
+
     res.status(200).json(cars);
   } catch (error) {
     console.log('Get All Cars DB Err', error.message);
@@ -48,7 +48,6 @@ exports.getLessorCars = async (req, res) => {
 
 exports.uploadNewCar = async (req, res) => {
   const userId = req.session?.user?.id;
-  console.log(req.body);
 
   if (userId) {
     try {
@@ -76,6 +75,47 @@ exports.uploadNewCar = async (req, res) => {
               img_url: req.files[i].path.substr(6),
             });
           }
+            await CarTent.create({
+              car_id: newCar.id,
+              tent_id: 1,
+            })
+            await CarTent.create({
+              car_id: newCar.id,
+              tent_id: 2,
+            })
+            await CarTent.create({
+              car_id: newCar.id,
+              tent_id: 3,
+            })
+            await CarTent.create({
+              car_id: newCar.id,
+              tent_id: 4,
+            })
+          
+          // await Tent.create({
+          //   name: 'Mini',
+          //   price: 1000,
+          //   capacity: 2,
+          //   img_url: '/mini.png',
+          // });
+          // await Tent.create({
+          //   name: 'Medium',
+          //   price: 2000,
+          //   capacity: 3,
+          //   img_url: '/medium.png',
+          // });
+          // await Tent.create({
+          //   name: 'Large',
+          //   price: 3000,
+          //   capacity: 4,
+          //   img_url: '/large.png',
+          // });
+          // await Tent.create({
+          //   name: 'XL',
+          //   price: 4000,
+          //   capacity: 5,
+          //   img_url: '/xl.png',
+          // });
           res.status(200).json('ImagesLoaded');
         } catch (error) {
           console.log('DB Upload URL Error:', error.message);
@@ -111,7 +151,7 @@ exports.editCar = async (req, res) => {
         gear: req.body.gear,
         power: req.body.power,
         seats: req.body.seats,
-        photo: req.files[0].path.substr(6),
+        photo: req.files[0]?.path.substr(6),
         price: Number(req.body.price),
         capacity: Number(req.body.capacity),
         location: req.body.coordinates,
@@ -121,7 +161,7 @@ exports.editCar = async (req, res) => {
         for (let i = 0; i < req.files.length; i++) {
           await Image.update({
             img_url: req.files[i].path.substr(6),
-          }, {where: { car_id: req.body.id }});
+          }, { where: { car_id: req.body.id } });
         }
         res.status(200).json('ImagesLoaded');
       } catch (error) {
@@ -135,5 +175,27 @@ exports.editCar = async (req, res) => {
   } else {
     console.log('Session id err');
     Error(res, 'Session id err');
+  }
+};
+
+exports.deleteCar = async (req, res) => {
+  const { id } = req.body;
+  const userId = req.session?.user?.id;
+
+  try {
+    const delCar = await Car.findOne({ where: id });
+    try {
+      if (userId === delCar.user_id) {
+        await Image.destroy({ where: { car_id: id } });
+        await Car.destroy({ where: { id } });
+        res.status(200).json('Удалено');
+      }
+    } catch (error) {
+      console.log('Delete Car DB err', error.message);
+      Error(res, 'Delete Car DB err');
+    }
+  } catch (error) {
+    console.log('Find Car DB err');
+    Error(res, 'Find Car DB err');
   }
 };

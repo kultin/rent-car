@@ -31,7 +31,6 @@ export default function Catalogue() {
   const currentCars = cars.slice(firstCarIndex, lastCarIndex);
   const currentFilteredCars = filteredCars.slice(firstCarIndex, lastCarIndex);
 
-  console.log(cars)
 
   return (
     <div className='catalog'>

@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { getAllBookingsAC, setCarsAC, setLikesAC } from './store/action';
 import { useEffect } from 'react'
+import { setLoadingUA } from './store/userActions'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
   const user = useSelector((store) => (store.user.user))
 
   useEffect(()=>{
+    // dispatch(setLoadingUA(true))
     axios.get('http://localhost:3005/cars')
       .then((res)=> dispatch(setCarsAC(res.data)))
   }, [dispatch])

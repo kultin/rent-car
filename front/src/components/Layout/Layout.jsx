@@ -75,7 +75,7 @@ function Layout() {
                     <NavLink className="navbar__list-link" to="/private">Привет, {user.name}</NavLink>
                   </li>
                   <li className="navbar__list-item">
-                    <NavLink className="navbar__list-link" onClick={logoutHandler} to="/">Выйти</NavLink>
+                    <Link className="navbar__list-link" onClick={logoutHandler} to="/">Выйти</Link>
                   </li>
                 </>}
             </ul>
