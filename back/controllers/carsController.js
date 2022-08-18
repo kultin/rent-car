@@ -2,6 +2,8 @@ const {
   Car, Image, Tent, Like,
 } = require('../db/models');
 
+const Error = (res, err) => res.status(401).json({ err });
+
 exports.getAllCars = async (req, res) => {
   try {
     const cars = await Car.findAll({
@@ -114,6 +116,7 @@ exports.editCar = async (req, res) => {
         capacity: Number(req.body.capacity),
         location: req.body.coordinates,
       }, { where: { id: req.body.id } });
+
       try {
         for (let i = 0; i < req.files.length; i++) {
           await Image.update({

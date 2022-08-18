@@ -34,7 +34,7 @@ const initialValues = {
   file: null,
 }
 
-export default function AddCArForm({ car }) {
+export default function AddCArForm({ car, edit, setTabIndex }) {
 
   const dispatch = useDispatch()
 
@@ -111,6 +111,7 @@ export default function AddCArForm({ car }) {
   }
 
   const addCarToDb = async () => {
+
     if(validate()) {
       setAddressInput(false)
       const formData = new FormData()
@@ -140,15 +141,16 @@ export default function AddCArForm({ car }) {
         }).then(res => {
           if (res.status == 200) {
             window.alert('загружено успешно')
-            console.log('AXIOS DATA', res)
+            console.log('AXIOS DATA', res)  
+            setTabIndex(2)          
           } else {
             window.alert('Ошибка загрузки')
             console.log('AXIOS DATA', res)
           }
         })
-        // .then(res => console.log('AXIOS DATA',res.status))
       } catch (error) {
         console.log(error.message)
+        window.alert(`Ошибка загрузки: ${error.message}`)
       }
     }
   }
@@ -157,7 +159,6 @@ export default function AddCArForm({ car }) {
     if (validate()) {
       setAddressInput(false)
       const formData = new FormData()
-      // console.log('VALUES FROM EDIT', values)
 
       formData.append('id', values.id)
       formData.append('brand', values.brand)
@@ -187,6 +188,7 @@ export default function AddCArForm({ car }) {
           if (res.status == 200) {
             window.alert('загружено успешно')
             console.log('AXIOS DATA', res)
+            setTabIndex(2) 
           } else {
             window.alert('Ошибка загрузки')
             console.log('AXIOS DATA', res)
@@ -195,6 +197,7 @@ export default function AddCArForm({ car }) {
         // .then(res => console.log('AXIOS DATA',res.status))
       } catch (error) {
         console.log(error.message)
+        window.alert(`Ошибка загрузки: ${error.message}`)
       }
     }
   }
@@ -203,7 +206,8 @@ export default function AddCArForm({ car }) {
   return (
     <div>
       <div className='addcar'>
-        <h2 className="title addcar__title">Загрузить новое авто</h2>
+        {edit ? <h2 className="title addcar__title">Изменить авто</h2>
+        : <h2 className="title addcar__title">Загрузить новое авто</h2>}
         <div className='addcar__inner'>
           <div className='addcar__item'>
             <Completer

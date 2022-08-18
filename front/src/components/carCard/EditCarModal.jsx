@@ -11,10 +11,12 @@ export default function EditCarModal({car}) {
   
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
+  const [edit, setEdit] = React.useState(false);
   
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
     setScroll(scrollType);
+    setEdit(true)
   };
 
   const handleClose = () => setOpen(false);
@@ -31,7 +33,7 @@ export default function EditCarModal({car}) {
       >
         <DialogContent dividers={scroll === 'paper'}>
 
-          <AddCArForm car={car}/> 
+          <AddCArForm edit={edit} car={car}/> 
           
         </DialogContent>
       </Dialog>  
