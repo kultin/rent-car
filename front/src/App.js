@@ -8,13 +8,14 @@ import NotFound from './components/NotFound/NotFound'
 import Private from './components/Private/Private'
 import Catalogue from './pages/Catalogue/Catalogue';
 import Car from './components/Car/Car'
-import Footer from './components/Footer/Footer'
+// import Footer from './components/Footer/Footer'
 import { getBookingsThunk } from './store/userActions'
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { getAllBookingsAC, setCarsAC, setLikesAC } from './store/action';
 import { useEffect } from 'react'
 import { setLoadingUA } from './store/userActions'
+import Footer from './components/Footer/Footer';
 
 
 function App() {
@@ -23,44 +24,43 @@ function App() {
 
   const user = useSelector((store) => (store.user.user))
 
-  useEffect(()=>{
+  useEffect(() => {
     // dispatch(setLoadingUA(true))
     axios.get('http://localhost:3005/cars')
-      .then((res)=> dispatch(setCarsAC(res.data)))
+      .then((res) => dispatch(setCarsAC(res.data)))
   }, [dispatch])
 
   useEffect(() => {
     if (user.name != undefined) {
-    dispatch(getBookingsThunk())
-  }
+      dispatch(getBookingsThunk())
+    }
   }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     axios.get('http://localhost:3005/bookings/all')
-      .then((res)=> dispatch(getAllBookingsAC(res.data)))
+      .then((res) => dispatch(getAllBookingsAC(res.data)))
   }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     axios.get('http://localhost:3005/likes')
-      .then((res)=> dispatch(setLikesAC(res.data)))
+      .then((res) => dispatch(setLikesAC(res.data)))
   }, [])
 
   return (
     <>
-    <main className='main'>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="registration" element={<Registration />} />
-          <Route path="login" element={<LogIn />} />
-          <Route path="private" element={<Private />} />
-          <Route path="cars" element={<Catalogue />}></Route>
-          <Route path="car/:id" element={<Car />}></Route>
-        </Route>
-        <Route path='*' element={<NotFound />} />
-      </Routes>
-    <Footer/>
-    </main>
+      <main className='main'>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<><Home /><Footer/></>} />
+            <Route path="registration" element={<Registration />} />
+            <Route path="login" element={<LogIn />} />
+            <Route path="private" element={<><Private /><Footer/></>} />
+            <Route path="cars" element={<><Catalogue /><Footer/></>}></Route>
+            <Route path="car/:id" element={<><Car /><Footer/></>}></Route>
+          </Route>
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </main>
     </>
   );
 }

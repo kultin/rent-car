@@ -92,30 +92,6 @@ exports.uploadNewCar = async (req, res) => {
               tent_id: 4,
             })
           
-          // await Tent.create({
-          //   name: 'Mini',
-          //   price: 1000,
-          //   capacity: 2,
-          //   img_url: '/mini.png',
-          // });
-          // await Tent.create({
-          //   name: 'Medium',
-          //   price: 2000,
-          //   capacity: 3,
-          //   img_url: '/medium.png',
-          // });
-          // await Tent.create({
-          //   name: 'Large',
-          //   price: 3000,
-          //   capacity: 4,
-          //   img_url: '/large.png',
-          // });
-          // await Tent.create({
-          //   name: 'XL',
-          //   price: 4000,
-          //   capacity: 5,
-          //   img_url: '/xl.png',
-          // });
           res.status(200).json('ImagesLoaded');
         } catch (error) {
           console.log('DB Upload URL Error:', error.message);
@@ -186,6 +162,7 @@ exports.deleteCar = async (req, res) => {
     const delCar = await Car.findOne({ where: id });
     try {
       if (userId === delCar.user_id) {
+        await CarTent.destroy({ where: { car_id: id } });
         await Image.destroy({ where: { car_id: id } });
         await Car.destroy({ where: { id } });
         res.status(200).json('Удалено');
