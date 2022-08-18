@@ -31,7 +31,7 @@ function MyDropzone(props) {
       const acc = acceptedFiles.map(file => Object.assign(file, {
         preview: URL.createObjectURL(file)
       }))
-      if(acc.length > 1) setFiles(...files, acc)
+      if(acc.length > 1) setFiles(files.concat(acc))
       else setFiles([...files, acc[0]])
     }})
 

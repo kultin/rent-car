@@ -53,7 +53,7 @@ export default function Privatebookings({ title }) {
 
   const statusDisplay = () => {
     for (let i = 0; i < bookings.length; i++) {
-      if (user.role == 'lessor' && bookings[i].status == 'Подтвержден') {
+      if (user.role == 'lessor' && bookings[i].status == 'booked') {
         bookings[i].status = 'ПодтвержденВами'
       } else if (user.role == 'lessor' && bookings[i].status == 'pre-booking') {
         bookings[i].status = 'Подтвердить'
@@ -66,7 +66,6 @@ export default function Privatebookings({ title }) {
       } else if (user.role == 'lessee' && bookings[i].status == 'booked') {
         bookings[i].status = 'Подтвержден'
       }
-
     }
     return bookings
   }
@@ -131,7 +130,8 @@ export default function Privatebookings({ title }) {
               id="text"
               name="text"
               label="Введите сообщение"
-              type="text" Подтвердить
+              type="text" 
+              // Подтвердить
               onChange={inputHandler}
             />
           </DialogContent>

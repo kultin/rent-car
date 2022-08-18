@@ -1,5 +1,5 @@
 const {
-  Car, Image, Tent, Like, CarTent
+  Car, Image, Tent, Like, CarTent,
 } = require('../db/models');
 
 const Error = (res, err) => res.status(401).json({ err });
@@ -9,7 +9,7 @@ exports.getAllCars = async (req, res) => {
     const cars = await Car.findAll({
       include: [{ model: Image }, { model: Tent }, { model: Like }],
     });
-    console.log('car.Tents.length', cars.map((car)=> car.Tents.length))
+    console.log('car.Tents.length', cars.map((car) => car.Tents.length));
 
     res.status(200).json(cars);
   } catch (error) {
@@ -75,23 +75,23 @@ exports.uploadNewCar = async (req, res) => {
               img_url: req.files[i].path.substr(6),
             });
           }
-            await CarTent.create({
-              car_id: newCar.id,
-              tent_id: 1,
-            })
-            await CarTent.create({
-              car_id: newCar.id,
-              tent_id: 2,
-            })
-            await CarTent.create({
-              car_id: newCar.id,
-              tent_id: 3,
-            })
-            await CarTent.create({
-              car_id: newCar.id,
-              tent_id: 4,
-            })
-          
+          await CarTent.create({
+            car_id: newCar.id,
+            tent_id: 1,
+          });
+          await CarTent.create({
+            car_id: newCar.id,
+            tent_id: 2,
+          });
+          await CarTent.create({
+            car_id: newCar.id,
+            tent_id: 3,
+          });
+          await CarTent.create({
+            car_id: newCar.id,
+            tent_id: 4,
+          });
+
           res.status(200).json('ImagesLoaded');
         } catch (error) {
           console.log('DB Upload URL Error:', error.message);
@@ -122,7 +122,7 @@ exports.editCar = async (req, res) => {
         brand: req.body.brand,
         model: req.body.model,
         body: req.body.body,
-        year: Number(req.body.year),
+        year: req.body.year,
         engine: req.body.engine,
         gear: req.body.gear,
         power: req.body.power,
@@ -135,9 +135,10 @@ exports.editCar = async (req, res) => {
 
       try {
         for (let i = 0; i < req.files.length; i++) {
-          await Image.update({
-            img_url: req.files[i].path.substr(6),
-          }, { where: { car_id: req.body.id } });
+          await Image.create({
+            car_id: req.body.id,
+            img_url: req.files[i]?.path.substr(6),
+          });
         }
         res.status(200).json('ImagesLoaded');
       } catch (error) {
@@ -162,7 +163,11 @@ exports.deleteCar = async (req, res) => {
     const delCar = await Car.findOne({ where: id });
     try {
       if (userId === delCar.user_id) {
-        await CarTent.destroy({ where: { car_id: id } });
+        await CarTent.destroy({
+          where: {
+            car_id: id,
+          },
+        });
         await Image.destroy({ where: { car_id: id } });
         await Car.destroy({ where: { id } });
         res.status(200).json('Удалено');
@@ -174,5 +179,21 @@ exports.deleteCar = async (req, res) => {
   } catch (error) {
     console.log('Find Car DB err');
     Error(res, 'Find Car DB err');
+  }
+};
+
+exports.deleteCarPhoto = async (req, res) => {
+  const { imgId } = req.body;
+  // const userId = req.session?.user?.id;
+  try {
+    await Image.destroy({
+      where: {
+        id: imgId,
+      },
+    });
+    res.status(200).json('Удалено');
+  } catch (error) {
+    console.log('Delete Car DB err', error.message);
+    Error(res, 'Delete Car DB err');
   }
 };

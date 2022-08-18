@@ -37,7 +37,22 @@ export const carsReducer = (state = initialState, action) => {
       return {...state, cars: unDeletedCars};
 
     case ACTypes.EDIT_CAR:
-      return { ...state, cars: action.payload}  
+      return { ...state, cars: action.payload} 
+      
+    case ACTypes.DELETE_PHOTO_CAR:
+      console.log('reducer')
+
+      const car = state.cars.filter(car => car.id === action.payload.car_id)[0]
+
+      const images = car.Images.filter(img => img.id !== action.payload.id)
+      const newState = state.cars.map((el) => {
+        if (el.id === action.payload.car_id) {
+          return {...el, Images: images }
+        } 
+        return el
+      })
+      console.log(newState)
+      return {...state, cars: newState}  
       
     default:
       return state;
