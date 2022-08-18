@@ -1,14 +1,19 @@
 import React from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { useDispatch } from 'react-redux';
+import { deleteCarPhotoThunk } from '../../../../store/action';
 
 export const DraggableImages = (props) => {
+  const dispatch = useDispatch()
 
   const { files, setFiles } = props
 
-  const removeFile = file => () => {
+  const removeFile = file => async () => {    
     const newFiles = [...files]
     newFiles.splice(newFiles.indexOf(file), 1)
     setFiles(newFiles)
+    
+    dispatch(deleteCarPhotoThunk(file))
   }
 
   const handleOnDragEnd = (result) => {

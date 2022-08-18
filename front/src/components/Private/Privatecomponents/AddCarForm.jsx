@@ -171,6 +171,9 @@ export default function AddCArForm({ car, edit, setTabIndex, setOpen }) {
       formData.append('capacity', values.capacity)
       formData.append('coordinates', coordinates)
       if (files) {
+        // const filteredArray = files.map((el) => {
+          
+        // })
         for (let el of files) {
           formData.append('file', el)
         }

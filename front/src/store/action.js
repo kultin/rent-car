@@ -101,6 +101,36 @@ export const deleteCarThunk = (id) => async (dispatch) => {
   }
 }
 
+export const deleteCarPhotoAC = (file) => ({
+  type: ACTypes.DELETE_PHOTO_CAR, 
+  payload: file
+})
+
+export const deleteCarPhotoThunk = (file) => async (dispatch) => {
+  // dispatch(setLoadingUA(true))
+  try {
+      const response = await fetch("http://localhost:3005/cars/mycars/photo/delete", {
+          method: "delete",
+          credentials: 'include',
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ imgId : file.id }),
+      });
+      
+      if (response.status !== 200) {
+        console.log('Delete Car Photo', response.status)
+        return dispatch(setErrorUA('Ошибка удаления на сервере'))
+      }
+      dispatch(deleteCarPhotoAC(file))
+  } catch (err) {
+      console.error('err', err);
+      dispatch(setErrorUA('Ошибка в запросе удаления'))
+  } finally {
+      dispatch(setLoadingUA(false));
+  }
+}
+
 
 
 
