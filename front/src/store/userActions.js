@@ -127,6 +127,7 @@ export const logInThunk = (values) => async (dispatch) => {
 export const editUserThunk = (id, changes) => async (dispatch) => {
     dispatch(setLoadingUA(true));
     dispatch(setErrorUA(false));
+    console.log('EDITUSER', id,changes);
     try {
         const response = await fetch("http://localhost:3005/editUser", {
             method: "post",

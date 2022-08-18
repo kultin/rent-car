@@ -20,9 +20,10 @@ exports.getMessages = async (req, res) => {
         attributes: ['name'],
       },
     })
+    
+    const sortedMessages = messages.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt));
 
-
-    res.status(200).json(messages);
+    res.status(200).json(sortedMessages);
   } catch (error) {
     console.log('Get Messages DB Err ', error.message);
     res.status(400).json(['Get Messages DB Err']);

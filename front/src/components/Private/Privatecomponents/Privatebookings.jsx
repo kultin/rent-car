@@ -10,8 +10,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { getMessagesUA } from '../../../store/userActions';
-
 
 export default function Privatebookings({ title }) {
 
@@ -33,16 +31,14 @@ export default function Privatebookings({ title }) {
     socketRef.current = socketIOClient("http://localhost:3010", {
       query: { roomId: sendValues.id },
     });
-
+    
     socketRef.current.on("newChatMessage", (message) => {
+      console.log('onMessage');
       dispatch(getMessagesThunk(sendValues.id))
     });
-
-    return () => {
-      socketRef.current.disconnect();
-    };
-
   }, [sendValues.id]);
+
+
 
   React.useEffect(() => {
     if (sendValues.id != undefined) {
@@ -81,6 +77,7 @@ export default function Privatebookings({ title }) {
   };
 
   const onClosedHandler = (id) => {
+
     dispatch(closedBookingThunk(id))
   };
 
@@ -107,7 +104,6 @@ export default function Privatebookings({ title }) {
 
   const sendHandler = () => {
     dispatch(sendMessegeThunk(sendValues))
-
     socketRef.current.emit("newChatMessage", {
       senderId: socketRef.current.id,
     });
@@ -119,7 +115,6 @@ export default function Privatebookings({ title }) {
 
   return (
     <>
-
       <Dialog open={open} onClose={handleClose} className="wrapper__chat">
         <DialogTitle>Чат</DialogTitle>
         <DialogContent>
@@ -133,6 +128,7 @@ export default function Privatebookings({ title }) {
             type="text"
             fullWidth
             variant="standard"
+            value={sendValues.text}
             onChange={inputHandler}
           />
         </DialogContent>
@@ -141,7 +137,6 @@ export default function Privatebookings({ title }) {
           <Button onClick={() => sendHandler()}>Отправить</Button>
         </DialogActions>
       </Dialog>
-
 
       <div className="bookings">
         <h2 className="title bookings__title">{title}</h2>
