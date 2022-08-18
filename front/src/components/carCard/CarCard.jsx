@@ -8,9 +8,6 @@ import EditCarModal from './EditCarModal';
 
 export default function CarCard({ car, edit=false, setTabIndex }) {
 
-  const deleteHandler = (id) => {
-
-  }
 
   return (
     <div className="slider__item" key={car.id}>
@@ -18,12 +15,10 @@ export default function CarCard({ car, edit=false, setTabIndex }) {
         <div><EditCarModal car={car} setTabIndex={setTabIndex}/>
         <DeleteCarModal car={car} />
         </div>}
-
       <img className="slider__item-img" src={car.Images.length ? car.Images[0].img_url : "/img.png"} alt="slider-img" />
       <div className='catalog__box'>
         <h3 className="slider__item-title">{car.brand}</h3>
         <h3 className="slider__item-title2">{car.model}</h3>
-        <h3 className="slider__item-title2">{car.id}</h3>
       </div>
       <ul className="slider__item-list">
         <li className='slider__item-param'>
@@ -49,9 +44,8 @@ export default function CarCard({ car, edit=false, setTabIndex }) {
       </ul>
       <div className="slider__item-block">
         <p className="slider__item-price">{car.price} р./сутки</p>
-        {edit ? <></> 
-        : <Link className="slider__item-btn" to={`/car/${car.id}`}>Подробнее</Link>}
-        
+        <Link className="slider__item-btn" to={`/car/${car.id}`}>Подробнее</Link>
+
       </div>
     </div>
   );

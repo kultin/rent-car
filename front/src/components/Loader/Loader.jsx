@@ -4,7 +4,7 @@ import './loader.modules.scss';
 
 class AppLoader extends React.Component {
   render() {
-    return <ThreeDots color='red' height={100} width={100} className="loader"/>;
+    return <ThreeDots color='red' height={100} width={100} style={{justifyContent: 'center'}}/>;
   }
 }
 

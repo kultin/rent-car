@@ -1,31 +1,6 @@
 .slider {
-  margin: 70px 0;
-  &__inner {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-  }
-  &__title {
-    margin: 0;
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 47px;
-    color: #262626;
-  }
-  &__btn {
-    margin-left: 50px;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #fff;
-    border-radius: 11px;
-    background: #CA0100;
-    padding: 5px 30px;
-    transition: all 0.3s;
-    &:hover {
-      background: #ee0101;
-    }
+  &__item {
+    width: 328px;
   }
   &__item-block {
     display: flex;
@@ -40,6 +15,9 @@
   //   margin: 0;
   //   color: #747474;
   // }
+  &__item-title3 {
+    text-align: center;
+  }
   &__item-price {
     font-size: 22px;
     font-weight: 700;
@@ -70,43 +48,39 @@
   &__item:hover &__item-img{
     filter: brightness(100%);
   }
-  &__item-title3 {
-    text-align: center;
-  }
-  .slider__item-list {
+  // &__item-img {
+  //   width: 300px;
+  // }
+  &__item-list {
     padding: 0;
     margin: 5px 0;
   }
-  .slider__item-param-text {
+  &__item-param-text {
     color: #686868;
   }
-  .slider__item-param {
+  &__item-param {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     justify-content: space-between;
   }
-  .slider__item-title {
+  &__item-title {
     margin: 0;
   }
-  .slider__item-title2 {
+  &__item-title2 {
     font-size: 23px;
     margin-left: 10px;
   }
-  .slider__item-param-value,
-  .slider__item-param-text {
+  &__item-param-value,
+  &__item-param-text {
     margin: 0;
   }
-  .slider__item-btn {
+  &__item-btn {
     padding: 2px 10px;
-}
-.slider__item-price {
+  }
+  &__item-price {
   font-size: 20px;
-}
+  }
 }
 
-.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
-  max-width: 1000px !important; 
-  margin: 50px !important;
-}

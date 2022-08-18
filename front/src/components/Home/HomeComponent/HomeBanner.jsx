@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import AppLoader from "../../Loader/Loader";
 import '../home.modules.scss';
 
 export default function HomeBanner() {

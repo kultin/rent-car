@@ -148,7 +148,7 @@ export default function CarSlider({ car }) {
       <Slider {...settings}>
         {car.Images.length ? (
           car.Images.map((carImg) => (
-            <div key={car.id}>
+            <div className="carslider__img-box" key={car.id}>
               <img className="carslider__img" src={carImg.img_url} alt="slider-img" />
               {user?.name &&
                 <button className="carslider__heart" onClick={likeHandler}></button>
@@ -156,7 +156,7 @@ export default function CarSlider({ car }) {
             </div>
           ))
         ) : (
-          <div key={car.id}>
+          <div className="carslider__img-box" key={car.id}>
             <img className="carslider__img" src={"/img.png"} alt="slider-img" />
             {user?.name && 
               <button className={checked ? "carslider__heart active" : "carslider__heart"} onClick={likeHandler}></button>
