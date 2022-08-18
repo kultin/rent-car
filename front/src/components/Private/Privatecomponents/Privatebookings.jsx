@@ -119,28 +119,29 @@ export default function Privatebookings({ title }) {
 
   return (
     <>
-      <div>
-        <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Чат</DialogTitle>
-          <DialogContent>
-            {messages.map((message) => (<DialogContentText key={message.id}>{`${message.sender?.name} : ${message.text}`}</DialogContentText>))}
-            <TextField
-              autoFocus
-              margin="dense"
-              id="text"
-              name="text"
-              label="Введите сообщение"
-              type="text" 
-              // Подтвердить
-              onChange={inputHandler}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Закрыть</Button>
-            <Button onClick={() => sendHandler()}>Отправить</Button>
-          </DialogActions>
-        </Dialog>
-      </div>
+
+      <Dialog open={open} onClose={handleClose} className="wrapper__chat">
+        <DialogTitle>Чат</DialogTitle>
+        <DialogContent>
+          {messages.map((message) => (<DialogContentText key={message.id}>{`${message.sender?.name} : ${message.text}`}</DialogContentText>))}
+          <TextField
+            autoFocus
+            margin="dense"
+            id="text"
+            name="text"
+            label="Введите сообщение"
+            type="text"
+            fullWidth
+            variant="standard"
+            onChange={inputHandler}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Закрыть</Button>
+          <Button onClick={() => sendHandler()}>Отправить</Button>
+        </DialogActions>
+      </Dialog>
+
 
       <div className="bookings">
         <h2 className="title bookings__title">{title}</h2>
