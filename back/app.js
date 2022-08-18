@@ -7,15 +7,14 @@ const cors = require('cors');
 
 const sessions = require('express-session');
 const FileStore = require('session-file-store')(sessions);
-const server = require('http').createServer()
+const server = require('http').createServer();
 const io = require('socket.io')(server, {
   cors: {
     origin: [
       'http://localhost:3000',
     ],
-  }
-})
-
+  },
+});
 
 const editUserRoute = require('./routes/editUserRoute');
 const authRoute = require('./routes/authRoute');
@@ -25,11 +24,9 @@ const tentsRoute = require('./routes/tentsRoute');
 const messagesRoute = require('./routes/messagesRoute');
 const likesRoute = require('./routes/likesRoute');
 
-
 const app = express();
 const PORT = process.env.PORT ?? 3005;
 const WSPORT = process.env.WSPORT ?? 3010;
-
 
 const corsOptions = {
   origin: [
@@ -51,20 +48,19 @@ app.use(sessions({
   },
 }));
 
-io.on("connection", (socket) => {
+io.on('connection', (socket) => {
   const { roomId } = socket.handshake.query;
   socket.join(roomId);
   console.log(roomId);
 
-  socket.on("newChatMessage", (data) => {
-    io.in(roomId).emit("newChatMessage", data);
+  socket.on('newChatMessage', (data) => {
+    io.in(roomId).emit('newChatMessage', data);
   });
 
-  socket.on("disconnect", () => {
+  socket.on('disconnect', () => {
     socket.leave(roomId);
   });
 });
-
 
 app.use(morgan('dev'));
 app.use(cors(corsOptions));
@@ -72,7 +68,6 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 app.get('/', async (req, res) => {
   res.send('Hello');
@@ -87,8 +82,8 @@ app.use('/messages', messagesRoute);
 app.use('/likes', likesRoute);
 
 server.listen(WSPORT, () => {
-  console.log(`Server ready. Port: ${WSPORT}`)
-})
+  console.log(`Server ready. Port: ${WSPORT}`);
+});
 
 app.listen(PORT, () => {
   console.log(`Server started on ${PORT}`);

@@ -17,10 +17,7 @@ export default function Footer() {
                 <NavLink className="footer__list-link" to="/cars">Каталог</NavLink>
               </li>
               <li className="footer__list-item">
-                <NavLink className="footer__list-link" to="/about">О нас</NavLink>
-              </li>
-              <li className="footer__list-item">
-                <NavLink className="footer__list-link" to="/contact">Контакты</NavLink>
+                <NavLink className="footer__list-link" to="/about">404</NavLink>
               </li>
             </ul>
           </div>

@@ -31,7 +31,7 @@ function Layout() {
 
   const burgerHandler = (e) => {
     e.preventDefault();
-    if (burger) setBurger(false)  
+    if (burger) setBurger(false)
     if (menu) setMenu(false)
     if (!burger) setBurger(true)
     if (!menu) setMenu(true)
@@ -45,8 +45,8 @@ function Layout() {
   return (
     <>
       <Error />
-      <nav className="navbar">
-        <div className="container">
+      <div className="container">
+        <nav className="navbar">
           <div className='navbar__inner'>
             <Link to="/"><img className="navbar__logo" src={'/logo.svg'} alt="logo" /></Link>
             <ul className={menu ? "navbar__list active" : "navbar__list"}>
@@ -87,13 +87,15 @@ function Layout() {
               <span></span>
             </button>
           </div>
-        </div>
-      </nav>
-      {(isLoading) ? (
-        <AppLoader />
-      ) : (
-        <Outlet />
-      )}
+        </nav>
+      </div>
+      {
+        (isLoading) ? (
+          <AppLoader />
+        ) : (
+          <Outlet />
+        )
+      }
     </>
   );
 }

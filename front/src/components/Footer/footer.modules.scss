@@ -71,3 +71,36 @@
     border-radius: 6px;
   }
 }
+
+@media (max-width: 768px) {
+  .footer__desc-urid,
+  .footer__desc-title,{
+    font-size: 13px;
+    width: 100%;
+}
+.footer__desc {
+  flex-direction: column;
+  text-align: center;
+  row-gap: 10px;
+}
+.footer__list-item + .footer__list-item {
+  margin-left: 15px;
+}
+
+}
+
+@media (max-width: 568px) {
+  .footer__inner {
+    flex-direction: column;
+    row-gap: 30px;
+  }
+  .footer__desc {
+    padding-top: 30px;
+  }
+
+  .footer__list-item + .footer__list-item {
+    margin-left: 10px ;
+  }
+
+}
+

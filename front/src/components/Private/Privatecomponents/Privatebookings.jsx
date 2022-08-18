@@ -62,7 +62,6 @@ export default function Privatebookings({ title }) {
       } else if (user.role == 'lessee' && bookings[i].status == 'booked') {
         bookings[i].status = 'Подтвержден'
       }
-
     }
     return bookings
   }
@@ -116,28 +115,28 @@ export default function Privatebookings({ title }) {
 
   return (
     <>
-      <div>
-        <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Чат</DialogTitle>
-          <DialogContent>
-            {messages.map((message) => (<DialogContentText key={message.id}>{`${message.sender?.name} : ${message.text}`}</DialogContentText>))}
-            <TextField
-              autoFocus
-              margin="dense"
-              id="text"
-              name="text"
-              label="Введите сообщение"
-              type="text"
-              value={sendValues.text}
-              onChange={inputHandler}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Закрыть</Button>
-            <Button onClick={() => sendHandler()}>Отправить</Button>
-          </DialogActions>
-        </Dialog>
-      </div>
+      <Dialog open={open} onClose={handleClose} className="wrapper__chat">
+        <DialogTitle>Чат</DialogTitle>
+        <DialogContent>
+          {messages.map((message) => (<DialogContentText key={message.id}>{`${message.sender?.name} : ${message.text}`}</DialogContentText>))}
+          <TextField
+            autoFocus
+            margin="dense"
+            id="text"
+            name="text"
+            label="Введите сообщение"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={sendValues.text}
+            onChange={inputHandler}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Закрыть</Button>
+          <Button onClick={() => sendHandler()}>Отправить</Button>
+        </DialogActions>
+      </Dialog>
 
       <div className="bookings">
         <h2 className="title bookings__title">{title}</h2>

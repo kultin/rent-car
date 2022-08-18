@@ -21,6 +21,7 @@
 }
 
 .navbar {
+  width: 100%;
   &__logo {
     width: 130px;
     animation: fade-in 1s forwards;
@@ -111,7 +112,6 @@
   .navbar__inner {
     position: fixed;
     left: 0;
-    right: 0;
     top: 0;
     background-color: #fff;
     padding: 0;
@@ -119,10 +119,8 @@
   }
   .navbar__burger {
     display: block;
-    margin-right: 15px;
   }
   .navbar__list {
-    box-sizing: border-box;
     position: fixed;
     z-index: 10;
     top: 0;

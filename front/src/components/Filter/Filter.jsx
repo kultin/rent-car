@@ -1,18 +1,25 @@
 import * as React from 'react';
+import * as R from 'ramda';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { bodyFilterAC, classFilterAC, priceSortAC, sortAllAC } from '../../store/action';
 import style from "./style.module.css"
-const options = ["Volkswagen", "Skoda", "Nissan", "Renault", "Audi", "Toyota", "все марки"];
-const optionsPrice = ["по убыванию", "по возрастанию"];
+
 
 export default function Filter() {
+  
+  const { cars } = useSelector((store) => store.cars)
+  const brands = R.uniq(cars.map((item) => item.brand))
+  const options = brands;
+  const optionsPrice = ["по убыванию", "по возрастанию"];
+  
   const [valueBody, setValueBody] = React.useState("all");
   const [valueBrand, setValueBrand] = React.useState(options[0]);
   const [valuePrice, setValuePrice] = React.useState(optionsPrice[0]);
   const dispatch = useDispatch();
-
+  
+  
   const onClick = (e) => {
     dispatch(sortAllAC(valueBody, valueBrand, valuePrice));
     setValueBody("all");
