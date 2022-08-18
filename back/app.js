@@ -27,8 +27,8 @@ const likesRoute = require('./routes/likesRoute');
 
 
 const app = express();
-const PORT = process.env.PORT ?? 3006;
-const WSPORT = process.env.WSPORT ?? 3011;
+const PORT = process.env.PORT ?? 3005;
+const WSPORT = process.env.WSPORT ?? 3010;
 
 
 const corsOptions = {

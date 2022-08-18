@@ -10,8 +10,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { getMessagesUA } from '../../../store/userActions';
-
 
 export default function Privatebookings({ title }) {
 
@@ -30,19 +28,17 @@ export default function Privatebookings({ title }) {
   const socketRef = useRef();
 
   useEffect(() => {
-    socketRef.current = socketIOClient("http://localhost:3011", {
+    socketRef.current = socketIOClient("http://localhost:3010", {
       query: { roomId: sendValues.id },
     });
-
+    
     socketRef.current.on("newChatMessage", (message) => {
+      console.log('onMessage');
       dispatch(getMessagesThunk(sendValues.id))
     });
-
-    return () => {
-      socketRef.current.disconnect();
-    };
-
   }, [sendValues.id]);
+
+
 
   React.useEffect(() => {
     if (sendValues.id != undefined) {
@@ -53,7 +49,7 @@ export default function Privatebookings({ title }) {
 
   const statusDisplay = () => {
     for (let i = 0; i < bookings.length; i++) {
-      if (user.role == 'lessor' && bookings[i].status == 'Подтвержден') {
+      if (user.role == 'lessor' && bookings[i].status == 'booked') {
         bookings[i].status = 'ПодтвержденВами'
       } else if (user.role == 'lessor' && bookings[i].status == 'pre-booking') {
         bookings[i].status = 'Подтвердить'
@@ -82,6 +78,7 @@ export default function Privatebookings({ title }) {
   };
 
   const onClosedHandler = (id) => {
+
     dispatch(closedBookingThunk(id))
   };
 
@@ -108,7 +105,6 @@ export default function Privatebookings({ title }) {
 
   const sendHandler = () => {
     dispatch(sendMessegeThunk(sendValues))
-
     socketRef.current.emit("newChatMessage", {
       senderId: socketRef.current.id,
     });
@@ -131,7 +127,8 @@ export default function Privatebookings({ title }) {
               id="text"
               name="text"
               label="Введите сообщение"
-              type="text" Подтвердить
+              type="text"
+              value={sendValues.text}
               onChange={inputHandler}
             />
           </DialogContent>
