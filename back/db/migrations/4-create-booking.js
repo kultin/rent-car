@@ -7,11 +7,22 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      booking_id: {
+        allowNull: false,
+        autoIncrement: true,
+        type: Sequelize.INTEGER,
+      },
       date_start: {
         type: Sequelize.STRING,
       },
       date_end: {
         type: Sequelize.STRING,
+      },
+      days: {
+        type: Sequelize.INTEGER,
+      },
+      price: {
+        type: Sequelize.INTEGER,
       },
       pick_up: {
         type: Sequelize.STRING,
@@ -19,10 +30,17 @@ module.exports = {
       return_place: {
         type: Sequelize.STRING,
       },
-      car_id: {
+      CarId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Cars',
+          key: 'id',
+        },
+      },
+      tent_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Tents',
           key: 'id',
         },
       },
@@ -33,8 +51,8 @@ module.exports = {
           key: 'id',
         },
       },
-      closed: {
-        type: Sequelize.BOOLEAN,
+      status: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

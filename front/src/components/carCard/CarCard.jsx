@@ -1,40 +1,55 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import style from "./style.module.css"
+import { Link } from 'react-router-dom';
+import DeleteCarModal from '../Private/Privatecomponents/DeleteCarModal';
+import "./carcard.modules.scss"
+// import "../Slider/slider.modules.scss"
+import EditCarModal from './EditCarModal';
 
-export default function ImgMediaCard({car}) {
-  
+
+export default function CarCard({ car, edit=false, setTabIndex }) {
+
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="200"
-        image="/images/car.jpg"
-      />
-            <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {car.brand}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          <ul className ={style.data}>
-            <li> Год выпуска: { car.year }</li>
-            <li>Мощность: { car.power }</li>
-            <li>КПП: { car.gear }</li>
-            <li>ОбЪем двигателя: { car.engine }</li>
-            <li>Салон: { car.seats }</li>
-          </ul>
-        </Typography>
-      </CardContent>
-      <CardActions>        
-        <Button size="small">Подробнее</Button>
-        <Button size="small">Забронировать</Button>
-      </CardActions>
-    </Card>
+    <div className="slider__item" key={car.id}>
+
+      {edit && 
+        <div><EditCarModal car={car} setTabIndex={setTabIndex}/>
+        <DeleteCarModal car={car} />
+        </div>}
+
+      <img className="slider__item-img" src={car.Images.length ? car.Images[0].img_url : "/img.png"} alt="slider-img" />
+      <div className='catalog__box'>
+        <h3 className="slider__item-title">{car.brand}</h3>
+        <h3 className="slider__item-title2">{car.model}</h3>
+      </div>
+      <ul className="slider__item-list">
+        <li className='slider__item-param'>
+          <p className='slider__item-param-text'>Год выпуска:</p>
+          <p className='slider__item-param-value'>{car.year}</p>
+        </li>
+        <li className='slider__item-param'>
+          <p className='slider__item-param-text'>Мощность:</p>
+          <p className='slider__item-param-value'>{car.power}</p>
+        </li>
+        <li className='slider__item-param'>
+          <p className='slider__item-param-text'>КПП:</p>
+          <p className='slider__item-param-value'>{car.gear}</p>
+        </li>
+        <li className='slider__item-param'>
+          <p className='slider__item-param-text'>Объем двигателя:</p>
+          <p className='slider__item-param-value'>{car.engine}</p>
+        </li>
+        <li className='slider__item-param'>
+          <p className='slider__item-param-text'>Салон:</p>
+          <p className='slider__item-param-value'>{car.seats}</p>
+        </li>
+      </ul>
+      <div className="slider__item-block">
+        <p className="slider__item-price">{car.price} р./сутки</p>
+        <Link className="slider__item-btn" to={`/car/${car.id}`}>Подробнее</Link>
+
+      </div>
+    </div>
   );
 }
+

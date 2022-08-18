@@ -8,13 +8,43 @@ module.exports = {
     },
     {
       tent_id: 2,
+      car_id: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      tent_id: 3,
+      car_id: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      tent_id: 4,
+      car_id: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      tent_id: 1,
+      car_id: 2,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      tent_id: 2,
       car_id: 2,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
     {
       tent_id: 3,
-      car_id: 3,
+      car_id: 2,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      tent_id: 4,
+      car_id: 2,
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});

@@ -1,22 +1,21 @@
-import { legacy_createStore as createStore, combineReducers, applyMiddleware} from 'redux';
+import { legacy_createStore as createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 
 import { userReducer } from './userReducer';
 import { carsReducer } from './carsReducer';
-
-// import { authReducer } from "./auth/reducers";
-// import { cardReducer } from "./cards/reducers";
-// import { modalReducer} from './cards/modal.reducer';
+import { bookingsReducer } from './bookingsReducer';
+import { likesReducer } from './likesReducer';
+import { formCarReducer } from './formCarReducer';
 
 const composeEnhancers = composeWithDevTools(applyMiddleware(thunkMiddleware)); // импорт reduxDevTools
 
 const reducers = combineReducers({
-    user: userReducer,
-       // auth: authReducer, // по этим ключам, потом обращаемся в подредьюсеры
-     cars: carsReducer,
-    // topicsCombine: cardReducer,
-    // modal: modalReducer,
-  });
+  user: userReducer,
+  cars: carsReducer,
+  bookings: bookingsReducer,
+  likes: likesReducer,
+  form: formCarReducer,
+});
 
 export const store = createStore(reducers, composeEnhancers);

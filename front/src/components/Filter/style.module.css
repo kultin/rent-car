@@ -1,10 +1,128 @@
+@keyframes fade-in-filter {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
-
-.carbody {
-  width: 250px;
+.filter {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
+  background: #f7f7f7;
+  border-radius: 25px;
+  padding: 15px;
+  box-shadow: 0px 2px 12px 0px rgba(33, 33, 33, 0.2);
+  animation: fade-in-filter 1s forwards ease;
+}
+
+.carbody {
+  display: flex;
   text-align: center;
+}
+.btn {
+  cursor: pointer;
+  width: 170px;
+  border: none;
+  background-color: transparent;
+  padding: 15px;
+  transition: all 0.3s;
+  border-radius: 6px;
+}
+.btnfocus {
+  box-shadow: 0px 0px 2px 2px rgb(91, 140, 204);
+}
+.btn2 {
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #fff;
+  border-radius: 6px;
+  background: #cb2d3e;
+  background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e);
+  background: linear-gradient(to right, #ef473a, #cb2d3e);
+  padding: 12px 20px;
+  transition: all 0.3s;
+}
+.btn2:hover {
+  box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+}
+.btn + .btn {
   margin-left: 20px;
+}
+.images {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+.title {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.inputs {
+  display: flex;
+  justify-content: space-between;
+}
+.input1 {
+  margin-right: 30px;
+  min-width: 300px;
+}
+.input2 {
+  min-width: 300px;
+}
+
+@media (max-width: 1100px) {
+  .carbody {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .btn + .btn {
+    margin-left: 0;
+  }
+  .inputs {
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    row-gap: 40px;
+  }
+  .input1 {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter {
+    margin-top: 20px;
+    flex-direction: column;
+  }
+  .btn2 {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 414px) {
+  .btn2 {
+    padding: 6px 15px;
+  }
+  .input1 {
+    min-width: 260px;
+  }
+  .input2 {
+    min-width: 260px;
+  }
+  .filter .slider__item {
+    width: 300px;
+  }
+  .filtet .slider__item-img {
+    width: 300px;
+  }
 }

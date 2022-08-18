@@ -1,60 +1,66 @@
-import { Outlet, NavLink, useNavigate } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ACTypes from '../../store/types';
-import axios from 'axios';
-import '../Layout/layout.modules.scss';
+import style from './layout.modules.scss';
+import { getUserThunk } from '../../store/userActions'
+import { logoutThunk } from '../../store/userActions'
+import Error from '../Error/Error'
+import AppLoader from '../Loader/Loader.jsx'
+// import { CSSTransition } from 'react-transition-group';
 
 
 function Layout() {
-  
-  const {user} = useSelector((store) => store.user);
+
+  const [inProp, setInProp] = useState(false);
+  const [burger, setBurger] = useState(false);
+  const [menu, setMenu] = useState(false);
+
+  const isLoading = useSelector((state) => state.user.isLoading);
+
+  const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [name, setName] = useState('');
-
-  useEffect(() => {
-    // axios.get("http://localhost:3005/auth/name")
-    //   .then((res) => {
-    //     if (res.data) {
-    //       console.log(res.data);
-    //       // setName(res.data);
-    //     }
-    //   })
-    axios.get("http://localhost:3005/auth/name", { withCredentials: true })
-      .then((res) => {
-        dispatch({ type: ACTypes.SET_USER, payload: res.data });
-      })
-  }, [])
-
   const logoutHandler = (e) => {
     e.preventDefault();
-    axios.get("http://localhost:3005/auth/quit", { withCredentials: true });
-    dispatch({ type: ACTypes.LOGOUT });
+    dispatch(logoutThunk());
     navigate('/');
   }
 
+  const burgerHandler = (e) => {
+    e.preventDefault();
+    if (burger) setBurger(false)  
+    if (menu) setMenu(false)
+    if (!burger) setBurger(true)
+    if (!menu) setMenu(true)
+    console.log('click')
+  }
+
+  useEffect(() => {
+    dispatch(getUserThunk())
+  }, [])
+
   return (
     <>
+      <Error />
       <nav className="navbar">
         <div className="container">
           <div className='navbar__inner'>
-            <img className="navbar__logo" src={'./logo.svg'} alt="logo" />
-            <ul className="navbar__list">
+            <Link to="/"><img className="navbar__logo" src={'/logo.svg'} alt="logo" /></Link>
+            <ul className={menu ? "navbar__list active" : "navbar__list"}>
               {!user.name &&
                 <>
                   <li className="navbar__list-item">
-                    <NavLink className="navbar__list-link" to="/home">Главная</NavLink>
+                    <NavLink className="navbar__list-link" to="/">Главная</NavLink>
                   </li>
                   <li className="navbar__list-item">
                     <NavLink className="navbar__list-link" to="/cars">Каталог</NavLink>
                   </li>
                   <li className="navbar__list-item">
-                    <NavLink className="navbar__list-link" to="/logup">Войти</NavLink>
+                    <NavLink className="navbar__list-link" to="/login">Войти</NavLink>
                   </li>
                   <li className="navbar__list-item">
-                    <NavLink className="navbar__list-link" to="/login">Регистрация</NavLink>
+                    <NavLink className="navbar__list-link" to="/registration">Регистрация</NavLink>
                   </li>
                 </>}
               {user.name &&
@@ -69,14 +75,23 @@ function Layout() {
                     <NavLink className="navbar__list-link" to="/private">Привет, {user.name}</NavLink>
                   </li>
                   <li className="navbar__list-item">
-                    <NavLink className="nav-link" onClick={logoutHandler} to="/">Выйти</NavLink>
+                    <Link className="navbar__list-link" onClick={logoutHandler} to="/">Выйти</Link>
                   </li>
                 </>}
             </ul>
+            <button className={burger ? "navbar__burger active" : "navbar__burger"} onClick={burgerHandler}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
           </div>
         </div>
       </nav>
-      <Outlet />
+      {(isLoading) ? (
+        <AppLoader />
+      ) : (
+        <Outlet />
+      )}
     </>
   );
 }

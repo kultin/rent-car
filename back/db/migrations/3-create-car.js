@@ -8,37 +8,53 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       brand: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       model: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       body: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       year: {
-        type: Sequelize.INTEGER,
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       engine: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       gear: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       power: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       seats: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       photo: {
         type: Sequelize.STRING,
       },
       price: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       capacity: {
+        allowNull: false,
         type: Sequelize.INTEGER,
+      },
+      likes: {
+        type: Sequelize.INTEGER,
+      },
+      location: {
+        type: Sequelize.STRING,
       },
       user_id: {
         type: Sequelize.INTEGER,

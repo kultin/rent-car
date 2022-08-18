@@ -13,21 +13,32 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsToMany(models.User, {
         through: models.Booking,
         foreignKey: 'car_id',
-      }),
+      });
       this.belongsToMany(models.Tent, {
         through: models.CarTent,
         foreignKey: 'car_id',
-      }),
+      });
       this.hasMany(models.Image, {
         foreignKey: 'car_id',
-      }),
+      });
+      this.hasMany(models.Booking, {
+        foreignKey: 'CarId',
+      });
+      this.hasMany(models.Like, {
+        foreignKey: 'car_id',
+      });
+      this.belongsToMany(models.User, {
+        through: models.Like,
+        foreignKey: 'car_id',
+      });
+     
     }
   }
   Car.init({
     brand: DataTypes.STRING,
     model: DataTypes.STRING,
     body: DataTypes.STRING,
-    year: DataTypes.INTEGER,
+    year: DataTypes.STRING,
     engine: DataTypes.STRING,
     gear: DataTypes.STRING,
     power: DataTypes.INTEGER,
@@ -35,7 +46,9 @@ module.exports = (sequelize, DataTypes) => {
     photo: DataTypes.STRING,
     price: DataTypes.INTEGER,
     capacity: DataTypes.INTEGER,
-    car_id: DataTypes.INTEGER,
+    location: DataTypes.STRING,
+    user_id: DataTypes.INTEGER,
+    likes: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Car',
