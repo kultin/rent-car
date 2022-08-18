@@ -1,5 +1,6 @@
 import React from "react";
 import './private.modules.scss';
+import { useState } from "react";
 import Privateinfo from './Privatecomponents/Privateinfo'
 import Privatebookings from './Privatecomponents/Privatebookings'
 import Privatefavorites from './Privatecomponents/Privatefavorites'
@@ -22,12 +23,14 @@ export default function Private() {
     dispatch(getBookingsThunk())
   }, [])
 
+  const [tabIndex, setTabIndex] = useState(2);
+
   return ((user.role == 'lessor') ? (
     <>
       <div className="container">
         <div className="user__box">
           <Privateinfo />
-          <Tabs>
+          <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
             <TabList>
               <Tab>Мои заказы</Tab>
               <Tab>Добавить авто</Tab>
@@ -38,10 +41,10 @@ export default function Private() {
               <Privatebookings title="Мои заказы" />
             </TabPanel>
             <TabPanel>
-              <AddCArForm />
+              <AddCArForm setTabIndex={setTabIndex}/>
             </TabPanel>
             <TabPanel>
-              <PrivateCars />
+              <PrivateCars setTabIndex={setTabIndex}/>
             </TabPanel>
             <TabPanel>
               <Privatefavorites />

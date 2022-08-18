@@ -1,4 +1,5 @@
 import ACTypes from "./types";
+import { setLoadingUA, setErrorUA } from "./userActions";
 
 export const sendCorrectAnswer = (answer, id, topicId) => ({
   type: ACTypes.CORRECT_ANSWER,
@@ -70,6 +71,35 @@ export const setLikesAC = (likes) => ({
   type: ACTypes.SET_LIKES,
   payload: { likes }
 })
+
+export const deleteCarAC = (id) => ({
+  type: ACTypes.DELETE_CAR, 
+  payload: {id}
+})
+
+export const deleteCarThunk = (id) => async (dispatch) => {
+  dispatch(setLoadingUA(true))
+  try {
+      const response = await fetch("http://localhost:3005/cars/mycars/delete", {
+          method: "delete",
+          credentials: 'include',
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id }),
+      });
+      
+      if (response.status !== 200) {
+        return dispatch(setErrorUA('Ошибка удаления на сервере'))
+      }
+      dispatch(deleteCarAC(id))
+  } catch (err) {
+      console.error('err', err);
+      dispatch(setErrorUA('Ошибка в запросе удаления'))
+  } finally {
+      dispatch(setLoadingUA(false));
+  }
+}
 
 
 

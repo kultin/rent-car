@@ -34,7 +34,7 @@ const initialValues = {
   file: null,
 }
 
-export default function AddCArForm({ car }) {
+export default function AddCArForm({ car, edit, setTabIndex, setOpen }) {
 
   const dispatch = useDispatch()
 
@@ -46,7 +46,9 @@ export default function AddCArForm({ car }) {
 
   const [coordinates, setCoordinates] = useState(null)
 
-  const [addressInput, setAddressInput] = useState(false)
+  // console.log('CORDINATES ADD CAR FORM', coordinates)
+  const [enableAddressInput, setEnableAddressInput] = useState(false)
+
 
   useEffect(() => {
     if (car) {
@@ -99,15 +101,16 @@ export default function AddCArForm({ car }) {
   }
 
   const handleReset = () => {
-    setAddressInput(true)
+    setEnableAddressInput(true)
     setValues(initialValues)
     setErrors({})
     setFiles([])
   }
 
   const addCarToDb = async () => {
+
     if(validate()) {
-      setAddressInput(false)
+      setEnableAddressInput(false)
       const formData = new FormData()
       formData.append('brand', values.brand)
       formData.append('model', values.model)
@@ -135,24 +138,25 @@ export default function AddCArForm({ car }) {
         }).then(res => {
           if (res.status == 200) {
             window.alert('загружено успешно')
-            console.log('AXIOS DATA', res)
+            console.log('AXIOS DATA', res)  
+            // window.location.reload();          
+            setTabIndex(2)
           } else {
             window.alert('Ошибка загрузки')
             console.log('AXIOS DATA', res)
           }
         })
-        // .then(res => console.log('AXIOS DATA',res.status))
       } catch (error) {
         console.log(error.message)
+        window.alert(`Ошибка загрузки: ${error.message}`)
       }
     }
   }
 
   const editCarToDb = async () => {
     if (validate()) {
-      setAddressInput(false)
+      setEnableAddressInput(false)
       const formData = new FormData()
-      // console.log('VALUES FROM EDIT', values)
 
       formData.append('id', values.id)
       formData.append('brand', values.brand)
@@ -180,8 +184,10 @@ export default function AddCArForm({ car }) {
           }
         }).then(res => {
           if (res.status == 200) {
-            window.alert('загружено успешно')
+            window.alert('Изменено успешно')
             console.log('AXIOS DATA', res)
+            window.location.reload();
+            setOpen(false)
           } else {
             window.alert('Ошибка загрузки')
             console.log('AXIOS DATA', res)
@@ -190,6 +196,7 @@ export default function AddCArForm({ car }) {
         // .then(res => console.log('AXIOS DATA',res.status))
       } catch (error) {
         console.log(error.message)
+        window.alert(`Ошибка загрузки: ${error.message}`)
       }
     }
   }
@@ -198,7 +205,8 @@ export default function AddCArForm({ car }) {
   return (
     <div>
       <div className='addcar'>
-        <h2 className="title addcar__title">Загрузить новое авто</h2>
+        {edit ? <h2 className="title addcar__title">Изменить авто</h2>
+        : <h2 className="title addcar__title">Загрузить новое авто</h2>}
         <div className='addcar__inner'>
           <div className='addcar__item'>
             <Completer
@@ -311,7 +319,13 @@ export default function AddCArForm({ car }) {
           </div>
 
           <div className='addcar__item-address'>
-            <YandexSuggester car={car} setCoordinates={setCoordinates} addressInput={addressInput} values={values} setValues={setValues} />
+            <YandexSuggester 
+              car={car}
+              setCoordinates={setCoordinates} 
+              enableAddressInput={enableAddressInput}
+              setEnableAddressInput={setEnableAddressInput}
+              values={values}
+              setValues={setValues} />
           </div>
 
             <div className='addcar__item-dropzone'>

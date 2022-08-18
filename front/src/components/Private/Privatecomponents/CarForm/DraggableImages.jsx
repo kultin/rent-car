@@ -30,13 +30,28 @@ export const DraggableImages = (props) => {
             {files &&
               files.map((file, index) => {
                 return (
-                  <Draggable key={file.name} draggableId={file.name} index={index}>
-                    {(provided) => (
-                      <li className='addcar__item-list-item'{...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                        <img className="addcar__item-list-img" key={file.name} src={file.preview ? file.preview : file.img_url} alt='car'/>
-                        <button className="addcar__item-list-btn" onClick={removeFile(file)}></button>
-                      </li>
-                    )}
+                  <Draggable 
+                  key={file.name ? file.path : file.id}
+                  draggableId={file.name ? file.path : file.id.toString()} 
+                  index={index}>
+                    {(provided, snapshot) => {
+                      if (snapshot.isDragging) {
+                        provided.draggableProps.style.left = undefined;
+                        provided.draggableProps.style.top = undefined;
+                      }
+                        return (
+                        <li 
+                          
+                          className='addcar__item-list-item'
+                          {...provided.draggableProps} 
+                          {...provided.dragHandleProps}
+                           ref={provided.innerRef}
+                          >
+                            <img className="addcar__item-list-img"  src={file.preview ? file.preview : file.img_url} alt='car'/>
+                          <button className="addcar__item-list-btn" onClick={removeFile(file)}></button>
+                        </li>
+                        )
+                    }}
                   </Draggable>
                 )
               }

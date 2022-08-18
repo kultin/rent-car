@@ -41,6 +41,7 @@ export default function Privateinfo() {
       <div className="info">
         <div className="info__inner">
           {user.img_url ?
+
             <div className="info__box-foto">
               <img className="info__photo" src={user.img_url} />
             </div>
@@ -48,6 +49,7 @@ export default function Privateinfo() {
             <div className="info__box-foto">
               <img className="info__photo-icon" src={'http://localhost:3005/images/default-avatar.png'} />
             </div>
+
           }
           <div className="info__content">
             {(condition) ? (
