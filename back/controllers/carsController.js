@@ -60,7 +60,7 @@ exports.uploadNewCar = async (req, res) => {
         gear: req.body.gear,
         power: req.body.power,
         seats: req.body.seats,
-        photo: req.files[0].path.substr(6),
+        photo: req.files[0]?.path.substr(6),
         price: Number(req.body.price),
         capacity: Number(req.body.capacity),
         likes: 0,
@@ -72,7 +72,7 @@ exports.uploadNewCar = async (req, res) => {
           for (let i = 0; i < req.files.length; i++) {
             await Image.create({
               car_id: newCar.id,
-              img_url: req.files[i].path.substr(6),
+              img_url: req.files[i]?.path.substr(6),
             });
           }
           await CarTent.create({

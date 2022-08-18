@@ -20,9 +20,6 @@ function MapSuggestComponent(props) {
   const clearInput = props.enableAddressInput
   const {setEnableAddressInput} = props
 
-  console.log('CLEAR INPUT', clearInput)
-
-
   const getAddress = (coords) => {
     ymaps.geocode(`${coords}`)
           .then((result) => {
@@ -33,7 +30,6 @@ function MapSuggestComponent(props) {
   }
 
   const [addressInput, setAddressInput] = React.useState('')
-  // const [addressInput, setAddressInput] = React.useState(getAddress(car?.location))
 
   useEffect(() => {
     setAddressInput(getAddress(car?.location))
