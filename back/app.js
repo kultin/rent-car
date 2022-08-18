@@ -11,7 +11,7 @@ const FileStore = require('session-file-store')(sessions);
 // const gameRoute = require('./routes/gameRoute');
 
 const app = express();
-const PORT = process.env.PORT ?? 3005;
+const PORT = process.env.PORT ?? 3007;
 
 const corsOptions = {
   origin: [
