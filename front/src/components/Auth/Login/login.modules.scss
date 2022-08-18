@@ -1,7 +1,7 @@
 @keyframes fade-login-translateX{
   0% {
     opacity: 0;
-    transform: translateX(-40px);
+    transform: translateX(-20px);
   }
   100% {
     opacity: 1;
@@ -12,14 +12,13 @@
   background: url(./login_waifu2x_photo_noise2_scale_tta_1.png) no-repeat 0 20%;
   object-fit: cover;
   max-width: 1870px;
-  height: 775px;
+  height: 735px;
   border-radius: 25px;
   filter: brightness(80%);
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;  
-  margin-bottom: 100px;
   &__form {
     animation: fade-login-translateX 1.2s forwards ease;
     width: 400px;

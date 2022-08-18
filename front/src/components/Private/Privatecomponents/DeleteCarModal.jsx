@@ -35,10 +35,8 @@ export default function DeleteCarModal({ car }) {
 
   return (
     <>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Удалить
-      </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <button className="slider__delete-btn" onClick={handleClickOpen}></button>
+      <Dialog open={open} onClose={handleClose} className="wrapper__deletecar">
         <DialogTitle>Вы уверены?</DialogTitle>
       <DialogActions>
         <Button onClick={handleClose}>Не надо</Button>

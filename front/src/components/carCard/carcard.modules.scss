@@ -81,6 +81,7 @@
   &__item-price {
   font-size: 20px;
   }
+  &__delete-btn,
   &__edit-btn {
     cursor: pointer;
     outline: none;
@@ -102,14 +103,25 @@
       position: absolute;
       top: 50%;
       left: 50%;
+      transition: all 0.3s;
       transform: translate(-50%, -50%);
-    transition: all 0.3s;
     }
     &:hover {
       background: #cb2d3e; 
-    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
-    background: linear-gradient(to right, #ef473a, #cb2d3e);
+      background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+      background: linear-gradient(to right, #ef473a, #cb2d3e);
       box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    }
+  }
+  &__delete-btn {
+    top: 7px;
+    left: 7px;
+    &::after {
+      content: "x";
+      top: 13px;
+      color: #fff;
+      font-size: 25px;
+      background: none;
     }
   }
 }

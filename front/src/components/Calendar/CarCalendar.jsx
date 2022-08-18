@@ -9,7 +9,7 @@ import "./calendar.modules.scss";
 import { registerLocale } from "react-datepicker";
 import ru from 'date-fns/locale/ru';
 import { construct } from 'ramda';
-import { addBookingAC, setCarsAC} from '../../store/action';
+import { addBookingAC, setCarsAC } from '../../store/action';
 
 registerLocale('ru', ru)
 
@@ -17,9 +17,9 @@ export default function CarCalendar({ car }) {
 
   const dispatch = useDispatch()
 
-  useEffect(()=>{
+  useEffect(() => {
     axios.get('http://localhost:3005/cars')
-      .then((res)=> dispatch(setCarsAC(res.data)))
+      .then((res) => dispatch(setCarsAC(res.data)))
   }, [dispatch])
 
   const navigate = useNavigate();
@@ -100,7 +100,7 @@ export default function CarCalendar({ car }) {
     setTent({ id: tent.id, price: tent.price, capacity: tent.capacity, photo: tent.img_url })
     setMountTent(true);
   }
-  
+
 
   return (
 
@@ -128,7 +128,16 @@ export default function CarCalendar({ car }) {
           <p className="carform__content-days-label">Время поездки</p>
           <div className="carform__content-days-output">{days} дней</div>
         </div>
-        <button className='car__desc-btn' onClick={onClick}>Забронировать</button>
+        {user?.role == 'lessor' ?
+          (<>
+            <button className='car__desc-btn-disabled' onClick={onClick}>Забронировать</button>
+            <p style={{textAlign: "center", marginTop: '7px'}}>Зайдите как арендатор</p>
+          </>
+          )
+          : (
+            <button className='car__desc-btn' onClick={onClick}>Забронировать</button>
+          )
+        }
       </div>
       <div className='carform__tent'>
         <p className="carform__content-tent-label">Выбрать палатку</p>

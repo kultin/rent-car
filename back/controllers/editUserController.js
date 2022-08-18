@@ -9,9 +9,8 @@ exports.editUser = async (req, res) => {
         tel: req.body.tel,
       },
       {
-        where: { id: req.body.id }
+        where: { id: req.session.user.id }
       })
-
 
     res.json(user);
   } catch (error) {

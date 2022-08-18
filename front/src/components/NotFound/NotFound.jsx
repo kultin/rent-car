@@ -9,7 +9,6 @@ export default function NotFound() {
         <ul className="NotFound__nav-list">
           <li className="NotFound__nav-link"><Link to="/cars">Каталог</Link></li>
           <li className="NotFound__nav-link"><Link to="/private">Личный кабинет</Link></li>
-          <li className="NotFound__nav-link"><Link to="/contacts">Контакты</Link></li>
         </ul>
       </nav>
       <div className="NotFound__block">
