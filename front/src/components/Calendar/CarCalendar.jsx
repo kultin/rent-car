@@ -94,6 +94,7 @@ export default function CarCalendar({ car }) {
     setTent({ id: tent.id, price: tent.price, capacity: tent.capacity, photo: tent.img_url })
     setMountTent(true);
   }
+  
 
   return (
 

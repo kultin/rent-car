@@ -41,15 +41,11 @@ export default function AddCArForm({ car }) {
   console.log('CAR FROM ADDCAR FORM', car)
 
   const { cars } = useSelector((store) => store.cars)
-  // console.log('Cars', cars)
 
   const [values, setValues] = useLocalStorage('cars', initialValues)
-  // console.log('VALUES', values)
-
-  // const valuesFromReducer = useSelector((store) => store.form.values)
 
   const [coordinates, setCoordinates] = useState(null)
-  // console.log('CORDINATES ADD CAR FORM', coordinates)
+
   const [addressInput, setAddressInput] = useState(false)
 
   useEffect(() => {
@@ -61,19 +57,18 @@ export default function AddCArForm({ car }) {
   }, [])
 
   const brands = R.uniq(cars.map((item) => item.brand))
-  // console.log('BRANDS', brands)
+
   const getModels = () => {
     const filterdCars = cars.filter((item) => item.brand === values.brand)
     return R.uniq(filterdCars.map((item) => item.model))
   }
-  // const body = R.uniq(cars.map((item) => item.body))
+
   const years = R.uniq(cars.map((item) => String(item.year)).sort((a, b) => b - a))
   const engines = R.uniq(cars.map((item) => item.engine))
 
   const [files, setFiles] = useState([])
 
   const [errors, setErrors] = useState({})
-  // console.log('Errors', errors)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -260,7 +255,7 @@ export default function AddCArForm({ car }) {
               handleInputChange={handleInputChange}
               label={"Выберите двигатель"} />
           </div>
-          <div className='addcar__item'>
+          <div className='addcar__item addcar__item-radio'>
             <FormControl>
               <FormLabel>Кузов</FormLabel>
               <RadioGroup row
@@ -319,16 +314,13 @@ export default function AddCArForm({ car }) {
             <YandexSuggester car={car} setCoordinates={setCoordinates} addressInput={addressInput} values={values} setValues={setValues} />
           </div>
 
-          <div className='addcar__item'>
             <div className='addcar__item-dropzone'>
               <MyDropzone files={files} setFiles={setFiles} />
             </div>
             <DraggableImages files={files} setFiles={setFiles} />
-          </div>
 
           <div className='addcar__item'>
             <TextField
-              // {...params}
               error={errors.price ? true : false}
               helperText={errors.price ? "Введите цену" : ''}
               name='price'

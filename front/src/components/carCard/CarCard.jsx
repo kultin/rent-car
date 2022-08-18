@@ -9,7 +9,7 @@ export default function CarCard({ car, edit = false, delCar = false }) {
 
   return (
     <div className="slider__item" key={car.id}>
-      {edit ? <div><EditCarModal car={car} /> или удалить</div> : <></>}
+      {edit ? <div><EditCarModal car={car} /></div> : <></>}
 
       <img className="slider__item-img" src={car.Images.length ? car.Images[0].img_url : "/img.png"} alt="slider-img" />
       <div className='catalog__box'>

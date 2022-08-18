@@ -11,25 +11,28 @@ export default function Filter() {
   const [valueBody, setValueBody] = React.useState("all");
   const [valueBrand, setValueBrand] = React.useState(options[0]);
   const [valuePrice, setValuePrice] = React.useState(optionsPrice[0]);
-  // const [select, setSelect] = React.useState(false);
   const dispatch = useDispatch();
 
-  const onClick = () => {
-    dispatch(sortAllAC(valueBody, valueBrand, valuePrice))
+  const onClick = (e) => {
+    dispatch(sortAllAC(valueBody, valueBrand, valuePrice));
+    setValueBody("all");
   }
 
   return (
     <div className={style.filter}>
       <div className={style.carbody}>
-        <button className={style.btn} onClick={() => dispatch(bodyFilterAC("sedan"))} >
+        <button className={
+          valueBody === "sedan" ? `${style.btn} ${style.btnfocus}`: style.btn} onClick={() => {setValueBody("sedan"); dispatch(bodyFilterAC("sedan"))}} >
           <img className={style.images} src="/images/sedan.png" alt="sedan" />
           <h5 className={style.title}>Седан</h5>
         </button>
-        <button className={style.btn} onClick={() => { setValueBody("SUV") }} >
+        <button className={
+          valueBody ===  "SUV" ? `${style.btn} ${style.btnfocus}`: style.btn} onClick={() => {setValueBody("SUV"); dispatch(bodyFilterAC("SUV"))}} >
           <img className={style.images} src="/images/cross.png" alt="cross" />
           <h5 className={style.title}>Кроссовер</h5>
         </button>
       </div>
+      <div className={style.inputs}>
       <Autocomplete
         value={valueBrand}
         onChange={(e, brand) => {
@@ -37,21 +40,21 @@ export default function Filter() {
         }}
         id="controllable-states-demo"
         options={options}
-        sx={{ width: 300 }}
+        className={style.input1}
         renderInput={(params) => <TextField {...params} label="Марка" />}
       />
       <Autocomplete
-        className={style.sort}
         value={valuePrice}
         onChange={(e, price) => {
           setValuePrice(price);
         }}
         id="controllable-states-demo"
         options={optionsPrice}
-        sx={{ width: 300 }}
+        className={style.input2}
         renderInput={(params) => <TextField {...params} label="Сортировать по цене" />}
       />
-      <button className={style.btn2} onClick={onClick}> Сортировать</button>
+      </div>
+      <button className={style.btn2} onClick={onClick}>Сортировать</button>
     </div>
 
   );

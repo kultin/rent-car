@@ -1,6 +1,4 @@
 import * as React from 'react';
-
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 
@@ -21,7 +19,7 @@ export default function EditCarModal({car}) {
   
   return (
     <div>
-      <Button onClick={handleClickOpen('paper')}>Редактировать</Button>
+      <button className="slider__edit-btn" onClick={handleClickOpen('paper')}></button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -30,9 +28,7 @@ export default function EditCarModal({car}) {
         aria-describedby="scroll-dialog-description"
       >
         <DialogContent dividers={scroll === 'paper'}>
-
           <AddCArForm car={car}/> 
-          
         </DialogContent>
       </Dialog>  
     </div>

@@ -21,7 +21,7 @@
 @keyframes fade-in-title {
   0% {
     opacity: 0;
-    transform: translateX(10px);
+    transform: translateX(-10px);
   }
   100% {
     transform: translateX(0);
@@ -31,7 +31,7 @@
 
 .user__box {
   display: flex;
-  column-gap: 45px;
+  column-gap: 25px;
   margin-bottom: 50px;
 }
 .user__box-value {
@@ -44,7 +44,6 @@
   font-size: 40px;
   line-height: 47px;
   color: #262626;
-  animation: fade-in-title 1s forwards ease;
 }
 
 .btn {
@@ -75,25 +74,39 @@
   &__inner {
     margin-top: auto;
     border-radius: 25px;
-    background: #CA0100;
+
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+
     min-height: 570px;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 0px 2px 12px 0px rgba(33,33,33,1);
   }
-  &__photo {
-    border: none;
+  &__box-foto {
     width: 330px;
     height: 330px;
+    background-color: rgb(235, 235, 235);
     border-radius: 25px;
-    background-color: #fff;
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    box-shadow: 0px 2px 12px 0px rgb(97, 97, 97);
+    border: none;
+  }
+  &__photo {
+    border-radius: 25px;
+    width: 330px;
+    height: 330px;
     object-fit: cover;  
-    box-shadow: 0px 2px 12px 0px rgba(33,33,33,1);
+  }
+  &__photo-icon {
+    position: absolute;
+    top: 120px;
+    left: 120px;
   }
   &__content {
     min-height: 261px;
@@ -173,7 +186,12 @@
 .bookings {
   width: 100%;
   margin-bottom: 50px;
-  animation: fade-block 1.4s forwards;
+  &__inner {
+    animation: fade-block 1.2s forwards;
+  }
+  &__title {
+    animation: fade-in-title 1.2s forwards;
+  }
   &__item {
     border-radius: 25px;
     background: #F7F7F7;
@@ -238,25 +256,92 @@
   }
   &__box-btn {
     cursor: pointer;
+    outline: none;
     border: none;
-    background: #CA0100;  
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
     color: #fff;
     padding: 2px 10px;
     border-radius: 6px;
+    transition: all 0.3s; 
+    &:hover {
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    }
   }
+
 }
+  //-----стили чата модалки в бронированиях----//
+  .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    width: 500px !important; 
+    height: 500px !important;
+    border-radius: 10px !important;
+  }
+  .css-bdhsul-MuiTypography-root-MuiDialogTitle-root {
+    padding: 16px 30px !important;
+  }
+  .css-ypiqx9-MuiDialogContent-root {
+    padding: 20px 30px !important;
+  }
+  .css-qfso29-MuiTypography-root-MuiDialogContentText-root {
+    word-wrap: break-word !important;
+  }
+  .css-1z10yd4-MuiFormControl-root-MuiTextField-root {
+    margin-top: 17px;
+  }
+  .css-1a1fmpi-MuiInputBase-root-MuiInput-root:after {
+    border-bottom: 2px solid #ee0101 !important;
+  }
+  .css-1a1fmpi-MuiInputBase-root-MuiInput-root:before {
+    border-bottom: 1px solid #ee0101 !important;
+  }
+  .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: #ee0101 !important;
+  }
+  .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    color: #fff !important;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    padding: 2px 8px !important;
+  }
+  .css-hlj6pa-MuiDialogActions-root>:not(:first-of-type) {
+    margin-left: 15px !important;
+  }
+  //-----стили чата модалки в бронированиях----//
 
 .favorites {
-  animation: fade-block 1.5s forwards;
   width: 100%;
   margin-bottom: 50px;
   &__inner {
-    border-radius: 25px;
-    background: #F7F7F7;
+    animation: fade-block 1.5s forwards;
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    justify-content: space-between;
+    row-gap: 30px;
+  }
+  &__title {
+    animation: fade-in-title 1.2s forwards;
+  }
+  .slider__item,
+  .slider__item-img {
+    width: 300px;
+  }
 }
+
+.privatecars__title {
+  animation: fade-in-title 1.2s forwards;
+}
+.privatecars__inner {
+  animation: fade-block 1.5s forwards;
+  display: flex;
+  flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 30px;
+    .slider__item,
+  .slider__item-img {
+    width: 300px;
+  }
 }
 
 .addcar {
@@ -279,9 +364,9 @@
   }
   //--------------------------------------------------//
 
-  animation: fade-block 1.7s forwards;
   width: 100%;
   &__inner {
+    animation: fade-block 1.7s forwards;
     padding: 33px;
     border-radius: 25px;
     background: #cccccf;
@@ -289,6 +374,9 @@
     justify-content: space-between;
     flex-wrap: wrap;
     box-shadow: 0px 2px 12px 0px rgba(33,33,33,0.2);
+  }
+  &__title {
+  animation: fade-in-title 1.2s forwards;
   }
   &__item {
     display: flex;
@@ -301,23 +389,33 @@
   &__item-address {
     width: 100%;
   }
+  &__item-dropzone {
+    margin-bottom: 20px;
+  }
   &__btn {
-    background: #CA0100;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
     color: #fff;
+    transition: all 0.3s; 
+    &:hover {
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    }
   }
   &__item-list {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    // justify-content: space-between;
-    row-gap: 10px;
+    justify-content: space-around;
+    row-gap: 20px;
     padding: 0;
+    margin-bottom: 20px;
   }
   &__item-list-item {
     position: relative;
     list-style: none;
-    width: 120px;
-    height: 120px;
+    width: 116px;
+    height: 116px;
     box-shadow: 0px 2px 12px 0px rgba(33,33,33,0.2);
   margin-right: 15px;
   }
@@ -349,19 +447,21 @@
   &__item-buttons-btn {
     cursor: pointer;
     border: none;
-    background: #CA0100;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
     padding: 15px 40px;
     font-weight: 700;
-    // letter-spacing: 1.2;
     color: #fff;
     border-radius: 10px;
     text-transform: uppercase;
-    transition: all 0.3s;
+    transition: all 0.3s; 
     &:hover {
-      background: #ee0101;
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
     }
   }
 }
+
 
 .react-tabs {
   width: 100%;
@@ -381,7 +481,7 @@
   margin: 0;
   border: 3px solid #ffffff;
   border-radius: 10px;
-  width: 373px !important;
+  width: 100% !important;
   height: 250px !important;
   background-color: transparent !important;
   position: relative;
@@ -411,12 +511,20 @@
     transform: translateX(-50%);
     color: #fff;
   }
-}
-.dnd p {
-  display: none;
+  & p {
+    display: none;
+  }
 }
 
 @media (max-width: 1300px) {
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root {
+    width: 350px !important;
+  }
+  .addcar__inner {
+    padding: 15px;
+  }
   .bookings__inner {
     display: flex;
     flex-wrap: wrap;
@@ -441,30 +549,58 @@
   .bookings__box-title {
     margin: 3px 0;
   }
+}
 
+@media (max-width: 1200px) {
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root {
+    width: 310px !important;
+  }
 }
 @media (max-width: 1135px) {
   .bookings__item-pre-booking {
     width: 100%;
     }
 }
+@media (max-width: 1100px) {
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root {
+    width: 250px !important;
+  }
+}
 
 @media (max-width: 992px) {
   .user__box {
     column-gap: 0;
-    // margin-bottom: 50px;
     flex-direction: column;
   }
-    .bookings__inner {
-  justify-content: space-between;
+  .bookings__inner {
+    justify-content: space-between;
   }
-    .info {
-  margin-bottom: 30px;
-  width: 100%;
+  .info {
+    margin-bottom: 30px;
+    width: 100%;
   }
   .bookings__item-pre-booking {
     width: 380px;
-    }
+  }
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root {
+    width: 350px !important;
+  }
+}
+
+@media (max-width: 932px) {
+  .privatecars__inner {
+      justify-content: space-around;
+  }
+  .favorites__inner {
+    justify-content: space-around;
+    row-gap: 20px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -473,19 +609,74 @@
   }
   .bookings__item-pre-booking {
     width: 100%;
-    }
+  }
+  .addcar__item {
+    flex-direction: column;
+   align-items: center;
+   margin-bottom: 0;
+  }
+  .addcar__item-address {
+  //  text-align: center !important;
+   width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .addcar__item-dropzone {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .addcar .css-1u3bzj6-MuiFormControl-root-MuiTextField-root, .addcar .css-16awh2u-MuiAutocomplete-root {
+    margin-bottom: 20px;
+  }
+  .addcar__inner {
+    padding: 30px 15px;
+  }
+  .addcar__item-buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .addcar__item-buttons-btn {
+    width: 350px;
+  }
+  .addcar__item-buttons-btn + .addcar__item-buttons-btn {
+    margin-top: 20px;
+  }
+.addcar__item-list-item {
+  width: 90px;
+  height: 90px;
+}
+.addcar__item-radio {
+  width: 345px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 }
 
 @media (max-width: 568px) {
   .info {
     height: 400px;
 }
-.info__inner {
-  min-height: 370px;
-}
 .info__photo {
   width: 200px;
   height: 200px;
+}
+.info__inner {
+  min-height: 370px;
+}
+.info__box-foto {
+  width: 200px;
+  height: 200px;
+}
+.info__photo-icon {
+  position: absolute;
+  top: 75px;
+  left: 76px;
+  width: 50px;
 }
 .info__content {
   min-height: 161px;
@@ -522,8 +713,53 @@
 .info__content-info {
   height: 20px;
 }
+
+.react-tabs__tab-list {
+  border: none !important;
+  display: flex !important;
+  justify-content: space-around !important;
+  flex-wrap: wrap !important;
+  row-gap: 10px;
+}
+.react-tabs__tab {
+  font-size: 14px;
+  background-color: transparent !important;
+  color: black;
+  border-radius: 10px !important;
+  border-bottom: none;
+}
+.react-tabs__tab--selected {
+  bottom: 2px !important;
+  border-radius: 10px;
+  color: #fff !important;
+  border: none !important;
+  text-align: center !important;
+  background: #cb2d3e !important; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e) !important; 
+    background: linear-gradient(to right, #ef473a, #cb2d3e) !important;
+    width: 100px;
+}
 }
 
+@media (max-width: 414px) {
+  .dnd {
+    width: 260px !important;
+  }
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root {
+    width: 270px !important;
+  }
+  .addcar__item-buttons-btn {
+    width: 270px;
+  }
+  .addcar__item-radio {
+    width: 275px;
+  }
+  .css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label {
+    font-size: 12px;
+  }
+}
 
 
 

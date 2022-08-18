@@ -41,10 +41,6 @@
   &__list-link {
     color: #fff;
     text-decoration: none;
-    &:hover  {
-      text-decoration: underline;
-      color: #CA0100;
-    }
   }
   &__desc {
     display: flex;
@@ -68,8 +64,9 @@
     }
   }
   &__list-link.active {
-    // color: #CA0100;
-    background-color: #CA0100;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
     padding: 5px 7px;
     border-radius: 6px;
   }

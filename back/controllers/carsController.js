@@ -1,14 +1,14 @@
 const {
-  Car, Image, Tent, Like,
+  Car, Image, Tent, Like, CarTent
 } = require('../db/models');
 
 exports.getAllCars = async (req, res) => {
   try {
     const cars = await Car.findAll({
       include: [{ model: Image }, { model: Tent }, { model: Like }],
-
     });
-    // console.log('cars back', cars.map((el)=> el.Bookings.length))
+    console.log('car.Tents.length', cars.map((car)=> car.Tents.length))
+
     res.status(200).json(cars);
   } catch (error) {
     console.log('Get All Cars DB Err', error.message);
@@ -46,7 +46,6 @@ exports.getLessorCars = async (req, res) => {
 
 exports.uploadNewCar = async (req, res) => {
   const userId = req.session?.user?.id;
-  console.log(req.body);
 
   if (userId) {
     try {
@@ -74,6 +73,47 @@ exports.uploadNewCar = async (req, res) => {
               img_url: req.files[i].path.substr(6),
             });
           }
+            await CarTent.create({
+              car_id: newCar.id,
+              tent_id: 1,
+            })
+            await CarTent.create({
+              car_id: newCar.id,
+              tent_id: 2,
+            })
+            await CarTent.create({
+              car_id: newCar.id,
+              tent_id: 3,
+            })
+            await CarTent.create({
+              car_id: newCar.id,
+              tent_id: 4,
+            })
+          
+          // await Tent.create({
+          //   name: 'Mini',
+          //   price: 1000,
+          //   capacity: 2,
+          //   img_url: '/mini.png',
+          // });
+          // await Tent.create({
+          //   name: 'Medium',
+          //   price: 2000,
+          //   capacity: 3,
+          //   img_url: '/medium.png',
+          // });
+          // await Tent.create({
+          //   name: 'Large',
+          //   price: 3000,
+          //   capacity: 4,
+          //   img_url: '/large.png',
+          // });
+          // await Tent.create({
+          //   name: 'XL',
+          //   price: 4000,
+          //   capacity: 5,
+          //   img_url: '/xl.png',
+          // });
           res.status(200).json('ImagesLoaded');
         } catch (error) {
           console.log('DB Upload URL Error:', error.message);
@@ -118,7 +158,7 @@ exports.editCar = async (req, res) => {
         for (let i = 0; i < req.files.length; i++) {
           await Image.update({
             img_url: req.files[i].path.substr(6),
-          }, {where: { car_id: req.body.id }});
+          }, { where: { car_id: req.body.id } });
         }
         res.status(200).json('ImagesLoaded');
       } catch (error) {

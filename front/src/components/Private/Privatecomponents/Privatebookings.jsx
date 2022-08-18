@@ -115,7 +115,6 @@ export default function Privatebookings({ title }) {
           <DialogTitle>Чат</DialogTitle>
           <DialogContent>
             {messages.map((message) => (<DialogContentText key={message.id}>{`${message.sender?.name} : ${message.text}`}</DialogContentText>))}
-
             <TextField
               autoFocus
               margin="dense"
