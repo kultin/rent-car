@@ -206,7 +206,6 @@ export const getMessagesThunk = (id) => async (dispatch) => {
         });
 
         const messages = await response.json()
-        console.log(messages);
         dispatch(getMessagesUA(messages))
 
 
@@ -217,7 +216,7 @@ export const getMessagesThunk = (id) => async (dispatch) => {
 
 
 export const sendMessegeThunk = (values) => async (dispatch) => {
-    console.log('sendThunk', values);
+    
     try {
         const response = await fetch("http://localhost:3005/messages/sendmessage", {
             method: "post",
@@ -227,9 +226,6 @@ export const sendMessegeThunk = (values) => async (dispatch) => {
             },
             body: JSON.stringify({ values }),
         });
-
-        const message = await response.json()
-        if (response.status == 200) {console.log(message);}
 
     } catch (err) {
         console.error('err', err);
@@ -248,11 +244,6 @@ export const readMessagesThunk = (id) => async (dispatch) => {
             },
             body: JSON.stringify({ id }),
         });
-
-        if (response.status == 200) {
-
-            console.log('READthunk200');
-        }
 
     } catch (err) {
         console.error('err', err);

@@ -13,7 +13,7 @@ export const userReducer = (state = initialState, action) => {
 
 
     case UTypes.GETMESSAGES_USER:
-
+console.log(action.payload.messages);
       return { ...state, messages: action.payload.messages }
 
     case UTypes.SET_LOADING:
