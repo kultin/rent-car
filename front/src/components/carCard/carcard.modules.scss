@@ -1,6 +1,7 @@
 .slider {
   &__item {
     width: 328px;
+    position: relative;
   }
   &__item-block {
     display: flex;
@@ -11,10 +12,6 @@
     font-size: 23px;
     margin: 5px 0;
   }
-  // &__item-title2 {
-  //   margin: 0;
-  //   color: #747474;
-  // }
   &__item-title3 {
     text-align: center;
   }
@@ -30,11 +27,13 @@
     line-height: 24px;
     color: #fff;
     border-radius: 6px;
-    background: #CA0100;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
     padding: 5px 20px;
     transition: all 0.3s;
     &:hover {
-      background: #ee0101;
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
     }
   }
   &__item-img {
@@ -82,5 +81,44 @@
   &__item-price {
   font-size: 20px;
   }
+  &__edit-btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 100;
+    width: 35px;
+    height: 35px;
+    right: 7px;
+    top: 7px;
+    transition: all 0.3s;
+    &::after {
+      content: "";
+      width: 24px;
+      height: 24px;
+      background: url(./images/vuesax-linear-edit.png) no-repeat 0 0 /cover;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    transition: all 0.3s;
+    }
+    &:hover {
+      background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    }
+  }
 }
 
+@media (max-width: 414px) {
+.slider__item {
+    width: 300px;
+  }
+ .slider__item-img {
+    width: 300px;
+  }
+}

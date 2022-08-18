@@ -19,7 +19,9 @@
   }
   .item__price {
     display: flex;
-    background-color: #CA0100;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
     padding: 20px 10px;
     margin-bottom: 15px;
     font-size: 40px;
@@ -70,7 +72,13 @@
   color: #fff;
   text-align: center;
   padding: 15px 30px;
-  background: #CA0100;
+  background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    transition: all 0.3s; 
+    &:hover {
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    }
 }
 }
 

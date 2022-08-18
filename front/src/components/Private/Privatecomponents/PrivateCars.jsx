@@ -25,12 +25,11 @@ export default function PrivateCars({setTabIndex}) {
   return (
     <>
       <h2 className="title privatecars__title">Мои машины</h2>
-        {userCars.map((car) => 
-        < CarCard 
-            key={car.id}
-            car={car}
-            edit={edit}
-            setTabIndex={setTabIndex}/>)}
+
+      <div className="privatecars__inner">
+        {userCars.map((car) => < CarCard key={car.id} car={car} edit={edit} setTabIndex={setTabIndex} />)}
+      </div>
+
     </>
   )
 }
