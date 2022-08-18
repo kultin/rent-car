@@ -41,7 +41,7 @@ export default function Privateinfo() {
   const roleDisplay = () => {
     if (user.role == 'lessor') {
       role = 'Арендодатель'
-    } else if (user.role == 'lessor') {
+    } else if (user.role == 'lessee') {
       role = 'Арендатор'
     }
   }
@@ -60,7 +60,7 @@ export default function Privateinfo() {
             </div>
 
             : <div className="info__box-foto">
-              <img className="info__photo-icon" src={'http://localhost:3005/images/default-avatar.jpg'} />
+              <img className="info__photo-icon" src={'http://localhost:3005/images/default-avatar.png'} />
               <AvatarLoader />
             </div>
 
