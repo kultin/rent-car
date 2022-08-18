@@ -304,44 +304,6 @@
   }
 
 }
-  //-----стили чата модалки в бронированиях----//
-  .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
-    width: 500px !important; 
-    height: 500px !important;
-    border-radius: 10px !important;
-  }
-  .css-bdhsul-MuiTypography-root-MuiDialogTitle-root {
-    padding: 16px 30px !important;
-  }
-  .css-ypiqx9-MuiDialogContent-root {
-    padding: 20px 30px !important;
-  }
-  .css-qfso29-MuiTypography-root-MuiDialogContentText-root {
-    word-wrap: break-word !important;
-  }
-  .css-1z10yd4-MuiFormControl-root-MuiTextField-root {
-    margin-top: 17px;
-  }
-  .css-1a1fmpi-MuiInputBase-root-MuiInput-root:after {
-    border-bottom: 2px solid #ee0101 !important;
-  }
-  .css-1a1fmpi-MuiInputBase-root-MuiInput-root:before {
-    border-bottom: 1px solid #ee0101 !important;
-  }
-  .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-    color: #ee0101 !important;
-  }
-  .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-    color: #fff !important;
-    background: #cb2d3e; 
-    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
-    background: linear-gradient(to right, #ef473a, #cb2d3e);
-    padding: 2px 8px !important;
-  }
-  .css-hlj6pa-MuiDialogActions-root>:not(:first-of-type) {
-    margin-left: 15px !important;
-  }
-  //-----стили чата модалки в бронированиях----//
 
 .favorites {
   width: 100%;
@@ -567,6 +529,45 @@
     display: none;
   }
 }
+
+  //-----стили чата модалки в бронированиях----//
+  .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    width: 500px !important; 
+    height: 500px !important;
+    border-radius: 10px !important;
+  }
+  .css-bdhsul-MuiTypography-root-MuiDialogTitle-root {
+    padding: 16px 30px !important;
+  }
+  .css-ypiqx9-MuiDialogContent-root {
+    padding: 20px 30px !important;
+  }
+  .css-qfso29-MuiTypography-root-MuiDialogContentText-root {
+    word-wrap: break-word !important;
+  }
+  .css-1z10yd4-MuiFormControl-root-MuiTextField-root {
+    margin-top: 17px;
+  }
+  .css-1a1fmpi-MuiInputBase-root-MuiInput-root:after {
+    border-bottom: 2px solid #ee0101 !important;
+  }
+  .css-1a1fmpi-MuiInputBase-root-MuiInput-root:before {
+    border-bottom: 1px solid #ee0101 !important;
+  }
+  .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: #ee0101 !important;
+  }
+  .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    color: #fff !important;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    padding: 2px 8px !important;
+  }
+  .css-hlj6pa-MuiDialogActions-root>:not(:first-of-type) {
+    margin-left: 15px !important;
+  }
+  //-----стили чата модалки в бронированиях----//
 
 @media (max-width: 1300px) {
   .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,

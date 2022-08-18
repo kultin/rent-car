@@ -1,11 +1,13 @@
 import { Outlet, NavLink, useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import style from './layout.modules.scss';
+import './layout.modules.scss';
 import { getUserThunk } from '../../store/userActions'
 import { logoutThunk } from '../../store/userActions'
 import Error from '../Error/Error'
 import AppLoader from '../Loader/Loader.jsx'
+import Footer from '../Footer/Footer'
+
 // import { CSSTransition } from 'react-transition-group';
 
 
