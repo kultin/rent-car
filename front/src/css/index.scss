@@ -18,8 +18,9 @@ body {
   //   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   //   sans-serif;
     font-family: 'Roboto', sans-serif;
-}
-
+    overflow-x: hidden;
+  }
+  
 .root {
   min-height: 100%;
   display: flex;

@@ -76,15 +76,8 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  animation: fade-block-translateX 1s forwards;
-
-  &__loader {
-    position: absolute;
-    z-index: 100;
-    top: 20px;
-    right: 50px;
-  }
-
+  background-color: transparent;
+  border: none;
   &__inner {
     margin-top: auto;
     border-radius: 25px;
@@ -205,6 +198,70 @@
   .content__phone {
     margin: 0 0 4px 0;
   }
+
+  &__loader {
+    position: absolute;
+    z-index: 100;
+    top: 5px;
+    right: 5px;
+    width: 80px;
+    height: 40px;
+  }
+
+  &__loader-main-delete,
+  &__loader-main-accept,
+  &__loader-main-btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 100;
+    width: 35px;
+    height: 35px;
+    right: 7px;
+    top: 7px;
+    transition: all 0.3s;
+    &::after {
+      content: "";
+      width: 24px;
+      height: 24px;
+      background: url(./images/vuesax-linear-gallery.png) no-repeat 0 0 /cover;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transition: all 0.3s;
+      transform: translate(-50%, -50%);
+    }
+    &:hover {
+      background: #cb2d3e; 
+      background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+      background: linear-gradient(to right, #ef473a, #cb2d3e);
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    }
+  }
+  &__loader-main-accept {
+    right: 0;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    &::after {
+      background: url(./images/vuesax-linear-gallery-tick.png) no-repeat 0 0 /cover;
+    }
+  }
+  &__loader-main-delete {
+    left: 0;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    &::after {
+      background: url(./images/vuesax-linear-bag-cross.png) no-repeat 0 0 /cover;
+    }
+  }
+
 }
 
 .bookings {
@@ -342,7 +399,7 @@
 
 .addcar {
   width: 100%;
-  //-----стили инпутов формы добавления автомобилей ----//
+  //!-----стили инпутов формы добавления автомобилей ----//
   .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
     background-color: #fff;
   }
@@ -359,7 +416,7 @@
     border-color: transparent;
     border-radius: 10px;
   }
-  //--------------------------------------------------//
+  //!-------------------------------------------------//
 
   &__inner {
     animation: fade-block 1.7s forwards;
@@ -528,7 +585,7 @@
 //! модалка чат
 .wrapper__chat {
   & .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
-    max-width: 500px;
+    width: 500px;
     height: 500px;
     border-radius: 10px;
   }
@@ -540,6 +597,13 @@
     font-weight: 700;
     border-bottom: 1px solid rgb(201, 201, 201);
     padding: 8px 24px !important;
+  }
+  & .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    color: #fff !important;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    padding: 2px 10px !important;
   }
 }
 //!-----------------//
@@ -567,38 +631,6 @@
   }
 }
 //!-----------------//
-
-  //-----стили чата модалки в бронированиях----//
-
-  // .css-bdhsul-MuiTypography-root-MuiDialogTitle-root {
-  //   padding: 16px 30px !important;
-  // }
-  // .css-ypiqx9-MuiDialogContent-root {
-  //   padding: 20px 30px !important;
-  // }
-  // .css-1z10yd4-MuiFormControl-root-MuiTextField-root {
-  //   margin-top: 17px;
-  // }
-  // .css-1a1fmpi-MuiInputBase-root-MuiInput-root:after {
-  //   border-bottom: 2px solid #ee0101 !important;
-  // }
-  // .css-1a1fmpi-MuiInputBase-root-MuiInput-root:before {
-  //   border-bottom: 1px solid #ee0101 !important;
-  // }
-  // .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-  //   color: #ee0101 !important;
-  // }
-  // .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-  //   color: #fff !important;
-  //   background: #cb2d3e; 
-  //   background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
-  //   background: linear-gradient(to right, #ef473a, #cb2d3e);
-  //   padding: 2px 10px !important;
-  // }
-  // .css-hlj6pa-MuiDialogActions-root>:not(:first-of-type) {
-  //   margin-left: 15px !important;
-  // }
-  //-----стили чата модалки в бронированиях----//
 
 @media (max-width: 1300px) {
   .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
@@ -690,9 +722,9 @@
 }
 
 @media (max-width: 768px) {
-  .user__box {
-    margin-top: 70px;
-  }
+  // .user__box {
+  //   margin-top: 70px;
+  // }
   .bookings__item-pre-booking {
     width: 100%;
   }
@@ -871,39 +903,4 @@
 }
 
 
-
-  .info__content-name {
-    font-size: 25px;
-    line-height: 30px;
-    margin: 0;
-  }
-
-  .info__content-role,
-  .info__content-email,
-  .info__content-tel {
-    margin-bottom: 0;
-  }
-
-  .title {
-    font-size: 25px;
-    line-height: 35px;
-  }
-
-  .info__content-role,
-  .info__content-email,
-  .info__content-tel {
-    font-size: 16px;
-    padding-left: 35px;
-  }
-
-  .info__content-role::after,
-  .info__content-email::after,
-  .info__content-tel::after {
-    width: 17px;
-    height: 17px;
-  }
-
-  .info__content-info {
-    height: 20px;
-  }
 

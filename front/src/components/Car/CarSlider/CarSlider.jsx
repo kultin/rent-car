@@ -62,7 +62,7 @@ export default function CarSlider({ car }) {
   const user = useSelector((store) => (store.user.user))
   const like = car.Likes.filter((like) => like.user_id == user.id)[0]
 
-  console.log('front like: ', like);
+  // console.log('front like: ', like);
 
 
   useEffect(() => {
@@ -151,7 +151,8 @@ export default function CarSlider({ car }) {
             <div className="carslider__img-box" key={car.id}>
               <img className="carslider__img" src={carImg.img_url} alt="slider-img" />
               {user?.name &&
-                <button className="carslider__heart" onClick={likeHandler}></button>
+                // <button className="carslider__heart" onClick={likeHandler}></button>
+                <button className={checked ? "carslider__heart active" : "carslider__heart"} onClick={likeHandler}></button>
               }
             </div>
           ))

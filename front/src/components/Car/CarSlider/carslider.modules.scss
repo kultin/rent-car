@@ -3,7 +3,13 @@
     border-radius: 25px;
     margin-right: 34px;
     &__img-box {
+      background-size: cover;
       position: relative;
+    }
+    &__img {
+      border-radius: 25px;
+      max-width: 100%;
+      object-fit: cover;
     }
     &__heart {
       border: none;
@@ -17,7 +23,7 @@
       z-index: 100;
       transition: all 0.3s;
       &.active {
-      background: url("./images/heart-active.svg") no-repeat 0 0 / cover;
+        background: url("./images/heart-active.svg") no-repeat 0 0 / cover;
       }
     }
   .slick-prev:before {
@@ -31,10 +37,6 @@
     font-size: 20px;
     opacity: 1;
     color: #fff;
-  }
-  &__img {
-    border-radius: 25px;
-    max-width: 100%;
   }
 }
 @media (max-width: 1200px) {
@@ -58,8 +60,8 @@
   }
 }
 
-@media (max-width: 768px) {
-  .carslider {
-    margin-top: 50px;
-  }
-}
+// @media (max-width: 768px) {
+//   .carslider {
+//     margin-top: 50px;
+//   }
+// }

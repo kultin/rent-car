@@ -41,6 +41,9 @@
   .style_page__aTjse + .style_page__aTjse{
     margin-left: 10px;
   }
+  &__title {
+    animation: fade-in-catalog 1s forwards ease;
+  }
 
 }
 

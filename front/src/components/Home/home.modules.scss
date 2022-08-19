@@ -29,6 +29,7 @@
     height: auto;
     border-radius: 25px;
     animation: fade-in 0.5s forwards ease;
+    box-shadow: inset 142px 184px 276px -170px
   }
   &__inner {
     width: 100%;
@@ -106,7 +107,7 @@
 }
 .home__banner {
   background-position: 15% 25%;
-  margin-top: 50px;
+  // margin-top: 50px;
 }
 .home__content-title {
   width: 100%;
@@ -118,4 +119,17 @@
   margin: 50px auto 0;
 }
 
+}
+
+@media (max-width: 414px) {
+  .home__content-title {
+    font-size: 31px;
+}
+.home__content-btn {
+  width: 170px;
+  padding: 0;
+  padding: 10px;
+  font-size: 14px;
+
+}
 }

@@ -34,13 +34,13 @@ const ImgLoader = () => {
   return (
     (conditionLoader) ? (
       <div className="info__loader">
-        <button hidden id='acceptBtn' onClick={() => { 
+        <button className="info" hidden id='acceptBtn' onClick={() => { 
           setConditionLoader(false) 
           sendFile()}
           }></button>
-        <label htmlFor="acceptBtn">✅</label>
+        <label className="info__loader-main-accept" htmlFor="acceptBtn"></label>
         <button hidden id='cancelBtn' onClick={() => setConditionLoader(false)}></button>
-        <label htmlFor="cancelBtn">❌</label>
+        <label className="info__loader-main-delete" htmlFor="cancelBtn"></label>
       </div>
     ) : (
       <div className="info__loader">
@@ -48,7 +48,7 @@ const ImgLoader = () => {
           setConditionLoader(true)
           setImg(e.target.files[0])
         }} />
-        <label htmlFor="inputFile">🔃</label>
+        <label className="info__loader-main-btn" htmlFor="inputFile"></label>
       </div>
     )
 

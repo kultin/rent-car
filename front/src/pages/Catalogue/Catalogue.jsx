@@ -37,7 +37,6 @@ export default function Catalogue() {
       <div className='container'>
         <h2 className="title catalog__title">Каталог</h2>
         <Filter />
-        {/* <DateFilter cars={cars} /> */}
         <br />
         <br />
         <div className='catalog__inner'>
