@@ -77,6 +77,7 @@ export default function CarSlider({ car }) {
   const likeHandler = async (e) => {
     e.preventDefault();
     if (!checked) {
+      console.log('checked')
       setChecked(true)
       const response = await fetch(`http://localhost:3005/likes/${car.id}`, {
         method: "post",
@@ -88,6 +89,7 @@ export default function CarSlider({ car }) {
       dispatch(addLikeAC({ carId: car.id, userId: user.id }))
     }
     if (checked) {
+      console.log('not checked')
       axios.delete(`http://localhost:3005/likes/${car.id}`, { withCredentials: true })
         .then((res) => dispatch(deleteLikeAC({ carID: car.id, userID: user.id })))
       setChecked(false)
@@ -151,7 +153,7 @@ export default function CarSlider({ car }) {
             <div className="carslider__img-box" key={car.id}>
               <img className="carslider__img" src={carImg.img_url} alt="slider-img" />
               {user?.name &&
-                <button className="carslider__heart" onClick={likeHandler}></button>
+                <button className={checked ? "carslider__heart active" : "carslider__heart"} onClick={likeHandler}></button>
               }
             </div>
           ))

@@ -19,12 +19,13 @@ export default function MyMap() {
                 geometry={(car.location != null) ? (car.location.split(',')) : (null)}
                 options={{ preset: 'islands#redAutoIcon' }}
                 properties={{
-                  hintContent: car.brand,
+                  hintContent: `${car.brand}  ${car.model}`,
                   item: car.id,
                     balloonContentHeader: car.brand,
                     balloonContentBody: `
                     <div>
-                      <img src="http://localhost:3005${car.photo}" />
+                      <img style={max-width:'100%',
+                      max-height:100%} src="http://localhost:3005${car.photo}" />
                     </div>  `,
                 }}
                 modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
