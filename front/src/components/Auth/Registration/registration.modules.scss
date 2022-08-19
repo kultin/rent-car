@@ -1,0 +1,129 @@
+@keyframes fade-registr-translateX{
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.registration {
+    margin: 0 auto;
+    background: url(./registration_waifu2x_photo_noise2_scale_tta_1.png) no-repeat 0 80%;
+    object-fit: cover;
+    max-width: 1870px;
+    height: 775px;
+    border-radius: 25px;
+    filter: brightness(80%);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    &__form {
+      animation: fade-registr-translateX 1.1s forwards ease;
+      width: 450px;
+      height: 600px;
+      background: rgba(187, 187, 187, 0.7);
+      border: 1px solid rgba(150, 148, 148, 0.3);
+      border-radius: 25px;
+      padding: 40px;
+    }
+    &__form-title {
+      margin: 0;
+      font-weight: 700;
+      font-size: 33px;
+      line-height: 30px;
+      color: #262626;
+    }
+    &__form-box {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+    }
+    &__form-label {
+      font-size: 16px;
+      margin-bottom: 3px;
+      color: rgb(29, 29, 29);
+    }
+    &__form-btn {
+      cursor: pointer;
+      border: none;
+      background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 19px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      text-align: center;
+      width: 100%;
+      padding: 19px 80px;
+      display: block;
+      margin: 30px auto 0;
+      transition: all 0.3s; 
+    &:hover {
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    }
+    }
+    &__form-input {
+      outline: none;
+      border: none;
+      border-radius: 6px;
+      padding: 18px;
+      font-size: 17px;
+      background: #fff;
+
+    }
+    &__form-select {
+      border: none;
+      padding: 18px;
+      border-radius: 6px;
+      outline: none;
+      background: #fff;
+    }
+    &__form-option {
+    padding: 10px;
+    }
+
+}
+
+@media (max-width: 1024px) {
+  .registration {
+    background-position: 60% 70%;
+}
+}
+
+@media (max-width: 768px) {
+  .registration__form-title {
+    font-size: 30px;
+  }
+  .registration__form {
+   width: 80%;
+    height: 590px;
+    padding: 25px;
+}
+.registration__form-btn {
+  height: 53px;
+  padding: 0;
+}
+}
+
+
+
+@media (max-width: 568px) {
+    .registration__form-title {
+      font-size: 30px;
+    }
+    .registration__form {
+     width: 80%;
+      height: 590px;
+      padding: 25px;
+  }
+  .registration__form-btn {
+    height: 53px;
+    padding: 0;
+  }
+}

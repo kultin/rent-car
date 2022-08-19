@@ -1,0 +1,136 @@
+.slider {
+  &__item {
+    width: 328px;
+    position: relative;
+  }
+  &__item-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__item-title {
+    font-size: 23px;
+    margin: 5px 0;
+  }
+  &__item-title3 {
+    text-align: center;
+  }
+  &__item-price {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+  }
+  &__item-btn {
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff;
+    border-radius: 6px;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    padding: 5px 20px;
+    transition: all 0.3s;
+    &:hover {
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    }
+  }
+  &__item-img {
+    object-fit: cover;
+    width: 328px;
+    height: 202px;
+    border-radius: 25px;
+    filter: brightness(70%);
+    transition: all 0.3s;
+  }
+  &__item:hover &__item-img{
+    filter: brightness(100%);
+  }
+  // &__item-img {
+  //   width: 300px;
+  // }
+  &__item-list {
+    padding: 0;
+    margin: 5px 0;
+  }
+  &__item-param-text {
+    color: #686868;
+  }
+  &__item-param {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__item-title {
+    margin: 0;
+  }
+  &__item-title2 {
+    font-size: 23px;
+    margin-left: 10px;
+  }
+  &__item-param-value,
+  &__item-param-text {
+    margin: 0;
+  }
+  &__item-btn {
+    padding: 2px 10px;
+  }
+  &__item-price {
+  font-size: 20px;
+  }
+  &__delete-btn,
+  &__edit-btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 100;
+    width: 35px;
+    height: 35px;
+    right: 7px;
+    top: 7px;
+    transition: all 0.3s;
+    &::after {
+      content: "";
+      width: 24px;
+      height: 24px;
+      background: url(./images/vuesax-linear-edit.png) no-repeat 0 0 /cover;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transition: all 0.3s;
+      transform: translate(-50%, -50%);
+    }
+    &:hover {
+      background: #cb2d3e; 
+      background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+      background: linear-gradient(to right, #ef473a, #cb2d3e);
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    }
+  }
+  &__delete-btn {
+    top: 7px;
+    left: 7px;
+    &::after {
+      content: "x";
+      top: 13px;
+      color: #fff;
+      font-size: 25px;
+      background: none;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+.slider__item {
+    width: 300px;
+  }
+ .slider__item-img {
+    width: 300px;
+  }
+}

@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Tent.init({
     name: DataTypes.STRING,
+    price: DataTypes.INTEGER,
     capacity: DataTypes.INTEGER,
     img_url: DataTypes.STRING,
   }, {

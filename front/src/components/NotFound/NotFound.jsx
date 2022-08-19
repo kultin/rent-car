@@ -7,13 +7,12 @@ export default function NotFound() {
     <div className="NotFound">
       <nav className="NotFound__nav"> 
         <ul className="NotFound__nav-list">
-          <li className="NotFound__nav-link"><a href="/cars">Каталог</a></li>
-          <li className="NotFound__nav-link"><a href="/private">Личный кабинет</a></li>
-          <li className="NotFound__nav-link"><a href="/contacts">Контакты</a></li>
+          <li className="NotFound__nav-link"><Link to="/cars">Каталог</Link></li>
+          <li className="NotFound__nav-link"><Link to="/private">Личный кабинет</Link></li>
         </ul>
       </nav>
       <div className="NotFound__block">
-        <img className="NotFound__block-img" src={'notfound/404.png'} alt="404" />
+        <img className="NotFound__block-img" src={'../notfound/404.png'} alt="404" />
         <p className="NotFound__block-text">Страница не найдена!</p>
         <p className="NotFound__block-desc">«Мы запустили новый сайт, сделав его удобным и информативным.
           Возможно, запрашиваемая Вами страница была перенесена или удалена.

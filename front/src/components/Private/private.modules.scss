@@ -1,18 +1,906 @@
-.info {
-  padding: 50px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-
-  &_text {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: space-around;
+@keyframes fade-block-translateX {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
   }
 
-  &_photo {
-    width: 300px;
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-block {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-title {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.user__box {
+  display: flex;
+  column-gap: 25px;
+  margin-bottom: 50px;
+}
+
+.user__box-value {
+  width: 100%;
+}
+
+.title {
+  margin: 0;
+  margin-bottom: 15px;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 47px;
+  color: #262626;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  width: 330px;
+  height: 55px;
+  border-radius: 6px;
+  background: #FFFFFF;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  color: #262626;
+  transition: all 0.3s;
+  margin-top: auto;
+
+  &:hover {
+    box-shadow: 0px 2px 12px 0px rgba(33, 33, 33, 0.2);
+  }
+}
+
+.info {
+  width: 431px;
+  height: 630px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: transparent;
+  border: none;
+  &__inner {
+    margin-top: auto;
+    border-radius: 25px;
+
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+
+    min-height: 570px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 2px 12px 0px rgba(33, 33, 33, 1);
+  }
+  &__box-foto {
+    width: 330px;
+    height: 330px;
+    background-color: rgb(235, 235, 235);
+    border-radius: 25px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0px 2px 12px 0px rgb(97, 97, 97);
+    border: none;
+  }
+  &__photo {
+    border-radius: 25px;
+    width: 330px;
+    height: 330px;
+    object-fit: cover;  
+  }
+  &__photo-icon {
+    position: absolute;
+    top: 120px;
+    left: 120px;
+  }
+
+  &__content {
+    min-height: 261px;
+    width: 330px;
+    margin-top: auto;
+    padding: 0 30px 30px 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__content-name {
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 41px;
+    color: #FFFFFF;
+    margin: 0;
+    margin: 25px 0 5px 0;
+  }
+
+  &__content-role,
+  &__content-email,
+  &__content-tel {
+    font-size: 22px;
+    line-height: 29px;
+    color: #FFFFFF;
+    margin: 0;
+    margin-bottom: 10px;
+    padding-left: 56px;
+    position: relative;
+  }
+
+  &__content-role,
+  &__content-email,
+  &__content-tel {
+    &::after {
+      content: "";
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__content-role {
+    &::after {
+      background: url(./Privatecomponents/images/vuesax-linear-user.svg) no-repeat;
+      background-size: cover;
+    }
+  }
+
+  &__content-email {
+    &::after {
+      background: url(./Privatecomponents/images/vuesax-linear-message-text.svg) no-repeat;
+      background-size: cover;
+    }
+  }
+
+  &__content-tel {
+    &::after {
+      background: url(./Privatecomponents/images/vuesax-linear-call.svg) no-repeat;
+      background-size: cover;
+    }
+  }
+
+  &__content-info {
+    outline: none;
+    margin: 25px 0 5px 0;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    padding: 3px 20px;
+    font-size: 14px;
+  }
+
+  &__content-btn:hover {
+    background-color: rgb(207, 207, 207);
+  }
+
+  .content__phone {
+    margin: 0 0 4px 0;
+  }
+
+  &__loader {
+    position: absolute;
+    z-index: 100;
+    top: 5px;
+    right: 5px;
+    width: 80px;
+    height: 40px;
+  }
+
+  &__loader-main-delete,
+  &__loader-main-accept,
+  &__loader-main-btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 100;
+    width: 35px;
+    height: 35px;
+    right: 7px;
+    top: 7px;
+    transition: all 0.3s;
+    &::after {
+      content: "";
+      width: 24px;
+      height: 24px;
+      background: url(./images/vuesax-linear-gallery.png) no-repeat 0 0 /cover;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transition: all 0.3s;
+      transform: translate(-50%, -50%);
+    }
+    &:hover {
+      background: #cb2d3e; 
+      background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+      background: linear-gradient(to right, #ef473a, #cb2d3e);
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    }
+  }
+  &__loader-main-accept {
+    right: 0;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    &::after {
+      background: url(./images/vuesax-linear-gallery-tick.png) no-repeat 0 0 /cover;
+    }
+  }
+  &__loader-main-delete {
+    left: 0;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    &::after {
+      background: url(./images/vuesax-linear-bag-cross.png) no-repeat 0 0 /cover;
+    }
   }
 
 }
+
+.bookings {
+  width: 100%;
+  margin-bottom: 50px;
+
+  &__inner {
+    animation: fade-block 1.2s forwards;
+  }
+  &__title {
+    animation: fade-in-title 1.2s forwards;
+  }
+
+  &__item {
+    border-radius: 25px;
+    background: #F7F7F7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    position: relative;
+    transition: all 0.3s;
+    box-shadow: 0px 2px 12px 0px rgba(33, 33, 33, 0.2);
+    margin-bottom: 20px;
+
+    &::after {
+      content: "";
+      width: 95%;
+      height: 1px;
+      background-color: #C2C2C4;
+      position: absolute;
+      top: 53px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__item-pre-booking {
+    border-radius: 25px;
+    background: #F7F7F7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    position: relative;
+    transition: all 0.3s;
+    box-shadow: 0px 2px 12px 0px rgba(33, 33, 33, 0.2);
+    border: 2px solid #c58383;
+    margin-bottom: 20px;
+
+    &::after {
+      content: "";
+      width: 95%;
+      height: 1px;
+      background-color: #C2C2C4;
+      position: absolute;
+      top: 53px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__box-value,
+  &__box-title {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23px;
+    color: #262626;
+    margin: 0;
+    margin: 10px 0;
+  }
+
+  &__box-title {
+    color: #7c7c7c;
+  }
+
+  &__box-btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 6px;
+    transition: all 0.3s; 
+    &:hover {
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    }
+  }
+
+}
+
+.favorites {
+  width: 100%;
+  margin-bottom: 50px;
+
+  &__inner {
+    animation: fade-block 1.5s forwards;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 30px;
+  }
+  &__title {
+    animation: fade-in-title 1.2s forwards;
+  }
+  .slider__item,
+  .slider__item-img {
+    width: 300px;
+  }
+}
+
+.privatecars__title {
+  animation: fade-in-title 1.2s forwards;
+}
+.privatecars__inner {
+  animation: fade-block 1.5s forwards;
+  display: flex;
+  flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 30px;
+  .slider__item,
+  .slider__item-img {
+    width: 300px;
+  }
+}
+
+.addcar {
+  width: 100%;
+  //!-----стили инпутов формы добавления автомобилей ----//
+  .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+    background-color: #fff;
+  }
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root {
+    width: 380px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 1px 12px 0px rgba(134, 134, 134, 0.2);
+
+  }
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root,
+  .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border-color: transparent;
+    border-radius: 10px;
+  }
+  //!-------------------------------------------------//
+
+  &__inner {
+    animation: fade-block 1.7s forwards;
+    padding: 33px;
+    border-radius: 25px;
+    background: #cccccf;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 0px 2px 12px 0px rgba(33, 33, 33, 0.2);
+  }
+  &__title {
+  animation: fade-in-title 1.2s forwards;
+  }
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  &__item-buttons,
+  &__item-dropzone,
+  &__item-address {
+    width: 100%;
+  }
+  &__item-dropzone {
+    margin-bottom: 20px;
+  }
+  &__btn {
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    color: #fff;
+    transition: all 0.3s; 
+    &:hover {
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    }
+  }
+
+  &__item-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    row-gap: 20px;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  &__item-list-item {
+    position: relative;
+    list-style: none;
+    width: 116px;
+    height: 116px;
+    box-shadow: 0px 2px 12px 0px rgba(33,33,33,0.2);
+  margin-right: 15px;
+  }
+
+  &__item-list-img {
+    max-width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    height: 100%;
+  }
+
+  &__item-list-btn {
+    border: none;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+
+    &::after {
+      content: "x";
+      font-size: 18px;
+    }
+  }
+
+  &__item-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__item-buttons-btn {
+    cursor: pointer;
+    border: none;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    padding: 15px 40px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 10px;
+    text-transform: uppercase;
+    transition: all 0.3s; 
+    &:hover {
+      box-shadow: 0px 1px 20px -2px rgba(33, 33, 33, 0.8);
+    }
+  }
+}
+
+
+.react-tabs {
+  width: 100%;
+}
+
+.react-tabs__tab-panel {
+  margin-top: 30px;
+}
+
+.react-tabs__tab-list {
+  border-bottom: 1px solid #d37d7d !important;
+}
+
+.react-tabs__tab--selected {
+  border-color: #d37d7d !important;
+  color: #d32f2f !important;
+}
+
+.dnd {
+  margin: 0;
+  border: 3px solid #ffffff;
+  border-radius: 10px;
+  width: 100% !important;
+  height: 250px !important;
+  background-color: transparent !important;
+  position: relative;
+  outline: none;
+  transition: all 0.3s;
+  border-style: dashed;
+
+  &:hover {
+    background-color: rgba(#fff, 0.3) !important;
+  }
+
+  &::after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    background: url(./Privatecomponents/images/vuesax-outline-camera.png) no-repeat 0 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-size: cover;
+  }
+
+  &::before {
+    content: "Выберите или перетащите фото";
+    position: absolute;
+    width: 250px;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+  }
+  & p {
+    display: none;
+  }
+}
+
+//! модалка чат
+.wrapper__chat {
+  & .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+  }
+  & .css-qfso29-MuiTypography-root-MuiDialogContentText-root {
+    word-wrap: break-word;
+  }
+  & .css-bdhsul-MuiTypography-root-MuiDialogTitle-root {
+    font-size: 30px;
+    font-weight: 700;
+    border-bottom: 1px solid rgb(201, 201, 201);
+    padding: 8px 24px !important;
+  }
+  & .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    color: #fff !important;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    padding: 2px 10px !important;
+  }
+}
+//!-----------------//
+
+
+//! модалка редактирования машины
+.wrapper__editcar .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    height: 800px;
+    max-width: 1000px;
+    border-radius: 10px;
+}
+//!-----------------//
+
+//! модалка удаления машины
+.wrapper__deletecar {
+  & .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    width: 300px;
+  }
+  & .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    color: #fff !important;
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    padding: 2px 10px !important;
+  }
+}
+//!-----------------//
+
+@media (max-width: 1300px) {
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root {
+    width: 350px !important;
+  }
+  .addcar__inner {
+    padding: 15px;
+  }
+  .bookings__inner {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 30px;
+    justify-content: space-between;
+  }
+  .bookings__box {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .bookings__item-pre-booking {
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 300px;
+    margin-bottom: 0;
+  }
+
+  .bookings__item-pre-booking::after {
+    display: none;
+  }
+  .bookings__box-value,
+  .bookings__box-title {
+    margin: 3px 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root {
+    width: 310px !important;
+  }
+}
+
+@media (max-width: 1135px) {
+  .bookings__item-pre-booking {
+    width: 100%;
+  }
+}
+@media (max-width: 1100px) {
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root {
+    width: 250px !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .user__box {
+    column-gap: 0;
+    flex-direction: column;
+  }
+  .bookings__inner {
+    justify-content: space-between;
+  }
+  .info {
+    margin-bottom: 30px;
+    width: 100%;
+  }
+  .bookings__item-pre-booking {
+    width: 380px;
+  }
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root {
+    width: 300px !important;
+  }
+}
+
+@media (max-width: 932px) {
+  .privatecars__inner {
+      justify-content: space-around;
+  }
+  .favorites__inner {
+    justify-content: space-around;
+    row-gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  // .user__box {
+  //   margin-top: 70px;
+  // }
+  .bookings__item-pre-booking {
+    width: 100%;
+  }
+  .addcar__item {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
+  }
+  .addcar__item-address {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .addcar__item-dropzone {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .addcar .css-1u3bzj6-MuiFormControl-root-MuiTextField-root, .addcar .css-16awh2u-MuiAutocomplete-root {
+    margin-bottom: 20px;
+  }
+  .addcar__inner {
+    padding: 30px 15px;
+  }
+  .addcar__item-buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .addcar__item-buttons-btn {
+    width: 300px;
+  }
+  .addcar__item-buttons-btn + .addcar__item-buttons-btn {
+    margin-top: 20px;
+  }
+.addcar__item-list-item {
+  width: 90px;
+  height: 90px;
+}
+.addcar__item-radio {
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+}
+
+@media (max-width: 568px) {
+  .info {
+    height: 400px;
+}
+.info__photo {
+  width: 200px;
+  height: 200px;
+}
+.info__inner {
+  min-height: 370px;
+}
+.info__box-foto {
+  width: 200px;
+  height: 200px;
+}
+.info__photo-icon {
+  position: absolute;
+  top: 75px;
+  left: 76px;
+  width: 50px;
+}
+.info__content {
+  min-height: 161px;
+  width: 220px;
+}
+.btn {
+  width: 100%;
+  height: 35px;
+  font-size: 14px;
+  line-height: 1;
+}
+.info__content-name {
+  font-size: 25px;
+  line-height: 30px;
+  margin: 0;
+}
+.info__content-role,
+.info__content-email, 
+.info__content-tel {
+  margin-bottom: 0;
+}
+.title {
+  font-size: 25px;
+  line-height: 35px;
+}
+.info__content-role, .info__content-email, .info__content-tel {
+  font-size: 16px;
+  padding-left: 35px;
+}
+.info__content-role::after, .info__content-email::after, .info__content-tel::after {
+  width: 17px;
+  height: 17px;
+}
+.info__content-info {
+  height: 20px;
+}
+
+.react-tabs__tab-list {
+  border: none !important;
+  display: flex !important;
+  justify-content: space-around !important;
+  flex-wrap: wrap !important;
+  row-gap: 10px;
+}
+.react-tabs__tab {
+  font-size: 14px;
+  background-color: transparent !important;
+  color: black;
+  border-radius: 10px !important;
+  border-bottom: none;
+}
+.react-tabs__tab--selected {
+  bottom: 2px !important;
+  border-radius: 10px;
+  color: #fff !important;
+  border: none !important;
+  text-align: center !important;
+  background: #cb2d3e !important; 
+  background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e) !important; 
+  background: linear-gradient(to right, #ef473a, #cb2d3e) !important;
+  width: 100px;
+}
+}
+
+@media (max-width: 414px) {
+  .dnd {
+    width: 260px !important;
+  }
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root {
+    width: 250px !important;
+  }
+  .addcar__item-buttons-btn {
+    width: 250px;
+  }
+  .addcar__item-radio {
+    width: 250px;
+  }
+  .css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label {
+    font-size: 12px;
+  }
+  .wrapper__editcar .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    margin: 10px;
+}
+}
+
+@media (max-width: 320px) {
+  .dnd {
+    width: 290px !important;
+  }
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root,
+  .css-wp08kf-MuiFormControl-root-MuiTextField-root,
+  .css-16awh2u-MuiAutocomplete-root {
+    width: 290px !important;
+  }
+  .addcar__item-buttons-btn {
+    width: 290px;
+  }
+  .addcar__item-radio {
+    width: 275px;
+  }
+  .dnd::before {
+    width: 100%;
+    text-align: center;
+}
+}
+
+
+

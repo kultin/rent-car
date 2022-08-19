@@ -1,0 +1,10 @@
+.car__inner {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 1040px) {
+  .car__inner {
+    flex-direction: column;
+  }
+}

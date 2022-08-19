@@ -1,0 +1,67 @@
+.carslider {
+    width: 800px;
+    border-radius: 25px;
+    margin-right: 34px;
+    &__img-box {
+      background-size: cover;
+      position: relative;
+    }
+    &__img {
+      border-radius: 25px;
+      max-width: 100%;
+      object-fit: cover;
+    }
+    &__heart {
+      border: none;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      background: url("./images/heart.svg") no-repeat 0 0 / cover;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      transition: all 0.3s;
+      &.active {
+        background: url("./images/heart-active.svg") no-repeat 0 0 / cover;
+      }
+    }
+  .slick-prev:before {
+    content: 'ᐸ';
+    font-size: 20px;
+    opacity: 1;
+    color: #fff;
+  }
+  .slick-next:before {
+    content: 'ᐳ';
+    font-size: 20px;
+    opacity: 1;
+    color: #fff;
+  }
+}
+@media (max-width: 1200px) {
+  .carslider {
+    width: 600px;
+  }
+  .carslider__img {
+    height: 400px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .carslider {
+    width: 100%;
+    margin-right: 0;
+  }
+  .carslider__img {
+    width: 100%;
+    object-fit: cover;
+    height: auto;
+  }
+}
+
+// @media (max-width: 768px) {
+//   .carslider {
+//     margin-top: 50px;
+//   }
+// }

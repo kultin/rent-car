@@ -10,19 +10,29 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // this.belongsTo(models.Lessor, {
-      //   foreignKey: 'booking_id',
-      // });
+      this.belongsTo(models.Car, {
+        foreignKey: 'CarId',
+      });
+      this.belongsTo(models.User, {
+        foreignKey: 'user_id',
+      });
+      this.hasMany(models.Message, {
+        foreignKey: 'booking_id',
+      });
     }
   }
   Booking.init({
+    booking_id: DataTypes.INTEGER,
     date_start: DataTypes.STRING,
     date_end: DataTypes.STRING,
+    days: DataTypes.INTEGER,
+    price: DataTypes.INTEGER,
     pick_up: DataTypes.STRING,
     return_place: DataTypes.STRING,
-    car_id: DataTypes.INTEGER,
+    CarId: DataTypes.INTEGER,
+    tent_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
-    closed: DataTypes.BOOLEAN,
+    status: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Booking',

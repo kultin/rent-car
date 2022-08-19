@@ -1,0 +1,120 @@
+.footer {
+  background-color: #1B1B1B;
+  max-width: 100%;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  position: relative;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    opacity: 0.2;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    right: 0;
+      }
+  &__logo {
+    width: 130px;
+  }
+  &__inner {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+  }
+  &__list {
+    margin: 0;
+    padding: 0;
+  }
+  &__list-item {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    & + & {
+      margin-left: 30px;
+    }
+  }
+  &__list-link {
+    color: #fff;
+    text-decoration: none;
+  }
+  &__desc {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0;
+    &-copy {
+      width: 430px;
+    }
+    &-title {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 400;
+    }
+    &-urid {
+      width: 613px;
+      font-weight: 400;
+      font-size: 14px;
+      color: #737373;
+      opacity: 0.5;
+
+    }
+  }
+  &__list-link.active {
+    background: #cb2d3e; 
+    background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+    background: linear-gradient(to right, #ef473a, #cb2d3e);
+    padding: 5px 7px;
+    border-radius: 6px;
+  }
+  &__desc-box {
+    display: flex;
+    align-items: center;
+  }
+  &__desc-icon {
+    cursor: pointer;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    & + & {
+      margin-left: 20px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer__desc-urid,
+  .footer__desc-title,{
+    font-size: 13px;
+    width: 100%;
+}
+.footer__desc {
+  flex-direction: column;
+  text-align: center;
+  row-gap: 20px;
+}
+.footer__list-item + .footer__list-item {
+  margin-left: 15px;
+}
+
+}
+
+@media (max-width: 568px) {
+  .footer__inner {
+    flex-direction: column;
+    row-gap: 40px;
+  }
+  .footer__desc {
+    padding-top: 30px;
+  }
+  .footer__list-item + .footer__list-item {
+    margin-left: 10px ;
+  }
+
+}
+
