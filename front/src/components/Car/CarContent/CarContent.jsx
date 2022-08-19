@@ -7,7 +7,10 @@ export default function CarContent({ car }) {
     <>
       {car &&
         <div className="car__desc">
+          <div className='car__desc-top-box'>
           <h2 className="car__desc-title">{car.brand}<span>{car.model}</span></h2>
+
+          </div>
           <ul className="car__desc-list">
             <li className="car__desc-item item__price">Цена: <span>{car.price} р/сутки</span></li>
             <li className="car__desc-item item__param"><span>Информация о машине</span></li>

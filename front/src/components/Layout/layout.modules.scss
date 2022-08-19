@@ -107,24 +107,23 @@
   }
 }
 
-
 @media (max-width: 768px) {
-  .navbar__inner {
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: #fff;
-    padding: 0;
-    z-index: 20;
-  }
+  // .navbar__inner {
+  //   position: fixed;
+  //   left: 0;
+  //   top: 0;
+  //   background-color: #fff;
+  //   padding: 0;
+  //   z-index: 20;
+  // }
   .navbar__burger {
     display: block;
   }
   .navbar__list {
-    position: fixed;
+    position: absolute;
     z-index: 10;
     top: 0;
-    right: -100%;
+    right: -105%;
     width: 350px;
     height: 500px;
     background: rgba(#fff,1.0);
@@ -165,16 +164,24 @@
   .navbar__list {
     width: 343px;
   }
+  .navbar__list {
+    width: 250px;
+    &.active {
+      right: -10px;
+    }
+  }
 }
 
 @media (max-width: 375px) {
   .navbar__list {
-    width: 308px;
+    width: 210px;
   }
 }
 
 @media (max-width: 320px) {
   .navbar__list {
-    width: 250px;
+    &.active {
+      right: -55px;
+    }
   }
 }

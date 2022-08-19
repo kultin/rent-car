@@ -80,3 +80,30 @@
   font-size: 20px;
 }
 }
+
+@media (max-width: 1200px) {
+  .slider__title {
+    font-size: 30px;
+    line-height: 35px;
+}
+}
+
+@media (max-width: 768px) {
+  .slider .slick-slide {
+    margin-left: 5px;
+  }
+}
+
+@media (max-width: 414px) {
+  .slider__title {
+    font-size: 25px;
+    line-height: 35px;
+}
+}
+
+@media (max-width: 320px) {
+  .slider__title {
+    font-size: 20px;
+    line-height: 35px;
+}
+}
