@@ -251,6 +251,7 @@ export const getMessagesThunk = (id) => async (dispatch) => {
         });
 
         const messages = await response.json()
+        console.log(messages);
         dispatch(getMessagesUA(messages))
 
 

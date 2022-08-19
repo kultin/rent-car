@@ -17,7 +17,7 @@ exports.getMessages = async (req, res) => {
       {
         model: User,
         as: 'sender',
-        attributes: ['name'],
+        attributes: ['name', 'img_url'],
       },
     })
     

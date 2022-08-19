@@ -10,6 +10,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Avatar from '@mui/material/Avatar'
 
 export default function Privatebookings({ title }) {
 
@@ -31,7 +32,7 @@ export default function Privatebookings({ title }) {
     socketRef.current = socketIOClient("http://localhost:3010", {
       query: { roomId: sendValues.id },
     });
-    
+
     socketRef.current.on("newChatMessage", (message) => {
       console.log('onMessage');
       dispatch(getMessagesThunk(sendValues.id))
@@ -113,12 +114,27 @@ export default function Privatebookings({ title }) {
     });
   }
 
+  //   const styles = { 
+  //     {
+  //     textAlign: 'right',
+  //   }
+  // }
+  // sx={{textAlign: 'end'}} 
+
   return (
     <>
       <Dialog open={open} onClose={handleClose} className="wrapper__chat">
         <DialogTitle>Чат</DialogTitle>
         <DialogContent>
-          {messages.map((message) => (<DialogContentText key={message.id}>{`${message.sender?.name} : ${message.text}`}</DialogContentText>))}
+          {messages.map((message) => (<>
+            <div style={(message.sender?.name == user.name) ? ({ marginLeft: '390px'}) : ({ marginLeft: '0px' })}>
+              <Avatar alt="Remy Sharp" src={message.sender.img_url} />
+            </div>
+
+            <DialogContentText sx={(message.sender?.name == user.name) ? ({ textAlign: 'end' }) : ({ textAlign: 'start' })} key={message.id}>
+              {`${message.sender?.name} : ${message.text}`}
+            </DialogContentText>
+          </>))}
           <TextField
             autoFocus
             margin="dense"
