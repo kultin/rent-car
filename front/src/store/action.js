@@ -78,7 +78,7 @@ export const deleteCarAC = (id) => ({
 })
 
 export const deleteCarThunk = (id) => async (dispatch) => {
-  dispatch(setLoadingUA(true))
+  // dispatch(setLoadingUA(true))
   try {
       const response = await fetch("http://localhost:3005/cars/mycars/delete", {
           method: "delete",
