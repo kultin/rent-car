@@ -18,7 +18,7 @@ export default function CarCard({ car, edit=false, setTabIndex }) {
         <DeleteCarModal car={car} className="slider__del-btn"/>
         </div>}
 
-      <img className="slider__item-img" src={car.Images.length ? car.Images[0].img_url : "/img.png"} alt="slider-img" />
+      <img className="slider__item-img" src={car.photo ? car.photo : "/img.png"} alt="slider-img" />
       <div className='catalog__box'>
         <h3 className="slider__item-title">{car.brand}</h3>
         <h3 className="slider__item-title2">{car.model}</h3>
